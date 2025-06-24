@@ -1,911 +1,140 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jornada Destrave na Hora H - Liberte Sua Voz Autêntica</title>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* ESTILO BASE E CORES */
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #eef2f5 100%);
-            line-height: 1.7;
-        }
-        .step-screen { display: none; }
-        .chart-container { position: relative; width: 100%; max-width: 500px; margin: auto; height: auto; min-height: 350px; }
-        
-        /* ANIMAÇÕES E TRANSIÇÕES */
-        .step-indicator { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in { animation: fadeIn 0.6s ease-out; }
-
-        /* TIPOGRAFIA (PROSE) */
-        .prose h2 { color: #1a365d; font-weight: 800; margin-bottom: 1.5rem; }
-        .prose h3 { margin-bottom: 1rem !important; color: #DD6B20; font-weight: 700; }
-        .prose h4 { color: #2C5282; font-weight: 600; margin-bottom: 0.75rem; }
-        .prose p { margin-bottom: 1.25rem; color: #2d3748; }
-        .prose strong { color: #2B6CB0; }
-        .prose blockquote { border-left-color: #F6AD55; background-color: #FFF5EB; }
-
-        /* BLOCOS DE CONTEÚDO CUSTOMIZADOS */
-        .content-section {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #DD6B20;
-        }
-
-        .illustration-container {
-            text-align: center;
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
-            border-radius: 1rem;
-            border: 1px solid #E2E8F0;
-        }
-        .illustration-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.75rem;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.07);
-        }
-
-        .story-box {
-            background: #F0FFF4;
-            border-left: 4px solid #38A169;
-            border-radius: 0 0.5rem 0.5rem 0;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-        .story-box::before {
-            content: '📖';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            opacity: 0.5;
-        }
-
-        .highlight-box {
-            background: #FFF5EB;
-            border: 1px solid #F6AD55;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-        .highlight-box::before {
-            content: '�';
-            position: absolute;
-            top: -0.75rem;
-            left: 1rem;
-            background: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 50%;
-            font-size: 1.25rem;
-            border: 1px solid #F6AD55;
-        }
-
-        /* SEÇÃO DE PRÁTICA (WORKSHOP) */
-        .practice-section { 
-            background: linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%); 
-            border: 1px solid #90CDF4; 
-            border-radius: 1rem; 
-            padding: 2rem; 
-            margin-top: 3rem; 
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        .practice-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #4299E1, #63B3ED, #90CDF4);
-        }
-
-        /* FEEDBACK CARD (COACHING) */
-        .feedback-card { 
-            background: linear-gradient(135deg, #38A169 0%, #2F855A 100%); 
-            color: white; 
-            border-radius: 1rem; 
-            padding: 2rem 3rem; 
-            text-align: center;
-        }
-    </style>
-     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-dark': '#1A202C',
-                        'brand-orange': '#DD6B20',
-                        'brand-blue': '#2B6CB0',
-                        'brand-light': '#F7FAFC',
-                        'brand-gray': '#A0AEC0',
-                        'brand-success': '#38A169',
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jornada Destrave na Hora H</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #F9FAFB 0%, #E5F4F9 100%);
+      line-height: 1.7;
+    }
+    .bg-glow {
+      background: radial-gradient(circle at top left, #fff8e1, transparent), radial-gradient(circle at bottom right, #e0f7fa, transparent);
+    }
+    .pulse {
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .hand-drawn {
+      border: 3px dashed #facc15;
+      border-radius: 1rem;
+    }
+  </style>
 </head>
-<body class="bg-brand-light text-gray-800">
 
-    <header class="bg-brand-dark shadow-md sticky top-0 z-50">
-        <div class="container mx-auto p-4 flex justify-between items-center">
-            <img id="logo-img" src="" alt="Logo Destrave na Hora H" class="h-10 md:h-12"/>
-            <div class="text-right">
-                <h1 class="text-xl md:text-2xl font-extrabold text-white">Jornada do Destrave</h1>
-                <p id="progress-text" class="text-sm text-brand-gray">Passo 0 de 7</p>
-            </div>
-        </div>
-        <div class="bg-gray-700 h-2">
-            <div id="progress-bar" class="bg-gradient-to-r from-brand-orange to-yellow-400 h-2 rounded-r-full step-indicator" style="width: 0%;"></div>
-        </div>
-    </header>
+<body class="bg-glow text-gray-800">
 
-    <main id="app-container" class="container mx-auto p-4 md:p-8 max-w-4xl">
-        <!-- Lock Screen -->
-        <div id="lock-screen" class="step-screen animate-fade-in">
-             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl text-center border-t-8 border-brand-orange relative">
-                <div class="mb-8">
-                    <div class="w-20 h-20 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <span class="text-white text-3xl">🔓</span>
-                    </div>
-                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Bem-vindo(a) de volta!</h2>
-                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-                        Sua jornada de transformação continua. Para desbloquear o próximo capítulo da sua evolução, insira a senha do dia.
-                    </p>
-                </div>
-                <div class="max-w-md mx-auto">
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="password-input" placeholder="Senha do Dia" 
-                               class="flex-grow p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-brand-orange/50 focus:border-brand-orange focus:outline-none uppercase text-center text-xl tracking-widest font-bold transition-all">
-                        <button id="unlock-btn" 
-                                class="bg-gradient-to-r from-brand-orange to-yellow-500 text-white font-bold py-4 px-8 rounded-xl hover:from-yellow-500 hover:to-brand-orange transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
-                            DESTRAVAR
-                        </button>
-                    </div>
-                    <p id="password-error" class="text-red-600 mt-4 h-6 font-medium"></p>
-                </div>
-            </div>
-        </div>
+<!-- HEADER -->
+<header class="bg-indigo-900 shadow-md sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto p-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-yellow-400 rounded-full flex justify-center items-center text-xl font-bold">🎯</div>
+      <h1 class="text-2xl font-extrabold text-white font-[Fredoka]">Jornada do Destrave</h1>
+    </div>
+    <div class="text-right">
+      <p class="text-sm text-gray-300">Progresso: <span class="font-bold">Passo 1/7</span></p>
+    </div>
+  </div>
+  <div class="bg-indigo-700 h-2">
+    <div class="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full" style="width: 15%;"></div>
+  </div>
+</header>
 
-        <!-- Feedback Screen -->
-        <div id="feedback-screen" class="step-screen animate-fade-in">
-            <div class="feedback-card shadow-2xl">
-                <div id="feedback-content" class="space-y-6">
-                    <!-- Conteúdo do coaching dinâmico -->
-                </div>
-                <button id="continue-btn" class="mt-8 bg-white text-brand-success font-bold py-3 px-10 rounded-full hover:bg-gray-100 transition-transform transform hover:scale-105 shadow-lg">
-                    Continuar Jornada →
-                </button>
-            </div>
-        </div>
+<!-- CONTAINER -->
+<main class="max-w-5xl mx-auto px-6 py-10">
 
-        <!-- Passo 1: Desvende Seu Superpoder Introvertido -->
-        <div id="step-1" class="step-screen animate-fade-in">
-            <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">⚡</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 1: Desvende Seu Superpoder Introvertido</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Descubra a força incrível que já existe dentro de você</p>
-            </header>
-            
-            <article class="prose max-w-none">
-                <div class="content-section">
-                    <h3>Sabe aquela sensação...</h3>
-                    <p>...de estar numa reunião importante, ter AQUELA sacada genial, mas sentir como se sua voz estivesse presa numa caixa de vidro? Você vê a oportunidade passar e fica com o gosto amargo do "e se...". Se essa cena te soa dolorosamente familiar, respire aliviado. Você chegou ao lugar certo.</p>
-                </div>
+  <!-- BLOCO DE BOAS-VINDAS -->
+  <section class="text-center mb-16">
+    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-6 pulse">
+      <span class="text-white text-4xl">🔓</span>
+    </div>
+    <h2 class="text-4xl font-extrabold mb-4 text-indigo-900">Bem-vindo(a) de volta!</h2>
+    <p class="text-lg text-gray-600 max-w-xl mx-auto">Você está prestes a desbloquear sua verdadeira voz. Bora destravar mais uma fase da sua jornada!</p>
 
-                <div class="story-box">
-                    <h4 class="font-bold text-brand-success mb-2">A História de Ana: De Invisível a Indispensável</h4>
-                    <p class="text-sm">Ana era uma analista brilhante que se sentia um fantasma nas reuniões. Após ver uma decisão equivocada ser tomada - uma que ela poderia ter evitado -, Ana decidiu que algo precisava mudar. Não ela, mas sua forma de se expressar.</p>
-                </div>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <input type="text" placeholder="Digite a senha do dia..." class="flex-1 p-4 border-2 border-indigo-200 rounded-xl focus:ring-4 focus:ring-yellow-300 focus:outline-none text-center font-bold uppercase">
+      <button class="bg-gradient-to-r from-yellow-400 to-pink-400 text-white font-bold py-4 px-8 rounded-xl hover:scale-105 transition transform shadow-md">DESTRAVAR 🚀</button>
+    </div>
+  </section>
 
-                <div class="content-section">
-                    <h3>A Armadilha do "Comunicador Ideal"</h3>
-                    <p>Por décadas, o mundo nos vendeu um mito perigoso: o de que para ser ouvido, é preciso ser barulhento e expansivo. Tentar vestir essa "fantasia" de extrovertido é exaustivo e esconde seu verdadeiro potencial.</p>
-                     <div class="highlight-box">
-                        <h4 class="font-bold text-brand-dark mb-2">A Sociedade do "Barulho"</h4>
-                        <p class="text-sm">Vivemos numa cultura que frequentemente confunde volume com valor. Quantas vezes você já viu alguém dominar uma conversa sem realmente contribuir com nada substancial? Você não precisa ser mais barulhento. Você precisa ser mais estratégico.</p>
-                    </div>
-                </div>
-                
-                <div class="illustration-container">
-                    <img src="https://placehold.co/600x300/E2E8F0/2D3748?text=Seus+Superpoderes" alt="Diagrama dos superpoderes introvertidos" class="mx-auto">
-                    <p class="text-sm text-gray-600 mt-4 italic">Seus 5 superpoderes naturais que o mundo precisa conhecer.</p>
-                </div>
+  <!-- PASSO 1 -->
+  <section class="bg-white rounded-2xl shadow-xl p-8 hand-drawn">
+    <div class="text-center mb-10">
+      <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="text-white text-3xl">⚡</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-indigo-900 mb-3">Passo 1: Desvende Seu Superpoder Introvertido</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Você tem superpoderes escondidos! Bora descobrir quais são eles?</p>
+    </div>
 
-                <div class="content-section">
-                    <h3>Sua Ferrari Mental: A Verdade Sobre Seu Poder</h3>
-                    <p>Sua mente mais quieta não é uma desvantagem. É uma Ferrari na garagem: silenciosa quando parada, mas absurdamente poderosa quando você aprende a ligar o motor. Este método vai te dar a chave.</p>
-                    
-                    <h4 class="text-xl font-bold text-brand-blue mt-6 mb-4">Seus 5 Superpoderes Escondidos</h4>
-                    <div class="space-y-4">
-                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-                            <h5 class="font-bold text-blue-800">🎧 A Superaudição (Escuta Profunda)</h5>
-                            <p class="text-blue-700 text-sm">Você capta nuances e preocupações não ditas, permitindo oferecer soluções mais precisas e empáticas.</p>
-                        </div>
-                        <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
-                            <h5 class="font-bold text-green-800">🔍 O Raio-X Mental (Análise Crítica)</h5>
-                            <p class="text-green-700 text-sm">Você cava fundo, prevê consequências e vê a figura completa. Suas opiniões são mais lógicas e persuasivas.</p>
-                        </div>
-                        <div class="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
-                            <h5 class="font-bold text-purple-800">🎯 O Foco de Laser (Concentração)</h5>
-                            <p class="text-purple-700 text-sm">Sua capacidade de se concentrar profundamente é rara e valiosa, ajudando a entregar sua mensagem de forma clara.</p>
-                        </div>
-                        <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
-                            <h5 class="font-bold text-orange-800">👁️ A Visão Além do Alcance (Observação Aguçada)</h5>
-                            <p class="text-orange-700 text-sm">Você nota a linguagem corporal, as dinâmicas de poder. É como ter um 'mapa do terreno' em tempo real.</p>
-                        </div>
-                         <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
-                            <h5 class="font-bold text-red-800">🛡️ A Bússola Interna (Integridade e Convicção)</h5>
-                            <p class="text-red-700 text-sm">Quando você fala sobre o que acredita, suas palavras carregam uma autenticidade magnética que constrói confiança.</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
+    <!-- BLOCO DE CONTEÚDO -->
+    <div class="space-y-6">
+      <div class="bg-indigo-50 border-l-4 border-yellow-400 p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-indigo-800 mb-2">🚀 Acredite, você é especial!</h3>
+        <p class="text-gray-700">Sabe quando você pensa mil coisas incríveis... mas trava na hora de falar? 🧠💭 Isso não é defeito, é superpoder! Aqui você vai descobrir como transformar isso em sua maior força.</p>
+      </div>
 
-            <div class="practice-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">✨ Sua Vez de Praticar: O Inventário de Superpoderes</h3>
-                <p class="text-gray-700 mb-6 text-center">Reconhecer é o primeiro passo. Marque os superpoderes que mais ressoam com você.</p>
-                <div id="superpoderes-list-1" class="space-y-3 max-w-2xl mx-auto"></div>
-                <div class="mt-8 p-4 bg-white/70 rounded-lg">
-                    <label for="reflexao-superpoder-1" class="block text-gray-800 font-medium mb-2">Reflexão Profunda:</label>
-                    <textarea id="reflexao-superpoder-1" rows="3" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" placeholder="Pense em uma situação recente onde você usou um desses poderes. Como foi?"></textarea>
-                </div>
-            </div>
+      <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-green-700 mb-2">💡 O Segredo dos Superpoderes</h3>
+        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+          <li><strong>🎧 Escuta Ninja:</strong> Você ouve o que ninguém percebe.</li>
+          <li><strong>🔍 Análise de Mestre:</strong> Enxerga detalhes escondidos.</li>
+          <li><strong>🎯 Foco de Laser:</strong> Quando decide, ninguém te segura.</li>
+          <li><strong>👁 Olhar de Águia:</strong> Observa tudo e todos sem falar uma palavra.</li>
+          <li><strong>🛡 Bússola Interna:</strong> Sua verdade é seu maior escudo.</li>
+        </ul>
+      </div>
 
-            <button data-step="1" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-5 px-8 rounded-xl hover:opacity-90 transition-all text-xl shadow-lg">
-                SALVAR E VER MEU FEEDBACK →
-            </button>
-        </div>
-        
-        <!-- Passo 2: Clareza Cirúrgica -->
-        <div id="step-2" class="step-screen animate-fade-in">
-             <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">🎯</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 2: Clareza Cirúrgica</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Transforme o caos mental em comunicação cristalina</p>
-            </header>
-            
-            <article class="prose max-w-none">
-                 <div class="content-section">
-                    <h3>O Momento do "Branco Total"</h3>
-                    <p>Você conhece melhor o projeto do que ninguém, mas na hora H, a mente trava. Cinco minutos depois, as palavras perfeitas voltam. Isso não é fraqueza, é excesso de potência sem direcionamento. Sua mente tenta processar TUDO de uma vez e congela.</p>
-                </div>
-                 <div class="story-box">
-                    <h4 class="font-bold text-brand-success mb-2">A Transformação de Carlos: Do Gago ao Guru</h4>
-                    <p class="text-sm">Carlos era um desenvolvedor genial que se perdia em detalhes técnicos. Seu problema não era nervosismo, mas falta de estrutura. Hoje, ele é o melhor comunicador técnico da empresa, usando a regra que você vai aprender.</p>
-                </div>
-
-                <div class="content-section">
-                    <h3>A Regra de Ouro dos 3 Pontos</h3>
-                    <p>Esta é a sua ferramenta mais poderosa. Antes de qualquer comunicação, organize seus pensamentos em <strong>exatamente 3 pontos principais</strong>. Por quê? Nosso cérebro ama o número 3. É fácil de lembrar, persuasivo e cria uma sensação de completude.</p>
-                    
-                     <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 my-6">
-                        <h4 class="text-lg font-bold text-blue-800 mb-4 text-center">A Fórmula Mágica</h4>
-                        <div class="grid md:grid-cols-3 gap-4 text-center">
-                            <div>
-                                <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-2">1</div>
-                                <h5 class="font-semibold text-blue-800">O PONTO</h5>
-                                <p class="text-blue-700 text-xs">A ideia central</p>
-                            </div>
-                            <div>
-                                <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-2">2</div>
-                                <h5 class="font-semibold text-blue-800">O ARGUMENTO</h5>
-                                <p class="text-blue-700 text-xs">Por que importa</p>
-                            </div>
-                            <div>
-                                <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-2">3</div>
-                                <h5 class="font-semibold text-blue-800">A AÇÃO</h5>
-                                <p class="text-blue-700 text-xs">O que você propõe</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <div class="practice-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">✨ Sua Vez de Praticar: Estruture Sua Clareza</h3>
-                <p class="text-gray-700 mb-6 text-center">Pense em um assunto real que você precisa comunicar. Use a Regra dos 3 Pontos.</p>
-                <div class="space-y-4">
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="contexto-situacao-2" class="block text-gray-800 font-medium mb-2">Primeiro, descreva a situação:</label>
-                        <input type="text" id="contexto-situacao-2" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" placeholder="Ex: Reunião para discutir o novo projeto">
-                    </div>
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="ponto1-2" class="block text-gray-800 font-medium mb-2">1. O Ponto Principal:</label>
-                        <textarea id="ponto1-2" rows="2" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" placeholder="Ex: Precisamos redefinir o escopo do projeto."></textarea>
-                    </div>
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="ponto2-2" class="block text-gray-800 font-medium mb-2">2. O Argumento de Suporte:</label>
-                        <textarea id="ponto2-2" rows="2" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" placeholder="Ex: Com o escopo atual, corremos o risco de entregar um produto com falhas."></textarea>
-                    </div>
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="ponto3-2" class="block text-gray-800 font-medium mb-2">3. A Ação Desejada:</label>
-                        <textarea id="ponto3-2" rows="2" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" placeholder="Ex: Proponho uma reunião para revisar as prioridades."></textarea>
-                    </div>
-                </div>
-            </div>
-             <button data-step="2" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-5 px-8 rounded-xl hover:opacity-90 transition-all text-xl shadow-lg">
-                SALVAR E VER MEU FEEDBACK →
-            </button>
+      <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-6">
+        <h4 class="font-semibold text-yellow-700 mb-3">✨ Bora praticar!</h4>
+        <p class="mb-4">Marque aqui quais superpoderes você já percebe em você:</p>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
+            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
+            🎧 Escuta Ninja
+          </label>
+          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
+            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
+            🔍 Análise de Mestre
+          </label>
+          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
+            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
+            🎯 Foco de Laser
+          </label>
+          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
+            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
+            👁 Olhar de Águia
+          </label>
+          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
+            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
+            🛡 Bússola Interna
+          </label>
         </div>
 
-        <!-- Passo 3: O Timing Perfeito -->
-        <div id="step-3" class="step-screen animate-fade-in">
-            <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">⏰</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 3: O Timing Perfeito</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Domine a arte de ser ouvido no momento certo</p>
-            </header>
-            <article class="prose max-w-none">
-                <div class="content-section">
-                    <h3>O Fantasma da Reunião</h3>
-                    <p>Você já se sentiu como um fantasma em uma reunião? Presente, mas invisível. A discussão acelera, você tem uma contribuição valiosa, mas quando finalmente encontra uma brecha, o assunto já mudou. A resposta não é sobre coragem. É sobre timing estratégico.</p>
-                </div>
-                <div class="story-box">
-                    <h4 class="font-bold text-brand-success mb-2">A Revolução de Lucas: De Espectador a Estrategista</h4>
-                    <p class="text-sm">Lucas era um gamer excepcional. Ele entendia a estratégia, previa os movimentos do adversário, mas na hora de se comunicar com a equipe pelo chat de voz, ele travava. Sentia que a comunicação era rápida demais. Ele começou a usar seu superpoder de observação para identificar as pausas exatas após uma chamada do líder do time. Usando a "Janela da Pergunta", ele começou a fazer perguntas táticas como "Já consideramos um ataque pelo flanco esquerdo?". Em pouco tempo, ele se tornou o estrategista oficial do time, respeitado não pela velocidade, mas pela precisão de suas intervenções.</p>
-                </div>
-                 <div class="content-section">
-                    <h3>As 5 Janelas de Oportunidade Douradas</h3>
-                    <p>Sua capacidade de observar antes de agir é um superpoder. Use-o para identificar estes momentos-chave:</p>
-                    <ul class="list-disc list-inside space-y-2 mt-4">
-                        <li><strong>A Janela da Pergunta:</strong> Quando alguém faz uma pergunta ao grupo.</li>
-                        <li><strong>A Janela da Complementação:</strong> Quando uma ideia boa, mas incompleta, é apresentada.</li>
-                        <li><strong>A Janela da Síntese:</strong> Quando há muitas ideias soltas e confusão.</li>
-                        <li><strong>A Janela da Perspectiva:</strong> Quando todos estão vendo apenas um lado da questão.</li>
-                        <li><strong>A Janela da Solução:</strong> Quando há um problema ou impasse.</li>
-                    </ul>
-                </div>
-            </article>
-            <div class="practice-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">✨ Sua Vez de Praticar: Qual a Melhor Jogada?</h3>
-                <p class="text-gray-700 mb-6 text-center">Analise os cenários e escolha a melhor estratégia.</p>
-                <div class="space-y-6">
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <h4 class="font-semibold text-brand-dark mb-2">Cenário: A Reunião Acelerada</h4>
-                        <p class="text-sm text-gray-700 mb-3">Seu colega apresenta uma ideia, mas esquece um ponto importante. Qual sua melhor estratégia?</p>
-                        <div id="timing-options-1" class="space-y-2">
-                             <label class="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"><input type="radio" name="timing1" value="c" class="mt-1 h-5 w-5 text-brand-orange"><span class="ml-3 text-sm text-gray-800">Usar uma "entrada suave": "Ótima ideia, João. Complementando..."</span></label>
-                             <label class="flex items-start p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"><input type="radio" name="timing1" value="d" class="mt-1 h-5 w-5 text-brand-orange"><span class="ml-3 text-sm text-gray-800">Fazer uma pergunta estratégica: "João, como você vê o impacto disso no orçamento?"</span></label>
-                        </div>
-                    </div>
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="timing-reflexao-3" class="block text-gray-800 font-medium mb-2">Reflexão Pessoal:</label>
-                        <textarea id="timing-reflexao-3" rows="3" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Pense em uma oportunidade de falar que você perdeu. Qual janela você poderia ter usado?"></textarea>
-                    </div>
-                </div>
-            </div>
-             <button data-step="3" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-5 px-8 rounded-xl hover:opacity-90 transition-all text-xl shadow-lg">SALVAR E VER MEU FEEDBACK →</button>
+        <div class="mt-6">
+          <label class="block text-gray-700 font-semibold mb-2">Conta pra gente: em que momento você usou um desses superpoderes?</label>
+          <textarea rows="3" class="w-full p-4 border-2 border-indigo-200 rounded-lg focus:ring-2 focus:ring-yellow-300" placeholder="Escreve aqui sua reflexão..."></textarea>
         </div>
+      </div>
+    </div>
 
-        <!-- Passo 4: Energia Inteligente -->
-        <div id="step-4" class="step-screen animate-fade-in">
-             <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">🔋</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 4: Energia Inteligente</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comunique sem se esgotar, gerenciando sua energia social como um estrategista</p>
-            </header>
-            <article class="prose max-w-none">
-                <div class="content-section">
-                    <h3>O Mistério da Bateria Social</h3>
-                    <p>Você sai de uma reunião de 2 horas se sentindo como se tivesse corrido uma maratona, enquanto seus colegas extrovertidos parecem energizados. O que há de errado? Nada. Sua "bateria social" funciona de forma diferente. Para eles, socializar carrega. Para você, consome energia. A chave é gerenciar esse consumo de forma inteligente.</p>
-                </div>
-                <div class="story-box">
-                    <h4 class="font-bold text-brand-success mb-2">A Virada de Chave de Mariana, do Marketing Digital</h4>
-                    <p class="text-sm">Mariana era uma maga do marketing digital. Nos bastidores, ela criava campanhas geniais. Mas nas reuniões de apresentação, sua energia se esvaía. Ela se sentia julgada e acabava concordando com ideias inferiores às suas só para a interação acabar logo. Ninguém via o trabalho incrível que ela fazia "no off". A virada veio quando ela começou a tratar as reuniões como "sprints" de energia. Ela se preparava com 15 minutos de silêncio, definia UMA contribuição principal para fazer, e se permitia sair da sala por 2 minutos para "recarregar". As pessoas começaram a ver não só seu trabalho, mas a estrategista confiante por trás dele.</p>
-                </div>
-                <div class="highlight-box">
-                    <h4 class="font-bold text-brand-dark mb-2">A Ciência Por Trás da Sua Energia</h4>
-                    <p class="text-sm">Seu cérebro introvertido processa informações mais profundamente. Em ambientes sociais, você está constantemente analisando múltiplas camadas de informação. É como rodar um software sofisticado - consome mais energia, mas produz resultados de maior qualidade.</p>
-                </div>
-            </article>
-            <div class="practice-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">✨ Sua Vez de Praticar: Kit de Sobrevivência Social</h3>
-                <p class="text-gray-700 mb-6 text-center">Crie seu plano personalizado para gerenciar sua energia.</p>
-                <div class="space-y-4">
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="energia-drenos-4" class="block text-gray-800 font-medium mb-2">Meus Maiores Drenos de Energia:</label>
-                        <textarea id="energia-drenos-4" rows="3" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Ex: Reuniões longas, networking forçado, conversas superficiais..."></textarea>
-                    </div>
-                    <div class="bg-white/70 p-4 rounded-lg">
-                         <label for="energia-antes-4" class="block text-gray-800 font-medium mb-2">Minhas Estratégias de PREPARAÇÃO (Antes):</label>
-                        <textarea id="energia-antes-4" rows="3" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Ex: Reservar 30 min em silêncio, definir 2 objetivos para a reunião..."></textarea>
-                    </div>
-                     <div class="bg-white/70 p-4 rounded-lg">
-                         <label for="energia-depois-4" class="block text-gray-800 font-medium mb-2">Minhas Estratégias de RECUPERAÇÃO (Depois):</label>
-                        <textarea id="energia-depois-4" rows="3" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Ex: Tomar um banho relaxante, ler um livro, não marcar outro compromisso social..."></textarea>
-                    </div>
-                </div>
-            </div>
-             <button data-step="4" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-5 px-8 rounded-xl hover:opacity-90 transition-all text-xl shadow-lg">SALVAR E VER MEU FEEDBACK →</button>
-        </div>
+    <!-- BOTÃO DE CONTINUAR -->
+    <div class="text-center mt-10">
+      <button class="bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold py-4 px-10 rounded-full hover:scale-105 transition transform shadow-lg">
+        SALVAR E IR PARA O PRÓXIMO PASSO →
+      </button>
+    </div>
+  </section>
 
-        <!-- Passo 5: Aplicação Real -->
-        <div id="step-5" class="step-screen animate-fade-in">
-            <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">🚀</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 5: Aplicação Real</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">O destrave acontece na prática! Transforme teoria em resultados concretos</p>
-            </header>
-            <article class="prose max-w-none">
-                <div class="content-section">
-                    <h3>A Ponte Entre Dois Mundos</h3>
-                    <p>Você já absorveu um conhecimento incrível. Agora é o momento da verdade: construir uma ponte sólida entre o que você aprendeu e as situações reais da sua vida. É aqui que a maioria para. Eles consomem conteúdo, se sentem inspirados, mas nunca fazem a travessia. Não seja um deles.</p>
-                </div>
-                 <div class="illustration-container">
-                    <img src="https://placehold.co/600x300/E2E8F0/2D3748?text=Teoria+%E2%9E%A1+A%C3%A7%C3%A3o" alt="Ponte da Teoria para a Ação" class="mx-auto">
-                    <p class="text-sm text-gray-600 mt-4 italic">Seu plano de ação é a ponte que conecta o que você sabe com o que você faz.</p>
-                </div>
-            </article>
-            <div class="practice-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">✨ Sua Vez de Praticar: Construa Sua Ponte para a Ação</h3>
-                <p class="text-gray-700 mb-6 text-center">Escolha uma situação real e desafiadora que você enfrentará. Crie seu plano de ação.</p>
-                 <div class="space-y-4">
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="aplicacao-cenario-5" class="block text-gray-800 font-medium mb-2">O Cenário:</label>
-                        <input type="text" id="aplicacao-cenario-5" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Ex: Apresentar o resultado do projeto para a diretoria">
-                    </div>
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="aplicacao-plano-5" class="block text-gray-800 font-medium mb-2">Meu Plano de Ação (integrando os passos):</label>
-                        <textarea id="aplicacao-plano-5" rows="4" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Ex: 1. (Clareza) Vou estruturar nos 3 pontos chave. 2. (Timing) Vou usar a 'Janela da Pergunta' para iniciar. 3. (Energia) Vou meditar por 10 min antes..."></textarea>
-                    </div>
-                </div>
-            </div>
-             <button data-step="5" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-5 px-8 rounded-xl hover:opacity-90 transition-all text-xl shadow-lg">SALVAR E VER MEU FEEDBACK →</button>
-        </div>
+</main>
 
-        <!-- Passo 6: Confiança Inabalável -->
-        <div id="step-6" class="step-screen animate-fade-in">
-            <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">💪</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 6: Confiança Inabalável</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Construa uma base sólida de autoconfiança autêntica</p>
-            </header>
-            <article class="prose max-w-none">
-                <div class="content-section">
-                    <h3>A Diferença Entre Confiança e "Pose"</h3>
-                    <p>A confiança real não é um dom místico nem "fingir até conseguir". Ela é construída tijolo por tijolo, através de evidências concretas de que você é capaz. É o resultado direto de aplicar suas ferramentas, ver que elas funcionam e, crucialmente, <strong>celebrar suas vitórias</strong>.</p>
-                </div>
-                <div class="highlight-box">
-                    <h4 class="font-bold text-brand-dark mb-2">O Poder das Micro-Vitórias</h4>
-                    <p class="text-sm">Seu cérebro não distingue entre vitórias grandes e pequenas. Cada sucesso, por menor que seja, libera dopamina e reforça vias neurais positivas. É como exercício: 10 minutos todos os dias é melhor que 2 horas uma vez por mês.</p>
-                </div>
-            </article>
-             <div class="practice-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">✨ Sua Vez de Praticar: Seu Diário de Vitórias</h3>
-                <p class="text-gray-700 mb-6 text-center">Seja seu maior fã. Documente suas evidências de competência.</p>
-                <div class="space-y-4">
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="vitorias-recentes-6" class="block text-gray-800 font-medium mb-2">Minhas Vitórias Recentes (última semana):</label>
-                        <textarea id="vitorias-recentes-6" rows="4" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Ex: 1. Consegui dar minha opinião numa reunião. 2. Expliquei uma ideia complexa usando 3 pontos. 3. Fiz uma pergunta num evento online..."></textarea>
-                    </div>
-                </div>
-            </div>
-             <button data-step="6" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-5 px-8 rounded-xl hover:opacity-90 transition-all text-xl shadow-lg">SALVAR E VER MEU FEEDBACK →</button>
-        </div>
-
-        <!-- Passo 7: Liberte Sua Voz Autêntica -->
-        <div id="step-7" class="step-screen animate-fade-in">
-             <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">🗣️</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 7: Liberte Sua Voz Autêntica</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Transforme sua autenticidade em sua maior força</p>
-            </header>
-             <article class="prose max-w-none">
-                 <div class="content-section">
-                    <h3>O Fim da Era das Máscaras</h3>
-                    <p>Chegamos ao passo final, que é na verdade o começo de tudo. A liberdade é sentir-se 100% você. Você já tem o mapa, as ferramentas e a confiança. Agora, vamos consolidar sua nova identidade e criar um plano de longo prazo.</p>
-                </div>
-                 <div class="story-box">
-                    <h4 class="font-bold text-brand-success mb-2">A Libertação de Sofia: De Imitadora a Inspiradora</h4>
-                    <p class="text-sm">Sofia passou anos tentando imitar colegas extrovertidos. Resultado? Exaustão. Tudo mudou quando ela abraçou seu estilo autêntico: pausas reflexivas, perguntas profundas, contribuições precisas. Hoje, clientes confiam nela porque "ela é real".</p>
-                </div>
-            </article>
-            <div class="practice-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">✨ Sua Vez de Praticar: Seu Compromisso com o Futuro</h3>
-                <p class="text-gray-700 mb-6 text-center">Defina 3 metas de comunicação específicas e realistas para os próximos 30 dias.</p>
-                <div class="space-y-4">
-                    <div class="bg-white/70 p-4 rounded-lg">
-                        <label for="metas-30-dias-7" class="block text-gray-800 font-medium mb-2">Minhas Metas de Comunicação:</label>
-                        <textarea id="metas-30-dias-7" rows="4" class="w-full p-3 border-2 border-gray-300 rounded-lg" placeholder="Ex: 1. Vou me posicionar com uma ideia completa em uma reunião de equipe por semana. 2. Vou iniciar uma conversa com um colega de outro setor. 3. Quando sentir o 'branco', vou respirar fundo por 5s..."></textarea>
-                    </div>
-                </div>
-            </div>
-             <button data-step="7" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-5 px-8 rounded-xl hover:opacity-90 transition-all text-xl shadow-lg">
-                FINALIZAR JORNADA E VER MEU RELATÓRIO! 🎉
-            </button>
-        </div>
-        
-        <!-- Relatório Final -->
-        <div id="final-report" class="step-screen animate-fade-in">
-             <header class="text-center mb-12">
-                <div class="w-16 h-16 bg-gradient-to-br from-brand-success to-green-500 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    <span class="text-white text-2xl">🏆</span>
-                </div>
-                <h2 class="text-4xl font-bold text-brand-dark mb-4">Parabéns! Você Completou a Jornada!</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Este é o seu relatório personalizado. Guarde-o como um lembrete do seu poder.</p>
-            </header>
-            <div class="content-section">
-                <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">Seu Perfil de Superpoderes</h3>
-                <div class="chart-container">
-                    <canvas id="superpoderesChart"></canvas>
-                </div>
-            </div>
-             <div id="report-content" class="space-y-6">
-                <!-- Conteúdo do relatório gerado dinamicamente -->
-            </div>
-            <div class="mt-12 text-center bg-gray-100 p-6 rounded-lg">
-                <h3 class="text-xl font-bold text-brand-dark mb-2">O mundo precisa da sua voz autêntica!</h3>
-                <p class="text-gray-600">Lembre-se: a comunicação é um músculo. Continue praticando, celebrando suas vitórias e usando suas ferramentas. A chave está em suas mãos.</p>
-            </div>
-        </div>
-
-    </main>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const app = {
-            state: { currentStep: 1, answers: {} },
-            passwords: { 1: "SUPERPODER", 2: "CLAREZA", 3: "TIMING", 4: "ENERGIA", 5: "ACAO", 6: "CONFIANCA", 7: "LIBERDADE" },
-            logoBase64: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAEOA6sDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1fBICMnGDRUhQoWYnKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1VWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSlJWRvZa3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vPz9PX29/j5+v/aAAwDAQACEQMRAD8A/v4ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiig-c9wY+P+c2YyMvP6k0+gD//2Q==',
-            ui: {
-                screens: document.querySelectorAll('.step-screen'),
-                progressBar: document.getElementById('progress-bar'),
-                progressText: document.getElementById('progress-text'),
-                passwordInput: document.getElementById('password-input'),
-                unlockBtn: document.getElementById('unlock-btn'),
-                passwordError: document.getElementById('password-error'),
-                logoImg: document.getElementById('logo-img'),
-                feedbackScreen: document.getElementById('feedback-screen'),
-                feedbackContent: document.getElementById('feedback-content'),
-                continueBtn: document.getElementById('continue-btn'),
-            },
-
-            init() {
-                this.ui.logoImg.src = this.logoBase64;
-                this.loadState();
-                this.addEventListeners();
-                this.renderDynamicContent();
-                this.showCurrentScreen();
-                this.updateProgressBar();
-            },
-
-            loadState() {
-                const savedState = localStorage.getItem('destraveAppData_vFinal');
-                if (savedState) {
-                    this.state = JSON.parse(savedState);
-                }
-            },
-
-            saveState() {
-                localStorage.setItem('destraveAppData_vFinal', JSON.stringify(this.state));
-            },
-            
-            showScreen(screenId) {
-                this.ui.screens.forEach(screen => {
-                    screen.style.display = 'none';
-                });
-                const targetScreen = document.getElementById(screenId);
-                if (targetScreen) {
-                    targetScreen.style.display = 'block';
-                }
-            },
-
-            showCurrentScreen() {
-                 if (this.state.currentStep > 7) {
-                    this.showScreen('final-report');
-                    this.generateReport(); 
-                } else {
-                    this.showScreen('lock-screen');
-                    this.ui.passwordInput.setAttribute('placeholder', `Senha do Dia ${this.state.currentStep}`);
-                }
-            },
-
-            updateProgressBar() {
-                const step = Math.min(this.state.currentStep - 1, 7);
-                const progress = (step / 7) * 100;
-                this.ui.progressBar.style.width = `${progress}%`;
-                this.ui.progressText.textContent = `Passo ${step} de 7 concluído`;
-                 if (this.state.currentStep > 7) {
-                     this.ui.progressBar.style.width = `100%`;
-                     this.ui.progressText.textContent = `Jornada Concluída!`;
-                }
-            },
-
-            renderDynamicContent() {
-                const superpoderes = [
-                    { id: "escuta", power: "A Superaudição (Escuta Profunda)" },
-                    { id: "analise", power: "O Raio-X Mental (Análise Crítica)" },
-                    { id: "foco", power: "O Foco de Laser (Concentração)" },
-                    { id: "observacao", power: "A Visão Além do Alcance (Observação Aguçada)" },
-                    { id: "integridade", power: "A Bússola Interna (Integridade e Convicção)" }
-                ];
-                const listContainer = document.getElementById('superpoderes-list-1');
-                if (listContainer) {
-                    listContainer.innerHTML = superpoderes.map(sp => `
-                        <label class="flex items-center p-3 bg-white rounded-lg hover:bg-blue-50 cursor-pointer shadow-sm border border-gray-200 transition-all">
-                            <input type="checkbox" data-power="${sp.power}" class="h-5 w-5 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
-                            <span class="ml-3 text-gray-800 font-medium">${sp.power}</span>
-                        </label>
-                    `).join('');
-                }
-            },
-
-            addEventListeners() {
-                this.ui.unlockBtn.addEventListener('click', () => this.handleUnlock());
-                this.ui.passwordInput.addEventListener('keyup', (e) => {
-                    if (e.key === 'Enter') this.handleUnlock();
-                });
-                
-                document.querySelectorAll('.submit-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const step = parseInt(e.target.dataset.step, 10);
-                        this.collectAnswers(step);
-                        if (step === 7) {
-                            this.state.currentStep++;
-                            this.saveState();
-                            this.updateProgressBar();
-                            this.showCurrentScreen();
-                        } else {
-                            this.generateFeedback(step);
-                            this.showScreen('feedback-screen');
-                        }
-                        window.scrollTo(0, 0);
-                    });
-                });
-
-                this.ui.continueBtn.addEventListener('click', () => this.handleContinue());
-            },
-
-            handleUnlock() {
-                const enteredPassword = this.ui.passwordInput.value.trim().toUpperCase();
-                const correctPassword = this.passwords[this.state.currentStep];
-
-                if (enteredPassword === correctPassword) {
-                    this.ui.passwordError.textContent = '';
-                    this.showScreen(`step-${this.state.currentStep}`);
-                    this.populateAnswers(this.state.currentStep);
-                } else {
-                    this.ui.passwordError.textContent = 'Senha incorreta. Tente novamente.';
-                    this.ui.passwordInput.value = '';
-                }
-            },
-            
-            handleContinue() {
-                this.state.currentStep++;
-                this.saveState();
-                this.updateProgressBar();
-                this.showCurrentScreen();
-                window.scrollTo(0, 0);
-            },
-
-            collectAnswers(step) {
-                this.state.answers[step] = this.state.answers[step] || {};
-                const stepContainer = document.getElementById(`step-${step}`);
-                if (!stepContainer) return;
-
-                switch(step) {
-                    case 1:
-                        this.state.answers[step].superpoderes = Array.from(stepContainer.querySelectorAll('input[type=checkbox]:checked')).map(el => el.dataset.power);
-                        this.state.answers[step].reflexao = stepContainer.querySelector('#reflexao-superpoder-1')?.value;
-                        break;
-                    case 2:
-                        this.state.answers[step].contexto = stepContainer.querySelector('#contexto-situacao-2')?.value;
-                        this.state.answers[step].ponto1 = stepContainer.querySelector('#ponto1-2')?.value;
-                        this.state.answers[step].ponto2 = stepContainer.querySelector('#ponto2-2')?.value;
-                        this.state.answers[step].ponto3 = stepContainer.querySelector('#ponto3-2')?.value;
-                        break;
-                    case 3:
-                        const timing1 = stepContainer.querySelector('input[name="timing1"]:checked');
-                        this.state.answers[step].timing1 = timing1 ? timing1.nextElementSibling.textContent.trim() : 'Não respondido';
-                        this.state.answers[step].reflexao = stepContainer.querySelector('#timing-reflexao-3')?.value;
-                        break;
-                    case 4:
-                        this.state.answers[step].drenos = stepContainer.querySelector('#energia-drenos-4')?.value;
-                        this.state.answers[step].preparacao = stepContainer.querySelector('#energia-antes-4')?.value;
-                        this.state.answers[step].recuperacao = stepContainer.querySelector('#energia-depois-4')?.value;
-                        break;
-                    case 5:
-                        this.state.answers[step].cenario = stepContainer.querySelector('#aplicacao-cenario-5')?.value;
-                        this.state.answers[step].plano = stepContainer.querySelector('#aplicacao-plano-5')?.value;
-                        break;
-                    case 6:
-                        this.state.answers[step].vitorias = stepContainer.querySelector('#vitorias-recentes-6')?.value;
-                        break;
-                    case 7:
-                        this.state.answers[step].metas = stepContainer.querySelector('#metas-30-dias-7')?.value;
-                        break;
-                }
-                this.saveState();
-            },
-            
-            populateAnswers(step) {
-                 if (!this.state.answers || !this.state.answers[step]) return;
-                 const stepContainer = document.getElementById(`step-${step}`);
-                 if (!stepContainer) return;
-
-                 switch(step) {
-                    case 1:
-                        if(this.state.answers[step].superpoderes) {
-                            stepContainer.querySelectorAll('input[type=checkbox]').forEach(input => {
-                                input.checked = this.state.answers[step].superpoderes.includes(input.dataset.power);
-                            });
-                        }
-                        stepContainer.querySelector('#reflexao-superpoder-1').value = this.state.answers[step].reflexao || '';
-                        break;
-                    case 2:
-                        stepContainer.querySelector('#contexto-situacao-2').value = this.state.answers[step].contexto || '';
-                        stepContainer.querySelector('#ponto1-2').value = this.state.answers[step].ponto1 || '';
-                        stepContainer.querySelector('#ponto2-2').value = this.state.answers[step].ponto2 || '';
-                        stepContainer.querySelector('#ponto3-2').value = this.state.answers[step].ponto3 || '';
-                        break;
-                    case 3:
-                        // Não há como repopular o rádio de forma simples sem um valor fixo, mas podemos preencher a reflexão
-                        stepContainer.querySelector('#timing-reflexao-3').value = this.state.answers[step].reflexao || '';
-                        break;
-                    case 4:
-                        stepContainer.querySelector('#energia-drenos-4').value = this.state.answers[step].drenos || '';
-                        stepContainer.querySelector('#energia-antes-4').value = this.state.answers[step].preparacao || '';
-                        stepContainer.querySelector('#energia-depois-4').value = this.state.answers[step].recuperacao || '';
-                        break;
-                     case 5:
-                        stepContainer.querySelector('#aplicacao-cenario-5').value = this.state.answers[step].cenario || '';
-                        stepContainer.querySelector('#aplicacao-plano-5').value = this.state.answers[step].plano || '';
-                        break;
-                     case 6:
-                        stepContainer.querySelector('#vitorias-recentes-6').value = this.state.answers[step].vitorias || '';
-                        break;
-                     case 7:
-                        stepContainer.querySelector('#metas-30-dias-7').value = this.state.answers[step].metas || '';
-                        break;
-                 }
-            },
-            
-            generateFeedback(step) {
-                let html = '';
-                const { answers } = this.state;
-                switch(step) {
-                    case 1:
-                        const count = answers[1]?.superpoderes?.length || 0;
-                        html = `<h2 class="text-3xl font-bold mb-4">Primeiro Destrave Completo!</h2><p class="text-xl mb-6">Que incrível você ter reconhecido <strong>${count} superpoder(es)</strong>. Este é o alicerce da sua comunicação autêntica.</p><h4 class="text-lg font-semibold mb-2 text-yellow-300">💡 Seu Coaching para Amanhã:</h4><p class="max-w-prose mx-auto">Escolha <strong>UM</strong> desses superpoderes. Sua missão é apenas 'caçá-lo' em seu dia. Observe-o em ação.</p><hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo passo:</strong> Clareza Cirúrgica.</p>`;
-                        break;
-                    case 2:
-                        html = `<h2 class="text-3xl font-bold mb-4">Clareza Ativada!</h2><p class="text-xl mb-6">Uau, que poder de síntese! Ter essa clareza antes de falar é 90% da batalha.</p><h4 class="text-lg font-semibold mb-2 text-yellow-300">💡 Seu Coaching para Amanhã:</h4><p class="max-w-prose mx-auto">Pegue o assunto mais trivial do seu dia e mentalmente estruture-o nos 3 pontos. Sinta o poder.</p><hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo passo:</strong> O Timing Perfeito.</p>`;
-                        break;
-                    case 3:
-                        html = `<h2 class="text-3xl font-bold mb-4">Timing Estratégico!</h2><p class="text-xl mb-6">Excelente análise! Reconhecer as janelas de oportunidade é a chave para transformar observação em influência.</p><h4 class="text-lg font-semibold mb-2 text-yellow-300">💡 Seu Coaching para Amanhã:</h4><p class="max-w-prose mx-auto">Em sua próxima conversa em grupo, não se pressione para falar. Apenas observe e identifique mentalmente uma 'Janela da Pergunta' e uma 'Janela da Complementação'.</p><hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo passo:</strong> Energia Inteligente.</p>`;
-                        break;
-                    case 4:
-                         html = `<h2 class="text-3xl font-bold mb-4">Guardião da Energia!</h2><p class="text-xl mb-6">Fantástico! Criar seu kit de sobrevivência social é um ato de inteligência e autocompaixão. Você está no controle.</p><h4 class="text-lg font-semibold mb-2 text-yellow-300">💡 Seu Coaching para Amanhã:</h4><p class="max-w-prose mx-auto">Coloque em prática UMA das suas estratégias de recuperação (depois), mesmo que não tenha um evento social. Apenas para criar o hábito.</p><hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo passo:</strong> Aplicação Real.</p>`;
-                        break;
-                     case 5:
-                         html = `<h2 class="text-3xl font-bold mb-4">Ponte Construída!</h2><p class="text-xl mb-6">Parabéns por transformar teoria em um plano de ação concreto. Isso reduz a ansiedade e transforma medo em foco.</p><h4 class="text-lg font-semibold mb-2 text-yellow-300">💡 Seu Coaching para Amanhã:</h4><p class="max-w-prose mx-auto">Execute o primeiro passo do seu plano de ação. Mesmo que seja apenas a preparação (como escrever os 3 pontos), comece a construir a ponte.</p><hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo passo:</strong> Confiança Inabalável.</p>`;
-                        break;
-                    case 6:
-                        html = `<h2 class="text-3xl font-bold mb-4">Confiança em Construção!</h2><p class="text-xl mb-6">Maravilhoso! Cada vitória que você anota é um tijolo no castelo da sua confiança. Reconhecer seu progresso é o segredo.</p><h4 class="text-lg font-semibold mb-2 text-yellow-300">💡 Seu Coaching para Amanhã:</h4><p class="max-w-prose mx-auto">Releia suas vitórias e compartilhe uma delas com alguém de confiança. Verbalizar potencializa a conquista.</p><hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo passo:</strong> Liberte Sua Voz Autêntica.</p>`;
-                        break;
-                    default:
-                         html = `<h2 class="text-3xl font-bold mb-4">Passo Concluído!</h2><p class="text-xl mb-6">Excelente trabalho! Continue com essa força.</p>`;
-                        break;
-                }
-                this.ui.feedbackContent.innerHTML = html;
-            },
-
-            generateReport() {
-                const { answers } = this.state;
-                const reportContainer = document.getElementById('report-content');
-                if (!reportContainer) return;
-
-                reportContainer.innerHTML = ''; // Limpa o conteúdo anterior
-
-                const createReportSection = (title, content) => {
-                    if (!content || content.trim() === '' || (Array.isArray(content) && content.length === 0)) {
-                        return '';
-                    }
-                    return `
-                        <div class="content-section">
-                            <h4 class="text-xl font-bold text-brand-blue mb-3">${title}</h4>
-                            <div class="prose max-w-none text-gray-700 bg-gray-50 p-4 rounded-md">${Array.isArray(content) ? content.join(', ') : content.replace(/\n/g, '<br>')}</div>
-                        </div>
-                    `;
-                };
-
-                let reportHTML = '';
-                if (answers[1]) reportHTML += createReportSection('Passo 1: Seus Superpoderes Reconhecidos', answers[1].superpoderes);
-                if (answers[2]) reportHTML += createReportSection('Passo 2: Sua Estrutura de Clareza', `<b>Situação:</b> ${answers[2].contexto}<br><b>1. Ponto:</b> ${answers[2].ponto1}<br><b>2. Argumento:</b> ${answers[2].ponto2}<br><b>3. Ação:</b> ${answers[2].ponto3}`);
-                if (answers[3]) reportHTML += createReportSection('Passo 3: Sua Reflexão sobre Timing', answers[3].reflexao);
-                if (answers[4]) reportHTML += createReportSection('Passo 4: Seu Plano de Energia', `<b>Drenos:</b><br>${answers[4].drenos}<br><b>Preparação:</b><br>${answers[4].preparacao}<br><b>Recuperação:</b><br>${answers[4].recuperacao}`);
-                if (answers[5]) reportHTML += createReportSection('Passo 5: Seu Plano de Ação', `<b>Cenário:</b> ${answers[5].cenario}<br><b>Plano:</b><br>${answers[5].plano}`);
-                if (answers[6]) reportHTML += createReportSection('Passo 6: Seu Diário de Vitórias', answers[6].vitorias);
-                if (answers[7]) reportHTML += createReportSection('Passo 7: Suas Metas Futuras', answers[7].metas);
-                
-                reportContainer.innerHTML = reportHTML;
-                
-                this.generateChart();
-            },
-
-            generateChart() {
-                const allPowers = ["A Superaudição (Escuta Profunda)", "O Raio-X Mental (Análise Crítica)", "O Foco de Laser (Concentração)", "A Visão Além do Alcance (Observação Aguçada)", "A Bússola Interna (Integridade e Convicção)"];
-                const userPowers = this.state.answers[1]?.superpoderes || [];
-                const data = allPowers.map(power => userPowers.includes(power) ? 5 : 1);
-
-                const ctx = document.getElementById('superpoderesChart')?.getContext('2d');
-                if(!ctx) return;
-
-                if (window.myRadarChart) {
-                    window.myRadarChart.destroy();
-                }
-                window.myRadarChart = new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: allPowers.map(p => p.match(/\(([^)]+)\)/)[1]), // Extrai apenas o texto entre parênteses
-                        datasets: [{
-                            label: 'Seus Superpoderes',
-                            data: data,
-                            fill: true,
-                            backgroundColor: 'rgba(43, 108, 176, 0.2)',
-                            borderColor: 'rgb(43, 108, 176)',
-                            pointBackgroundColor: 'rgb(43, 108, 176)',
-                            pointBorderColor: '#fff',
-                            pointHoverBackgroundColor: '#fff',
-                            pointHoverBorderColor: 'rgb(43, 108, 176)'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            r: {
-                               beginAtZero: true,
-                               suggestedMin: 0,
-                               suggestedMax: 5,
-                                ticks: { display: false, stepSize: 1 },
-                                pointLabels: { font: { size: 12, weight: 'bold' }, color: '#1A202C' }
-                            }
-                        },
-                        plugins: { legend: { display: false } }
-                    }
-                });
-            }
-        };
-
-        app.init();
-    });
-    </script>
 </body>
 </html>
-�
