@@ -3,138 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jornada Destrave na Hora H</title>
+  <title>Passo 1 - Jornada Destrave na Hora H</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
+      background-color: #0F0F1A;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #F9FAFB 0%, #E5F4F9 100%);
-      line-height: 1.7;
+      color: white;
     }
-    .bg-glow {
-      background: radial-gradient(circle at top left, #fff8e1, transparent), radial-gradient(circle at bottom right, #e0f7fa, transparent);
+    .glow {
+      text-shadow: 0 0 10px #FFA500;
     }
-    .pulse {
-      animation: pulse 1.8s infinite;
+    .btn-glow {
+      background: linear-gradient(to right, #FFA500, #FFD600);
+      color: #0F0F1A;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
+    .btn-glow:hover {
+      filter: brightness(1.1);
+      transform: scale(1.02);
     }
-    .hand-drawn {
-      border: 3px dashed #facc15;
-      border-radius: 1rem;
+    .card {
+      background-color: #181820;
+      border: 1px solid #333;
+    }
+    .feedback-box {
+      background-color: #1a1a2d;
+      border: 2px solid #FFD600;
     }
   </style>
 </head>
 
-<body class="bg-glow text-gray-800">
+<body class="min-h-screen flex flex-col">
 
-<!-- HEADER -->
-<header class="bg-indigo-900 shadow-md sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto p-4 flex justify-between items-center">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 bg-yellow-400 rounded-full flex justify-center items-center text-xl font-bold">🎯</div>
-      <h1 class="text-2xl font-extrabold text-white font-[Fredoka]">Jornada do Destrave</h1>
-    </div>
-    <div class="text-right">
-      <p class="text-sm text-gray-300">Progresso: <span class="font-bold">Passo 1/7</span></p>
-    </div>
-  </div>
-  <div class="bg-indigo-700 h-2">
-    <div class="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full" style="width: 15%;"></div>
-  </div>
+<!-- Header -->
+<header class="w-full p-6 flex justify-between items-center border-b border-gray-700">
+  <h1 class="text-2xl font-bold glow">Destrave na Hora H</h1>
+  <p class="text-sm text-gray-400">Passo 1/7</p>
 </header>
 
-<!-- CONTAINER -->
-<main class="max-w-5xl mx-auto px-6 py-10">
+<!-- Main -->
+<main class="flex-1 max-w-4xl mx-auto p-6">
 
-  <!-- BLOCO DE BOAS-VINDAS -->
-  <section class="text-center mb-16">
-    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-6 pulse">
-      <span class="text-white text-4xl">🔓</span>
-    </div>
-    <h2 class="text-4xl font-extrabold mb-4 text-indigo-900">Bem-vindo(a) de volta!</h2>
-    <p class="text-lg text-gray-600 max-w-xl mx-auto">Você está prestes a desbloquear sua verdadeira voz. Bora destravar mais uma fase da sua jornada!</p>
-
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <input type="text" placeholder="Digite a senha do dia..." class="flex-1 p-4 border-2 border-indigo-200 rounded-xl focus:ring-4 focus:ring-yellow-300 focus:outline-none text-center font-bold uppercase">
-      <button class="bg-gradient-to-r from-yellow-400 to-pink-400 text-white font-bold py-4 px-8 rounded-xl hover:scale-105 transition transform shadow-md">DESTRAVAR 🚀</button>
-    </div>
+  <!-- Título -->
+  <section class="text-center mb-10">
+    <h2 class="text-4xl font-bold mb-4">⚡ Desvende Seu Superpoder</h2>
+    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+      Tá na hora de entender por que sua mente funciona diferente — e como isso pode ser sua maior vantagem.
+    </p>
   </section>
 
-  <!-- PASSO 1 -->
-  <section class="bg-white rounded-2xl shadow-xl p-8 hand-drawn">
-    <div class="text-center mb-10">
-      <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
-        <span class="text-white text-3xl">⚡</span>
-      </div>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-indigo-900 mb-3">Passo 1: Desvende Seu Superpoder Introvertido</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Você tem superpoderes escondidos! Bora descobrir quais são eles?</p>
+  <!-- Storytelling -->
+  <div class="card p-6 rounded-xl mb-8">
+    <p class="mb-4">Sabe aquele momento em que sua cabeça tá cheia de ideias... mas sua boca não colabora?</p>
+    <p class="mb-4">Você vê alguém falando uma bobagem, sendo elogiado, e pensa: <span class="italic text-yellow-400">"Por que eu não consegui falar isso?"</span></p>
+    <p>Isso não é defeito. Isso é superpoder... mal treinado. E é isso que a gente vai destravar agora.</p>
+  </div>
+
+  <!-- Superpoderes -->
+  <div class="mb-8">
+    <h3 class="text-2xl font-semibold mb-4">💡 Quais desses superpoderes já são fortes em você?</h3>
+    <div class="grid sm:grid-cols-2 gap-4">
+
+      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
+        <input type="checkbox" class="mt-1" id="escuta">
+        <div><span class="font-bold">🎧 Escuta Ninja:</span> percebe detalhes que ninguém nota.</div>
+      </label>
+
+      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
+        <input type="checkbox" class="mt-1" id="analise">
+        <div><span class="font-bold">🔍 Raio-X Mental:</span> entende padrões e soluções ocultas.</div>
+      </label>
+
+      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
+        <input type="checkbox" class="mt-1" id="foco">
+        <div><span class="font-bold">🎯 Foco de Laser:</span> quando entra no modo foco... ninguém te tira.</div>
+      </label>
+
+      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
+        <input type="checkbox" class="mt-1" id="visao">
+        <div><span class="font-bold">👁 Visão de Águia:</span> lê ambientes, pessoas e situações como um mapa.</div>
+      </label>
+
+      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer sm:col-span-2">
+        <input type="checkbox" class="mt-1" id="bussola">
+        <div><span class="font-bold">🛡 Bússola Interna:</span> fala com convicção quando é sobre o que você acredita.</div>
+      </label>
+
     </div>
+  </div>
 
-    <!-- BLOCO DE CONTEÚDO -->
-    <div class="space-y-6">
-      <div class="bg-indigo-50 border-l-4 border-yellow-400 p-6 rounded-lg">
-        <h3 class="text-xl font-bold text-indigo-800 mb-2">🚀 Acredite, você é especial!</h3>
-        <p class="text-gray-700">Sabe quando você pensa mil coisas incríveis... mas trava na hora de falar? 🧠💭 Isso não é defeito, é superpoder! Aqui você vai descobrir como transformar isso em sua maior força.</p>
-      </div>
+  <!-- Reflexão -->
+  <div class="mb-8">
+    <h3 class="text-2xl font-semibold mb-4">✍️ Conta pra mim...</h3>
+    <p class="mb-2 text-gray-300">Lembra de uma situação onde você percebeu um desses superpoderes em ação?</p>
+    <textarea id="reflexao" rows="4" class="w-full rounded-lg p-4 card" placeholder="Descreve aqui sua experiência..."></textarea>
+  </div>
 
-      <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg">
-        <h3 class="text-xl font-bold text-green-700 mb-2">💡 O Segredo dos Superpoderes</h3>
-        <ul class="list-disc pl-5 space-y-2 text-gray-700">
-          <li><strong>🎧 Escuta Ninja:</strong> Você ouve o que ninguém percebe.</li>
-          <li><strong>🔍 Análise de Mestre:</strong> Enxerga detalhes escondidos.</li>
-          <li><strong>🎯 Foco de Laser:</strong> Quando decide, ninguém te segura.</li>
-          <li><strong>👁 Olhar de Águia:</strong> Observa tudo e todos sem falar uma palavra.</li>
-          <li><strong>🛡 Bússola Interna:</strong> Sua verdade é seu maior escudo.</li>
-        </ul>
-      </div>
+  <!-- Botão -->
+  <div class="text-center">
+    <button onclick="gerarFeedback()" class="btn-glow py-3 px-8 rounded-full font-bold text-lg transition">
+      💥 VER MEU FEEDBACK →
+    </button>
+  </div>
 
-      <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-6">
-        <h4 class="font-semibold text-yellow-700 mb-3">✨ Bora praticar!</h4>
-        <p class="mb-4">Marque aqui quais superpoderes você já percebe em você:</p>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
-            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
-            🎧 Escuta Ninja
-          </label>
-          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
-            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
-            🔍 Análise de Mestre
-          </label>
-          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
-            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
-            🎯 Foco de Laser
-          </label>
-          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
-            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
-            👁 Olhar de Águia
-          </label>
-          <label class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:bg-yellow-50">
-            <input type="checkbox" class="w-5 h-5 text-yellow-400 border-gray-300">
-            🛡 Bússola Interna
-          </label>
-        </div>
-
-        <div class="mt-6">
-          <label class="block text-gray-700 font-semibold mb-2">Conta pra gente: em que momento você usou um desses superpoderes?</label>
-          <textarea rows="3" class="w-full p-4 border-2 border-indigo-200 rounded-lg focus:ring-2 focus:ring-yellow-300" placeholder="Escreve aqui sua reflexão..."></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- BOTÃO DE CONTINUAR -->
-    <div class="text-center mt-10">
-      <button class="bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold py-4 px-10 rounded-full hover:scale-105 transition transform shadow-lg">
-        SALVAR E IR PARA O PRÓXIMO PASSO →
+  <!-- Feedback -->
+  <div id="feedback" class="feedback-box mt-10 p-6 rounded-xl hidden">
+    <h3 class="text-2xl font-bold mb-4 text-yellow-400">🎯 Seu Feedback de Mentor:</h3>
+    <div id="feedback-content" class="space-y-4"></div>
+    <div class="text-center mt-6">
+      <button class="btn-glow py-3 px-8 rounded-full font-bold text-lg transition">
+        🚀 Bora Pro Próximo Passo →
       </button>
     </div>
-  </section>
+  </div>
 
 </main>
+
+<script>
+function gerarFeedback() {
+  const poderes = [];
+  if (document.getElementById('escuta').checked) poderes.push("🎧 Escuta Ninja");
+  if (document.getElementById('analise').checked) poderes.push("🔍 Raio-X Mental");
+  if (document.getElementById('foco').checked) poderes.push("🎯 Foco de Laser");
+  if (document.getElementById('visao').checked) poderes.push("👁 Visão de Águia");
+  if (document.getElementById('bussola').checked) poderes.push("🛡 Bússola Interna");
+
+  const reflexao = document.getElementById('reflexao').value.trim();
+
+  let texto = "";
+
+  if (poderes.length === 0) {
+    texto += `<p>🤔 Percebi que você não marcou nenhum superpoder... Será que você tá se subestimando?</p>`;
+    texto += `<p>Confia em mim: todo introvertido tem esses poderes. Talvez eles só estejam escondidos — mas estão aí.</p>`;
+  } else {
+    texto += `<p>🔥 Você reconheceu ${poderes.length} superpoder${poderes.length > 1 ? 'es' : ''}: <strong>${poderes.join(", ")}</strong>.</p>`;
+    texto += `<p>Isso é poderoso. E sabe o que é melhor? Quando você começa a usar isso de forma consciente... as coisas mudam.</p>`;
+  }
+
+  if (reflexao) {
+    texto += `<p>📖 Li sua reflexão... E isso que você trouxe é MUITO valioso. Cada vez que você reconhece um momento como esse, você tá fortalecendo seu músculo da comunicação.</p>`;
+  } else {
+    texto += `<p>💡 Senti falta da sua reflexão... Bora praticar isso! Pensar nos momentos onde você já usou esses poderes vai te ajudar DEMAIS no destrave.</p>`;
+  }
+
+  texto += `<p class="text-yellow-300 font-semibold">Parabéns por ter chegado até aqui. Bora pro próximo passo — lá você vai aprender como transformar tudo isso em fala CLARA, FORTE e SEGURA.</p>`;
+
+  document.getElementById('feedback-content').innerHTML = texto;
+  document.getElementById('feedback').classList.remove('hidden');
+  document.getElementById('feedback').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
 
 </body>
 </html>
