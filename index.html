@@ -1,0 +1,2703 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada Destrave na Hora H - Liberte Sua Voz Autêntica</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            line-height: 1.7;
+        }
+        .step-screen { display: none; }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin: auto; height: auto; min-height: 350px; }
+        .step-indicator { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .prose h2 { color: #1a365d; font-weight: 800; margin-bottom: 1.5rem; }
+        .prose h3 { margin-bottom: 1rem !important; color: #DD6B20; font-weight: 700; }
+        .prose h4 { color: #2C5282; font-weight: 600; margin-bottom: 0.75rem; }
+        .prose p { margin-bottom: 1.25rem; color: #2d3748; }
+        .prose blockquote { 
+            border-left: 4px solid #F6AD55; 
+            background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 0.75rem 0.75rem 0;
+            font-style: italic;
+            position: relative;
+        }
+        .prose blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: #F6AD55;
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            font-family: serif;
+        }
+        .practice-section { 
+            background: linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%); 
+            border: 2px solid #90CDF4; 
+            border-radius: 1rem; 
+            padding: 2rem; 
+            margin: 3rem 0; 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .practice-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4299E1, #63B3ED, #90CDF4);
+        }
+        .feedback-card { 
+            background: linear-gradient(135deg, #38A169 0%, #2F855A 100%); 
+            color: white; 
+            border-radius: 1rem; 
+            padding: 3rem; 
+            text-align: center;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+        }
+        .content-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #DD6B20;
+        }
+        .illustration-container {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+            border-radius: 1rem;
+            border: 1px solid #E2E8F0;
+        }
+        .illustration-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%);
+            border: 2px solid #F6AD55;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: -0.75rem;
+            left: 1.5rem;
+            background: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50%;
+            font-size: 1.25rem;
+        }
+        .story-box {
+            background: linear-gradient(135deg, #F0FFF4 0%, #C6F6D5 100%);
+            border-left: 4px solid #38A169;
+            border-radius: 0 1rem 1rem 0;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        .story-box::before {
+            content: '📖';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+        }
+        .step-navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+        }
+        .floating-progress {
+            position: fixed;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            z-index: 40;
+            background: white;
+            border-radius: 2rem;
+            padding: 1rem 0.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        @media (max-width: 768px) {
+            .floating-progress { display: none; }
+            .step-navigation { bottom: 1rem; right: 1rem; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(221, 107, 32, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(221, 107, 32, 0.6); }
+        }
+    </style>
+     <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#1A202C',
+                        'brand-orange': '#DD6B20',
+                        'brand-blue': '#2B6CB0',
+                        'brand-light': '#F7FAFC',
+                        'brand-gray': '#A0AEC0',
+                        'brand-success': '#38A169',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-light text-gray-800">
+
+    <header class="bg-brand-dark shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">D</span>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-white">Jornada do Destrave</h1>
+                    <p class="text-sm text-brand-gray">Liberte Sua Voz Autêntica</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <p id="progress-text" class="text-sm text-brand-gray">Passo 0 de 7</p>
+                <p class="text-xs text-brand-gray mt-1">Sua transformação começa aqui</p>
+            </div>
+        </div>
+        <div class="bg-gray-700 h-3 relative overflow-hidden">
+            <div id="progress-bar" class="bg-gradient-to-r from-brand-orange via-yellow-400 to-brand-success h-3 rounded-r-full step-indicator transition-all duration-1000 ease-out" style="width: 0%;"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-pulse"></div>
+        </div>
+    </header>
+
+    <!-- Floating Progress Indicator -->
+    <div class="floating-progress hidden lg:block">
+        <div class="flex flex-col space-y-2">
+            <div class="w-3 h-3 rounded-full bg-gray-300" id="step-dot-1"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300" id="step-dot-2"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300" id="step-dot-3"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300" id="step-dot-4"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300" id="step-dot-5"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300" id="step-dot-6"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300" id="step-dot-7"></div>
+        </div>
+    </div>
+
+    <main id="app-container" class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <!-- Lock Screen -->
+        <div id="lock-screen" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl text-center border-t-8 border-brand-orange relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-orange to-yellow-400"></div>
+                <div class="mb-8">
+                    <div class="w-20 h-20 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center pulse-glow">
+                        <span class="text-white text-3xl">🔓</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Bem-vindo(a) de volta!</h2>
+                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                        Sua jornada de transformação continua. Cada passo que você dá é uma vitória rumo à sua voz autêntica. 
+                        Para desbloquear o próximo capítulo da sua evolução, insira a senha do dia que você recebeu.
+                    </p>
+                </div>
+                
+                <div class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="text" id="password-input" placeholder="Senha do Dia" 
+                               class="flex-grow p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-brand-orange focus:ring-opacity-50 focus:border-brand-orange focus:outline-none uppercase text-center text-xl tracking-widest font-bold transition-all duration-300">
+                        <button id="unlock-btn" 
+                                class="bg-gradient-to-r from-brand-orange to-yellow-500 text-white font-bold py-4 px-8 rounded-xl hover:from-yellow-500 hover:to-brand-orange transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                            DESTRAVAR
+                        </button>
+                    </div>
+                    <p id="password-error" class="text-red-600 mt-4 h-6 font-medium"></p>
+                </div>
+                
+                <div class="mt-8 text-sm text-gray-500">
+                    <p>💡 Dica: As senhas estão relacionadas ao tema de cada passo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Screen -->
+        <div id="feedback-screen" class="step-screen animate-fade-in">
+            <div class="feedback-card shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent"></div>
+                <div id="feedback-content" class="space-y-6 relative z-10">
+                    <!-- Dynamic content here -->
+                </div>
+                <button id="continue-btn" class="mt-8 bg-white text-brand-success font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg relative z-10">
+                    Continuar Jornada →
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Step 1: Desvende Seu Superpoder Introvertido -->
+        <div id="step-1" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-orange">
+                <header class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-2xl">⚡</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 1: Desvende Seu Superpoder Introvertido</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">O fim da luta interna - Descubra a força incrível que já existe dentro de você</p>
+                </header>
+
+                <div class="illustration-container mb-8">
+                    <img src="assets/images/introvert-observing.png" alt="Pessoa introvertida observando reunião" class="mx-auto">
+                    <p class="text-sm text-gray-600 mt-4 italic">Enquanto outros falam, você observa, analisa e compreende profundamente</p>
+                </div>
+
+                <article class="prose max-w-none text-gray-800 space-y-8">
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Sabe aquela sensação...</h3>
+                        <p class="text-lg leading-relaxed">
+                            ...de estar numa reunião importante, ter AQUELA sacada genial que poderia mudar tudo, a solução que ninguém mais pensou, 
+                            mas sentir como se sua voz estivesse presa numa caixa de vidro? Você vê a oportunidade perfeita se aproximando, 
+                            seu coração acelera, você abre a boca e... nada. A ideia fica ali, borbulhando na sua mente, enquanto o momento passa 
+                            e alguém menos preparado toma a palavra.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            Depois vem aquela sensação amarga que queima no peito: "E se eu tivesse falado? E se minha ideia era exatamente 
+                            o que eles precisavam ouvir?" Se essa cena te soa dolorosamente familiar, respire aliviado. 
+                            Você não está sozinho, e mais importante: você chegou ao lugar certo.
+                        </p>
+                    </div>
+
+                    <div class="story-box">
+                        <h4 class="font-bold text-brand-success mb-3">A História de Ana: De Invisível a Indispensável</h4>
+                        <p>
+                            Ana era uma analista brilhante que se sentia como um fantasma nas reuniões. Enquanto colegas menos experientes 
+                            dominavam as discussões com ideias superficiais, ela ficava em silêncio, mesmo tendo insights que poderiam 
+                            economizar milhares para a empresa. Um dia, após ver uma decisão equivocada ser tomada - uma decisão que ela 
+                            poderia ter evitado -, Ana decidiu que algo precisava mudar. Não ela, mas sua forma de se expressar.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">A Armadilha do "Comunicador Ideal"</h3>
+                        <p class="text-lg leading-relaxed">
+                            Por décadas, o mundo corporativo e social nos vendeu um mito perigoso: o de que para ser ouvido, 
+                            é preciso ser barulhento, expansivo, quase um showman. Essa ideia criou uma geração de introvertidos 
+                            que se sentem "defeituosos" por não se encaixarem nesse molde artificial.
+                        </p>
+                        
+                        <div class="highlight-box">
+                            <h4 class="font-bold text-brand-dark mb-3">A Sociedade do "Barulho"</h4>
+                            <p>
+                                Vivemos numa cultura que frequentemente confunde volume com valor, presença física com presença de espírito. 
+                                É como se o mundo tivesse decidido que quem fala mais alto automaticamente tem as melhores ideias. 
+                                Mas pense comigo: quantas vezes você já viu alguém dominar uma conversa sem realmente contribuir com nada substancial?
+                            </p>
+                        </div>
+
+                        <p class="text-lg leading-relaxed">
+                            Tentar vestir essa "fantasia" de extrovertido é como tentar dirigir um carro esportivo como se fosse um caminhão. 
+                            Não só é exaustivo, como esconde completamente seu verdadeiro potencial. Você não precisa ser mais barulhento. 
+                            Você precisa ser mais estratégico.
+                        </p>
+                    </div>
+
+                    <div class="illustration-container">
+                        <img src="assets/images/superpowers-diagram.png" alt="Diagrama dos 5 Superpoderes Introvertidos" class="mx-auto">
+                        <p class="text-sm text-gray-600 mt-4 italic">Seus 5 superpoderes naturais que o mundo precisa conhecer</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Sua Ferrari Mental: A Verdade Sobre Seu Poder</h3>
+                        <p class="text-lg leading-relaxed">
+                            Sua mente mais quieta e seu pensamento profundo não são desvantagens. Pelo contrário, são a base de uma 
+                            potência comunicativa incrível. <strong>É como ter uma Ferrari na garagem:</strong> silenciosa quando parada, 
+                            mas absurdamente poderosa quando você aprende a ligar o motor.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            Este método não vai te transformar em outra pessoa. Ele vai te dar a chave da sua própria Ferrari e te ensinar 
+                            a sentir a vibração desse motor antes mesmo de dar a partida.
+                        </p>
+
+                        <h4 class="text-xl font-bold text-brand-blue mt-8 mb-6">Seus 5 Superpoderes Escondidos</h4>
+                        <p class="text-lg leading-relaxed mb-6">
+                            Enquanto o "barulho" acontece ao redor, sua mente introvertida trabalha como um supercomputador silencioso, 
+                            ativando superpoderes que você talvez nem tenha notado. Vamos dar nome a eles:
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-blue-800 mb-3">🎧 A Superaudição (Escuta Profunda)</h5>
+                                <p class="text-blue-700">
+                                    Você não apenas ouve palavras, você capta nuances, entrelinhas e as verdadeiras preocupações por trás delas. 
+                                    Isso permite que você faça perguntas mais inteligentes e ofereça soluções muito mais precisas e empáticas. 
+                                    Enquanto outros estão pensando no que vão falar em seguida, você está realmente absorvendo o que está sendo dito.
+                                </p>
+                            </div>
+
+                            <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-green-800 mb-3">🔍 O Raio-X Mental (Análise Crítica)</h5>
+                                <p class="text-green-700">
+                                    Sua mente não se contenta com o superficial. Você naturalmente cava fundo, entende as causas, 
+                                    prevê consequências e vê a figura completa. Suas opiniões, quando expressas, são mais lógicas e persuasivas 
+                                    porque vêm de uma análise genuinamente profunda.
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-purple-800 mb-3">🎯 O Foco de Laser (Concentração)</h5>
+                                <p class="text-purple-700">
+                                    Em um mundo cheio de distrações, sua capacidade de se concentrar profundamente em uma tarefa, 
+                                    conversa ou problema é uma habilidade rara e extremamente valiosa. Isso te ajuda a manter a linha de raciocínio 
+                                    e a entregar sua mensagem de forma clara e objetiva.
+                                </p>
+                            </div>
+
+                            <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-orange-800 mb-3">👁️ A Visão Além do Alcance (Observação Aguçada)</h5>
+                                <p class="text-orange-700">
+                                    Você nota coisas que passam despercebidas pela maioria: a linguagem corporal de alguém, 
+                                    a dinâmica de poder em um grupo, o "clima" de um ambiente. Isso é como ter um 'mapa do terreno' em tempo real, 
+                                    permitindo que você se posicione de forma mais estratégica.
+                                </p>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-red-800 mb-3">🛡️ A Bússola Interna (Integridade e Convicção)</h5>
+                                <p class="text-red-700">
+                                    Geralmente, quando um introvertido decide falar sobre algo em que realmente acredita, 
+                                    suas palavras vêm carregadas de uma autenticidade que é magnética. As pessoas sentem quando você está sendo verdadeiro, 
+                                    e isso constrói confiança e respeito de uma forma que nenhuma técnica de persuasão consegue replicar.
+                                </p>
+                            </div>
+                        </div>
+
+                        <blockquote class="mt-8">
+                            Lembre-se: esses não são apenas "traços de personalidade". São ferramentas poderosas para uma comunicação 
+                            que realmente te representa e que causa um impacto duradouro. O segredo está em aprender a usá-los intencionalmente.
+                        </blockquote>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Por Que Você Não É o Problema</h3>
+                        <p class="text-lg leading-relaxed">
+                            Se você chegou até aqui se sentindo como se houvesse algo "errado" com você, pare agora mesmo. 
+                            O problema nunca foi você. O problema é que ninguém te ensinou a usar seus superpoderes de forma estratégica.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            É como se você tivesse nascido com um instrumento musical incrível, mas ninguém te deu as partituras. 
+                            Você sabe que há música linda dentro de você, mas não sabe como tirá-la de lá. Este é o seu primeiro passo 
+                            para aprender a tocar sua própria sinfonia.
+                        </p>
+                    </div>
+                </article>
+
+                <div class="practice-section">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6 text-center">✨ Sua Vez de Praticar: O Inventário de Superpoderes</h3>
+                    <p class="text-gray-700 mb-8 text-center text-lg">
+                        Reconhecer é o primeiro passo para usar intencionalmente seus poderes. Releia os superpoderes acima e marque aqueles 
+                        que mais ressoam com você. Seja honesto(a) - não há respostas certas ou erradas, apenas autoconhecimento.
+                    </p>
+                    <div id="superpoderes-list-1" class="space-y-4 max-w-2xl mx-auto"></div>
+                    
+                    <div class="mt-8 p-6 bg-white rounded-lg border-2 border-blue-200">
+                        <h4 class="font-bold text-brand-blue mb-4">Reflexão Profunda:</h4>
+                        <label for="reflexao-superpoder" class="block text-gray-700 font-medium mb-2">
+                            Pense em uma situação recente onde você percebeu um de seus superpoderes em ação. Como ele se manifestou? 
+                            O que você fez (ou deixou de fazer) que foi influenciado por esse superpoder?
+                        </label>
+                        <textarea id="reflexao-superpoder" rows="4" 
+                                  class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                  placeholder="Ex: Em uma reunião, percebi que estava captando a tensão entre dois colegas através da linguagem corporal deles, algo que ninguém mais parecia notar. Isso me ajudou a entender o verdadeiro problema por trás da discussão..."></textarea>
+                    </div>
+                </div>
+
+                <button data-step="1" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-6 px-8 rounded-xl hover:from-green-600 hover:to-brand-success transition-all duration-300 text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
+                    SALVAR E VER MEU FEEDBACK PERSONALIZADO →
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Step 2: Clareza Cirúrgica -->
+        <div id="step-2" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-orange">
+                <header class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-2xl">🎯</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 2: Clareza Cirúrgica</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Adeus, 'Branco' na Hora H! - Transforme o caos mental em comunicação cristalina</p>
+                </header>
+
+                <div class="illustration-container mb-8">
+                    <img src="assets/images/three-points-clarity.png" alt="Organização mental em 3 pontos" class="mx-auto">
+                    <p class="text-sm text-gray-600 mt-4 italic">Da confusão mental à clareza cirúrgica: o poder dos 3 pontos</p>
+                </div>
+
+                <article class="prose max-w-none text-gray-800 space-y-8">
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Momento do "Branco Total"</h3>
+                        <p class="text-lg leading-relaxed">
+                            Você está na reunião mais importante do mês. O chefe pergunta sua opinião sobre o projeto que você conhece 
+                            melhor que ninguém. Todos os olhos se voltam para você. Seu coração dispara. Você abre a boca e... 
+                            <em>branco total</em>. Como se alguém tivesse apagado todas as suas ideias brilhantes com uma borracha gigante.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            Cinco minutos depois, quando a pressão passa, todas as palavras perfeitas voltam como uma avalanche. 
+                            "Por que eu não consegui falar isso na hora?" você se pergunta, frustrado. A resposta é mais simples 
+                            do que você imagina: sua mente é um superprocessador, mas ninguém te ensinou a organizá-la para momentos de pressão.
+                        </p>
+                    </div>
+
+                    <div class="story-box">
+                        <h4 class="font-bold text-brand-success mb-3">A Transformação de Carlos: Do Gago ao Guru</h4>
+                        <p>
+                            Carlos era um desenvolvedor genial que gaguejava sempre que precisava explicar seus códigos complexos. 
+                            Em apresentações, ele se perdia em detalhes técnicos e perdia a audiência em segundos. Tudo mudou quando 
+                            ele descobriu que o problema não era nervosismo, mas falta de estrutura. Hoje, Carlos é conhecido como 
+                            o melhor comunicador técnico da empresa, e sua secret weapon? A regra que você está prestes a aprender.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Por Que Sua Mente "Congela"?</h3>
+                        <p class="text-lg leading-relaxed">
+                            Quando você está sob pressão, seu cérebro introvertido faz algo fascinante: ele tenta processar TODAS as 
+                            informações relevantes simultaneamente. É como tentar abrir 50 abas no navegador ao mesmo tempo - 
+                            eventualmente, tudo trava.
+                        </p>
+                        
+                        <div class="highlight-box">
+                            <h4 class="font-bold text-brand-dark mb-3">A Ciência Por Trás do "Branco"</h4>
+                            <p>
+                                Pesquisas em neurociência mostram que cérebros introvertidos têm mais atividade no córtex pré-frontal, 
+                                a área responsável pelo pensamento profundo e análise. Sob estresse, essa região pode ficar "sobrecarregada", 
+                                causando o famoso branco. Não é fraqueza - é excesso de potência sem direcionamento.
+                            </p>
+                        </div>
+
+                        <p class="text-lg leading-relaxed">
+                            A boa notícia? Uma vez que você entende como sua mente funciona, pode trabalhar COM ela, não contra ela. 
+                            O segredo está em dar à sua mente um sistema de organização que funcione mesmo sob pressão.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">A Regra de Ouro dos 3 Pontos</h3>
+                        <p class="text-lg leading-relaxed">
+                            Esta é a ferramenta mais poderosa que você vai aprender hoje. É simples, mas revolucionária: 
+                            <strong>antes de qualquer comunicação importante, organize seus pensamentos em exatamente 3 pontos principais.</strong>
+                        </p>
+                        
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-8 my-8">
+                            <h4 class="text-xl font-bold text-blue-800 mb-6 text-center">A Fórmula Mágica dos 3 Pontos</h4>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+                                    <h5 class="font-bold text-blue-800 mb-2">O PONTO PRINCIPAL</h5>
+                                    <p class="text-blue-700 text-sm">A ideia central que você quer comunicar</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+                                    <h5 class="font-bold text-blue-800 mb-2">O ARGUMENTO</h5>
+                                    <p class="text-blue-700 text-sm">Por que isso é importante ou relevante</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+                                    <h5 class="font-bold text-blue-800 mb-2">A AÇÃO</h5>
+                                    <p class="text-blue-700 text-sm">O que você propõe ou quer que aconteça</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="text-xl font-bold text-brand-blue mt-8 mb-6">Por Que Exatamente 3 Pontos?</h4>
+                        <p class="text-lg leading-relaxed">
+                            Não é coincidência. O número 3 tem uma base científica sólida:
+                        </p>
+                        <ul class="list-disc list-inside space-y-3 text-lg ml-6">
+                            <li><strong>Limite da memória de trabalho:</strong> Nosso cérebro consegue manter facilmente 3 itens na memória ativa</li>
+                            <li><strong>Padrão de persuasão:</strong> Três argumentos criam um ritmo natural e convincente</li>
+                            <li><strong>Facilidade de lembrança:</strong> Tanto você quanto sua audiência lembrarão melhor de 3 pontos</li>
+                            <li><strong>Sensação de completude:</strong> Três pontos dão a sensação psicológica de "história completa"</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Exemplos Práticos da Regra em Ação</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-green-800 mb-3">Situação: Proposta de Melhoria no Trabalho</h5>
+                                <div class="space-y-2">
+                                    <p><strong>Ponto 1:</strong> "Precisamos otimizar nosso processo de atendimento ao cliente"</p>
+                                    <p><strong>Ponto 2:</strong> "Estamos perdendo 30% dos clientes por causa da demora nas respostas"</p>
+                                    <p><strong>Ponto 3:</strong> "Proponho implementar um sistema de tickets automatizado"</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-purple-800 mb-3">Situação: Feedback para um Colega</h5>
+                                <div class="space-y-2">
+                                    <p><strong>Ponto 1:</strong> "Sua apresentação teve ótimo conteúdo técnico"</p>
+                                    <p><strong>Ponto 2:</strong> "Mas perdeu impacto porque foi muito longa para a audiência"</p>
+                                    <p><strong>Ponto 3:</strong> "Que tal focarmos em 3 pontos principais na próxima?"</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg">
+                                <h5 class="font-bold text-orange-800 mb-3">Situação: Conversa Pessoal Difícil</h5>
+                                <div class="space-y-2">
+                                    <p><strong>Ponto 1:</strong> "Preciso conversar sobre nossa comunicação"</p>
+                                    <p><strong>Ponto 2:</strong> "Sinto que não estamos nos entendendo ultimamente"</p>
+                                    <p><strong>Ponto 3:</strong> "Podemos reservar um tempo para nos ouvirmos melhor?"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Técnicas Avançadas de Preparação Mental</h3>
+                        <p class="text-lg leading-relaxed">
+                            Agora que você conhece a regra dos 3 pontos, vamos turbinar sua preparação com técnicas que transformam 
+                            ansiedade em clareza:
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">🧠 A Técnica do "Ensaio Mental"</h5>
+                                <p class="text-blue-700">
+                                    Antes de situações importantes, visualize-se falando seus 3 pontos com calma e clareza. 
+                                    Seu cérebro não distingue entre prática mental e real - você estará literalmente treinando para o sucesso.
+                                </p>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">📝 O "Cartão de Emergência"</h5>
+                                <p class="text-green-700">
+                                    Anote seus 3 pontos em um cartão pequeno. Mesmo que não precise consultá-lo, 
+                                    saber que está ali dá uma segurança psicológica incrível e reduz a ansiedade.
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">⏰ A Regra dos "30 Segundos de Ouro"</h5>
+                                <p class="text-purple-700">
+                                    Quando perguntado algo importante, diga: "Deixe-me organizar minha resposta em 3 pontos principais." 
+                                    Isso te dá tempo para pensar e ainda demonstra organização mental.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Que Fazer Quando o "Branco" Acontece</h3>
+                        <p class="text-lg leading-relaxed">
+                            Mesmo com toda preparação, às vezes o branco ainda pode acontecer. Aqui estão suas estratégias de recuperação:
+                        </p>
+
+                        <div class="bg-red-50 border-2 border-red-200 rounded-lg p-6 mt-6">
+                            <h5 class="font-bold text-red-800 mb-4">🚨 Kit de Primeiros Socorros para o "Branco"</h5>
+                            <ol class="list-decimal list-inside space-y-3 text-red-700">
+                                <li><strong>Respire fundo e sorria:</strong> Isso oxigena o cérebro e relaxa a tensão</li>
+                                <li><strong>Use frases de transição:</strong> "Deixe-me pensar na melhor forma de explicar isso..."</li>
+                                <li><strong>Volte ao básico:</strong> Lembre-se dos seus 3 pontos preparados</li>
+                                <li><strong>Seja honesto:</strong> "Quero dar uma resposta completa, posso ter um momento?"</li>
+                                <li><strong>Reformule a pergunta:</strong> "Se entendi bem, você quer saber sobre..."</li>
+                            </ol>
+                        </div>
+
+                        <blockquote class="mt-8">
+                            Lembre-se: até os melhores comunicadores têm momentos de branco. A diferença está em como você se recupera, 
+                            não em nunca ter problemas. Sua autenticidade em lidar com esses momentos pode até aumentar sua credibilidade.
+                        </blockquote>
+                    </div>
+                </article>
+
+                <div class="practice-section">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6 text-center">✨ Sua Vez de Praticar: Estruture Sua Clareza</h3>
+                    <p class="text-gray-700 mb-8 text-center text-lg">
+                        Pense em um assunto real que você precisa comunicar em breve. Use a "Regra dos 3 Pontos" para organizar suas ideias. 
+                        Pode ser uma apresentação no trabalho, uma conversa importante ou até mesmo uma opinião que você quer expressar.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <label for="contexto-situacao" class="block text-gray-700 font-bold mb-3">
+                                Primeiro, descreva a situação ou contexto:
+                            </label>
+                            <input type="text" id="contexto-situacao" 
+                                   class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                   placeholder="Ex: Reunião de equipe para discutir o novo projeto">
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <label for="ponto1" class="block text-gray-700 font-bold mb-3">
+                                1. O Ponto Principal (A ideia central que você quer comunicar):
+                            </label>
+                            <textarea id="ponto1" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: Precisamos redefinir o escopo do projeto para garantir qualidade"></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <label for="ponto2" class="block text-gray-700 font-bold mb-3">
+                                2. O Argumento de Suporte (Por que isso é importante?):
+                            </label>
+                            <textarea id="ponto2" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: Com o escopo atual, corremos o risco de entregar um produto com falhas que pode prejudicar nossa reputação"></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <label for="ponto3" class="block text-gray-700 font-bold mb-3">
+                                3. A Ação Desejada (O que você propõe ou quer que aconteça?):
+                            </label>
+                            <textarea id="ponto3" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: Proponho uma reunião para revisar as prioridades e ajustar o cronograma"></textarea>
+                        </div>
+
+                        <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-300">
+                            <h4 class="font-bold text-yellow-800 mb-3">💡 Agora, pratique falando em voz alta!</h4>
+                            <p class="text-yellow-700">
+                                Depois de preencher os campos acima, pratique falando seus 3 pontos em voz alta. 
+                                Cronometre: uma boa comunicação dos 3 pontos deve levar entre 1-2 minutos. 
+                                Se está muito longo, simplifique. Se muito curto, adicione um exemplo ou detalhe relevante.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button data-step="2" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-6 px-8 rounded-xl hover:from-green-600 hover:to-brand-success transition-all duration-300 text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
+                    SALVAR E VER MEU FEEDBACK PERSONALIZADO →
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Step 3: O Timing Perfeito -->
+        <div id="step-3" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-orange">
+                <header class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-2xl">⏰</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 3: O Timing Perfeito</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">O segredo dos comunicadores de impacto - Domine a arte de ser ouvido no momento certo</p>
+                </header>
+
+                <div class="illustration-container mb-8">
+                    <img src="assets/images/timing-opportunities.png" alt="Timeline de oportunidades em conversas" class="mx-auto">
+                    <p class="text-sm text-gray-600 mt-4 italic">Cada conversa tem janelas douradas de oportunidade - aprenda a identificá-las</p>
+                </div>
+
+                <article class="prose max-w-none text-gray-800 space-y-8">
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Fantasma da Reunião</h3>
+                        <p class="text-lg leading-relaxed">
+                            Você está na reunião semanal da equipe. A discussão está acelerada, ideias voam de um lado para o outro. 
+                            Você tem uma contribuição valiosa, uma perspectiva que poderia mudar completamente o rumo da conversa. 
+                            Mas toda vez que você se prepara para falar, alguém já tomou a palavra. Você espera uma pausa, 
+                            mas quando ela finalmente chega, o assunto já mudou.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            No final da reunião, você sai frustrado, carregando aquela sensação amarga de ter sido um fantasma - 
+                            presente, mas invisível. "Por que eu não consegui falar?", você se pergunta. A resposta não é sobre coragem. 
+                            É sobre timing estratégico.
+                        </p>
+                    </div>
+
+                    <div class="story-box">
+                        <h4 class="font-bold text-brand-success mb-3">A Revolução de Marina: De Invisível a Influente</h4>
+                        <p>
+                            Marina era uma analista de dados brilhante que se sentia como mobília nas reuniões. Suas análises eram 
+                            sempre precisas, mas ela nunca conseguia compartilhá-las no momento certo. Tudo mudou quando ela começou 
+                            a estudar as reuniões como um jogo de xadrez, identificando padrões e janelas de oportunidade. 
+                            Hoje, Marina é conhecida por suas intervenções cirúrgicas que sempre chegam no momento perfeito, 
+                            mudando o rumo das discussões com precisão laser.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Segredo dos Comunicadores de Impacto</h3>
+                        <p class="text-lg leading-relaxed">
+                            Você já reparou como algumas pessoas parecem ter um "sexto sentido" para falar exatamente na hora certa? 
+                            Como se elas tivessem um GPS interno que as guia para o momento perfeito de se posicionar? 
+                            Não é magia. É estratégia.
+                        </p>
+                        
+                        <div class="highlight-box">
+                            <h4 class="font-bold text-brand-dark mb-3">A Vantagem Secreta do Introvertido</h4>
+                            <p>
+                                Enquanto extrovertidos tendem a falar por impulso, você tem um superpoder: a capacidade natural de observar 
+                                antes de agir. Isso significa que você pode se tornar um "jogador de xadrez" da comunicação, 
+                                sempre três movimentos à frente dos outros.
+                            </p>
+                        </div>
+
+                        <p class="text-lg leading-relaxed">
+                            O timing perfeito não é sobre ser rápido. É sobre ser estratégico. É sobre usar seu superpoder de observação 
+                            para identificar não apenas O QUE falar, mas QUANDO falar para ter máximo impacto.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Lendo o Campo de Batalha</h3>
+                        <p class="text-lg leading-relaxed">
+                            Toda conversa tem uma dinâmica própria, como uma dança com ritmo específico. Aprender a "ler" 
+                            essa dinâmica é como ter um mapa do terreno em tempo real. Vamos decodificar os sinais:
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">🎭 Observando os Personagens</h5>
+                                <ul class="text-blue-700 space-y-2">
+                                    <li><strong>O Dominador:</strong> Fala muito, interrompe frequentemente. Espere ele "descarregar" antes de entrar.</li>
+                                    <li><strong>O Facilitador:</strong> Faz perguntas, busca opiniões. Sua melhor janela é quando ele pergunta algo.</li>
+                                    <li><strong>O Analítico:</strong> Pensa antes de falar, como você. Pode ser seu aliado natural.</li>
+                                    <li><strong>O Impaciente:</strong> Quer resultados rápidos. Entre com soluções práticas.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">📊 Lendo a Energia da Sala</h5>
+                                <ul class="text-green-700 space-y-2">
+                                    <li><strong>Alta energia:</strong> Discussão acelerada. Use "entradas suaves" para não quebrar o ritmo.</li>
+                                    <li><strong>Energia baixa:</strong> Conversa arrastada. Sua entrada pode revigorar a discussão.</li>
+                                    <li><strong>Tensão:</strong> Conflito no ar. Seja o mediador com uma perspectiva equilibrada.</li>
+                                    <li><strong>Confusão:</strong> Muitas ideias soltas. Organize com seus 3 pontos claros.</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">🕐 Identificando os Ritmos</h5>
+                                <ul class="text-purple-700 space-y-2">
+                                    <li><strong>Pausas naturais:</strong> Quando alguém termina uma ideia completa (2-3 segundos de silêncio).</li>
+                                    <li><strong>Mudança de assunto:</strong> Momento perfeito para introduzir uma nova perspectiva.</li>
+                                    <li><strong>Pergunta direta:</strong> Quando alguém faz uma pergunta ao grupo - sua chance de ouro.</li>
+                                    <li><strong>Impasse:</strong> Quando a discussão empaca - entre com uma solução ou nova direção.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">As 5 Janelas de Oportunidade Douradas</h3>
+                        <p class="text-lg leading-relaxed">
+                            Agora que você sabe ler o campo, vamos identificar os momentos específicos onde sua voz terá máximo impacto:
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-xl border-2 border-yellow-300">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold mr-3">1</div>
+                                    <h5 class="font-bold text-yellow-800">A Janela da Pergunta</h5>
+                                </div>
+                                <p class="text-yellow-700 text-sm">
+                                    Quando alguém faz uma pergunta ao grupo. É sua chance de ouro para contribuir com uma resposta estruturada.
+                                </p>
+                                <p class="text-yellow-600 text-xs mt-2 italic">
+                                    Entrada: "Ótima pergunta. Vejo três aspectos importantes aqui..."
+                                </p>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border-2 border-blue-300">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold mr-3">2</div>
+                                    <h5 class="font-bold text-blue-800">A Janela da Complementação</h5>
+                                </div>
+                                <p class="text-blue-700 text-sm">
+                                    Quando alguém apresenta uma ideia boa, mas incompleta. Você pode adicionar a peça que falta.
+                                </p>
+                                <p class="text-blue-600 text-xs mt-2 italic">
+                                    Entrada: "Excelente ponto, João. Complementando o que você disse..."
+                                </p>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border-2 border-green-300">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-bold mr-3">3</div>
+                                    <h5 class="font-bold text-green-800">A Janela da Síntese</h5>
+                                </div>
+                                <p class="text-green-700 text-sm">
+                                    Quando há muitas ideias soltas e confusão. Você organiza e conecta os pontos.
+                                </p>
+                                <p class="text-green-600 text-xs mt-2 italic">
+                                    Entrada: "Vejo que temos várias ideias valiosas. Deixe-me organizar isso..."
+                                </p>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl border-2 border-purple-300">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold mr-3">4</div>
+                                    <h5 class="font-bold text-purple-800">A Janela da Perspectiva</h5>
+                                </div>
+                                <p class="text-purple-700 text-sm">
+                                    Quando todos estão vendo apenas um lado da questão. Você traz o ângulo que ninguém considerou.
+                                </p>
+                                <p class="text-purple-600 text-xs mt-2 italic">
+                                    Entrada: "Há outro ângulo que talvez valha considerar..."
+                                </p>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-red-50 to-pink-50 p-6 rounded-xl border-2 border-red-300">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center font-bold mr-3">5</div>
+                                    <h5 class="font-bold text-red-800">A Janela da Solução</h5>
+                                </div>
+                                <p class="text-red-700 text-sm">
+                                    Quando há um problema ou impasse. Você entra com uma proposta prática e viável.
+                                </p>
+                                <p class="text-red-600 text-xs mt-2 italic">
+                                    Entrada: "Pensando em soluções práticas, que tal se..."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Técnicas de Entrada Suave</h3>
+                        <p class="text-lg leading-relaxed">
+                            Agora que você sabe QUANDO falar, vamos aprender COMO entrar na conversa de forma natural e respeitosa, 
+                            sem interromper ou parecer agressivo:
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">🔗 A Técnica da Conexão</h5>
+                                <p class="text-blue-700 mb-3">
+                                    Conecte sua ideia ao que acabou de ser dito. Isso mostra que você estava prestando atenção 
+                                    e cria uma transição natural.
+                                </p>
+                                <div class="bg-white p-3 rounded border-l-2 border-blue-300">
+                                    <p class="text-sm text-blue-600">
+                                        <strong>Exemplos:</strong><br>
+                                        • "Baseando-me no que a Maria acabou de falar sobre X..."<br>
+                                        • "Isso me lembra um ponto importante sobre..."<br>
+                                        • "Seguindo essa linha de raciocínio..."
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">❓ A Técnica da Pergunta Estratégica</h5>
+                                <p class="text-green-700 mb-3">
+                                    Quando não consegue encontrar uma brecha, crie uma fazendo uma pergunta que direciona 
+                                    a atenção para o ponto que você quer abordar.
+                                </p>
+                                <div class="bg-white p-3 rounded border-l-2 border-green-300">
+                                    <p class="text-sm text-green-600">
+                                        <strong>Exemplos:</strong><br>
+                                        • "Alguém já considerou o impacto de X nesse cenário?"<br>
+                                        • "Como vocês veem a questão de Y nessa situação?"<br>
+                                        • "Posso trazer uma perspectiva diferente sobre isso?"
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">⏸️ A Técnica da Pausa Respeitosa</h5>
+                                <p class="text-purple-700 mb-3">
+                                    Use linguagem corporal e sinais não-verbais para indicar que você quer falar, 
+                                    criando uma pausa natural.
+                                </p>
+                                <div class="bg-white p-3 rounded border-l-2 border-purple-300">
+                                    <p class="text-sm text-purple-600">
+                                        <strong>Sinais:</strong><br>
+                                        • Inclinar-se ligeiramente para frente<br>
+                                        • Fazer contato visual com quem está falando<br>
+                                        • Levantar a mão discretamente<br>
+                                        • Usar expressões como "Hmm..." ou "Interessante..."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Criando Suas Próprias Janelas</h3>
+                        <p class="text-lg leading-relaxed">
+                            Às vezes, você não precisa esperar pela janela perfeita - você pode criá-la. Aqui estão estratégias 
+                            avançadas para introvertidos que querem ter mais controle sobre o timing:
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-400">
+                                <h5 class="font-bold text-yellow-800 mb-3">📋 A Preparação Estratégica</h5>
+                                <p class="text-yellow-700">
+                                    Antes de reuniões importantes, envie um e-mail com seus pontos principais. 
+                                    Isso cria expectativa e facilita sua entrada na discussão.
+                                </p>
+                            </div>
+
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">🤝 A Aliança Estratégica</h5>
+                                <p class="text-blue-700">
+                                    Converse previamente com um colega que pode "abrir a porta" para você durante a reunião, 
+                                    fazendo uma pergunta que você está preparado para responder.
+                                </p>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">📝 O Método do "Follow-up"</h5>
+                                <p class="text-green-700">
+                                    Se perdeu a oportunidade na reunião, envie um follow-up bem estruturado com suas contribuições. 
+                                    Muitas vezes, isso tem mais impacto que falar na hora.
+                                </p>
+                            </div>
+                        </div>
+
+                        <blockquote class="mt-8">
+                            Lembre-se: o timing perfeito não é sobre velocidade, é sobre precisão. Sua capacidade de observar, 
+                            analisar e escolher o momento certo é um superpoder que, uma vez dominado, te dará uma vantagem 
+                            competitiva em qualquer ambiente.
+                        </blockquote>
+                    </div>
+                </article>
+
+                <div class="practice-section">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6 text-center">✨ Sua Vez de Praticar: Qual a Melhor Jogada?</h3>
+                    <p class="text-gray-700 mb-8 text-center text-lg">
+                        Analise os cenários abaixo e escolha a melhor estratégia para se posicionar, com base no que aprendeu. 
+                        Não há respostas certas ou erradas - o importante é desenvolver seu pensamento estratégico.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <h4 class="font-bold text-brand-dark mb-4">Cenário 1: A Reunião Acelerada</h4>
+                            <p class="text-gray-700 mb-4">
+                                Em uma reunião de equipe, a discussão está acelerada sobre um novo projeto. Seu colega João acaba de apresentar 
+                                uma ideia interessante, mas você percebe que ele esqueceu um aspecto importante que poderia impactar o orçamento. 
+                                Qual sua melhor estratégia?
+                            </p>
+                            <div id="timing-options-1" class="space-y-3">
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-blue-300 transition-all">
+                                    <input type="radio" name="timing1" value="a" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">a) Ficar quieto e esperar uma brecha que talvez nunca apareça.</span>
+                                </label>
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-blue-300 transition-all">
+                                    <input type="radio" name="timing1" value="b" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">b) Interromper João imediatamente para corrigir o ponto esquecido.</span>
+                                </label>
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-blue-300 transition-all">
+                                    <input type="radio" name="timing1" value="c" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">c) Usar uma "entrada suave": "Ótima ideia, João. Complementando o que você disse, há um aspecto do orçamento que vale considerar..."</span>
+                                </label>
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-blue-300 transition-all">
+                                    <input type="radio" name="timing1" value="d" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">d) Fazer uma pergunta estratégica: "João, como você vê o impacto orçamentário dessa proposta?"</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-green-200">
+                            <h4 class="font-bold text-brand-dark mb-4">Cenário 2: O Impasse Criativo</h4>
+                            <p class="text-gray-700 mb-4">
+                                A equipe está discutindo há 20 minutos sobre duas soluções diferentes para um problema, 
+                                mas ninguém consegue chegar a um consenso. Você tem uma terceira alternativa que poderia resolver 
+                                o impasse, mas a discussão está intensa. Como você entra?
+                            </p>
+                            <div class="space-y-3">
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+                                    <input type="radio" name="timing2" value="a" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">a) Esperar até alguém perguntar se há outras ideias.</span>
+                                </label>
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+                                    <input type="radio" name="timing2" value="b" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">b) Usar a "Janela da Síntese": "Vejo que temos duas abordagens valiosas. Posso sugerir uma terceira alternativa que combina o melhor de ambas?"</span>
+                                </label>
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+                                    <input type="radio" name="timing2" value="c" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">c) Levantar a mão e falar alto para ser notado.</span>
+                                </label>
+                                <label class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+                                    <input type="radio" name="timing2" value="d" class="mt-1 h-5 w-5 text-brand-orange focus:ring-brand-orange">
+                                    <span class="ml-3 text-gray-800">d) Enviar a ideia por e-mail depois da reunião.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-purple-200">
+                            <h4 class="font-bold text-brand-dark mb-4">Reflexão Pessoal:</h4>
+                            <label for="timing-reflexao" class="block text-gray-700 font-medium mb-3">
+                                Pense em uma situação recente onde você perdeu uma oportunidade de falar. 
+                                Analisando agora com suas novas ferramentas, qual janela de oportunidade você poderia ter usado? 
+                                Como você entraria na conversa se pudesse voltar no tempo?
+                            </label>
+                            <textarea id="timing-reflexao" rows="5" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: Na reunião de ontem, quando discutíamos o novo processo, eu poderia ter usado a 'Janela da Complementação' quando a Ana falou sobre eficiência. Eu entraria dizendo: 'Excelente ponto, Ana. Complementando sua observação sobre eficiência, há três aspectos que poderiam otimizar ainda mais o processo...'"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button data-step="3" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-6 px-8 rounded-xl hover:from-green-600 hover:to-brand-success transition-all duration-300 text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
+                    SALVAR E VER MEU FEEDBACK PERSONALIZADO →
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Step 4: Energia Inteligente -->
+        <div id="step-4" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-orange">
+                <header class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-2xl">🔋</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 4: Energia Inteligente</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comunique sem se esgotar - Gerencie sua energia social como um estrategista</p>
+                </header>
+
+                <div class="illustration-container mb-8">
+                    <img src="assets/images/social-energy-battery.png" alt="Sistema de energia social" class="mx-auto">
+                    <p class="text-sm text-gray-600 mt-4 italic">Sua energia social funciona diferente - aprenda a gerenciá-la estrategicamente</p>
+                </div>
+
+                <article class="prose max-w-none text-gray-800 space-y-8">
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Mistério da Bateria Social</h3>
+                        <p class="text-lg leading-relaxed">
+                            Você sai de uma reunião de 2 horas se sentindo como se tivesse corrido uma maratona. Seus colegas extrovertidos, 
+                            por outro lado, parecem energizados e prontos para mais. "O que há de errado comigo?", você se pergunta. 
+                            A resposta é simples: nada. Absolutamente nada.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            Sua "bateria social" funciona de forma fundamentalmente diferente. Para um extrovertido, socializar é como 
+                            plugar o celular na tomada - eles se carregam. Para você, é como usar o 4G com a tela no brilho máximo 
+                            e GPS ligado: consome energia rapidamente, mas pode ser gerenciado de forma inteligente.
+                        </p>
+                    </div>
+
+                    <div class="story-box">
+                        <h4 class="font-bold text-brand-success mb-3">A Descoberta de Rafael: De Exausto a Estratégico</h4>
+                        <p>
+                            Rafael era um gerente de projetos que chegava em casa completamente drenado após dias de reuniões. 
+                            Ele pensava que o problema era falta de preparo físico ou até mesmo preguiça. Tudo mudou quando ele 
+                            entendeu que sua energia social era um recurso finito e valioso que precisava ser gerenciado estrategicamente. 
+                            Hoje, Rafael é conhecido por sua presença marcante em reuniões importantes, justamente porque aprendeu 
+                            a escolher onde investir sua energia para máximo impacto.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">A Ciência Por Trás da Sua Energia</h3>
+                        <p class="text-lg leading-relaxed">
+                            Pesquisas em neurociência mostram que cérebros introvertidos e extrovertidos processam estímulos sociais 
+                            de forma diferente. Não é "fraqueza" ou "falta de habilidade social" - é neurologia pura.
+                        </p>
+                        
+                        <div class="highlight-box">
+                            <h4 class="font-bold text-brand-dark mb-3">Como Funciona Seu "Sistema Operacional"</h4>
+                            <p>
+                                Seu cérebro introvertido tem maior atividade no córtex pré-frontal, processando informações mais profundamente. 
+                                Em ambientes sociais, você está constantemente analisando, observando e processando múltiplas camadas de informação. 
+                                É como rodar um software sofisticado - consome mais energia, mas produz resultados de maior qualidade.
+                            </p>
+                        </div>
+
+                        <p class="text-lg leading-relaxed">
+                            Entender isso muda tudo. Você não precisa "se forçar" a ser mais sociável. Você precisa ser mais estratégico 
+                            sobre quando, onde e como usar sua energia social para ter máximo impacto.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Os 7 Maiores Drenos de Energia</h3>
+                        <p class="text-lg leading-relaxed">
+                            Conhecer seus "vampiros de energia" é o primeiro passo para proteger seus recursos. 
+                            Vamos identificar os principais culpados:
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">🏢 Reuniões Longas e Sem Foco</h5>
+                                <p class="text-red-700 text-sm">
+                                    Especialmente aquelas que poderiam ter sido um e-mail. Seu cérebro fica em estado de alerta 
+                                    constante, esperando contribuir, mas sem oportunidades claras.
+                                </p>
+                            </div>
+
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">🎉 Eventos de Networking Forçado</h5>
+                                <p class="text-red-700 text-sm">
+                                    Conversas superficiais com múltiplas pessoas desconhecidas. É como tentar manter 
+                                    10 conversas simultâneas - mentalmente exaustivo.
+                                </p>
+                            </div>
+
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">💬 Small Talk Prolongado</h5>
+                                <p class="text-red-700 text-sm">
+                                    Conversas sobre o tempo, trânsito ou fofocas. Seu cérebro anseia por substância 
+                                    e se frustra com superficialidade.
+                                </p>
+                            </div>
+
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">🔊 Ambientes Barulhentos</h5>
+                                <p class="text-red-700 text-sm">
+                                    Restaurantes lotados, open offices, festas com música alta. Seu cérebro gasta energia 
+                                    extra filtrando ruídos para se concentrar.
+                                </p>
+                            </div>
+
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">⚡ Interrupções Constantes</h5>
+                                <p class="text-red-700 text-sm">
+                                    Quando você não consegue terminar um pensamento ou tarefa. Cada interrupção 
+                                    força seu cérebro a "reinicializar".
+                                </p>
+                            </div>
+
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">🎭 Fingir Ser Extrovertido</h5>
+                                <p class="text-red-700 text-sm">
+                                    Tentar ser "o animado da turma" ou forçar entusiasmo que não sente. 
+                                    É como atuar o tempo todo - mentalmente esgotante.
+                                </p>
+                            </div>
+
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">🔄 Multitasking Social</h5>
+                                <p class="text-red-700 text-sm">
+                                    Tentar acompanhar múltiplas conversas ou atividades sociais simultaneamente. 
+                                    Seu cérebro prefere profundidade a amplitude.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Estratégias de Recarga Rápida</h3>
+                        <p class="text-lg leading-relaxed">
+                            Agora que você conhece os drenos, vamos às estratégias para recarregar sua energia, 
+                            tanto durante quanto após interações sociais:
+                        </p>
+
+                        <div class="space-y-6 mt-8">
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">🧘 Micro-Pausas Estratégicas</h5>
+                                <p class="text-green-700 mb-3">
+                                    Durante eventos longos, faça pausas de 2-3 minutos a cada hora. Vá ao banheiro, 
+                                    tome um ar fresco, ou simplesmente feche os olhos e respire profundamente.
+                                </p>
+                                <div class="bg-white p-3 rounded border-l-2 border-green-300">
+                                    <p class="text-sm text-green-600">
+                                        <strong>Técnica dos 3 Respiros:</strong> Inspire por 4 segundos, segure por 4, expire por 6. 
+                                        Repita 3 vezes. Isso ativa seu sistema nervoso parassimpático.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">🎯 Foco em Conversas de Qualidade</h5>
+                                <p class="text-blue-700 mb-3">
+                                    Em vez de tentar falar com todos, escolha 2-3 pessoas para conversas mais profundas. 
+                                    Isso é menos desgastante e mais gratificante para seu cérebro.
+                                </p>
+                                <div class="bg-white p-3 rounded border-l-2 border-blue-300">
+                                    <p class="text-sm text-blue-600">
+                                        <strong>Regra 80/20:</strong> 80% da sua energia para 20% das pessoas mais importantes 
+                                        ou interessantes do evento.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">📱 O "Ponto de Recarga" Secreto</h5>
+                                <p class="text-purple-700 mb-3">
+                                    Identifique um local tranquilo (corredor, área externa, até mesmo seu carro) 
+                                    onde pode se retirar por alguns minutos quando necessário.
+                                </p>
+                                <div class="bg-white p-3 rounded border-l-2 border-purple-300">
+                                    <p class="text-sm text-purple-600">
+                                        <strong>Desculpas socialmente aceitáveis:</strong> "Vou tomar um ar", "Preciso fazer uma ligação", 
+                                        "Vou buscar um café". Ninguém questiona.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-400">
+                                <h5 class="font-bold text-orange-800 mb-3">⏰ Planejamento de Energia</h5>
+                                <p class="text-orange-700 mb-3">
+                                    Reserve suas horas de maior energia para as interações mais importantes. 
+                                    Se você é mais alerta de manhã, agende reuniões cruciais nesse período.
+                                </p>
+                                <div class="bg-white p-3 rounded border-l-2 border-orange-300">
+                                    <p class="text-sm text-orange-600">
+                                        <strong>Mapeamento energético:</strong> Identifique seus horários de pico e baixa energia. 
+                                        Use os picos para comunicação importante, as baixas para tarefas individuais.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Protocolo de Preparação Energética</h3>
+                        <p class="text-lg leading-relaxed">
+                            Assim como atletas se preparam antes de competições, você pode se preparar energeticamente 
+                            antes de eventos sociais importantes:
+                        </p>
+
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-8 my-8">
+                            <h4 class="text-xl font-bold text-blue-800 mb-6 text-center">Protocolo Pré-Evento (24h antes)</h4>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+                                    <h5 class="font-bold text-blue-800 mb-2">PREPARAÇÃO MENTAL</h5>
+                                    <p class="text-blue-700 text-sm">Visualize o evento, defina 2-3 objetivos específicos, prepare seus 3 pontos principais</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+                                    <h5 class="font-bold text-blue-800 mb-2">PREPARAÇÃO FÍSICA</h5>
+                                    <p class="text-blue-700 text-sm">Durma bem, coma adequadamente, evite cafeína em excesso, faça exercício leve</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+                                    <h5 class="font-bold text-blue-800 mb-2">PREPARAÇÃO EMOCIONAL</h5>
+                                    <p class="text-blue-700 text-sm">Reserve tempo sozinho, faça algo que te relaxa, pratique autocompaixão</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O "Detox Social" - Sua Recuperação Pós-Evento</h3>
+                        <p class="text-lg leading-relaxed">
+                            Após eventos sociais intensos, seu cérebro precisa de tempo para processar e se recuperar. 
+                            Isso não é antisocial - é autocuidado inteligente:
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">🛁 Rituais de Transição</h5>
+                                <p class="text-green-700">
+                                    Crie um ritual que marca a transição do "modo social" para o "modo pessoal": 
+                                    um banho relaxante, trocar de roupa, ouvir música calma, ou simplesmente sentar em silêncio por 10 minutos.
+                                </p>
+                            </div>
+
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">📚 Atividades Restauradoras</h5>
+                                <p class="text-blue-700">
+                                    Faça algo que genuinamente te dá prazer e não requer interação social: ler, assistir um filme, 
+                                    caminhar na natureza, ouvir podcasts, cozinhar, ou praticar um hobby.
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">🚫 Proteção de Agenda</h5>
+                                <p class="text-purple-700">
+                                    Evite agendar outros compromissos sociais no mesmo dia ou no dia seguinte a eventos intensos. 
+                                    Sua agenda deve refletir suas necessidades energéticas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <blockquote class="mt-8">
+                            Lembre-se: gerenciar sua energia não é sobre limitação, é sobre otimização. Quando você cuida bem 
+                            da sua energia social, você pode estar 100% presente nos momentos que realmente importam, 
+                            causando um impacto muito maior do que se estivesse sempre "no vermelho".
+                        </blockquote>
+                    </div>
+                </article>
+
+                <div class="practice-section">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6 text-center">✨ Sua Vez de Praticar: Monte Seu Kit de Sobrevivência Social</h3>
+                    <p class="text-gray-700 mb-8 text-center text-lg">
+                        Seja seu próprio estrategista energético. Crie um plano personalizado para gerenciar sua energia social 
+                        de forma inteligente e sustentável.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 rounded-lg border-2 border-red-200">
+                            <h4 class="font-bold text-red-800 mb-4">🔋 Meus Maiores Drenos de Energia</h4>
+                            <label for="energia-drenos" class="block text-gray-700 font-medium mb-3">
+                                Identifique as 3 situações que mais drenam sua energia social:
+                            </label>
+                            <textarea id="energia-drenos" rows="4" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: 1. Reuniões longas sem pauta clara. 2. Eventos de networking com muita gente desconhecida. 3. Conversas superficiais no elevador..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-4">🛡️ Minhas Estratégias de PREPARAÇÃO (Antes)</h4>
+                            <label for="energia-antes" class="block text-gray-700 font-medium mb-3">
+                                Como você vai se preparar antes de eventos sociais importantes:
+                            </label>
+                            <textarea id="energia-antes" rows="5" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: 1. Reservar 30 min para ficar em silêncio antes do evento. 2. Definir 2 objetivos específicos para a reunião. 3. Preparar 3 pontos que quero comunicar. 4. Escolher 2-3 pessoas com quem quero conversar..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-green-200">
+                            <h4 class="font-bold text-green-800 mb-4">⚡ Minhas Estratégias de RECARGA (Durante)</h4>
+                            <label for="energia-durante" class="block text-gray-700 font-medium mb-3">
+                                Como você vai recarregar energia durante eventos longos:
+                            </label>
+                            <textarea id="energia-durante" rows="4" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: 1. Fazer micro-pausas a cada hora (ir ao banheiro, tomar água). 2. Focar em 2-3 conversas de qualidade em vez de falar com todos. 3. Usar a técnica dos 3 respiros quando me sentir sobrecarregado..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-purple-200">
+                            <h4 class="font-bold text-purple-800 mb-4">🌱 Minhas Estratégias de RECUPERAÇÃO (Depois)</h4>
+                            <label for="energia-depois" class="block text-gray-700 font-medium mb-3">
+                                Como você vai se recuperar após eventos sociais intensos:
+                            </label>
+                            <textarea id="energia-depois" rows="5" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: 1. Tomar um banho relaxante assim que chegar em casa. 2. Ler um livro ou assistir uma série por 1 hora. 3. Não marcar outros compromissos sociais no mesmo dia. 4. Fazer uma caminhada na natureza no dia seguinte..."></textarea>
+                        </div>
+
+                        <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-300">
+                            <h4 class="font-bold text-yellow-800 mb-3">💡 Compromisso Pessoal</h4>
+                            <p class="text-yellow-700 mb-3">
+                                Escolha UMA estratégia de cada categoria acima para implementar na próxima semana. 
+                                Pequenos passos consistentes geram grandes transformações.
+                            </p>
+                            <label for="compromisso-energia" class="block text-gray-700 font-medium mb-2">
+                                Meu compromisso para a próxima semana:
+                            </label>
+                            <input type="text" id="compromisso-energia" 
+                                   class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                   placeholder="Ex: Vou fazer micro-pausas de 3 minutos a cada hora durante reuniões longas">
+                        </div>
+                    </div>
+                </div>
+
+                <button data-step="4" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-6 px-8 rounded-xl hover:from-green-600 hover:to-brand-success transition-all duration-300 text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
+                    SALVAR E VER MEU FEEDBACK PERSONALIZADO →
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 5: Aplicação Real -->
+        <div id="step-5" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-orange">
+                <header class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-2xl">🚀</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 5: Aplicação Real</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">O destrave acontece na prática! - Transforme teoria em resultados concretos</p>
+                </header>
+
+                <article class="prose max-w-none text-gray-800 space-y-8">
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">A Ponte Entre Dois Mundos</h3>
+                        <p class="text-lg leading-relaxed">
+                            Você já absorveu uma quantidade incrível de conhecimento sobre seus superpoderes, clareza mental, 
+                            timing estratégico e gestão de energia. Agora chegou o momento da verdade: como transformar tudo isso 
+                            em resultados reais na sua vida?
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            É aqui que muitas pessoas param. Elas consomem conteúdo, se sentem inspiradas, mas nunca fazem a ponte 
+                            entre o conhecimento e a ação. Não seja uma delas. Este passo é sobre construir uma ponte sólida 
+                            entre o que você aprendeu e as situações reais da sua vida.
+                        </p>
+                    </div>
+
+                    <div class="story-box">
+                        <h4 class="font-bold text-brand-success mb-3">A Transformação de Carla: De Teoria à Liderança</h4>
+                        <p>
+                            Carla era uma desenvolvedora sênior que conhecia todos os conceitos de comunicação, mas nunca os aplicava. 
+                            Ela assistia cursos, lia livros, mas continuava invisível nas reuniões. Tudo mudou quando ela decidiu 
+                            aplicar sistematicamente uma técnica por semana. Primeiro, praticou a regra dos 3 pontos em reuniões pequenas. 
+                            Depois, trabalhou o timing em apresentações. Em 3 meses, Carla foi promovida a líder técnica, 
+                            não apenas por sua competência, mas por sua capacidade de comunicar ideias complexas com clareza e impacto.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Cenários de Alto Impacto</h3>
+                        <p class="text-lg leading-relaxed">
+                            Nem todas as situações são iguais. Algumas têm potencial de transformar sua carreira, relacionamentos 
+                            ou autoestima. Vamos identificar os cenários onde aplicar suas novas habilidades terá máximo retorno:
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">💼 Cenários Profissionais</h5>
+                                <ul class="text-blue-700 space-y-2 text-sm">
+                                    <li>• Apresentações para a diretoria</li>
+                                    <li>• Reuniões de avaliação de desempenho</li>
+                                    <li>• Entrevistas de emprego</li>
+                                    <li>• Propostas de novos projetos</li>
+                                    <li>• Feedback para colegas ou subordinados</li>
+                                    <li>• Negociações salariais</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">👥 Cenários Pessoais</h5>
+                                <ul class="text-green-700 space-y-2 text-sm">
+                                    <li>• Conversas difíceis em relacionamentos</li>
+                                    <li>• Expressão de opiniões em grupos de amigos</li>
+                                    <li>• Participação em eventos familiares</li>
+                                    <li>• Defesa de pontos de vista importantes</li>
+                                    <li>• Estabelecimento de limites pessoais</li>
+                                    <li>• Resolução de conflitos</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">🎯 Cenários de Crescimento</h5>
+                                <ul class="text-purple-700 space-y-2 text-sm">
+                                    <li>• Participação em debates ou discussões</li>
+                                    <li>• Contribuições em cursos ou workshops</li>
+                                    <li>• Networking estratégico</li>
+                                    <li>• Mentoria ou ensino</li>
+                                    <li>• Liderança de equipes ou projetos</li>
+                                    <li>• Palestras ou apresentações públicas</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-orange-50 p-6 rounded-xl border-l-4 border-orange-400">
+                                <h5 class="font-bold text-orange-800 mb-3">🌟 Cenários de Impacto</h5>
+                                <ul class="text-orange-700 space-y-2 text-sm">
+                                    <li>• Defesa de causas importantes</li>
+                                    <li>• Contribuições em reuniões comunitárias</li>
+                                    <li>• Participação em decisões familiares</li>
+                                    <li>• Expressão de valores pessoais</li>
+                                    <li>• Apoio a colegas ou amigos</li>
+                                    <li>• Compartilhamento de conhecimento</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Protocolo de Preparação Completo</h3>
+                        <p class="text-lg leading-relaxed">
+                            Para situações de alto impacto, você precisa de um protocolo sistemático que integre tudo que aprendeu. 
+                            Aqui está seu checklist de preparação:
+                        </p>
+
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-8 my-8">
+                            <h4 class="text-xl font-bold text-blue-800 mb-6 text-center">Checklist Pré-Situação Importante</h4>
+                            
+                            <div class="space-y-6">
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400">
+                                    <h5 class="font-bold text-blue-800 mb-3">🎯 1. Definição de Objetivos</h5>
+                                    <ul class="text-blue-700 space-y-1 text-sm">
+                                        <li>• Qual é meu objetivo principal nesta situação?</li>
+                                        <li>• Quais são os 2-3 resultados específicos que quero alcançar?</li>
+                                        <li>• Como vou medir se foi bem-sucedido?</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-green-400">
+                                    <h5 class="font-bold text-green-800 mb-3">🧠 2. Preparação Mental (Clareza)</h5>
+                                    <ul class="text-green-700 space-y-1 text-sm">
+                                        <li>• Quais são meus 3 pontos principais?</li>
+                                        <li>• Como vou estruturar minha mensagem?</li>
+                                        <li>• Que exemplos ou evidências vou usar?</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-purple-400">
+                                    <h5 class="font-bold text-purple-800 mb-3">⏰ 3. Análise de Timing</h5>
+                                    <ul class="text-purple-700 space-y-1 text-sm">
+                                        <li>• Quem são os outros participantes?</li>
+                                        <li>• Qual é a dinâmica esperada?</li>
+                                        <li>• Quais janelas de oportunidade posso identificar?</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-orange-400">
+                                    <h5 class="font-bold text-orange-800 mb-3">🔋 4. Gestão de Energia</h5>
+                                    <ul class="text-orange-700 space-y-1 text-sm">
+                                        <li>• Como está meu nível de energia atual?</li>
+                                        <li>• Preciso de alguma preparação energética?</li>
+                                        <li>• Qual é meu plano de recarga pós-evento?</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-red-400">
+                                    <h5 class="font-bold text-red-800 mb-3">⚡ 5. Ativação de Superpoderes</h5>
+                                    <ul class="text-red-700 space-y-1 text-sm">
+                                        <li>• Quais superpoderes são mais relevantes aqui?</li>
+                                        <li>• Como vou usar minha escuta profunda?</li>
+                                        <li>• Como minha observação aguçada pode me ajudar?</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Análise Pós-Ação: Aprendendo com Cada Experiência</h3>
+                        <p class="text-lg leading-relaxed">
+                            Cada situação é uma oportunidade de aprendizado. A análise pós-ação é o que transforma experiências 
+                            em expertise. Aqui está como extrair máximo valor de cada aplicação prática:
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">✅ O Que Funcionou Bem?</h5>
+                                <p class="text-green-700 text-sm">
+                                    Identifique especificamente quais técnicas você usou e que resultados positivos obteve. 
+                                    Isso reforça comportamentos eficazes e constrói confiança.
+                                </p>
+                            </div>
+
+                            <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-400">
+                                <h5 class="font-bold text-yellow-800 mb-3">🔄 O Que Poderia Ser Melhorado?</h5>
+                                <p class="text-yellow-700 text-sm">
+                                    Sem autocrítica destrutiva, identifique oportunidades de melhoria. 
+                                    Que técnica você poderia ter usado? Que timing seria melhor?
+                                </p>
+                            </div>
+
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">📚 Que Lições Você Aprendeu?</h5>
+                                <p class="text-blue-700 text-sm">
+                                    Cada situação ensina algo único sobre dinâmicas, pessoas ou contextos. 
+                                    Capture esses insights para aplicar em situações futuras.
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">🎯 Próximos Passos</h5>
+                                <p class="text-purple-700 text-sm">
+                                    Com base no que aprendeu, que habilidade específica você vai focar 
+                                    na próxima oportunidade similar?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">A Progressão Inteligente</h3>
+                        <p class="text-lg leading-relaxed">
+                            Não tente aplicar tudo de uma vez. A maestria vem da progressão inteligente. 
+                            Aqui está uma sugestão de como evoluir suas habilidades:
+                        </p>
+
+                        <div class="grid md:grid-cols-4 gap-4 mt-8">
+                            <div class="bg-green-50 p-4 rounded-lg text-center border-2 border-green-200">
+                                <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">1</div>
+                                <h5 class="font-bold text-green-800 mb-2">SEMANA 1-2</h5>
+                                <p class="text-green-700 text-sm">Foque na Regra dos 3 Pontos em situações de baixo risco</p>
+                            </div>
+
+                            <div class="bg-blue-50 p-4 rounded-lg text-center border-2 border-blue-200">
+                                <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">2</div>
+                                <h5 class="font-bold text-blue-800 mb-2">SEMANA 3-4</h5>
+                                <p class="text-blue-700 text-sm">Adicione técnicas de timing em reuniões familiares</p>
+                            </div>
+
+                            <div class="bg-purple-50 p-4 rounded-lg text-center border-2 border-purple-200">
+                                <div class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">3</div>
+                                <h5 class="font-bold text-purple-800 mb-2">SEMANA 5-6</h5>
+                                <p class="text-purple-700 text-sm">Integre gestão de energia em eventos maiores</p>
+                            </div>
+
+                            <div class="bg-orange-50 p-4 rounded-lg text-center border-2 border-orange-200">
+                                <div class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-3">4</div>
+                                <h5 class="font-bold text-orange-800 mb-2">SEMANA 7+</h5>
+                                <p class="text-orange-700 text-sm">Aplique o protocolo completo em situações de alto impacto</p>
+                            </div>
+                        </div>
+
+                        <blockquote class="mt-8">
+                            Lembre-se: a transformação real acontece na aplicação consistente, não na perfeição imediata. 
+                            Cada pequena vitória constrói a fundação para conquistas maiores. Seja paciente consigo mesmo 
+                            e celebre cada progresso, por menor que pareça.
+                        </blockquote>
+                    </div>
+                </article>
+
+                <div class="practice-section">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6 text-center">✨ Sua Vez de Praticar: Construa Sua Ponte para a Ação</h3>
+                    <p class="text-gray-700 mb-8 text-center text-lg">
+                        Escolha uma situação real e desafiadora que você enfrentará em breve. Crie um plano de ação detalhado 
+                        usando tudo que aprendeu até agora.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-4">🎯 O Cenário (O outro lado da ponte)</h4>
+                            <label for="aplicacao-cenario" class="block text-gray-700 font-medium mb-3">
+                                Descreva a situação específica onde você vai aplicar suas novas habilidades:
+                            </label>
+                            <input type="text" id="aplicacao-cenario" 
+                                   class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                   placeholder="Ex: Apresentar o resultado do meu projeto para a diretoria na próxima sexta-feira">
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-green-200">
+                            <h4 class="font-bold text-green-800 mb-4">🧠 Meus 3 Pontos Principais</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="ponto-principal-1" class="block text-gray-700 font-medium mb-2">1. Ponto Principal:</label>
+                                    <input type="text" id="ponto-principal-1" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="A ideia central que quero comunicar">
+                                </div>
+                                <div>
+                                    <label for="ponto-principal-2" class="block text-gray-700 font-medium mb-2">2. Argumento de Suporte:</label>
+                                    <input type="text" id="ponto-principal-2" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="Por que isso é importante">
+                                </div>
+                                <div>
+                                    <label for="ponto-principal-3" class="block text-gray-700 font-medium mb-2">3. Ação Desejada:</label>
+                                    <input type="text" id="ponto-principal-3" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="O que quero que aconteça como resultado">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-purple-200">
+                            <h4 class="font-bold text-purple-800 mb-4">⏰ Minha Estratégia de Timing</h4>
+                            <label for="estrategia-timing" class="block text-gray-700 font-medium mb-3">
+                                Como você vai identificar e usar as janelas de oportunidade:
+                            </label>
+                            <textarea id="estrategia-timing" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                      placeholder="Ex: Vou observar a dinâmica nos primeiros 5 minutos. Quando o diretor fizer perguntas sobre resultados, usarei a 'Janela da Pergunta' para apresentar meus 3 pontos..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-orange-200">
+                            <h4 class="font-bold text-orange-800 mb-4">🔋 Meu Plano de Gestão de Energia</h4>
+                            <label for="gestao-energia" class="block text-gray-700 font-medium mb-3">
+                                Como você vai se preparar energeticamente e se recuperar depois:
+                            </label>
+                            <textarea id="gestao-energia" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                      placeholder="Ex: Vou meditar por 10 min antes da reunião, fazer micro-pausas se necessário, e reservar a tarde para atividades relaxantes..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-red-200">
+                            <h4 class="font-bold text-red-800 mb-4">⚡ Meus Superpoderes em Ação</h4>
+                            <label for="superpoderes-acao" class="block text-gray-700 font-medium mb-3">
+                                Quais superpoderes você vai usar e como:
+                            </label>
+                            <textarea id="superpoderes-acao" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                      placeholder="Ex: Usarei minha Escuta Profunda para captar as verdadeiras preocupações da diretoria, minha Análise Crítica para antecipar perguntas, e minha Observação Aguçada para ler o clima da sala..."></textarea>
+                        </div>
+
+                        <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-300">
+                            <h4 class="font-bold text-yellow-800 mb-3">📅 Meu Compromisso de Ação</h4>
+                            <p class="text-yellow-700 mb-3">
+                                Defina uma data específica para aplicar este plano e como você vai se responsabilizar pelo resultado:
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="data-aplicacao" class="block text-gray-700 font-medium mb-2">Data da aplicação:</label>
+                                    <input type="date" id="data-aplicacao" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange">
+                                </div>
+                                <div>
+                                    <label for="responsabilizacao" class="block text-gray-700 font-medium mb-2">Como vou me responsabilizar:</label>
+                                    <input type="text" id="responsabilizacao" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="Ex: Vou fazer uma análise pós-ação no mesmo dia">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button data-step="5" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-6 px-8 rounded-xl hover:from-green-600 hover:to-brand-success transition-all duration-300 text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
+                    SALVAR E VER MEU FEEDBACK PERSONALIZADO →
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Step 6: Confiança Inabalável -->
+        <div id="step-6" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-orange">
+                <header class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-2xl">💪</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 6: Confiança Inabalável</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Sua nova identidade - Construa uma base sólida de autoconfiança autêntica</p>
+                </header>
+
+                <div class="illustration-container mb-8">
+                    <img src="assets/images/confidence-building.png" alt="Construção da confiança através de pequenas vitórias" class="mx-auto">
+                    <p class="text-sm text-gray-600 mt-4 italic">Cada pequena vitória constrói a fundação da sua confiança inabalável</p>
+                </div>
+
+                <article class="prose max-w-none text-gray-800 space-y-8">
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">A Diferença Entre Confiança e "Pose"</h3>
+                        <p class="text-lg leading-relaxed">
+                            Você sonha em se sentir seguro para se posicionar, sem aquele frio na barriga que te paralisa? 
+                            A confiança verdadeira não é um dom místico que algumas pessoas nascem com e outras não. 
+                            Ela também não é sobre "fingir até conseguir" ou adotar uma postura artificial.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            A confiança real é construída tijolo por tijolo, através de evidências concretas de que você 
+                            é capaz, competente e valioso. É o resultado direto de aplicar suas ferramentas, ver que elas funcionam, 
+                            e crucialmente, <strong>celebrar suas vitórias</strong>.
+                        </p>
+                    </div>
+
+                    <div class="story-box">
+                        <h4 class="font-bold text-brand-success mb-3">A Jornada de Pedro: De Inseguro a Inspirador</h4>
+                        <p>
+                            Pedro era um analista que se considerava "naturalmente tímido" e acreditava que nunca seria um líder. 
+                            Ele começou pequeno: aplicou a regra dos 3 pontos em uma reunião de equipe. Funcionou. 
+                            Na semana seguinte, usou uma técnica de timing para contribuir em uma discussão. Funcionou novamente. 
+                            A cada pequena vitória, Pedro anotava em seu "diário de evidências". Em 6 meses, ele estava liderando 
+                            apresentações para clientes. Hoje, Pedro treina outros introvertidos na empresa, 
+                            não porque virou extrovertido, mas porque construiu confiança genuína em suas habilidades.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">A Anatomia da Confiança Verdadeira</h3>
+                        <p class="text-lg leading-relaxed">
+                            A confiança não é um sentimento vago de "eu sou bom". É uma estrutura sólida construída 
+                            sobre quatro pilares fundamentais:
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">🧠 1. Competência Comprovada</h5>
+                                <p class="text-blue-700 text-sm">
+                                    Evidências concretas de que você sabe o que está fazendo. Cada vez que você aplica 
+                                    uma técnica e obtém resultados, você adiciona uma "prova" ao seu arquivo mental.
+                                </p>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">🎯 2. Clareza de Propósito</h5>
+                                <p class="text-green-700 text-sm">
+                                    Saber exatamente por que você está falando e o que quer alcançar. 
+                                    Quando você tem clareza, sua voz naturalmente ganha força e convicção.
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">🛡️ 3. Autoaceitação</h5>
+                                <p class="text-purple-700 text-sm">
+                                    Aceitar e valorizar seu jeito introvertido, em vez de lutar contra ele. 
+                                    Quando você para de se desculpar por quem é, os outros também param de questionar.
+                                </p>
+                            </div>
+
+                            <div class="bg-orange-50 p-6 rounded-xl border-l-4 border-orange-400">
+                                <h5 class="font-bold text-orange-800 mb-3">📈 4. Histórico de Crescimento</h5>
+                                <p class="text-orange-700 text-sm">
+                                    Um registro tangível de como você evoluiu. Ver sua própria progressão cria 
+                                    uma sensação poderosa de que você pode continuar crescendo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Poder das Micro-Vitórias</h3>
+                        <p class="text-lg leading-relaxed">
+                            A maioria das pessoas espera por grandes momentos para se sentir confiante. Erro fatal. 
+                            A confiança verdadeira é construída através de micro-vitórias consistentes - pequenos sucessos 
+                            que, acumulados, criam uma base sólida e inabalável.
+                        </p>
+
+                        <div class="highlight-box">
+                            <h4 class="font-bold text-brand-dark mb-3">Por Que Micro-Vitórias São Mais Poderosas</h4>
+                            <p>
+                                Seu cérebro não distingue entre vitórias grandes e pequenas quando se trata de construir confiança. 
+                                Cada sucesso, por menor que seja, libera dopamina e reforça vias neurais positivas. 
+                                É como fazer exercício: melhor fazer 10 minutos todos os dias do que 2 horas uma vez por mês.
+                            </p>
+                        </div>
+
+                        <h4 class="text-xl font-bold text-brand-blue mt-8 mb-6">Exemplos de Micro-Vitórias Poderosas</h4>
+                        <div class="space-y-4">
+                            <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                                <h6 class="font-bold text-green-800 mb-2">✅ Comunicação Estruturada</h6>
+                                <p class="text-green-700 text-sm">
+                                    "Hoje usei a regra dos 3 pontos para explicar um problema técnico e meu colega disse: 
+                                    'Agora entendi perfeitamente!'"
+                                </p>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                                <h6 class="font-bold text-blue-800 mb-2">✅ Timing Estratégico</h6>
+                                <p class="text-blue-700 text-sm">
+                                    "Identifiquei uma janela de oportunidade na reunião e consegui contribuir com uma ideia 
+                                    que foi bem recebida pela equipe."
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                                <h6 class="font-bold text-purple-800 mb-2">✅ Gestão de Energia</h6>
+                                <p class="text-purple-700 text-sm">
+                                    "Fiz micro-pausas durante o evento e consegui manter minha energia até o final, 
+                                    participando ativamente das discussões importantes."
+                                </p>
+                            </div>
+
+                            <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                                <h6 class="font-bold text-orange-800 mb-2">✅ Uso de Superpoderes</h6>
+                                <p class="text-orange-700 text-sm">
+                                    "Minha escuta profunda me permitiu captar uma preocupação não verbalizada e oferecer 
+                                    exatamente a solução que o cliente precisava."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Reprogramando o Crítico Interno</h3>
+                        <p class="text-lg leading-relaxed">
+                            Todo introvertido tem um crítico interno hiperativo - aquela voz que analisa cada palavra, 
+                            cada gesto, cada reação. O problema não é ter essa voz (ela pode ser útil), 
+                            mas sim quando ela se torna um carrasco em vez de um conselheiro.
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">🚫 O Crítico Destrutivo Diz:</h5>
+                                <ul class="text-red-700 space-y-1 text-sm">
+                                    <li>• "Você falou demais" ou "Você não falou o suficiente"</li>
+                                    <li>• "Todo mundo percebeu que você estava nervoso"</li>
+                                    <li>• "Sua ideia não era tão boa assim"</li>
+                                    <li>• "Você nunca vai ser um bom comunicador"</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">✅ O Crítico Construtivo Diz:</h5>
+                                <ul class="text-green-700 space-y-1 text-sm">
+                                    <li>• "Você se expressou claramente e foi ouvido"</li>
+                                    <li>• "Da próxima vez, você pode tentar usar aquela técnica de timing"</li>
+                                    <li>• "Sua contribuição adicionou valor à discussão"</li>
+                                    <li>• "Você está melhorando a cada oportunidade"</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mt-6">
+                            <h5 class="font-bold text-blue-800 mb-3">🔄 Técnica de Reprogramação: O "Flip Mental"</h5>
+                            <p class="text-blue-700 mb-3">
+                                Quando captar seu crítico interno sendo destrutivo, faça o "flip mental":
+                            </p>
+                            <ol class="text-blue-700 space-y-2 text-sm list-decimal list-inside">
+                                <li><strong>Pause:</strong> "Opa, meu crítico está sendo destrutivo"</li>
+                                <li><strong>Questione:</strong> "Isso é verdade ou é apenas medo falando?"</li>
+                                <li><strong>Reframe:</strong> "Como posso ver isso de forma mais construtiva?"</li>
+                                <li><strong>Ação:</strong> "O que posso aprender para a próxima vez?"</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Construindo Evidências de Competência</h3>
+                        <p class="text-lg leading-relaxed">
+                            A confiança não é baseada em autoafirmações vazias, mas em evidências concretas. 
+                            Você precisa se tornar seu próprio "advogado de defesa", coletando provas da sua competência 
+                            e valor como comunicador.
+                        </p>
+
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-8 my-8">
+                            <h4 class="text-xl font-bold text-green-800 mb-6 text-center">Seu Arquivo de Evidências</h4>
+                            
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">📊</div>
+                                    <h5 class="font-bold text-green-800 mb-2">RESULTADOS TANGÍVEIS</h5>
+                                    <p class="text-green-700 text-sm">Projetos aprovados, ideias implementadas, feedback positivo recebido</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">🎯</div>
+                                    <h5 class="font-bold text-green-800 mb-2">HABILIDADES DESENVOLVIDAS</h5>
+                                    <p class="text-green-700 text-sm">Técnicas dominadas, situações superadas, medos vencidos</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">💬</div>
+                                    <h5 class="font-bold text-green-800 mb-2">RECONHECIMENTO EXTERNO</h5>
+                                    <p class="text-green-700 text-sm">Elogios recebidos, convites para participar, pessoas que buscam sua opinião</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Efeito Composto da Confiança</h3>
+                        <p class="text-lg leading-relaxed">
+                            Aqui está a parte mais incrível: a confiança tem um efeito composto. Quanto mais você a usa, 
+                            mais ela cresce. Cada vez que você se posiciona com segurança, você não apenas alcança seu objetivo 
+                            imediato, mas também fortalece sua identidade como alguém capaz de se comunicar com impacto.
+                        </p>
+
+                        <div class="space-y-4 mt-6">
+                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                                <h6 class="font-bold text-blue-800 mb-2">Nível 1: Confiança Situacional</h6>
+                                <p class="text-blue-700 text-sm">
+                                    "Eu sei que posso me expressar bem neste contexto específico"
+                                </p>
+                            </div>
+
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                                <h6 class="font-bold text-green-800 mb-2">Nível 2: Confiança Técnica</h6>
+                                <p class="text-green-700 text-sm">
+                                    "Eu tenho ferramentas e técnicas que funcionam em várias situações"
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-400">
+                                <h6 class="font-bold text-purple-800 mb-2">Nível 3: Confiança Adaptativa</h6>
+                                <p class="text-purple-700 text-sm">
+                                    "Eu posso me adaptar e encontrar uma forma de me expressar em qualquer situação"
+                                </p>
+                            </div>
+
+                            <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
+                                <h6 class="font-bold text-orange-800 mb-2">Nível 4: Confiança Identitária</h6>
+                                <p class="text-orange-700 text-sm">
+                                    "Eu sou alguém que se comunica com autenticidade e impacto"
+                                </p>
+                            </div>
+                        </div>
+
+                        <blockquote class="mt-8">
+                            Lembre-se: a confiança não é um destino, é uma jornada. Cada pequena vitória que você celebra, 
+                            cada evidência que você coleta, cada crítico interno que você reprograma está construindo 
+                            uma versão mais confiante e autêntica de você mesmo.
+                        </blockquote>
+                    </div>
+                </article>
+
+                <div class="practice-section">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6 text-center">✨ Sua Vez de Praticar: Seu Diário de Vitórias</h3>
+                    <p class="text-gray-700 mb-8 text-center text-lg">
+                        Seja seu maior fã e advogado de defesa. Documente suas evidências de competência e celebre 
+                        cada progresso, por menor que pareça.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 rounded-lg border-2 border-green-200">
+                            <h4 class="font-bold text-green-800 mb-4">🏆 Minhas Vitórias Recentes</h4>
+                            <label for="vitorias-recentes" class="block text-gray-700 font-medium mb-3">
+                                Liste 3 momentos da última semana onde você sentiu que sua comunicação melhorou ou se sentiu mais confiante:
+                            </label>
+                            <textarea id="vitorias-recentes" rows="6" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: 1. Consegui dar minha opinião em uma reunião com amigos, mesmo nervoso. 2. Fiz uma pergunta para um palestrante em um evento online. 3. Expliquei uma ideia complexa para um colega de forma clara, usando a regra dos 3 pontos..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-4">📈 Evidências da Minha Competência</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="resultados-tangiveis" class="block text-gray-700 font-medium mb-2">
+                                        Resultados tangíveis que obtive:
+                                    </label>
+                                    <input type="text" id="resultados-tangiveis" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="Ex: Minha proposta foi aprovada, recebi feedback positivo, fui convidado para outro projeto...">
+                                </div>
+                                <div>
+                                    <label for="habilidades-desenvolvidas" class="block text-gray-700 font-medium mb-2">
+                                        Habilidades que desenvolvi:
+                                    </label>
+                                    <input type="text" id="habilidades-desenvolvidas" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="Ex: Domino a regra dos 3 pontos, sei identificar janelas de oportunidade, gerencio melhor minha energia...">
+                                </div>
+                                <div>
+                                    <label for="reconhecimento-externo" class="block text-gray-700 font-medium mb-2">
+                                        Reconhecimento que recebi:
+                                    </label>
+                                    <input type="text" id="reconhecimento-externo" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="Ex: Colegas elogiaram minha clareza, chefe pediu minha opinião, amigos disseram que me notaram mais participativo...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-purple-200">
+                            <h4 class="font-bold text-purple-800 mb-4">🔄 Reprogramando Meu Crítico Interno</h4>
+                            <label for="critico-interno" class="block text-gray-700 font-medium mb-3">
+                                Identifique uma crítica destrutiva que você faz a si mesmo e reescreva de forma construtiva:
+                            </label>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="critica-destrutiva" class="block text-gray-700 font-medium mb-2">
+                                        Crítica destrutiva que preciso mudar:
+                                    </label>
+                                    <input type="text" id="critica-destrutiva" 
+                                           class="w-full p-3 border-2 border-red-300 rounded-lg focus:ring-2 focus:ring-red-400" 
+                                           placeholder="Ex: 'Você sempre fala muito baixo e ninguém te ouve'">
+                                </div>
+                                <div>
+                                    <label for="critica-construtiva" class="block text-gray-700 font-medium mb-2">
+                                        Versão construtiva da mesma crítica:
+                                    </label>
+                                    <input type="text" id="critica-construtiva" 
+                                           class="w-full p-3 border-2 border-green-300 rounded-lg focus:ring-2 focus:ring-green-400" 
+                                           placeholder="Ex: 'Você tem uma voz naturalmente calma que transmite confiança. Pode praticar projetar um pouco mais quando necessário'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-300">
+                            <h4 class="font-bold text-yellow-800 mb-3">💪 Minha Afirmação de Confiança</h4>
+                            <p class="text-yellow-700 mb-3">
+                                Com base em suas evidências e vitórias, crie uma afirmação pessoal que reflita sua nova identidade confiante:
+                            </p>
+                            <label for="afirmacao-confianca" class="block text-gray-700 font-medium mb-2">
+                                Minha afirmação de confiança:
+                            </label>
+                            <textarea id="afirmacao-confianca" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                      placeholder="Ex: Eu sou alguém que se comunica com clareza e autenticidade. Minhas ideias têm valor e merecem ser ouvidas. Cada dia me torno mais confiante em expressar minha voz única."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button data-step="6" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-6 px-8 rounded-xl hover:from-green-600 hover:to-brand-success transition-all duration-300 text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
+                    SALVAR E VER MEU FEEDBACK PERSONALIZADO →
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 7: Liberte Sua Voz Autêntica -->
+        <div id="step-7" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-orange">
+                <header class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-2xl">🗣️</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Passo 7: Liberte Sua Voz Autêntica</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">O poder de ser você mesmo - Transforme sua autenticidade em sua maior força</p>
+                </header>
+
+                <article class="prose max-w-none text-gray-800 space-y-8">
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Fim da Era das Máscaras</h3>
+                        <p class="text-lg leading-relaxed">
+                            Chegamos ao passo final, mas que na verdade é o começo de todo o resto. Cansado de usar máscaras 
+                            ou inibições que te fazem travar? Cansado de sentir que precisa ser "outra pessoa" para ser ouvido? 
+                            A liberdade verdadeira é sentir-se 100% você, expressando-se de forma genuína e transformando 
+                            sua autenticidade em sua maior força.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            Você já tem o mapa (seus superpoderes), as ferramentas (clareza, timing, energia), 
+                            a estratégia (aplicação prática) e a base (confiança). Agora, para que essa transformação 
+                            seja duradoura e não apenas um "pico de motivação", precisamos consolidar sua nova identidade 
+                            e criar um plano para o futuro.
+                        </p>
+                    </div>
+
+                    <div class="story-box">
+                        <h4 class="font-bold text-brand-success mb-3">A Libertação de Sofia: De Imitadora a Inspiradora</h4>
+                        <p>
+                            Sofia passou anos tentando imitar colegas extrovertidos, forçando um entusiasmo que não sentia 
+                            e usando um tom de voz que não era seu. Resultado? Exaustão e uma sensação constante de impostura. 
+                            Tudo mudou quando ela decidiu abraçar completamente seu jeito introvertido. Ela desenvolveu 
+                            seu próprio estilo: pausas reflexivas, perguntas profundas, contribuições precisas e bem fundamentadas. 
+                            Hoje, Sofia é procurada justamente por sua autenticidade. Clientes dizem que confiam nela 
+                            porque "ela é real, não está vendendo uma imagem".
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">O Poder Magnético da Autenticidade</h3>
+                        <p class="text-lg leading-relaxed">
+                            Vivemos numa era de comunicação artificial, onde muitas pessoas falam muito mas dizem pouco, 
+                            onde a forma importa mais que o conteúdo. Nesse cenário, sua autenticidade não é uma desvantagem - 
+                            é um diferencial competitivo poderoso.
+                        </p>
+
+                        <div class="highlight-box">
+                            <h4 class="font-bold text-brand-dark mb-3">Por Que Autenticidade Funciona</h4>
+                            <p>
+                                As pessoas têm um "detector de autenticidade" muito apurado. Elas sentem quando alguém está sendo genuíno 
+                                e quando está "performando". Sua comunicação autêntica cria conexões mais profundas, 
+                                constrói confiança mais rapidamente e gera impacto mais duradouro do que qualquer técnica de persuasão.
+                            </p>
+                        </div>
+
+                        <h4 class="text-xl font-bold text-brand-blue mt-8 mb-6">Os Elementos da Sua Assinatura Comunicativa</h4>
+                        <p class="text-lg leading-relaxed">
+                            Assim como artistas desenvolvem um estilo único, você pode desenvolver sua "assinatura comunicativa" - 
+                            uma forma distintiva e autêntica de se expressar:
+                        </p>
+
+                        <div class="space-y-6 mt-6">
+                            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                                <h5 class="font-bold text-blue-800 mb-3">🎭 Seu Tom Autêntico</h5>
+                                <p class="text-blue-700 text-sm">
+                                    Pare de tentar soar como outras pessoas. Seu tom natural - seja ele calmo, reflexivo, 
+                                    preciso ou contemplativo - é parte da sua marca pessoal. Cultive-o, não o esconda.
+                                </p>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">🧠 Seu Estilo de Pensamento</h5>
+                                <p class="text-green-700 text-sm">
+                                    Você pensa profundamente, analisa cuidadosamente, conecta pontos que outros não veem. 
+                                    Isso não é lentidão - é thoroughness. Comunique isso como uma vantagem, não como uma desculpa.
+                                </p>
+                            </div>
+
+                            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                                <h5 class="font-bold text-purple-800 mb-3">💎 Seus Valores Únicos</h5>
+                                <p class="text-purple-700 text-sm">
+                                    Qualidade sobre quantidade, profundidade sobre superficialidade, substância sobre show. 
+                                    Esses valores introvertidos são cada vez mais valorizados num mundo saturado de ruído.
+                                </p>
+                            </div>
+
+                            <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-400">
+                                <h5 class="font-bold text-orange-800 mb-3">🎯 Sua Contribuição Distintiva</h5>
+                                <p class="text-orange-700 text-sm">
+                                    Você traz perspectivas que outros não trazem, faz perguntas que outros não fazem, 
+                                    oferece soluções que outros não veem. Essa é sua marca registrada - proteja e desenvolva-a.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Removendo as Máscaras Definitivamente</h3>
+                        <p class="text-lg leading-relaxed">
+                            Para liberar sua voz autêntica, você precisa identificar e remover as "máscaras" que ainda usa - 
+                            comportamentos falsos que adotou para "se encaixar" mas que na verdade te afastam da sua essência:
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-400">
+                                <h5 class="font-bold text-red-800 mb-3">🎭 Máscaras Comuns a Remover</h5>
+                                <ul class="text-red-700 space-y-2 text-sm">
+                                    <li>• Fingir entusiasmo exagerado</li>
+                                    <li>• Falar rápido para "parecer dinâmico"</li>
+                                    <li>• Concordar quando discorda</li>
+                                    <li>• Evitar pausas por medo do silêncio</li>
+                                    <li>• Usar jargões que não fazem parte do seu vocabulário</li>
+                                    <li>• Tentar ser "o engraçado" da turma</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-400">
+                                <h5 class="font-bold text-green-800 mb-3">✨ Comportamentos Autênticos a Abraçar</h5>
+                                <ul class="text-green-700 space-y-2 text-sm">
+                                    <li>• Usar pausas reflexivas naturalmente</li>
+                                    <li>• Expressar opiniões bem fundamentadas</li>
+                                    <li>• Fazer perguntas profundas e relevantes</li>
+                                    <li>• Falar no seu ritmo natural</li>
+                                    <li>• Usar seu vocabulário genuíno</li>
+                                    <li>• Mostrar sua personalidade real</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Mantendo a Transformação: Seu Plano de Longo Prazo</h3>
+                        <p class="text-lg leading-relaxed">
+                            Transformações reais não acontecem da noite para o dia, nem se mantêm sem esforço consciente. 
+                            Aqui está como garantir que sua evolução continue e se aprofunde com o tempo:
+                        </p>
+
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-8 my-8">
+                            <h4 class="text-xl font-bold text-blue-800 mb-6 text-center">Seu Sistema de Manutenção da Transformação</h4>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400">
+                                        <h5 class="font-bold text-blue-800 mb-2">📅 Revisão Semanal</h5>
+                                        <p class="text-blue-700 text-sm">
+                                            Toda semana, reserve 15 minutos para revisar: Que oportunidades de comunicação tive? 
+                                            O que funcionou? O que posso melhorar?
+                                        </p>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-green-400">
+                                        <h5 class="font-bold text-green-800 mb-2">🎯 Meta Mensal</h5>
+                                        <p class="text-green-700 text-sm">
+                                            Todo mês, defina uma meta específica de comunicação. Pode ser usar uma técnica nova, 
+                                            participar mais em reuniões, ou aplicar suas habilidades em um contexto diferente.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-purple-400">
+                                        <h5 class="font-bold text-purple-800 mb-2">📚 Aprendizado Contínuo</h5>
+                                        <p class="text-purple-700 text-sm">
+                                            Continue expandindo suas habilidades. Leia sobre comunicação, observe bons comunicadores, 
+                                            pratique em situações de baixo risco.
+                                        </p>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-orange-400">
+                                        <h5 class="font-bold text-orange-800 mb-2">🤝 Comunidade de Apoio</h5>
+                                        <p class="text-orange-700 text-sm">
+                                            Conecte-se com outros introvertidos em jornadas similares. Compartilhe experiências, 
+                                            celebre vitórias, apoie-se mutuamente.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="text-2xl font-bold text-brand-orange mb-6">Sua Visão de Futuro</h3>
+                        <p class="text-lg leading-relaxed">
+                            Imagine-se daqui a um ano. Você está numa situação que antes te deixaria nervoso. 
+                            Mas agora, você se sente calmo e confiante. Você sabe exatamente como se expressar, 
+                            quando falar, como gerenciar sua energia. Sua voz é ouvida, suas ideias são valorizadas, 
+                            sua autenticidade é respeitada.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            Essa não é fantasia. É o resultado natural de aplicar consistentemente tudo que você aprendeu. 
+                            Você não se tornou uma pessoa diferente - você se tornou a melhor versão de quem sempre foi.
+                        </p>
+
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-8 my-8">
+                            <h4 class="text-xl font-bold text-green-800 mb-4 text-center">Sua Nova Identidade</h4>
+                            <div class="text-center">
+                                <p class="text-green-700 text-lg italic mb-4">
+                                    "Eu sou alguém que se comunica com autenticidade e impacto. 
+                                    Minha voz tem valor e merece ser ouvida. 
+                                    Meu jeito introvertido é minha força, não minha limitação."
+                                </p>
+                                <p class="text-green-600 text-sm">
+                                    Esta é sua nova identidade. Carregue-a com orgulho.
+                                </p>
+                            </div>
+                        </div>
+
+                        <blockquote class="mt-8">
+                            O mundo precisa da sua voz. Não de uma versão editada, filtrada ou "melhorada" dela. 
+                            Precisa da sua voz autêntica, com toda sua profundidade, reflexão e sabedoria única. 
+                            Agora você tem as ferramentas para compartilhá-la com confiança. Use-as.
+                        </blockquote>
+                    </div>
+                </article>
+
+                <div class="practice-section">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6 text-center">✨ Sua Vez de Praticar: Seu Compromisso com o Futuro</h3>
+                    <p class="text-gray-700 mb-8 text-center text-lg">
+                        Para garantir que sua transformação continue, defina metas específicas e realistas para os próximos 30 dias. 
+                        O que você, o seu "eu" do futuro, quer alcançar?
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 rounded-lg border-2 border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-4">🎯 Minhas Metas de Comunicação para os Próximos 30 Dias</h4>
+                            <label for="metas-30-dias" class="block text-gray-700 font-medium mb-3">
+                                Defina 3 metas específicas, mensuráveis e realistas:
+                            </label>
+                            <textarea id="metas-30-dias" rows="6" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-brand-orange" 
+                                      placeholder="Ex: 1. Vou me posicionar com uma ideia completa em pelo menos uma reunião de equipe por semana. 2. Vou iniciar uma conversa significativa com um colega de outro setor. 3. Quando sentir o 'branco', vou respirar fundo por 5s e usar meus 3 pontos preparados..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-green-200">
+                            <h4 class="font-bold text-green-800 mb-4">🗣️ Minha Assinatura Comunicativa</h4>
+                            <label for="assinatura-comunicativa" class="block text-gray-700 font-medium mb-3">
+                                Descreva seu estilo autêntico de comunicação - como você quer ser conhecido:
+                            </label>
+                            <textarea id="assinatura-comunicativa" rows="4" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                      placeholder="Ex: Sou conhecido por minhas contribuições reflexivas e bem fundamentadas. Faço perguntas que levam a insights profundos. Minha comunicação é calma, clara e sempre adiciona valor às discussões..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-purple-200">
+                            <h4 class="font-bold text-purple-800 mb-4">🎭 Máscaras que Vou Remover</h4>
+                            <label for="mascaras-remover" class="block text-gray-700 font-medium mb-3">
+                                Identifique comportamentos falsos que você vai parar de usar:
+                            </label>
+                            <textarea id="mascaras-remover" rows="3" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                      placeholder="Ex: Vou parar de fingir entusiasmo exagerado, de concordar quando discordo, de evitar pausas reflexivas..."></textarea>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg border-2 border-orange-200">
+                            <h4 class="font-bold text-orange-800 mb-4">📅 Meu Sistema de Manutenção</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="revisao-semanal" class="block text-gray-700 font-medium mb-2">
+                                        Como vou fazer minha revisão semanal:
+                                    </label>
+                                    <input type="text" id="revisao-semanal" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="Ex: Toda sexta às 17h, vou anotar 3 situações de comunicação da semana e o que aprendi">
+                                </div>
+                                <div>
+                                    <label for="meta-mensal" class="block text-gray-700 font-medium mb-2">
+                                        Como vou definir metas mensais:
+                                    </label>
+                                    <input type="text" id="meta-mensal" 
+                                           class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                           placeholder="Ex: Todo primeiro domingo do mês, vou escolher uma habilidade específica para focar">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-300">
+                            <h4 class="font-bold text-yellow-800 mb-3">💪 Meu Compromisso Pessoal</h4>
+                            <p class="text-yellow-700 mb-3">
+                                Escreva um compromisso pessoal com sua transformação - algo que você pode reler sempre que precisar de motivação:
+                            </p>
+                            <label for="compromisso-pessoal" class="block text-gray-700 font-medium mb-2">
+                                Meu compromisso comigo mesmo:
+                            </label>
+                            <textarea id="compromisso-pessoal" rows="4" 
+                                      class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange" 
+                                      placeholder="Ex: Comprometo-me a honrar minha voz autêntica e a usar minhas habilidades para fazer a diferença. Vou ser paciente comigo mesmo, celebrar cada progresso e lembrar que minha introversão é uma força, não uma limitação..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button data-step="7" class="submit-btn mt-12 w-full bg-gradient-to-r from-brand-success to-green-600 text-white font-bold py-6 px-8 rounded-xl hover:from-green-600 hover:to-brand-success transition-all duration-300 text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
+                    FINALIZAR JORNADA E VER MEU RELATÓRIO COMPLETO! 🎉
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Feedback Screen -->
+        <div id="feedback-screen" class="step-screen animate-fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-brand-success">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-gradient-to-br from-brand-success to-green-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-white text-3xl">🎉</span>
+                    </div>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">Parabéns! Você Completou Sua Jornada!</h2>
+                    <p class="text-xl text-gray-600">Suas respostas foram salvas e seu feedback personalizado está pronto</p>
+                </div>
+
+                <div id="personalized-feedback" class="space-y-6">
+                    <!-- Feedback content will be generated by JavaScript -->
+                </div>
+
+                <div class="mt-12 text-center">
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-8">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">🚀 Próximos Passos</h3>
+                        <p class="text-blue-700 mb-6">
+                            Sua jornada de transformação está apenas começando. Continue aplicando o que aprendeu 
+                            e lembre-se: cada pequena vitória constrói a base para conquistas maiores.
+                        </p>
+                        <div class="space-y-4">
+                            <button onclick="downloadProgress()" class="bg-brand-blue text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                                📥 Baixar Meu Relatório Completo
+                            </button>
+                            <button onclick="restartJourney()" class="bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors ml-4">
+                                🔄 Refazer Jornada
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password management
+        const passwords = {
+            1: "SUPERPODER",
+            2: "CLAREZA",
+            3: "TIMING",
+            4: "ENERGIA",
+            5: "PRATICA",
+            6: "CONFIANCA",
+            7: "AUTENTICIDADE"
+        };
+
+        // Progress tracking
+        let userProgress = {
+            currentStep: 1,
+            completedSteps: [],
+            responses: {}
+        };
+
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('destraveProgress');
+            if (saved) {
+                userProgress = JSON.parse(saved);
+                showStep(userProgress.currentStep);
+                updateProgressBar();
+            }
+        }
+
+        // Save progress
+        function saveProgress() {
+            localStorage.setItem('destraveProgress', JSON.stringify(userProgress));
+        }
+
+        // Show specific step
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.step-screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            // Show requested step or password screen
+            if (stepNumber === 1 || userProgress.completedSteps.includes(stepNumber - 1)) {
+                document.getElementById(`step-${stepNumber}`).style.display = 'block';
+                userProgress.currentStep = stepNumber;
+            } else {
+                document.getElementById('password-screen').style.display = 'block';
+                document.getElementById('target-step').value = stepNumber;
+            }
+            
+            updateProgressBar();
+            saveProgress();
+        }
+
+        // Check password
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.toUpperCase();
+            const targetStep = parseInt(document.getElementById('target-step').value);
+            
+            if (input === passwords[targetStep]) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById(`step-${targetStep}`).style.display = 'block';
+                userProgress.currentStep = targetStep;
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-error').style.display = 'none';
+                updateProgressBar();
+                saveProgress();
+            } else {
+                document.getElementById('password-error').style.display = 'block';
+                document.getElementById('password-input').value = '';
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = (userProgress.completedSteps.length / 7) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = `${userProgress.completedSteps.length}/7 passos concluídos`;
+        }
+
+        // Submit step responses
+        function submitStep(stepNumber) {
+            const stepElement = document.getElementById(`step-${stepNumber}`);
+            const inputs = stepElement.querySelectorAll('input, textarea, select');
+            const responses = {};
+            
+            // Collect all responses
+            inputs.forEach(input => {
+                if (input.value.trim()) {
+                    responses[input.id] = input.value.trim();
+                }
+            });
+            
+            // Save responses
+            userProgress.responses[`step${stepNumber}`] = responses;
+            
+            // Mark step as completed
+            if (!userProgress.completedSteps.includes(stepNumber)) {
+                userProgress.completedSteps.push(stepNumber);
+            }
+            
+            // Show feedback or next step
+            if (stepNumber === 7) {
+                showFeedback();
+            } else {
+                showStep(stepNumber + 1);
+            }
+            
+            saveProgress();
+        }
+
+        // Generate personalized feedback
+        function showFeedback() {
+            document.querySelectorAll('.step-screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            document.getElementById('feedback-screen').style.display = 'block';
+            
+            const feedbackContainer = document.getElementById('personalized-feedback');
+            let feedbackHTML = '';
+            
+            // Generate feedback based on responses
+            feedbackHTML += `
+                <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+                    <h3 class="font-bold text-green-800 mb-3">🎯 Seus Pontos Fortes Identificados</h3>
+                    <p class="text-green-700">
+                        Com base em suas respostas, você demonstra uma forte capacidade de autorreflexão e 
+                        comprometimento com seu crescimento pessoal. Suas respostas mostram que você está 
+                        pronto para aplicar as técnicas aprendidas de forma consistente.
+                    </p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                    <h3 class="font-bold text-blue-800 mb-3">🚀 Suas Próximas Ações Recomendadas</h3>
+                    <ul class="text-blue-700 space-y-2">
+                        <li>• Pratique a regra dos 3 pontos em situações de baixo risco primeiro</li>
+                        <li>• Implemente seu sistema de gestão de energia social</li>
+                        <li>• Mantenha um diário de vitórias para construir evidências de competência</li>
+                        <li>• Aplique suas técnicas de timing em reuniões familiares</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-400">
+                    <h3 class="font-bold text-purple-800 mb-3">💪 Seu Plano de Ação Personalizado</h3>
+                    <p class="text-purple-700">
+                        Baseado em suas metas definidas, recomendamos focar em uma técnica por semana, 
+                        começando pela que você se sente mais confortável. Lembre-se: progresso consistente 
+                        é mais importante que perfeição imediata.
+                    </p>
+                </div>
+            `;
+            
+            feedbackContainer.innerHTML = feedbackHTML;
+            updateProgressBar();
+        }
+
+        // Download progress report
+        function downloadProgress() {
+            const report = generateReport();
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'meu-relatorio-destrave.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Generate detailed report
+        function generateReport() {
+            let report = `
+RELATÓRIO COMPLETO - DESTRAVE NA HORA H
+=======================================
+
+Data: ${new Date().toLocaleDateString('pt-BR')}
+Passos Concluídos: ${userProgress.completedSteps.length}/7
+
+SUAS RESPOSTAS E COMPROMISSOS:
+==============================
+
+`;
+            
+            Object.keys(userProgress.responses).forEach(step => {
+                report += `\n${step.toUpperCase()}:\n`;
+                report += '-'.repeat(20) + '\n';
+                Object.keys(userProgress.responses[step]).forEach(key => {
+                    report += `${key}: ${userProgress.responses[step][key]}\n`;
+                });
+                report += '\n';
+            });
+            
+            report += `
+PRÓXIMOS PASSOS RECOMENDADOS:
+============================
+
+1. Pratique uma técnica por semana
+2. Mantenha um diário de vitórias
+3. Aplique o protocolo de preparação energética
+4. Celebre cada pequeno progresso
+5. Revise este relatório semanalmente
+
+Lembre-se: Sua jornada de transformação está apenas começando!
+`;
+            
+            return report;
+        }
+
+        // Restart journey
+        function restartJourney() {
+            if (confirm('Tem certeza que deseja reiniciar sua jornada? Todos os dados serão perdidos.')) {
+                localStorage.removeItem('destraveProgress');
+                location.reload();
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            
+            // Password input enter key
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            
+            // Submit button listeners
+            document.querySelectorAll('.submit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const stepNumber = parseInt(this.dataset.step);
+                    submitStep(stepNumber);
+                });
+            });
+            
+            // Navigation listeners
+            document.querySelectorAll('[data-step]').forEach(element => {
+                if (!element.classList.contains('submit-btn')) {
+                    element.addEventListener('click', function() {
+                        const stepNumber = parseInt(this.dataset.step);
+                        showStep(stepNumber);
+                    });
+                }
+            });
+        });
+
+        // Auto-save responses
+        function autoSave() {
+            const currentStepElement = document.querySelector('.step-screen[style*="block"]');
+            if (currentStepElement) {
+                const stepNumber = parseInt(currentStepElement.id.split('-')[1]);
+                const inputs = currentStepElement.querySelectorAll('input, textarea, select');
+                const responses = {};
+                
+                inputs.forEach(input => {
+                    if (input.value.trim()) {
+                        responses[input.id] = input.value.trim();
+                    }
+                });
+                
+                if (Object.keys(responses).length > 0) {
+                    userProgress.responses[`step${stepNumber}`] = responses;
+                    saveProgress();
+                }
+            }
+        }
+
+        // Auto-save every 30 seconds
+        setInterval(autoSave, 30000);
+    </script>
+</body>
+</html>
+
