@@ -1,158 +1,482 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Passo 1 - Jornada Destrave na Hora H</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-color: #0F0F1A;
-      font-family: 'Inter', sans-serif;
-      color: white;
-    }
-    .glow {
-      text-shadow: 0 0 10px #FFA500;
-    }
-    .btn-glow {
-      background: linear-gradient(to right, #FFA500, #FFD600);
-      color: #0F0F1A;
-    }
-    .btn-glow:hover {
-      filter: brightness(1.1);
-      transform: scale(1.02);
-    }
-    .card {
-      background-color: #181820;
-      border: 1px solid #333;
-    }
-    .feedback-box {
-      background-color: #1a1a2d;
-      border: 2px solid #FFD600;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Quietude, Sua Arena - A Jornada do Destrave</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ANÁLISE DO DESIGNER:
+           A nova paleta de cores é a base da nossa imersão.
+           - #111827 (Deep Ink): Um preto suave, menos agressivo que o #000. Para textos principais e fundos escuros.
+           - #F3F4F6 (Calm Gray): Um fundo principal que é suave para os olhos, perfeito para longas sessões de leitura.
+           - #D69E2E (Accent Gold): Nosso ponto de luz. Usado para CTAs, destaques e para guiar o usuário. Transmite valor e sofisticação.
+           - #4A5568 (Muted Slate): Para textos secundários e bordas, criando hierarquia sem gritar.
+        */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6; /* Calm Gray */
+            color: #1F2937; /* Quase Deep Ink */
+            line-height: 1.7;
+        }
+        .step-screen { display: none; }
+
+        /* ANIMAÇÕES E TRANSIÇÕES */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .animate-pop-in { animation: popIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        
+        /* TIPOGRAFIA E ESTILO DE CONTEÚDO (PROSE) */
+        .prose h2 { color: #111827; font-weight: 900; letter-spacing: -0.025em; margin-bottom: 1rem; }
+        .prose h3 { color: #1F2937; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .prose h4 { color: #4A5568; font-weight: 600; }
+        .prose p { color: #374151; }
+        .prose strong { color: #D69E2E; font-weight: 600; }
+        .prose blockquote { border-left-color: #D69E2E; background-color: #FFFBEB; }
+
+        /* BLOCOS DE CONTEÚDO CUSTOMIZADOS - O REDESIGN */
+        .content-section {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            border: 1px solid #E5E7EB;
+        }
+
+        .story-box {
+            background-color: #FEFCE8; /* Um amarelo muito pálido */
+            border: 1px solid #FBBF24;
+            border-left: 5px solid #FBBF24;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2.5rem 0;
+            position: relative;
+        }
+        .story-box::before {
+            content: '“'; /* Uma aspa, mais elegante que um emoji */
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: #FBBF24;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #4338CA 0%, #312E81 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px rgba(49, 46, 129, 0.2);
+        }
+        .highlight-box h4 { color: #EEF2FF; }
+        .highlight-box p { color: #C7D2FE; }
+
+        .practice-section { 
+            background-color: #1F2937;
+            border-radius: 1rem; 
+            padding: 2.5rem; 
+            margin-top: 3rem; 
+            border: 1px solid #4A5568;
+        }
+        .practice-section h3 { color: white; }
+        .practice-section p { color: #D1D5DB; }
+
+        .feedback-card { 
+            background: linear-gradient(145deg, #111827 0%, #1F2937 100%); 
+            color: white; 
+            border-radius: 1rem; 
+            padding: 2rem 3rem; 
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        .main-cta-button {
+            background-color: #D69E2E; /* Accent Gold */
+            color: #111827;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(214, 158, 46, 0.2);
+        }
+        .main-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(214, 158, 46, 0.3);
+        }
+    </style>
+     <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-ink': '#111827',
+                        'accent-gold': '#D69E2E',
+                        'muted-slate': '#4A5568',
+                        'calm-gray': '#F3F4F6',
+                        'brand-success': '#16A34A',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
+<body class="bg-calm-gray">
 
-<body class="min-h-screen flex flex-col">
+    <!-- ANÁLISE DO DESIGNER: Header simplificado. Menos é mais. O foco é no progresso. -->
+    <header class="bg-deep-ink shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-white tracking-tight">Sua Jornada</h1>
+            <p id="progress-text" class="text-sm text-gray-400">Passo 0 de 7</p>
+        </div>
+        <div class="bg-muted-slate/50 h-1.5">
+            <div id="progress-bar" class="bg-accent-gold h-1.5 rounded-r-full transition-all duration-700 ease-out" style="width: 0%;"></div>
+        </div>
+    </header>
 
-<!-- Header -->
-<header class="w-full p-6 flex justify-between items-center border-b border-gray-700">
-  <h1 class="text-2xl font-bold glow">Destrave na Hora H</h1>
-  <p class="text-sm text-gray-400">Passo 1/7</p>
-</header>
+    <main id="app-container" class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <!-- TELA DE BLOQUEIO REIMAGINADA -->
+        <div id="lock-screen" class="step-screen">
+             <div class="bg-white p-8 md:p-12 rounded-xl shadow-xl text-center border-t-4 border-accent-gold animate-pop-in">
+                <div class="mb-6">
+                    <!-- Ícone SVG elegante -->
+                    <svg class="w-16 h-16 mx-auto text-accent-gold mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <h2 class="text-4xl font-extrabold text-deep-ink mb-3">Sua Jornada Continua</h2>
+                    <p class="text-muted-slate text-lg max-w-xl mx-auto">A próxima porta da sua transformação aguarda. Insira a palavra-chave para revelar o caminho.</p>
+                </div>
+                <div class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="text" id="password-input" placeholder="Palavra-Chave do Dia" 
+                               class="flex-grow p-4 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-accent-gold/50 focus:border-accent-gold focus:outline-none uppercase text-center text-xl tracking-widest font-bold transition-all">
+                        <button id="unlock-btn" class="main-cta-button px-8">
+                            Destravar
+                        </button>
+                    </div>
+                    <p id="password-error" class="text-red-600 mt-4 h-6 font-medium"></p>
+                </div>
+            </div>
+        </div>
 
-<!-- Main -->
-<main class="flex-1 max-w-4xl mx-auto p-6">
+        <!-- TELA DE FEEDBACK REIMAGINADA -->
+        <div id="feedback-screen" class="step-screen">
+            <div class="feedback-card animate-pop-in">
+                <div id="feedback-content" class="space-y-6">
+                    <!-- Conteúdo do coaching dinâmico -->
+                </div>
+                <button id="continue-btn" class="mt-8 bg-accent-gold text-deep-ink font-bold py-3 px-10 rounded-full hover:bg-yellow-500 transition-transform transform hover:scale-105 shadow-lg">
+                    Continuar Jornada →
+                </button>
+            </div>
+        </div>
+        
+        <!-- ANÁLISE DO DESIGNER:
+            Cada passo agora começa com um título que é uma afirmação, não uma tarefa.
+            O texto é mais direto e empático, usando "Você" e validando os sentimentos do usuário.
+            As ilustrações com placeholder agora têm uma sugestão de conteúdo mais abstrato e elegante.
+        -->
 
-  <!-- Título -->
-  <section class="text-center mb-10">
-    <h2 class="text-4xl font-bold mb-4">⚡ Desvende Seu Superpoder</h2>
-    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-      Tá na hora de entender por que sua mente funciona diferente — e como isso pode ser sua maior vantagem.
-    </p>
-  </section>
+        <!-- Passo 1: Sua Quietude é a Sua Arena -->
+        <div id="step-1" class="step-screen">
+            <header class="text-center mb-12 animate-fade-in">
+                 <h2 class="text-5xl font-black text-deep-ink tracking-tighter mb-4">Passo 1: Sua Quietude é a Sua Arena</h2>
+                <p class="text-xl text-muted-slate max-w-3xl mx-auto">Vamos parar de lutar contra a sua natureza e começar a usá-la como sua maior arma estratégica.</p>
+            </header>
+            
+            <article class="prose max-w-none animate-fade-in" style="animation-delay: 200ms;">
+                <div class="content-section">
+                    <h3>A voz que não sai</h3>
+                    <p>Você está na reunião. A ideia perfeita cristaliza na sua mente. É clara, é poderosa, é a solução. Mas, entre a sua mente e a sua boca, existe um abismo. A oportunidade passa. O silêncio vence. E o gosto amargo do "e se eu tivesse falado?" fica. Se isso te arrepia, é porque você reconhece a verdade: <strong>seu silêncio não é vazio, é potência contida.</strong></p>
+                </div>
 
-  <!-- Storytelling -->
-  <div class="card p-6 rounded-xl mb-8">
-    <p class="mb-4">Sabe aquele momento em que sua cabeça tá cheia de ideias... mas sua boca não colabora?</p>
-    <p class="mb-4">Você vê alguém falando uma bobagem, sendo elogiado, e pensa: <span class="italic text-yellow-400">"Por que eu não consegui falar isso?"</span></p>
-    <p>Isso não é defeito. Isso é superpoder... mal treinado. E é isso que a gente vai destravar agora.</p>
-  </div>
+                <div class="story-box">
+                    <h4>De Invisível a Indispensável</h4>
+                    <p class="italic">Ana, uma analista de dados, se sentia como um fantasma nas reuniões. Sua virada de chave não foi aprender a "ser mais extrovertida". Foi quando ela percebeu que seu superpoder era a <strong>Escuta Profunda</strong>. Em vez de tentar falar mais, ela começou a fazer as perguntas que ninguém fazia, baseadas no que ela ouvia nas entrelinhas. Em três meses, ela não era mais a "calada", era a "estrategista" do time.</p>
+                </div>
 
-  <!-- Superpoderes -->
-  <div class="mb-8">
-    <h3 class="text-2xl font-semibold mb-4">💡 Quais desses superpoderes já são fortes em você?</h3>
-    <div class="grid sm:grid-cols-2 gap-4">
+                <div class="highlight-box">
+                    <h4>A Grande Mentira do Mundo Barulhento</h4>
+                    <p>A sociedade nos vendeu o mito do "líder carismático" — barulhento, dominante, sempre no centro. Tentar vestir essa fantasia não é só exaustivo, é um desrespeito à sua arquitetura cerebral. Você não foi feito para o palco, foi feito para os bastidores, onde as verdadeiras decisões são moldadas. Pare de tentar ser um microfone. <strong>Você é a sala de controle.</strong></p>
+                </div>
+                
+                <div class="content-section text-center">
+                    <img src="https://placehold.co/600x350/111827/F3F4F6?text=Arquitetura+do+Seu+Poder" alt="Diagrama dos superpoderes introvertidos" class="mx-auto rounded-lg shadow-md">
+                    <p class="text-sm text-muted-slate mt-4 italic">Estes não são traços de personalidade. São ferramentas de alta precisão.</p>
+                </div>
+                
+            </article>
 
-      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
-        <input type="checkbox" class="mt-1" id="escuta">
-        <div><span class="font-bold">🎧 Escuta Ninja:</span> percebe detalhes que ninguém nota.</div>
-      </label>
+            <div class="practice-section animate-fade-in" style="animation-delay: 400ms;">
+                <h3 class="text-2xl font-bold mb-4 text-center">✨ Workshop: Inventário de Ferramentas</h3>
+                <p class="mb-8 text-center">Reconhecer suas ferramentas é o primeiro passo para usá-las. Selecione as que você mais se identifica.</p>
+                <div id="superpoderes-list-1" class="space-y-3 max-w-2xl mx-auto"></div>
+                <div class="mt-8 p-4 bg-gray-800 rounded-lg">
+                    <label for="reflexao-superpoder-1" class="block text-gray-300 font-medium mb-2">Momento de Análise:</label>
+                    <textarea id="reflexao-superpoder-1" rows="3" class="w-full p-3 bg-gray-700 text-white border-2 border-muted-slate rounded-lg focus:ring-2 focus:ring-accent-gold focus:border-accent-gold" placeholder="Lembre-se de uma vez que você usou um desses poderes, mesmo que em silêncio. Descreva a situação."></textarea>
+                </div>
+            </div>
 
-      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
-        <input type="checkbox" class="mt-1" id="analise">
-        <div><span class="font-bold">🔍 Raio-X Mental:</span> entende padrões e soluções ocultas.</div>
-      </label>
+            <div class="text-center mt-12">
+                 <button data-step="1" class="submit-btn main-cta-button">
+                    Analisar e Revelar Meu Coaching →
+                </button>
+            </div>
+        </div>
+        
+        <!-- O RESTANTE DOS PASSOS SEGUIRIA UMA LÓGICA DE REESTRUTURAÇÃO SIMILAR -->
+        <!-- Exemplo do Passo 2 para mostrar a continuidade do design e copywriting -->
 
-      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
-        <input type="checkbox" class="mt-1" id="foco">
-        <div><span class="font-bold">🎯 Foco de Laser:</span> quando entra no modo foco... ninguém te tira.</div>
-      </label>
+        <!-- Passo 2: Clareza Cirúrgica -->
+        <div id="step-2" class="step-screen">
+             <header class="text-center mb-12 animate-fade-in">
+                <h2 class="text-5xl font-black text-deep-ink tracking-tighter mb-4">Passo 2: Clareza Cirúrgica</h2>
+                <p class="text-xl text-muted-slate max-w-3xl mx-auto">Sua mente processa mil informações por segundo. Isso não é um bug, é um feature. Vamos aprender a canalizar essa potência.</p>
+            </header>
+            
+            <article class="prose max-w-none animate-fade-in" style="animation-delay: 200ms;">
+                 <div class="content-section">
+                    <h3>O paradoxo do "branco"</h3>
+                    <p>Você sabe do assunto. Sabe mais que todos na sala. Mas quando a atenção se volta para você, o cérebro parece um HD superaquecido. É o "branco". Isso não é falta de conhecimento. É um <strong>excesso de processamento</strong> sem um framework. Sua mente está tentando te dar todas as respostas de uma vez e acaba travando o sistema. Precisamos de um funil.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>O Funil Mental: A Regra 1-3-1</h4>
+                    <p>Esqueça discursos complexos. Sua ferramenta para transformar o caos em clareza é a estrutura <strong>1-3-1</strong>. É simples, memorável e absurdamente eficaz. Antes de falar, você organiza seu pensamento assim:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 text-center">
+                        <div>
+                            <p class="font-bold text-lg text-white">1. A manchete</p>
+                            <p class="text-sm text-indigo-200">A grande ideia em uma frase.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg text-white">3. Os Pilares</p>
+                            <p class="text-sm text-indigo-200">Três pontos que sustentam a manchete.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg text-white">1. O Convite</p>
+                            <p class="text-sm text-indigo-200">A próxima ação ou pergunta.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer">
-        <input type="checkbox" class="mt-1" id="visao">
-        <div><span class="font-bold">👁 Visão de Águia:</span> lê ambientes, pessoas e situações como um mapa.</div>
-      </label>
+            <div class="practice-section animate-fade-in" style="animation-delay: 400ms;">
+                <h3 class="text-2xl font-bold mb-4 text-center">✨ Workshop: Construindo seu Funil</h3>
+                <p class="text-gray-300 mb-6 text-center">Pegue um tema real que você precisa comunicar. Não precisa ser perfeito. Apenas pratique a estrutura.</p>
+                <div class="space-y-4 max-w-2xl mx-auto">
+                     <div class="bg-gray-800 p-4 rounded-lg">
+                        <label for="contexto-situacao-2" class="block text-gray-300 font-medium mb-2">Situação ou Assunto:</label>
+                        <input type="text" id="contexto-situacao-2" class="w-full p-3 bg-gray-700 text-white border-2 border-muted-slate rounded-lg" placeholder="Ex: Apresentar o status do Projeto X">
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <label for="ponto1-2" class="block text-gray-300 font-medium mb-2">1. A Manchete (A Grande Ideia):</label>
+                        <textarea id="ponto1-2" rows="2" class="w-full p-3 bg-gray-700 text-white border-2 border-muted-slate rounded-lg" placeholder="Ex: O Projeto X está no caminho certo, mas precisamos ajustar um recurso-chave para evitar atrasos."></textarea>
+                    </div>
+                    <!-- Inputs para os 3 pilares e o convite iriam aqui -->
+                </div>
+            </div>
+             <div class="text-center mt-12">
+                 <button data-step="2" class="submit-btn main-cta-button">
+                    Analisar e Revelar Meu Coaching →
+                </button>
+            </div>
+        </div>
 
-      <label class="flex items-start gap-3 p-4 rounded-lg card cursor-pointer sm:col-span-2">
-        <input type="checkbox" class="mt-1" id="bussola">
-        <div><span class="font-bold">🛡 Bússola Interna:</span> fala com convicção quando é sobre o que você acredita.</div>
-      </label>
+        <!-- O RESTANTE DOS PASSOS 3 A 7 DEVEM SER ADAPTADOS SEGUINDO ESSA NOVA IDENTIDADE VISUAL E TEXTUAL -->
+        <!-- O código original para os passos 3-7 pode ser mantido aqui, mas idealmente seria reestilizado como os exemplos 1 e 2 -->
+        <!-- ... (código original dos passos 3 a 7) ... -->
+        
+        <!-- Passo 7 no final, por exemplo: -->
+        <div id="step-7" class="step-screen">
+            <!-- Conteúdo do Passo 7 reestilizado -->
+            <div class="text-center mt-12">
+                 <button data-step="7" class="submit-btn main-cta-button text-lg">
+                    Finalizar Jornada e Gerar Meu Dossiê de Poder! 🎉
+                </button>
+            </div>
+        </div>
 
-    </div>
-  </div>
+        <!-- Relatório Final Reimaginado -->
+        <div id="final-report" class="step-screen">
+             <header class="text-center mb-12 animate-fade-in">
+                 <svg class="w-20 h-20 mx-auto text-brand-success mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                <h2 class="text-5xl font-black text-deep-ink tracking-tighter mb-4">Dossiê de Poder Concluído</h2>
+                <p class="text-xl text-muted-slate max-w-3xl mx-auto">Parabéns. Você não apenas completou um curso, você mapeou seu próprio poder. Este é o seu relatório personalizado. Imprima. Salve. Releia. Este é você.</p>
+            </header>
+            <div class="content-section bg-deep-ink text-white">
+                <h3 class="text-2xl font-bold text-accent-gold mb-6 text-center">Seu Perfil de Poder Introvertido</h3>
+                <div class="w-full max-w-lg mx-auto h-80 md:h-96">
+                    <canvas id="superpoderesChart"></canvas>
+                </div>
+            </div>
+             <div id="report-content" class="space-y-6 mt-8">
+                <!-- Conteúdo do relatório gerado dinamicamente -->
+            </div>
+            <div class="mt-12 text-center bg-gray-200 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold text-deep-ink mb-2">A jornada não termina aqui. Ela começa.</h3>
+                <p class="text-muted-slate max-w-2xl mx-auto">Sua quietude não é uma barreira. É sua arena. Agora você tem as ferramentas para lutar nela. E vencer. O mundo não precisa de mais barulho. Precisa da sua clareza.</p>
+            </div>
+        </div>
 
-  <!-- Reflexão -->
-  <div class="mb-8">
-    <h3 class="text-2xl font-semibold mb-4">✍️ Conta pra mim...</h3>
-    <p class="mb-2 text-gray-300">Lembra de uma situação onde você percebeu um desses superpoderes em ação?</p>
-    <textarea id="reflexao" rows="4" class="w-full rounded-lg p-4 card" placeholder="Descreve aqui sua experiência..."></textarea>
-  </div>
+    </main>
 
-  <!-- Botão -->
-  <div class="text-center">
-    <button onclick="gerarFeedback()" class="btn-glow py-3 px-8 rounded-full font-bold text-lg transition">
-      💥 VER MEU FEEDBACK →
-    </button>
-  </div>
+    <script>
+    // ANÁLISE DO DESIGNER:
+    // O JavaScript foi aprimorado para ser o "cérebro" da experiência personalizada.
+    // A função generateFeedback agora é o coração da retenção. Ela lê as respostas do usuário
+    // e devolve algo que prova que o sistema "ouviu". Isso cria um vínculo poderoso.
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            state: { currentStep: 1, answers: {} },
+            passwords: { 1: "ARENA", 2: "CLAREZA", 3: "TIMING", 4: "ENERGIA", 5: "ACAO", 6: "CONFIANCA", 7: "LIBERDADE" },
+            ui: {
+                //... (UI elements from original code)
+            },
+            //... (init, loadState, saveState, showScreen, updateProgressBar, addEventListeners, etc. from original code)
 
-  <!-- Feedback -->
-  <div id="feedback" class="feedback-box mt-10 p-6 rounded-xl hidden">
-    <h3 class="text-2xl font-bold mb-4 text-yellow-400">🎯 Seu Feedback de Mentor:</h3>
-    <div id="feedback-content" class="space-y-4"></div>
-    <div class="text-center mt-6">
-      <button class="btn-glow py-3 px-8 rounded-full font-bold text-lg transition">
-        🚀 Bora Pro Próximo Passo →
-      </button>
-    </div>
-  </div>
+            renderDynamicContent() {
+                const superpoderes = [
+                    { id: "escuta", power: "A Superaudição (Escuta Profunda)" },
+                    { id: "analise", power: "O Raio-X Mental (Análise Crítica)" },
+                    { id: "foco", power: "O Foco de Laser (Concentração)" },
+                    { id: "observacao", power: "A Visão Além do Alcance (Observação Aguçada)" },
+                    { id: "integridade", power: "A Bússola Interna (Integridade e Convicção)" }
+                ];
+                const listContainer = document.getElementById('superpoderes-list-1');
+                if (listContainer) {
+                    listContainer.innerHTML = superpoderes.map(sp => `
+                        <label class="flex items-center p-4 bg-white rounded-lg hover:bg-yellow-50 cursor-pointer shadow-sm border border-gray-200 transition-all duration-200 has-[:checked]:bg-yellow-100 has-[:checked]:border-accent-gold">
+                            <input type="checkbox" data-power="${sp.power}" class="h-5 w-5 rounded border-gray-300 text-accent-gold focus:ring-accent-gold shrink-0">
+                            <span class="ml-4 text-gray-800 font-medium">${sp.power}</span>
+                        </label>
+                    `).join('');
+                }
+            },
 
-</main>
+            generateFeedback(step) {
+                let html = '';
+                const { answers } = this.state;
+                const name = "Guerreiro(a) Silencioso(a)"; // Pode ser o nome do usuário no futuro
+                
+                switch(step) {
+                    case 1:
+                        const count = answers[1]?.superpoderes?.length || 0;
+                        const mainPower = answers[1]?.superpoderes?.[0] || 'seu principal poder';
+                        html = `<h2 class="text-3xl font-bold mb-4">Análise Concluída, ${name}.</h2>`;
+                        if (count > 0) {
+                           html += `<p class="text-xl mb-6">Você identificou <strong>${count} ferramenta(s)</strong> em seu arsenal. Isso é autoconsciência. Isso é poder. Você não está quebrado(a), está equipado(a).</p>
+                                    <h4 class="text-lg font-semibold mb-2 text-accent-gold">💡 Sua Missão para Amanhã:</h4>
+                                    <p class="max-w-prose mx-auto">Foque em apenas um: <strong>${mainPower}</strong>. Não tente usá-lo, apenas observe quando ele aparece naturalmente no seu dia. Seja um detetive do seu próprio poder.</p>`;
+                        } else {
+                            html += `<p class="text-xl mb-6">Você ainda não identificou suas ferramentas, e tudo bem. A jornada é sobre descoberta. O simples ato de procurar já é o primeiro passo.</p>
+                                     <h4 class="text-lg font-semibold mb-2 text-accent-gold">💡 Sua Missão para Amanhã:</h4>
+                                     <p class="max-w-prose mx-auto">Observe as pessoas ao seu redor. Tente identificar a 'Escuta Profunda' ou a 'Análise Crítica' em outras pessoas. Às vezes, vemos nosso poder nos outros primeiro.</p>`;
+                        }
+                        html += `<hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo Destrave:</strong> Clareza Cirúrgica.</p>`;
+                        break;
+                    
+                    // ... feedbacks mais inteligentes para os outros passos
+                    case 2:
+                        const hasContent = answers[2]?.ponto1 && answers[2]?.contexto;
+                        html = `<h2 class="text-3xl font-bold mb-4">Estrutura Criada.</h2>`;
+                        if(hasContent){
+                            html += `<p class="text-xl mb-6">Veja o que você fez? Transformou um pensamento complexo em uma estrutura clara e acionável. Isso é um algoritmo para a confiança.</p>
+                                     <h4 class="text-lg font-semibold mb-2 text-accent-gold">💡 Sua Missão para Amanhã:</h4>
+                                     <p class="max-w-prose mx-auto">Faça isso mentalmente com algo banal. Estruture como você vai pedir um café ou contar sobre seu filme favorito. Crie o hábito neural da clareza.</p>`;
+                        } else {
+                            html += `<p class="text-xl mb-6">O exercício pareceu desafiador? Perfeito. Isso significa que estamos tocando no ponto certo. A clareza é um músculo, e hoje foi o primeiro dia de treino.</p>`;
+                        }
+                        html += `<hr class="my-6 border-white/20"><p class="text-sm"><strong>Próximo Destrave:</strong> O Timing Perfeito.</p>`;
+                        break;
+                    
+                    default:
+                        html = `<h2 class="text-3xl font-bold mb-4">Passo Concluído!</h2><p class="text-xl mb-6">Excelente trabalho! Continue com essa força.</p>`;
+                        break;
+                }
+                this.ui.feedbackContent.innerHTML = html;
+            },
+            
+            generateChart() {
+                // ... código do gráfico original, mas com as novas cores
+                const allPowers = ["Escuta Profunda", "Análise Crítica", "Foco de Laser", "Observação Aguçada", "Integridade"];
+                const userPowersRaw = this.state.answers[1]?.superpoderes || [];
+                // Mapear o nome completo para o nome curto do label
+                const powerMap = {
+                    "A Superaudição (Escuta Profunda)": "Escuta Profunda",
+                    "O Raio-X Mental (Análise Crítica)": "Análise Crítica",
+                    "O Foco de Laser (Concentração)": "Foco de Laser",
+                    "A Visão Além do Alcance (Observação Aguçada)": "Observação Aguçada",
+                    "A Bússola Interna (Integridade e Convicção)": "Integridade"
+                };
+                const userPowers = userPowersRaw.map(p => powerMap[p]);
+                const data = allPowers.map(power => userPowers.includes(power) ? 5 : 1.5); // 1.5 para um visual melhor que 1
 
-<script>
-function gerarFeedback() {
-  const poderes = [];
-  if (document.getElementById('escuta').checked) poderes.push("🎧 Escuta Ninja");
-  if (document.getElementById('analise').checked) poderes.push("🔍 Raio-X Mental");
-  if (document.getElementById('foco').checked) poderes.push("🎯 Foco de Laser");
-  if (document.getElementById('visao').checked) poderes.push("👁 Visão de Águia");
-  if (document.getElementById('bussola').checked) poderes.push("🛡 Bússola Interna");
+                const ctx = document.getElementById('superpoderesChart')?.getContext('2d');
+                if(!ctx) return;
 
-  const reflexao = document.getElementById('reflexao').value.trim();
+                if (window.myRadarChart) { window.myRadarChart.destroy(); }
+                
+                window.myRadarChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: allPowers,
+                        datasets: [{
+                            label: 'Seu Perfil de Poder',
+                            data: data,
+                            fill: true,
+                            backgroundColor: 'rgba(214, 158, 46, 0.2)',
+                            borderColor: 'rgb(214, 158, 46)',
+                            pointBackgroundColor: 'rgb(214, 158, 46)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(214, 158, 46)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                               beginAtZero: true,
+                               suggestedMin: 0,
+                               suggestedMax: 5,
+                                ticks: { display: false, stepSize: 1 },
+                                pointLabels: { font: { size: 12, weight: 'bold' }, color: '#D1D5DB' },
+                                grid: { color: 'rgba(107, 114, 128, 0.5)' },
+                                angleLines: { color: 'rgba(107, 114, 128, 0.5)' }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
 
-  let texto = "";
+            // ... (restante do código JS original, como collectAnswers, populateAnswers, handleUnlock, etc.)
+        };
 
-  if (poderes.length === 0) {
-    texto += `<p>🤔 Percebi que você não marcou nenhum superpoder... Será que você tá se subestimando?</p>`;
-    texto += `<p>Confia em mim: todo introvertido tem esses poderes. Talvez eles só estejam escondidos — mas estão aí.</p>`;
-  } else {
-    texto += `<p>🔥 Você reconheceu ${poderes.length} superpoder${poderes.length > 1 ? 'es' : ''}: <strong>${poderes.join(", ")}</strong>.</p>`;
-    texto += `<p>Isso é poderoso. E sabe o que é melhor? Quando você começa a usar isso de forma consciente... as coisas mudam.</p>`;
-  }
-
-  if (reflexao) {
-    texto += `<p>📖 Li sua reflexão... E isso que você trouxe é MUITO valioso. Cada vez que você reconhece um momento como esse, você tá fortalecendo seu músculo da comunicação.</p>`;
-  } else {
-    texto += `<p>💡 Senti falta da sua reflexão... Bora praticar isso! Pensar nos momentos onde você já usou esses poderes vai te ajudar DEMAIS no destrave.</p>`;
-  }
-
-  texto += `<p class="text-yellow-300 font-semibold">Parabéns por ter chegado até aqui. Bora pro próximo passo — lá você vai aprender como transformar tudo isso em fala CLARA, FORTE e SEGURA.</p>`;
-
-  document.getElementById('feedback-content').innerHTML = texto;
-  document.getElementById('feedback').classList.remove('hidden');
-  document.getElementById('feedback').scrollIntoView({ behavior: 'smooth' });
-}
-</script>
-
+        // É preciso popular todo o objeto 'app' com as funções do código original
+        // para que funcione. Apenas as funções modificadas foram mostradas aqui.
+        // O ideal é copiar as funções novas e substituir as antigas no seu script.
+        
+        // Exemplo de como ficaria a inicialização completa (versão resumida)
+        const fullApp = { ...app, /* aqui iriam as funções não mostradas */ };
+        // fullApp.init(); // Esta linha iniciaria a aplicação real
+    });
+    </script>
 </body>
 </html>
