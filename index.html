@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Destrave na Hora H - Sua Jornada de Transformação Completa</title>
+    <title>Portal Destrave na Hora H</title>
     <style>
         * {
             margin: 0;
@@ -11,953 +11,617 @@
             box-sizing: border-box;
         }
 
-        html {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
             scroll-behavior: smooth;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
-            min-height: 100vh;
-            color: #1f2937;
-            overflow-x: hidden;
-        }
-
-        /* Animações suaves */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .slide-up {
-            animation: slideUp 0.6s ease-out;
-        }
-
-        .scale-in {
-            animation: scaleIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        @keyframes scaleIn {
-            from { 
-                opacity: 0; 
-                transform: scale(0.9); 
-            }
-            to { 
-                opacity: 1; 
-                transform: scale(1); 
-            }
-        }
-
-        /* Transições suaves para todos os elementos interativos */
-        button, .card, .module-card, .progress-bar {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Header */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e40af;
-        }
-
-        .user-stats {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e40af;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: #6b7280;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         /* Tela de Login */
         .login-screen {
-            min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 2rem;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         }
 
         .login-card {
             background: white;
-            padding: 3rem;
+            padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            max-width: 450px;
-            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             text-align: center;
+            max-width: 400px;
+            width: 100%;
         }
 
-        .login-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1.5rem;
-            color: white;
-        }
-
-        .login-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .login-subtitle {
-            color: #6b7280;
-            margin-bottom: 2rem;
+        .login-card h1 {
+            color: #2a5298;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
             text-align: left;
         }
 
-        .form-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #374151;
-        }
-
-        .form-input {
+        .form-group input {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 16px;
             transition: all 0.3s ease;
         }
 
-        .form-input:focus {
+        .form-group input:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #2a5298;
+            box-shadow: 0 0 10px rgba(42, 82, 152, 0.3);
         }
 
         .login-btn {
             width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            padding: 15px;
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            margin-bottom: 1.5rem;
             transition: all 0.3s ease;
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
-        }
-
-        .login-help {
-            background: #f0f9ff;
-            padding: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .login-help-title {
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .login-help-text {
-            font-size: 0.875rem;
-            color: #6b7280;
+            box-shadow: 0 10px 20px rgba(42, 82, 152, 0.4);
         }
 
         /* Tela de Boas-vindas */
         .welcome-screen {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            display: none;
             justify-content: center;
-            padding: 2rem;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
         }
 
         .welcome-card {
             background: white;
-            padding: 3rem;
+            padding: 50px;
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            max-width: 600px;
             width: 100%;
-            text-align: center;
         }
 
-        .welcome-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+        .welcome-card h1 {
+            color: #2a5298;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
         }
 
-        .welcome-subtitle {
+        .welcome-card p {
+            color: #666;
             font-size: 1.1rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
-        .mentor-section {
-            margin: 2rem 0;
-        }
-
-        .mentor-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .mentor-title {
-            font-style: italic;
-            color: #6b7280;
-            margin-bottom: 1.5rem;
-        }
-
-        .mentor-avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #059669, #10b981);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1rem;
-            color: white;
-        }
-
-        .mentor-message {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #059669;
-            font-style: italic;
-            color: #374151;
-            margin-bottom: 2rem;
-        }
-
-        .start-btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #059669, #10b981);
+        .start-journey-btn {
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
         }
 
-        .start-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+        .start-journey-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
         }
 
         /* Dashboard */
         .dashboard {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            display: none;
+            min-height: 100vh;
+            padding: 20px 0;
         }
 
-        .progress-overview {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .progress-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-
-        .progress-bar-container {
-            background: #f3f4f6;
-            height: 12px;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #059669, #10b981);
-            border-radius: 6px;
-            transition: width 0.8s ease;
-        }
-
-        .progress-text {
-            color: #6b7280;
-            font-size: 0.875rem;
-        }
-
-        /* Módulos */
-        .modules-section {
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .header {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
             color: white;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-message h2 {
+            color: #2a5298;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .welcome-message p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
         .module-card {
             background: white;
             border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .module-card.unlocked {
+            border: 3px solid #4CAF50;
+        }
+
         .module-card.locked {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 2px solid #f59e0b;
+            border: 3px solid #FFD700;
+            background: linear-gradient(135deg, #fff9c4 0%, #fff3a0 100%);
+            cursor: pointer;
+        }
+
+        .module-card.locked:hover {
+            background: linear-gradient(135deg, #fff3a0 0%, #ffed7a 100%);
             animation: shimmer 2s infinite;
         }
 
         @keyframes shimmer {
-            0%, 100% { box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2); }
-            50% { box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4); }
+            0% { box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 25px 50px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3); }
         }
 
         .module-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
-        .module-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
+        .module-number {
+            background: #2a5298;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .module-card h3 {
+            color: #2a5298;
             font-size: 1.5rem;
-            color: white;
+            margin-bottom: 15px;
         }
 
-        .module-icon.blue {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-        }
-
-        .module-icon.teal {
-            background: linear-gradient(135deg, #0891b2, #06b6d4);
-        }
-
-        .module-icon.purple {
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
-        }
-
-        .module-info h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-        }
-
-        .module-info p {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-
-        .module-progress {
-            margin: 1.5rem 0;
-        }
-
-        .module-progress-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .module-progress-text {
-            font-weight: 600;
-            color: #1f2937;
-        }
-
-        .module-progress-percent {
-            font-weight: 700;
-            color: #059669;
-        }
-
-        .module-progress-bar {
-            background: #f3f4f6;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .module-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #059669, #10b981);
-            border-radius: 4px;
-            transition: width 0.8s ease;
+        .module-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
         .module-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 15px;
             border: none;
             border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
         }
 
         .module-btn.start {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
         }
 
         .module-btn.start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
         }
 
-        .module-btn.locked {
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            color: white;
-            position: relative;
-            overflow: hidden;
+        .locked-message {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #8B4513;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .module-btn.locked:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
-        }
-
-        .module-btn.locked::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 2s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .locked-message:hover {
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            transform: scale(1.02);
         }
 
         /* Modal de Senha */
-        .modal {
+        .password-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.7);
             z-index: 1000;
-            align-items: center;
             justify-content: center;
-        }
-
-        .modal.show {
-            display: flex;
+            align-items: center;
         }
 
         .modal-content {
             background: white;
-            padding: 2rem;
+            padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            text-align: center;
             max-width: 400px;
             width: 90%;
-            text-align: center;
-            animation: modalSlideIn 0.3s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .modal-title {
+        .modal-content h3 {
+            color: #2a5298;
+            margin-bottom: 20px;
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 1rem;
         }
 
-        .modal-text {
-            color: #6b7280;
-            margin-bottom: 1.5rem;
+        .modal-content p {
+            color: #666;
+            margin-bottom: 25px;
         }
 
-        .modal-input {
+        .modal-content input {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+            font-size: 16px;
+            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
-        .modal-input:focus {
+        .modal-content input:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #2a5298;
+            box-shadow: 0 0 10px rgba(42, 82, 152, 0.3);
         }
 
         .modal-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 15px;
         }
 
         .modal-btn {
             flex: 1;
-            padding: 0.75rem;
+            padding: 12px;
             border: none;
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .modal-btn.cancel {
-            background: #f3f4f6;
-            color: #6b7280;
-        }
-
-        .modal-btn.cancel:hover {
-            background: #e5e7eb;
-        }
-
-        .modal-btn.confirm {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+        .modal-btn.unlock {
+            background: #2a5298;
             color: white;
         }
 
-        .modal-btn.confirm:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+        .modal-btn.cancel {
+            background: #f0f0f0;
+            color: #666;
         }
 
-        /* Conteúdo do Módulo */
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Conteúdo dos Módulos */
         .module-content {
             display: none;
-            padding: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .module-content.active {
+        .module-content h2 {
+            color: #2a5298;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .page-content {
+            display: none;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .page-content.active {
             display: block;
         }
 
-        .module-header-content {
-            text-align: center;
-            margin-bottom: 2rem;
+        .page-content h3 {
+            color: #2a5298;
+            font-size: 1.5rem;
+            margin: 25px 0 15px 0;
         }
 
-        .module-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
+        .page-content h4 {
+            color: #1e3c72;
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
         }
 
-        .module-page-indicator {
-            color: #6b7280;
-            margin-bottom: 1rem;
+        .page-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .page-content ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .page-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2a5298;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .exercise-box h4 {
+            color: #9c27b0;
+            margin-bottom: 10px;
+        }
+
+        /* Navegação entre páginas */
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.prev {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .nav-btn.next {
+            background: #2a5298;
+            color: white;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .page-dots {
             display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+            gap: 8px;
         }
 
-        .page-dot {
-            width: 12px;
-            height: 12px;
+        .dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: #e5e7eb;
+            background: #ddd;
             transition: all 0.3s ease;
         }
 
-        .page-dot.active {
-            background: #3b82f6;
+        .dot.active {
+            background: #2a5298;
             transform: scale(1.2);
         }
 
-        .content-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .content-section {
-            margin-bottom: 2rem;
-        }
-
-        .content-section h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .content-section h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #1e40af;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .content-section p {
-            color: #374151;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border-left: 4px solid #3b82f6;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-        }
-
-        .highlight-box h4 {
-            color: #1e40af;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .story-box {
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            border-left: 4px solid #059669;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-        }
-
-        .story-box h4 {
-            color: #059669;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, #fffbeb, #fef3c7);
-            border-left: 4px solid #f59e0b;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-        }
-
-        .warning-box h4 {
-            color: #d97706;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .illustration {
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .illustration img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .illustration-caption {
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        /* Navegação */
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2rem;
-        }
-
-        .nav-btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn.back {
-            background: #f3f4f6;
-            color: #6b7280;
-        }
-
-        .nav-btn.back:hover {
-            background: #e5e7eb;
-            transform: translateX(-2px);
-        }
-
-        .nav-btn.next {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            color: white;
-        }
-
-        .nav-btn.next:hover {
-            transform: translateX(2px);
-            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
-        }
-
-        .nav-btn.dashboard {
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: white;
-        }
-
-        .nav-btn.dashboard:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
+        .page-counter {
+            color: #666;
+            font-size: 14px;
+            margin-left: 10px;
         }
 
         /* Quiz */
-        .quiz-section {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+        .quiz-container {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
         }
 
         .quiz-question {
+            color: #e65100;
             font-size: 1.3rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .quiz-option {
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
+            background: white;
+            border: 2px solid #ffcc02;
             border-radius: 10px;
+            padding: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: white;
         }
 
         .quiz-option:hover {
-            border-color: #3b82f6;
-            background: #f8fafc;
+            background: #fff8e1;
+            transform: translateX(5px);
         }
 
         .quiz-option.selected {
-            border-color: #3b82f6;
-            background: #eff6ff;
-        }
-
-        .quiz-confirm-btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            background: #ffcc02;
             color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: none;
-        }
-
-        .quiz-confirm-btn.show {
-            display: inline-block;
-        }
-
-        .quiz-confirm-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+            font-weight: bold;
         }
 
         .quiz-feedback {
             display: none;
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            border-left: 4px solid #059669;
-            padding: 1.5rem;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
             border-radius: 10px;
-            margin-top: 1.5rem;
-        }
-
-        .quiz-feedback.show {
-            display: block;
-            animation: slideUp 0.5s ease-out;
         }
 
         .quiz-feedback h4 {
-            color: #059669;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
+            color: #2e7d32;
+            margin-bottom: 10px;
         }
 
-        .complete-btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #059669, #10b981);
+        .quiz-feedback p {
+            color: #388e3c;
+            line-height: 1.6;
+        }
+
+        .confirm-btn {
+            background: #ff9800;
             color: white;
+            padding: 12px 30px;
             border: none;
-            border-radius: 10px;
-            font-weight: 600;
+            border-radius: 8px;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
             display: none;
         }
 
-        .complete-btn.show {
-            display: inline-block;
+        .confirm-btn:hover {
+            background: #f57c00;
+            transform: translateY(-2px);
+        }
+
+        .complete-btn {
+            background: #4caf50;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+            margin-top: 20px;
         }
 
         .complete-btn:hover {
+            background: #45a049;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
         }
 
         /* Notificações */
         .notification {
             position: fixed;
-            top: 100px;
+            top: 20px;
             right: 20px;
-            background: white;
-            padding: 1rem 1.5rem;
+            background: #4caf50;
+            color: white;
+            padding: 15px 25px;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border-left: 4px solid #059669;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             z-index: 1001;
             transform: translateX(400px);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .notification.show {
@@ -965,932 +629,818 @@
         }
 
         .notification.error {
-            border-left-color: #ef4444;
+            background: #f44336;
         }
 
-        /* Responsividade */
+        /* Responsivo */
         @media (max-width: 768px) {
-            .header {
-                padding: 1rem;
-            }
-
-            .user-stats {
-                gap: 1rem;
-            }
-
-            .dashboard {
-                padding: 1rem;
-            }
-
             .modules-grid {
                 grid-template-columns: 1fr;
             }
-
-            .module-card {
-                padding: 1.5rem;
+            
+            .container {
+                padding: 10px;
             }
-
-            .content-card {
-                padding: 1.5rem;
+            
+            .module-content {
+                padding: 20px;
             }
-
-            .navigation {
+            
+            .page-navigation {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 15px;
             }
-
-            .modal-content {
-                margin: 1rem;
-            }
-
-            .modal-buttons {
-                flex-direction: column;
-            }
-        }
-
-        /* Melhorias de performance */
-        .gpu-accelerated {
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        /* Scroll suave personalizado */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #1e40af, #0891b2);
         }
     </style>
 </head>
 <body>
     <!-- Tela de Login -->
-    <div id="loginScreen" class="login-screen fade-in">
-        <div class="login-card scale-in">
-            <div class="login-icon">🎓</div>
-            <h1 class="login-title">Portal Destrave na Hora H</h1>
-            <p class="login-subtitle">Acesse sua jornada de transformação completa</p>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label class="form-label">Seu Nome Completo</label>
-                    <input type="text" id="userName" class="form-input" placeholder="Digite seu nome completo" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Senha de Acesso</label>
-                    <input type="password" id="userPassword" class="form-input" placeholder="Digite sua senha de acesso" required>
-                </div>
-                
-                <button type="submit" class="login-btn">🚀 ACESSAR PORTAL</button>
-            </form>
-            
-            <div class="login-help">
-                <div class="login-help-title">💡 Onde encontrar sua senha:</div>
-                <div class="login-help-text">Verifique sua área de membros ou o email de boas-vindas que você recebeu após a compra.</div>
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <h1>Bem-vindo(a) ao Portal<br>Destrave na Hora H!</h1>
+            <div class="form-group">
+                <input type="text" id="userName" placeholder="Seu Nome Completo" required>
             </div>
+            <div class="form-group">
+                <input type="password" id="userPassword" placeholder="Senha de Acesso" required>
+            </div>
+            <button class="login-btn" onclick="login()">Acessar Portal</button>
         </div>
     </div>
 
     <!-- Tela de Boas-vindas -->
-    <div id="welcomeScreen" class="welcome-screen" style="display: none;">
-        <div class="welcome-card fade-in">
-            <h1 class="welcome-title">🎓 Bem-vindo à Sua Jornada de Transformação Completa!</h1>
-            <p class="welcome-subtitle">Você está prestes a descobrir e desenvolver seus superpoderes introvertidos através de uma jornada estruturada: 3 módulos iniciais de preparação + 7 passos práticos de transformação.</p>
-            
-            <div class="mentor-section">
-                <h2 class="mentor-name">Alex, Seu Mentor</h2>
-                <p class="mentor-title">Ex-introvertido tímido, hoje comunicador de impacto</p>
-                
-                <div class="mentor-avatar">🧠</div>
-                
-                <div class="mentor-message">
-                    "Olá <span id="welcomeUserName"></span>! Eu sou o Alex, e assim como você, já fui aquele introvertido que tinha ideias brilhantes mas travava na hora de falar. Hoje, vou te guiar nesta jornada completa: primeiro vamos descobrir seus superpoderes únicos, depois aplicá-los na prática através dos 7 passos de transformação!"
-                </div>
-            </div>
-            
-            <button class="start-btn" onclick="showDashboard()">INICIAR MINHA JORNADA COMPLETA →</button>
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-card">
+            <h1>Olá, <span id="welcomeName"></span>!</h1>
+            <p>Prepare-se para uma jornada transformadora. Aqui, você vai descobrir seus superpoderes, dominar a comunicação e destravar em momentos importantes da sua vida.</p>
+            <button class="start-journey-btn" onclick="showDashboard()">🚀 INICIAR MINHA JORNADA COMPLETA</button>
         </div>
     </div>
 
-    <!-- Header -->
-    <div id="header" class="header" style="display: none;">
-        <div class="logo">
-            <div class="logo-icon">🎓</div>
-            <div class="logo-text">Portal Destrave na Hora H</div>
-            <div style="margin-left: 1rem; color: #6b7280; font-size: 0.9rem;">
-                <span id="headerUserName">Novato Explorador</span>
+    <!-- Dashboard Principal -->
+    <div id="dashboard" class="dashboard">
+        <div class="container">
+            <div class="header">
+                <h1>Portal Destrave na Hora H</h1>
             </div>
-        </div>
-        <div class="user-stats">
-            <div class="stat">
-                <div class="stat-number" id="userPoints">0</div>
-                <div class="stat-label">Pontos</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number" id="userAchievements">1</div>
-                <div class="stat-label">Conquistas</div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Dashboard -->
-    <div id="dashboard" class="dashboard" style="display: none;">
-        <div class="progress-overview slide-up">
-            <h2 class="progress-title">Sua Jornada Completa de Transformação</h2>
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="overallProgress" style="width: 0%"></div>
+            <div class="welcome-message">
+                <h2>Bem-vindo(a), <span id="dashboardName"></span>!</h2>
+                <p>Seu caminho para destravar em momentos importantes começa agora. Escolha um módulo para iniciar sua transformação.</p>
             </div>
-            <p class="progress-text"><span id="currentPoints">0</span> / 2500 pontos para o próximo nível</p>
-        </div>
 
-        <!-- Fase 1: Descoberta dos Superpoderes -->
-        <div class="modules-section">
-            <h2 class="section-title">🎯 Fase 1: Descoberta dos Superpoderes</h2>
             <div class="modules-grid">
                 <!-- Módulo 1 -->
-                <div class="module-card fade-in">
+                <div class="module-card unlocked">
                     <div class="module-header">
-                        <div class="module-icon blue">⚡</div>
-                        <div class="module-info">
-                            <h3>Módulo 1: Desperte Seus Superpoderes</h3>
-                            <p>Transforme sua percepção sobre introversão</p>
-                        </div>
+                        <div class="module-number">1</div>
                     </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent" id="module1Progress">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" id="module1ProgressBar" style="width: 0%"></div>
-                        </div>
-                    </div>
+                    <h3>Módulo 1: Desperte Seus Superpoderes</h3>
+                    <p>Descubra o poder da introversão e como transformá-la em sua maior força.</p>
                     <button class="module-btn start" onclick="startModule(1)">🚀 INICIAR MÓDULO</button>
                 </div>
 
                 <!-- Módulo 2 -->
-                <div class="module-card locked fade-in">
+                <div class="module-card locked" onclick="requestPassword(2)">
                     <div class="module-header">
-                        <div class="module-icon teal">🛠️</div>
-                        <div class="module-info">
-                            <h3>Módulo 2: Domine o Método Destrave na Hora H™</h3>
-                            <p>Os 3 passos fundamentais para destravar</p>
-                        </div>
+                        <div class="module-number">2</div>
                     </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent" id="module2Progress">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" id="module2ProgressBar" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword(2)">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    <h3>Módulo 2: Domine o Método Destrave na Hora H</h3>
+                    <p>Aprenda os 3 passos fundamentais para se comunicar com confiança e impacto.</p>
+                    <div class="locked-message">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</div>
                 </div>
 
                 <!-- Módulo 3 -->
-                <div class="module-card locked fade-in">
+                <div class="module-card locked" onclick="requestPassword(3)">
                     <div class="module-header">
-                        <div class="module-icon purple">🚀</div>
-                        <div class="module-info">
-                            <h3>Módulo 3: Prepare-se para a Transformação</h3>
-                            <p>Consolide seu aprendizado e prepare-se para os 7 passos</p>
-                        </div>
+                        <div class="module-number">3</div>
                     </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent" id="module3Progress">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" id="module3ProgressBar" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword(3)">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Fase 2: Os 7 Passos -->
-        <div class="modules-section">
-            <h2 class="section-title">🎯 Fase 2: Os 7 Passos da Transformação</h2>
-            <div class="modules-grid">
-                <!-- Passo 1 -->
-                <div class="module-card locked fade-in">
-                    <div class="module-header">
-                        <div class="module-icon blue">1️⃣</div>
-                        <div class="module-info">
-                            <h3>Passo 1: Identifique Sua Situação</h3>
-                            <p>Mapeie seus desafios específicos</p>
-                        </div>
-                    </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword('step1')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                </div>
-
-                <!-- Passo 2 -->
-                <div class="module-card locked fade-in">
-                    <div class="module-header">
-                        <div class="module-icon teal">2️⃣</div>
-                        <div class="module-info">
-                            <h3>Passo 2: Prepare Sua Mente</h3>
-                            <p>Desenvolva a mentalidade certa</p>
-                        </div>
-                    </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword('step2')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                </div>
-
-                <!-- Passo 3 -->
-                <div class="module-card locked fade-in">
-                    <div class="module-header">
-                        <div class="module-icon purple">3️⃣</div>
-                        <div class="module-info">
-                            <h3>Passo 3: Domine a Técnica dos 3 Pontos</h3>
-                            <p>A fórmula para organizar suas ideias</p>
-                        </div>
-                    </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword('step3')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                </div>
-
-                <!-- Passo 4 -->
-                <div class="module-card locked fade-in">
-                    <div class="module-header">
-                        <div class="module-icon blue">4️⃣</div>
-                        <div class="module-info">
-                            <h3>Passo 4: Pratique em Situações Seguras</h3>
-                            <p>Construa confiança gradualmente</p>
-                        </div>
-                    </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword('step4')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                </div>
-
-                <!-- Passo 5 -->
-                <div class="module-card locked fade-in">
-                    <div class="module-header">
-                        <div class="module-icon teal">5️⃣</div>
-                        <div class="module-info">
-                            <h3>Passo 5: Aplique em Reuniões</h3>
-                            <p>Destrave em contextos profissionais</p>
-                        </div>
-                    </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword('step5')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                </div>
-
-                <!-- Passo 6 -->
-                <div class="module-card locked fade-in">
-                    <div class="module-header">
-                        <div class="module-icon purple">6️⃣</div>
-                        <div class="module-info">
-                            <h3>Passo 6: Expanda para Apresentações</h3>
-                            <p>Domine apresentações e palestras</p>
-                        </div>
-                    </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword('step6')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                </div>
-
-                <!-- Passo 7 -->
-                <div class="module-card locked fade-in">
-                    <div class="module-header">
-                        <div class="module-icon blue">7️⃣</div>
-                        <div class="module-info">
-                            <h3>Passo 7: Mantenha o Momentum</h3>
-                            <p>Sustente sua transformação</p>
-                        </div>
-                    </div>
-                    <div class="module-progress">
-                        <div class="module-progress-label">
-                            <span class="module-progress-text">Progresso</span>
-                            <span class="module-progress-percent">0%</span>
-                        </div>
-                        <div class="module-progress-bar">
-                            <div class="module-progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <button class="module-btn locked" onclick="requestPassword('step7')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    <h3>Módulo 3: Prepare-se para a Transformação</h3>
+                    <p>Consolide seu aprendizado e prepare-se para aplicar o método na prática.</p>
+                    <div class="locked-message">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Conteúdo dos Módulos -->
-    <!-- Módulo 1 -->
-    <div id="module1Content" class="module-content">
-        <div class="module-header-content">
-            <h1 class="module-title">Módulo 1: Desperte Seus Superpoderes</h1>
-            <p class="module-page-indicator">Página <span id="module1CurrentPage">1</span> de <span id="module1TotalPages">6</span></p>
-            <div class="page-dots">
-                <div class="page-dot active"></div>
-                <div class="page-dot"></div>
-                <div class="page-dot"></div>
-                <div class="page-dot"></div>
-                <div class="page-dot"></div>
-                <div class="page-dot"></div>
+    <!-- Modal de Senha -->
+    <div id="passwordModal" class="password-modal">
+        <div class="modal-content">
+            <h3>Desbloquear Módulo</h3>
+            <p>Insira a senha para acessar este módulo:</p>
+            <input type="password" id="modulePassword" placeholder="Senha">
+            <div class="modal-buttons">
+                <button class="modal-btn unlock" onclick="unlockModule()">Desbloquear</button>
+                <button class="modal-btn cancel" onclick="closePasswordModal()">Cancelar</button>
             </div>
         </div>
+    </div>
 
+    <!-- Conteúdo do Módulo 1 -->
+    <div id="module1Content" class="module-content">
+        <h2>Módulo 1: Desperte Seus Superpoderes</h2>
+        
         <!-- Página 1 -->
-        <div class="content-page" data-page="1">
-            <div class="content-card fade-in">
-                <div class="content-section">
-                    <h2>Chega de se Achar Menos! 🚀</h2>
-                    <h3>🎯 Transforme Sua Percepção Sobre Introversão</h3>
-                    
-                    <div class="illustration">
-                        <img src="superpoderes_introvertidos.jpg" alt="Superpoderes dos Introvertidos" style="max-width: 400px;">
-                        <div class="illustration-caption">Seus superpoderes introvertidos são reais e poderosos</div>
-                    </div>
-
-                    <div class="story-box">
-                        <h4>📖 A História de Ana</h4>
-                        <p>Ana sempre se considerou "menos" que seus colegas extrovertidos. Em reuniões, ela tinha ideias brilhantes, mas raramente as compartilhava. Achava que sua tendência a pensar antes de falar era uma fraqueza.</p>
-                        <p>Até o dia em que descobriu que sua capacidade de reflexão profunda era exatamente o que sua equipe precisava para resolver problemas complexos.</p>
-                    </div>
-
-                    <h3>🧠 Por Que Você Não É "Menos"</h3>
-                    <p>A sociedade nos ensinou que ser extrovertido é melhor. Mas isso é um mito perigoso que limita seu potencial.</p>
-
-                    <div class="highlight-box">
-                        <h4>💡 Verdade Revelada:</h4>
-                        <p>Introvertidos processam informações de forma mais profunda, são melhores ouvintes e criam conexões mais autênticas. Você não é menos - você é diferente, e isso é seu superpoder!</p>
-                    </div>
-                </div>
+        <div class="page-content active" data-page="1">
+            <h3>🎯 Transforme Sua Introversão em Superpoder</h3>
+            <p>Você já se sentiu como se estivesse assistindo a vida passar pela janela enquanto outros tomavam a frente? Como se tivesse ideias incríveis, mas na hora H, sua voz simplesmente... sumisse?</p>
+            
+            <p>Se você se identificou, respire fundo e sorria: você não está sozinho, e mais importante ainda, <strong>não há nada de errado com você</strong>.</p>
+            
+            <div class="highlight-box">
+                <h4>💡 A Verdade Que Ninguém Te Contou</h4>
+                <p>Sua introversão não é um bug no sistema - é uma feature premium! Enquanto o mundo valoriza quem fala mais alto, você tem algo muito mais raro: a capacidade de pensar profundamente, observar com precisão e se comunicar com autenticidade.</p>
             </div>
+            
+            <p>Imagine por um momento que sua mente é como uma Ferrari. Potente, sofisticada, capaz de performances incríveis. O problema? Você nunca recebeu o manual de instruções. Então, em vez de acelerar nas pistas da vida, você fica ali, no ponto morto, vendo carros "mais simples" passarem por você.</p>
+            
+            <p>O <strong>Método Destrave na Hora H</strong> é exatamente esse manual que estava faltando. Não para te transformar em outra pessoa, mas para te ensinar a usar todo o potencial que já existe em você.</p>
         </div>
 
         <!-- Página 2 -->
-        <div class="content-page" data-page="2" style="display: none;">
-            <div class="content-card fade-in">
-                <div class="content-section">
-                    <h2>Seus Superpoderes Escondidos 🦸‍♂️</h2>
-                    <h3>🔍 Que Ninguém Te Contou Que Você Tinha</h3>
-                    
-                    <div class="illustration">
-                        <img src="ilustracao_superpoderes.jpg" alt="Ilustração dos Superpoderes" style="max-width: 400px;">
-                        <div class="illustration-caption">Descubra os 5 superpoderes que você já possui</div>
-                    </div>
-
-                    <h3>🎧 1. A Superaudição (Escuta Profunda)</h3>
-                    <p>Enquanto outros estão pensando no que vão falar, você realmente escuta. Capta nuances, entrelinhas e as verdadeiras preocupações das pessoas.</p>
-
-                    <h3>🔬 2. O Raio-X Mental (Análise Crítica)</h3>
-                    <p>Sua mente não se contenta com o superficial. Você cava fundo, entende causas, prevê consequências e vê a figura completa.</p>
-
-                    <h3>🎯 3. O Foco de Laser (Concentração Profunda)</h3>
-                    <p>Em um mundo cheio de distrações, sua capacidade de concentração é uma habilidade rara e valiosa.</p>
-
-                    <div class="warning-box">
-                        <h4>⚠️ Importante:</h4>
-                        <p>Esses não são apenas "traços de personalidade". Quando usados intencionalmente, se transformam em ferramentas poderosas para comunicação de impacto.</p>
-                    </div>
-                </div>
+        <div class="page-content" data-page="2">
+            <h3>🦸‍♂️ Seus Superpoderes Escondidos</h3>
+            <p>Enquanto você se preocupa com o que "não tem", vamos descobrir os superpoderes incríveis que você já carrega:</p>
+            
+            <h4>1. A Superaudição (Escuta Profunda)</h4>
+            <p>Enquanto muita gente está mais preocupada em falar do que em ouvir, você tem a capacidade incrível de realmente escutar o que os outros dizem (e o que não dizem também!). Você capta nuances, entrelinhas, as verdadeiras preocupações.</p>
+            
+            <h4>2. O Raio-X Mental (Análise Crítica)</h4>
+            <p>Sua mente não se contenta com o superficial. Você gosta de cavar fundo, entender as causas, prever consequências, ver a figura completa. Suas opiniões tendem a ser mais bem fundamentadas e persuasivas.</p>
+            
+            <h4>3. O Foco de Laser (Concentração Profunda)</h4>
+            <p>Em um mundo cheio de distrações, conseguir se concentrar profundamente é uma habilidade rara e valiosa. Isso te ajuda a manter a linha de raciocínio e entregar mensagens claras.</p>
+            
+            <div class="exercise-box">
+                <h4>✏️ Exercício: Seu Inventário de Superpoderes</h4>
+                <p>Dos superpoderes listados acima, quais você sente que são "a sua cara"? Pense em uma situação recente onde um desses superpoderes se manifestou. Como ele influenciou a situação?</p>
             </div>
         </div>
 
         <!-- Página 3 -->
-        <div class="content-page" data-page="3" style="display: none;">
-            <div class="content-card fade-in">
-                <div class="content-section">
-                    <h2>Mais Superpoderes Revelados 🌟</h2>
-                    
-                    <h3>👁️ 4. A Visão Além do Alcance (Observação Aguçada)</h3>
-                    <p>Você nota coisas que passam despercebidas: linguagem corporal, dinâmica de grupos, o "clima" de ambientes. É como ter um mapa do terreno em tempo real!</p>
-
-                    <h3>🧭 5. A Bússola Interna (Integridade e Convicção)</h3>
-                    <p>Quando você decide falar sobre algo que realmente acredita, suas palavras vêm carregadas de uma convicção e autenticidade magnéticas.</p>
-
-                    <div class="story-box">
-                        <h4>📖 O Caso do Carlos</h4>
-                        <p>Carlos era o "quieto" da equipe de marketing. Mas quando ele finalmente compartilhou sua análise sobre o comportamento do consumidor, baseada em semanas de observação silenciosa, a campanha resultante aumentou as vendas em 40%.</p>
-                        <p>Sua "quietude" não era passividade - era preparação estratégica!</p>
-                    </div>
-
-                    <div class="highlight-box">
-                        <h4>🎯 Exercício Prático:</h4>
-                        <p><strong>Seu Inventário de Superpoderes:</strong> Dos 5 superpoderes apresentados, quais você mais reconhece em si mesmo? Pense em uma situação recente onde um deles se manifestou.</p>
-                        <p>Reconhecer é o primeiro passo para usar intencionalmente!</p>
-                    </div>
-                </div>
+        <div class="page-content" data-page="3">
+            <h3>🔓 E Carlos Descobriu Seu Poder</h3>
+            <p>Deixe-me te contar sobre Carlos, um engenheiro de 32 anos que se sentia invisível nas reuniões da empresa. Ele tinha ideias brilhantes, mas sempre que tentava falar, alguém o interrompia ou o assunto mudava.</p>
+            
+            <p>Carlos pensava que o problema era "não ser bom de papo". Até descobrir que seu verdadeiro superpoder era a <strong>análise profunda</strong>. Enquanto outros davam opiniões rasas, ele conseguia ver problemas e soluções que ninguém mais enxergava.</p>
+            
+            <div class="highlight-box">
+                <h4>🎯 A Transformação de Carlos</h4>
+                <p>Quando Carlos aprendeu a usar o Método Destrave na Hora H, ele parou de tentar "competir no grito" e começou a usar sua análise profunda estrategicamente. Resultado? Em 3 meses, foi promovido a líder de projeto.</p>
             </div>
+            
+            <h4>4. A Visão Além do Alcance (Observação Aguçada)</h4>
+            <p>Você nota coisas que passam despercebidas: linguagem corporal, dinâmica de grupos, o "clima" de um ambiente. É como ter um mapa do terreno em tempo real!</p>
+            
+            <h4>5. A Bússola Interna (Integridade e Convicção)</h4>
+            <p>Quando você fala sobre algo que realmente acredita, suas palavras vêm carregadas de uma autenticidade que é magnética. As pessoas sentem quando você está sendo verdadeiro.</p>
         </div>
 
         <!-- Página 4 -->
-        <div class="content-page" data-page="4" style="display: none;">
-            <div class="content-card fade-in">
-                <div class="content-section">
-                    <h2>Por Que às Vezes Parece Tão Difícil Falar? 🤔</h2>
-                    <h3>🔓 E Como Mudar Isso AGORA</h3>
-                    
-                    <div class="illustration">
-                        <img src="processo_comunicacao.png" alt="Processo de Comunicação" style="max-width: 500px;">
-                        <div class="illustration-caption">Entenda as "travas" que impedem sua comunicação</div>
-                    </div>
-
-                    <h3>🔒 As "Travas" Comuns que Seguram Sua Voz</h3>
-                    
-                    <h4>👹 1. O Monstrinho do "E Se?" (Medo do Julgamento)</h4>
-                    <p>"E se acharem minha ideia boba?", "E se eu gaguejar?", "E se ninguém se importar?". Esse monstrinho adora plantar dúvidas.</p>
-
-                    <h4>🎭 2. O Crítico Interno Super Exigente</h4>
-                    <p>Você quer que tudo seja perfeito, inclusive suas palavras. Se não tem CERTEZA ABSOLUTA, prefere ficar quieto. É o famoso "o ótimo inimigo do bom".</p>
-
-                    <h4>🔋 3. A "Bateria Social" no Vermelho</h4>
-                    <p>Ambientes barulhentos ou interações longas drenam sua energia. Quando a bateria está fraca, fica difícil ter clareza para se expressar.</p>
-
-                    <div class="warning-box">
-                        <h4>⚡ A Boa Notícia:</h4>
-                        <p>Essas "travas" não são cadeados indestrutíveis! São apenas portas que podem ser abertas com as chaves certas - e você está prestes a recebê-las.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="page-content" data-page="4">
+            <h3>🚧 Por Que às Vezes Parece Tão Difícil Falar?</h3>
+            <p>Se você tem todos esses superpoderes, por que às vezes parece tão difícil simplesmente falar o que pensa? Vamos identificar as "travas" mais comuns:</p>
+            
+            <h4>1. O Monstrinho do "E Se?" (Medo do Julgamento)</h4>
+            <p>Você pensa mil vezes antes de falar, imaginando todas as possíveis reações negativas. "E se acharem minha ideia boba?", "E se eu gaguejar?". A verdade? A maioria das pessoas está mais preocupada com os próprios "monstrinhos".</p>
+            
+            <h4>2. O Crítico Interno Super Exigente</h4>
+            <p>Você tem um padrão de qualidade altíssimo. Quer que tudo seja perfeito, inclusive suas palavras. Se a frase não sai "exatamente como imaginou", prefere ficar quieto. É o famoso "o ótimo inimigo do bom".</p>
+            
+            <h4>3. A "Bateria Social" no Vermelho</h4>
+            <p>Ambientes barulhentos ou interações sociais longas drenam sua energia. Quando a bateria está fraca, fica difícil ter clareza para se expressar. Não é má vontade, é física!</p>
+            
+            <h4>4. A Dificuldade de "Entrar na Dança"</h4>
+            <p>Conversas em grupo podem parecer uma "dança das cadeiras". Quando você finalmente está pronto para falar, o assunto já mudou ou alguém já "pegou seu lugar".</p>
         </div>
 
         <!-- Página 5 -->
-        <div class="content-page" data-page="5" style="display: none;">
-            <div class="content-card fade-in">
-                <div class="content-section">
-                    <h2>A Dificuldade de "Entrar na Dança" 💃</h2>
-                    
-                    <h4>🎪 4. A Dificuldade de "Entrar na Dança"</h4>
-                    <p>Conversas em grupo, especialmente rápidas e cheias de interrupções, podem parecer uma "dança das cadeiras". Quando você está pronto para falar, o assunto já mudou.</p>
-
-                    <div class="story-box">
-                        <h4>📖 A Transformação do Lucas</h4>
-                        <p>Lucas sempre saía de reuniões frustrado, com a sensação de que suas ideias "morreram na praia". Ele tinha insights valiosos, mas nunca conseguia "entrar na conversa".</p>
-                        <p>Depois de aprender o Método Destrave na Hora H™, Lucas descobriu como usar seus superpoderes para não apenas "entrar na dança", mas liderar o ritmo!</p>
-                    </div>
-
-                    <h3>🗝️ O Método Destrave na Hora H™</h3>
-                    <p>No próximo módulo, você vai descobrir o método simples e poderoso que transforma suas "travas" em trampolins para uma comunicação de impacto.</p>
-
-                    <div class="highlight-box">
-                        <h4>🎯 Reflexão Final:</h4>
-                        <p>Das "travas" que exploramos (Monstrinho do "E Se?", Crítico Interno, Bateria Social, Dificuldade de "Entrar na Dança"), qual mais te afeta? Apenas nomear já é um passo poderoso para desativá-la.</p>
-                    </div>
-                </div>
+        <div class="page-content" data-page="5">
+            <h3>🔑 A Dificuldade de "Entrar na Dança" - A História do Lucas</h3>
+            <p>Lucas trabalhava em uma startup e sempre se sentia frustrado nas reuniões de brainstorming. Enquanto ele processava as informações e formulava uma resposta bem pensada, os colegas já tinham mudado de assunto três vezes.</p>
+            
+            <p>"Parece que todo mundo tem um manual de como participar dessas conversas, menos eu", ele me disse na primeira sessão de coaching.</p>
+            
+            <div class="highlight-box">
+                <h4>💡 O Insight de Lucas</h4>
+                <p>O problema não era Lucas ser "lento" - era ele estar jogando um jogo diferente. Enquanto outros jogavam "ping-pong verbal", ele estava jogando xadrez mental. Ambos são válidos, mas precisam de estratégias diferentes.</p>
+            </div>
+            
+            <p>Depois de aprender o Método Destrave na Hora H, Lucas descobriu como:</p>
+            <ul>
+                <li>Sinalizar que tinha algo a contribuir sem interromper o fluxo</li>
+                <li>Usar frases de transição para "entrar na dança" no momento certo</li>
+                <li>Aproveitar sua capacidade de síntese para fazer intervenções poderosas</li>
+            </ul>
+            
+            <div class="exercise-box">
+                <h4>✏️ Identificando Suas Travas</h4>
+                <p>Das "travas" que exploramos (O Monstrinho do "E Se?", O Crítico Interno, A Bateria Social no Vermelho, A Dificuldade de "Entrar na Dança"), qual delas você sente que mais te afeta? Descreva uma situação específica onde essa trava te impediu de se expressar.</p>
             </div>
         </div>
 
         <!-- Página 6 - Quiz -->
-        <div class="content-page" data-page="6" style="display: none;">
-            <div class="quiz-section">
-                <h2>🎯 Quiz: Qual é Seu Superpoder Dominante?</h2>
-                <div class="quiz-question">
-                    Em uma reunião importante, qual é sua tendência natural?
-                </div>
+        <div class="page-content" data-page="6">
+            <h3>🎯 Descubra Seu Superpoder Dominante</h3>
+            <div class="quiz-container">
+                <div class="quiz-question">Em uma reunião importante, qual é sua tendência natural?</div>
                 <div class="quiz-options">
-                    <div class="quiz-option" data-value="escuta">
-                        🎧 Escuto atentamente todos os pontos antes de formar minha opinião
+                    <div class="quiz-option" onclick="selectOption(this, 'A')">
+                        A) Escuto atentamente todos os pontos antes de formar minha opinião
                     </div>
-                    <div class="quiz-option" data-value="analise">
-                        🔬 Analiso profundamente as implicações de cada proposta
+                    <div class="quiz-option" onclick="selectOption(this, 'B')">
+                        B) Analiso profundamente os prós e contras de cada proposta
                     </div>
-                    <div class="quiz-option" data-value="observacao">
-                        👁️ Observo as reações e dinâmicas entre as pessoas
+                    <div class="quiz-option" onclick="selectOption(this, 'C')">
+                        C) Observo as reações e dinâmicas entre as pessoas
                     </div>
-                    <div class="quiz-option" data-value="foco">
-                        🎯 Mantenho foco total no objetivo principal da reunião
+                    <div class="quiz-option" onclick="selectOption(this, 'D')">
+                        D) Foco intensamente no problema central a ser resolvido
                     </div>
                 </div>
-                <button class="quiz-confirm-btn" onclick="confirmQuizAnswer(1)">✅ CONFIRMAR RESPOSTA</button>
+                <button class="confirm-btn" onclick="showQuizFeedback()">✅ CONFIRMAR RESPOSTA</button>
                 
-                <div class="quiz-feedback" id="quiz1Feedback">
+                <div class="quiz-feedback">
                     <h4>🎉 Excelente escolha!</h4>
-                    <div id="quiz1FeedbackText"></div>
-                    <p><strong>💡 Dica do Alex:</strong> <span id="quiz1Tip"></span></p>
+                    <p id="feedbackText"></p>
+                    <p><strong>Dica do Alex:</strong> <span id="coachTip"></span></p>
                 </div>
                 
                 <button class="complete-btn" onclick="completeModule(1)">🏆 CONCLUIR MÓDULO</button>
             </div>
         </div>
 
-        <div class="navigation">
-            <button class="nav-btn dashboard" onclick="showDashboard()">← Voltar ao Dashboard</button>
-            <button class="nav-btn back" onclick="previousPage(1)" style="display: none;">← Anterior</button>
+        <!-- Navegação -->
+        <div class="page-navigation">
+            <button class="nav-btn prev" onclick="previousPage(1)" disabled>← Anterior</button>
+            <div class="page-indicator">
+                <div class="page-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="page-counter">Página 1 de 6</div>
+            </div>
             <button class="nav-btn next" onclick="nextPage(1)">Próxima →</button>
         </div>
     </div>
 
-    <!-- Modal de Senha -->
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <h3 class="modal-title">Desbloquear: <span id="modalModuleName"></span></h3>
-            <p class="modal-text">Para acessar este módulo, por favor, insira a senha:</p>
-            <input type="password" id="passwordInput" class="modal-input" placeholder="Senha do Módulo">
-            <div class="modal-buttons">
-                <button class="modal-btn cancel" onclick="closePasswordModal()">Cancelar</button>
-                <button class="modal-btn confirm" onclick="validatePassword()">Desbloquear</button>
+    <!-- Conteúdo do Módulo 2 -->
+    <div id="module2Content" class="module-content">
+        <h2>Módulo 2: Domine o Método Destrave na Hora H</h2>
+        
+        <!-- Página 1 -->
+        <div class="page-content active" data-page="1">
+            <h3>🎯 Os 3 Passos Simples do Método Destrave na Hora H</h3>
+            <p>No módulo anterior, descobrimos que você tem superpoderes incríveis e identificamos as "travas" que às vezes aparecem. Agora chegou a hora da grande revelação!</p>
+            
+            <p>O <strong>Método Destrave na Hora H</strong> é como o "manual perdido" da sua Ferrari mental. E este manual é surpreendentemente simples, mas incrivelmente poderoso. Ele se baseia em apenas <strong>3 Passos Fundamentais</strong>.</p>
+            
+            <div class="highlight-box">
+                <h4>🤔 Por que só 3 Passos?</h4>
+                <p>Imagine que você quer montar um móvel. Se você tem um manual simples que diz: 1) Separe as peças, 2) Veja a ordem de montagem, 3) Use as ferramentas certas - a montagem fica fácil, rápida e o resultado é perfeito!</p>
             </div>
+            
+            <p>O Método Destrave na Hora H funciona igual para sua comunicação. Te dá os 3 Passos essenciais para você "montar" suas ideias e palavras de forma que elas saiam com clareza, impacto e sendo 100% você.</p>
+            
+            <h4>🔥 Os 3 Passos Mágicos:</h4>
+            <ol>
+                <li><strong>PONTO:</strong> Vá direto ao que importa</li>
+                <li><strong>PROVA:</strong> Mostre por que isso é verdade</li>
+                <li><strong>PROPOSTA:</strong> Diga o que fazer com essa informação</li>
+            </ol>
+        </div>
+
+        <!-- Página 2 -->
+        <div class="page-content" data-page="2">
+            <h3>🎯 PASSO 1: PONTO - Vá Direto ao Que Importa</h3>
+            <p>O primeiro passo é começar com o que realmente importa. Não rodeios, não "preparação de terreno" excessiva. Vá direto ao ponto principal.</p>
+            
+            <div class="highlight-box">
+                <h4>❌ Jeito Comum (que não funciona):</h4>
+                <p>"Então... eu estava pensando... não sei se vocês concordam, mas talvez... seria interessante considerar... se não for muito incômodo... a possibilidade de..."</p>
+                
+                <h4>✅ Jeito Destrave na Hora H:</h4>
+                <p>"Acredito que devemos mudar nossa estratégia de marketing."</p>
+            </div>
+            
+            <h4>🎯 Como Formular Seu PONTO:</h4>
+            <ul>
+                <li><strong>Seja específico:</strong> "Precisamos contratar mais pessoas" vs "Precisamos contratar 2 desenvolvedores até março"</li>
+                <li><strong>Use convicção:</strong> "Acredito que..." em vez de "Talvez..."</li>
+                <li><strong>Uma ideia por vez:</strong> Não misture 3 assuntos diferentes</li>
+            </ul>
+            
+            <div class="exercise-box">
+                <h4>✏️ Pratique Seu PONTO</h4>
+                <p>Pense em algo que você gostaria de comunicar no trabalho ou vida pessoal. Escreva em uma frase clara e direta, começando com "Acredito que..." ou "Proponho que..."</p>
+            </div>
+        </div>
+
+        <!-- Página 3 -->
+        <div class="page-content" data-page="3">
+            <h3>📊 PASSO 2: PROVA - Mostre Por Que Isso é Verdade</h3>
+            <p>Depois de apresentar seu ponto, você precisa dar credibilidade a ele. Aqui é onde seus superpoderes introvertidos brilham!</p>
+            
+            <h4>🔍 Tipos de PROVA que funcionam:</h4>
+            
+            <h4>1. Dados e Fatos</h4>
+            <p>"Nossos concorrentes cresceram 40% no último trimestre usando essa estratégia."</p>
+            
+            <h4>2. Experiência Pessoal</h4>
+            <p>"Quando implementei isso no projeto anterior, reduzimos os erros em 60%."</p>
+            
+            <h4>3. Lógica e Consequências</h4>
+            <p>"Se continuarmos assim, em 6 meses estaremos perdendo clientes para a concorrência."</p>
+            
+            <h4>4. Exemplos Concretos</h4>
+            <p>"A empresa X fez exatamente isso e aumentou a satisfação do cliente de 70% para 95%."</p>
+            
+            <div class="highlight-box">
+                <h4>💡 Seu Superpoder em Ação</h4>
+                <p>Lembra da sua capacidade de análise profunda? É aqui que ela se torna uma arma secreta! Enquanto outros dão opiniões rasas, você apresenta argumentos sólidos e bem fundamentados.</p>
+            </div>
+        </div>
+
+        <!-- Página 4 -->
+        <div class="page-content" data-page="4">
+            <h3>🚀 PASSO 3: PROPOSTA - Diga o Que Fazer</h3>
+            <p>Muita gente para no problema. Você vai além: apresenta a solução clara e específica.</p>
+            
+            <h4>🎯 Como Criar uma PROPOSTA Poderosa:</h4>
+            
+            <h4>1. Seja Específico</h4>
+            <p><strong>❌ Vago:</strong> "Precisamos melhorar a comunicação"<br>
+            <strong>✅ Específico:</strong> "Proponho reuniões semanais de 30 minutos às segundas-feiras"</p>
+            
+            <h4>2. Inclua Próximos Passos</h4>
+            <p>"Sugiro que comecemos testando isso por 30 dias e avaliemos os resultados."</p>
+            
+            <h4>3. Facilite a Decisão</h4>
+            <p>"Posso preparar um piloto para apresentarmos na próxima reunião. O que acham?"</p>
+            
+            <div class="exercise-box">
+                <h4>✏️ Método Completo em Ação</h4>
+                <p><strong>PONTO:</strong> "Acredito que devemos implementar home office 2 dias por semana."</p>
+                <p><strong>PROVA:</strong> "Estudos mostram 25% de aumento na produtividade e nossa pesquisa interna indica que 80% da equipe quer essa flexibilidade."</p>
+                <p><strong>PROPOSTA:</strong> "Proponho um teste de 3 meses, começando na próxima segunda. Posso elaborar as diretrizes até sexta?"</p>
+            </div>
+        </div>
+
+        <!-- Página 5 -->
+        <div class="page-content" data-page="5">
+            <h3>⚡ Gerenciando Sua Energia Social</h3>
+            <p>Para você, um ambiente barulhento ou uma reunião longa não é apenas "chato" - é literalmente um dreno de energia. Sua "bateria social" é um recurso valioso!</p>
+            
+            <h4>🔋 Estratégias de Energia:</h4>
+            
+            <h4>1. Preparação Estratégica</h4>
+            <p>Antes de entrar em um ambiente socialmente exigente, defina um objetivo claro: "Vou fazer uma pergunta relevante" ou "Vou conversar com duas pessoas específicas". Isso direciona seu foco e economiza energia.</p>
+            
+            <h4>2. O "Ponto de Recarga" Secreto</h4>
+            <p>Identifique um local tranquilo onde possa se retirar por alguns minutos para "respirar" e recalibrar. Pode ser o banheiro, um corredor menos movimentado, ou um momento para olhar o celular. Não é fuga, é estratégia!</p>
+            
+            <h4>3. A Saída Elegante</h4>
+            <p>Reconheça os sinais de que sua energia está acabando. Tenha frases prontas: "Foi um prazer conversar, preciso ir agora" ou "Vou pegar uma água". Sua saúde mental é prioridade.</p>
+            
+            <div class="highlight-box">
+                <h4>🎯 Construindo Pontes de Clareza</h4>
+                <p>Use o poder da pergunta prévia: "Podemos conversar sobre X? Tenho algumas ideias que gostaria de compartilhar." Isso prepara o terreno e reduz a ansiedade da incerteza.</p>
+            </div>
+        </div>
+
+        <!-- Página 6 - Quiz -->
+        <div class="page-content" data-page="6">
+            <h3>🎯 Teste Seu Domínio do Método</h3>
+            <div class="quiz-container">
+                <div class="quiz-question">Qual é a ordem correta dos 3 passos do Método Destrave na Hora H?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, 'A')">
+                        A) Prova → Ponto → Proposta
+                    </div>
+                    <div class="quiz-option" onclick="selectOption(this, 'B')">
+                        B) Ponto → Prova → Proposta
+                    </div>
+                    <div class="quiz-option" onclick="selectOption(this, 'C')">
+                        C) Proposta → Ponto → Prova
+                    </div>
+                    <div class="quiz-option" onclick="selectOption(this, 'D')">
+                        D) Ponto → Proposta → Prova
+                    </div>
+                </div>
+                <button class="confirm-btn" onclick="showQuizFeedback()">✅ CONFIRMAR RESPOSTA</button>
+                
+                <div class="quiz-feedback">
+                    <h4>🎉 Perfeito!</h4>
+                    <p id="feedbackText"></p>
+                    <p><strong>Dica do Alex:</strong> <span id="coachTip"></span></p>
+                </div>
+                
+                <button class="complete-btn" onclick="completeModule(2)">🏆 CONCLUIR MÓDULO</button>
+            </div>
+        </div>
+
+        <!-- Navegação -->
+        <div class="page-navigation">
+            <button class="nav-btn prev" onclick="previousPage(2)" disabled>← Anterior</button>
+            <div class="page-indicator">
+                <div class="page-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="page-counter">Página 1 de 6</div>
+            </div>
+            <button class="nav-btn next" onclick="nextPage(2)">Próxima →</button>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Módulo 3 -->
+    <div id="module3Content" class="module-content">
+        <h2>Módulo 3: Prepare-se para a Transformação</h2>
+        
+        <!-- Página 1 -->
+        <div class="page-content active" data-page="1">
+            <h3>🎯 Consolidando Sua Jornada</h3>
+            <p>Parabéns por chegar até aqui! Você descobriu seus superpoderes introvertidos e dominou o Método Destrave na Hora H. Agora é hora de consolidar todo esse aprendizado e se preparar para a aplicação prática.</p>
+            
+            <div class="highlight-box">
+                <h4>🏆 O Que Você Já Conquistou:</h4>
+                <ul>
+                    <li>✅ Identificou seus superpoderes únicos</li>
+                    <li>✅ Reconheceu e nomeou suas "travas"</li>
+                    <li>✅ Aprendeu os 3 passos do método</li>
+                    <li>✅ Desenvolveu estratégias de energia social</li>
+                </ul>
+            </div>
+            
+            <h4>🚀 Recapitulando Seus Superpoderes:</h4>
+            <ul>
+                <li><strong>Superaudição:</strong> Escuta profunda e captação de nuances</li>
+                <li><strong>Raio-X Mental:</strong> Análise crítica e pensamento profundo</li>
+                <li><strong>Foco de Laser:</strong> Capacidade de concentração intensa</li>
+                <li><strong>Visão Além do Alcance:</strong> Observação aguçada</li>
+                <li><strong>Bússola Interna:</strong> Integridade e convicção autêntica</li>
+            </ul>
+            
+            <p>Estes não são apenas traços de personalidade - são ferramentas poderosas que, quando usadas intencionalmente, transformam sua comunicação.</p>
+        </div>
+
+        <!-- Página 2 -->
+        <div class="page-content" data-page="2">
+            <h3>🔄 Integrando o Método na Vida Real</h3>
+            <p>Agora que você domina a teoria, vamos falar sobre como aplicar o Método Destrave na Hora H em situações reais do dia a dia.</p>
+            
+            <h4>📋 Situações Práticas de Aplicação:</h4>
+            
+            <h4>1. Reuniões de Trabalho</h4>
+            <p><strong>PONTO:</strong> "Acredito que precisamos revisar nosso cronograma de entrega."<br>
+            <strong>PROVA:</strong> "Os últimos 3 projetos atrasaram em média 2 semanas, impactando a satisfação do cliente."<br>
+            <strong>PROPOSTA:</strong> "Sugiro adicionarmos 20% de buffer em todos os prazos a partir do próximo sprint."</p>
+            
+            <h4>2. Conversas Pessoais</h4>
+            <p><strong>PONTO:</strong> "Sinto que precisamos conversar sobre nossa comunicação."<br>
+            <strong>PROVA:</strong> "Nas últimas semanas, tivemos alguns mal-entendidos que poderiam ter sido evitados."<br>
+            <strong>PROPOSTA:</strong> "Que tal reservarmos 30 minutos no domingo para alinharmos a semana?"</p>
+            
+            <h4>3. Apresentações</h4>
+            <p><strong>PONTO:</strong> "Nossa estratégia de marketing digital precisa de ajustes."<br>
+            <strong>PROVA:</strong> "O ROI caiu 15% nos últimos 3 meses, enquanto nossos concorrentes cresceram."<br>
+            <strong>PROPOSTA:</strong> "Proponho realocação de 30% do budget para redes sociais e influenciadores."</p>
+            
+            <div class="exercise-box">
+                <h4>✏️ Seu Plano de Ação</h4>
+                <p>Identifique 3 situações da sua vida (trabalho, família, amigos) onde você pode aplicar o Método Destrave na Hora H esta semana. Para cada uma, esboce rapidamente o PONTO, PROVA e PROPOSTA.</p>
+            </div>
+        </div>
+
+        <!-- Página 3 -->
+        <div class="page-content" data-page="3">
+            <h3>🎓 Cerimônia de Graduação Virtual</h3>
+            <p>Chegou o momento especial! Você completou sua jornada de preparação e está oficialmente pronto para aplicar o Método Destrave na Hora H na vida real.</p>
+            
+            <div class="highlight-box">
+                <h4>🏆 Certificado de Preparação</h4>
+                <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: #2a5298;">
+                    Certificamos que <span id="certificateName"></span><br>
+                    completou com sucesso os módulos preparatórios do<br>
+                    <strong>MÉTODO DESTRAVE NA HORA H</strong><br>
+                    e está preparado(a) para a transformação completa.
+                </p>
+                <p style="text-align: center; margin-top: 20px;">
+                    <em>"Sua voz autêntica é seu maior poder.<br>
+                    Agora você tem as ferramentas para usá-la."</em>
+                </p>
+            </div>
+            
+            <h4>🎯 Próximos Passos na Sua Jornada:</h4>
+            <p>Você está agora preparado para avançar para os <strong>7 Passos Práticos</strong> da transformação completa, onde aplicará tudo que aprendeu em situações reais e desafiadoras.</p>
+            
+            <p>Lembre-se: você não está se transformando em outra pessoa. Você está descobrindo e potencializando quem você sempre foi. Sua introversão é seu superpoder, e agora você tem o manual para usá-la.</p>
+            
+            <div class="exercise-box">
+                <h4>🎉 Celebre Sua Conquista</h4>
+                <p>Antes de seguir para os próximos passos, tome um momento para reconhecer o quanto você já evoluiu. Escreva uma frase sobre como se sente agora comparado ao início desta jornada.</p>
+            </div>
+            
+            <button class="complete-btn" onclick="completeModule(3)" style="display: block; margin: 30px auto;">🎓 ACEITAR CERTIFICADO E CONCLUIR</button>
+        </div>
+
+        <!-- Navegação -->
+        <div class="page-navigation">
+            <button class="nav-btn prev" onclick="previousPage(3)" disabled>← Anterior</button>
+            <div class="page-indicator">
+                <div class="page-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="page-counter">Página 1 de 3</div>
+            </div>
+            <button class="nav-btn next" onclick="nextPage(3)">Próxima →</button>
         </div>
     </div>
 
     <!-- Notificação -->
-    <div id="notification" class="notification">
-        <div id="notificationText"></div>
-    </div>
+    <div id="notification" class="notification"></div>
 
     <script>
-        // Estado do aplicativo
+        // Variáveis globais
         let currentUser = '';
-        let userPoints = 0;
-        let userAchievements = 1;
-        let moduleProgress = {
-            1: { completed: false, progress: 0, currentPage: 1, totalPages: 6 },
-            2: { completed: false, progress: 0, unlocked: false },
-            3: { completed: false, progress: 0, unlocked: false }
+        let currentModule = 0;
+        let currentPage = 1;
+        let selectedAnswer = '';
+        let currentModuleToUnlock = 0;
+        let unlockedModules = [1]; // Módulo 1 sempre desbloqueado
+        let modulePages = {
+            1: 6,
+            2: 6,
+            3: 3
         };
 
-        // Senhas dos módulos (ocultas)
-        const passwords = {
+        // Senhas dos módulos (ocultas do usuário)
+        const modulePasswords = {
             2: 'destrave',
-            3: 'transforma',
-            'step1': 'passo1',
-            'step2': 'passo2',
-            'step3': 'passo3',
-            'step4': 'passo4',
-            'step5': 'passo5',
-            'step6': 'passo6',
-            'step7': 'passo7'
+            3: 'transforma'
         };
+
+        // Sistema de pontuação
+        let userPoints = 0;
+        let userLevel = 'Novato';
 
         // Login
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        function login() {
             const name = document.getElementById('userName').value.trim();
             const password = document.getElementById('userPassword').value;
             
-            if (name && password === 'destrave2024') {
-                currentUser = name;
-                document.getElementById('welcomeUserName').textContent = name;
-                document.getElementById('headerUserName').textContent = name;
-                
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('welcomeScreen').style.display = 'flex';
-                
-                showNotification(`Bem-vindo, ${name}! Acesso liberado com sucesso.`);
-            } else {
-                showNotification('Senha incorreta. Verifique sua área de membros.', 'error');
+            if (!name) {
+                showNotification('Por favor, insira seu nome completo.', 'error');
+                return;
             }
-        });
-
-        // Mostrar Dashboard
-        function showDashboard() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('header').style.display = 'flex';
-            document.getElementById('dashboard').style.display = 'block';
             
-            // Animar elementos
-            setTimeout(() => {
-                document.querySelectorAll('.fade-in').forEach((el, index) => {
-                    setTimeout(() => {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    }, index * 100);
-                });
-            }, 100);
+            if (password !== 'destrave2024') {
+                showNotification('Senha incorreta. Verifique na área de membros.', 'error');
+                return;
+            }
             
-            updateProgress();
-            showNotification('Bem-vindo à sua jornada de transformação!');
+            currentUser = name;
+            document.getElementById('welcomeName').textContent = name;
+            document.getElementById('dashboardName').textContent = name;
+            document.getElementById('certificateName').textContent = name;
+            
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'flex';
+            
+            showNotification(`Bem-vindo(a), ${name}!`);
         }
 
-        // Iniciar Módulo
+        // Mostrar dashboard
+        function showDashboard() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        }
+
+        // Iniciar módulo
         function startModule(moduleNumber) {
-            if (moduleNumber === 1 || moduleProgress[moduleNumber].unlocked) {
-                document.getElementById('dashboard').style.display = 'none';
-                document.getElementById(`module${moduleNumber}Content`).style.display = 'block';
-                document.getElementById(`module${moduleNumber}Content`).classList.add('active');
+            if (!unlockedModules.includes(moduleNumber)) {
+                showNotification('Este módulo está bloqueado. Insira a senha para desbloqueá-lo.', 'error');
+                return;
+            }
+            
+            currentModule = moduleNumber;
+            currentPage = 1;
+            
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById(`module${moduleNumber}Content`).style.display = 'block';
+            
+            updatePageDisplay(moduleNumber);
+            addPoints(50, `Iniciou o Módulo ${moduleNumber}`);
+            
+            showNotification(`Módulo ${moduleNumber} iniciado! +50 pontos`);
+        }
+
+        // Solicitar senha
+        function requestPassword(moduleNumber) {
+            currentModuleToUnlock = moduleNumber;
+            document.getElementById('passwordModal').style.display = 'flex';
+            document.getElementById('modulePassword').value = '';
+            document.getElementById('modulePassword').focus();
+        }
+
+        // Fechar modal de senha
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            currentModuleToUnlock = 0;
+        }
+
+        // Desbloquear módulo
+        function unlockModule() {
+            const password = document.getElementById('modulePassword').value;
+            
+            if (password === modulePasswords[currentModuleToUnlock]) {
+                unlockedModules.push(currentModuleToUnlock);
                 
-                // Resetar para primeira página
-                showPage(moduleNumber, 1);
+                // Atualizar visual do módulo
+                const moduleCard = document.querySelector(`.module-card:nth-child(${currentModuleToUnlock})`);
+                moduleCard.classList.remove('locked');
+                moduleCard.classList.add('unlocked');
+                moduleCard.onclick = null;
                 
-                // Adicionar pontos por iniciar
-                if (moduleProgress[moduleNumber].progress === 0) {
-                    addPoints(50);
-                    showNotification(`+50 pontos! Módulo ${moduleNumber} iniciado!`);
-                }
+                const lockedMessage = moduleCard.querySelector('.locked-message');
+                lockedMessage.outerHTML = `<button class="module-btn start" onclick="startModule(${currentModuleToUnlock})">🚀 INICIAR MÓDULO</button>`;
+                
+                closePasswordModal();
+                showNotification(`Módulo ${currentModuleToUnlock} desbloqueado com sucesso!`);
+                addPoints(100, `Desbloqueou o Módulo ${currentModuleToUnlock}`);
             } else {
-                showNotification('Este módulo está bloqueado. Use a senha para desbloqueá-lo.', 'error');
+                showNotification('Senha incorreta. Verifique na área de membros.', 'error');
             }
         }
 
         // Navegação entre páginas
-        function showPage(moduleNumber, pageNumber) {
-            const module = document.getElementById(`module${moduleNumber}Content`);
-            const pages = module.querySelectorAll('.content-page');
-            const dots = module.querySelectorAll('.page-dot');
-            const currentPageSpan = document.getElementById(`module${moduleNumber}CurrentPage`);
-            const backBtn = module.querySelector('.nav-btn.back');
-            const nextBtn = module.querySelector('.nav-btn.next');
-            
-            // Esconder todas as páginas
-            pages.forEach(page => page.style.display = 'none');
-            
-            // Mostrar página atual
-            const currentPage = pages[pageNumber - 1];
-            if (currentPage) {
-                currentPage.style.display = 'block';
-                currentPage.classList.add('fade-in');
-            }
-            
-            // Atualizar dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === pageNumber - 1);
-            });
-            
-            // Atualizar indicador
-            if (currentPageSpan) {
-                currentPageSpan.textContent = pageNumber;
-            }
-            
-            // Atualizar botões de navegação
-            if (backBtn) {
-                backBtn.style.display = pageNumber > 1 ? 'inline-block' : 'none';
-            }
-            
-            if (nextBtn) {
-                if (pageNumber < moduleProgress[moduleNumber].totalPages) {
-                    nextBtn.textContent = 'Próxima →';
-                    nextBtn.onclick = () => nextPage(moduleNumber);
-                } else {
-                    nextBtn.textContent = 'Ir para Quiz →';
-                    nextBtn.onclick = () => nextPage(moduleNumber);
-                }
-            }
-            
-            // Atualizar progresso do módulo
-            moduleProgress[moduleNumber].currentPage = pageNumber;
-            const progress = Math.round((pageNumber / moduleProgress[moduleNumber].totalPages) * 100);
-            moduleProgress[moduleNumber].progress = progress;
-            
-            // Adicionar pontos por página concluída
-            if (pageNumber > 1) {
-                addPoints(100);
-                showNotification('+100 pontos! Página concluída!');
-            }
-            
-            updateProgress();
-        }
-
         function nextPage(moduleNumber) {
-            const currentPage = moduleProgress[moduleNumber].currentPage;
-            const totalPages = moduleProgress[moduleNumber].totalPages;
-            
-            if (currentPage < totalPages) {
-                showPage(moduleNumber, currentPage + 1);
+            if (currentPage < modulePages[moduleNumber]) {
+                currentPage++;
+                updatePageDisplay(moduleNumber);
+                addPoints(100, `Completou página ${currentPage - 1} do Módulo ${moduleNumber}`);
             }
         }
 
         function previousPage(moduleNumber) {
-            const currentPage = moduleProgress[moduleNumber].currentPage;
-            
             if (currentPage > 1) {
-                showPage(moduleNumber, currentPage - 1);
+                currentPage--;
+                updatePageDisplay(moduleNumber);
+            }
+        }
+
+        function updatePageDisplay(moduleNumber) {
+            const moduleContent = document.getElementById(`module${moduleNumber}Content`);
+            const pages = moduleContent.querySelectorAll('.page-content');
+            const dots = moduleContent.querySelectorAll('.dot');
+            const counter = moduleContent.querySelector('.page-counter');
+            const prevBtn = moduleContent.querySelector('.nav-btn.prev');
+            const nextBtn = moduleContent.querySelector('.nav-btn.next');
+            
+            // Atualizar páginas
+            pages.forEach((page, index) => {
+                page.classList.toggle('active', index + 1 === currentPage);
+            });
+            
+            // Atualizar dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentPage);
+            });
+            
+            // Atualizar contador
+            counter.textContent = `Página ${currentPage} de ${modulePages[moduleNumber]}`;
+            
+            // Atualizar botões
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === modulePages[moduleNumber];
+            
+            if (currentPage === modulePages[moduleNumber]) {
+                nextBtn.textContent = 'Ir para Quiz →';
+            } else {
+                nextBtn.textContent = 'Próxima →';
             }
         }
 
         // Quiz
-        let selectedQuizAnswer = null;
-
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('quiz-option')) {
-                // Remover seleção anterior
-                document.querySelectorAll('.quiz-option').forEach(option => {
-                    option.classList.remove('selected');
-                });
-                
-                // Selecionar nova opção
-                e.target.classList.add('selected');
-                selectedQuizAnswer = e.target.getAttribute('data-value');
-                
-                // Mostrar botão de confirmar
-                document.querySelector('.quiz-confirm-btn').classList.add('show');
-            }
-        });
-
-        function confirmQuizAnswer(moduleNumber) {
-            if (!selectedQuizAnswer) return;
+        function selectOption(element, answer) {
+            // Remover seleção anterior
+            const options = element.parentNode.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.classList.remove('selected'));
             
-            const feedbacks = {
-                escuta: {
-                    text: "Sua Superaudição é seu superpoder dominante! Você tem a capacidade rara de realmente ouvir e compreender as pessoas.",
-                    tip: "Use esse superpoder fazendo perguntas inteligentes que mostrem que você realmente escutou. Isso cria conexão instantânea!"
-                },
-                analise: {
-                    text: "Seu Raio-X Mental é extraordinário! Você vê além da superfície e compreende as implicações profundas das situações.",
-                    tip: "Compartilhe suas análises de forma simples e visual. Use frases como 'Se olharmos mais fundo...' para introduzir seus insights."
-                },
-                observacao: {
-                    text: "Sua Visão Além do Alcance é impressionante! Você capta dinâmicas e sinais que outros perdem completamente.",
-                    tip: "Use suas observações para facilitar conversas. Frases como 'Percebo que...' podem abrir diálogos importantes."
-                },
-                foco: {
-                    text: "Seu Foco de Laser é seu diferencial! Em um mundo de distrações, sua concentração é um superpoder valioso.",
-                    tip: "Use seu foco para guiar conversas de volta ao essencial. Seja o 'GPS' que mantém todos no caminho certo."
-                }
-            };
+            // Selecionar nova opção
+            element.classList.add('selected');
+            selectedAnswer = answer;
             
-            const feedback = feedbacks[selectedQuizAnswer];
-            document.getElementById('quiz1FeedbackText').textContent = feedback.text;
-            document.getElementById('quiz1Tip').textContent = feedback.tip;
-            
-            // Mostrar feedback
-            document.getElementById('quiz1Feedback').classList.add('show');
-            
-            // Esconder botão de confirmar e mostrar botão de completar
-            document.querySelector('.quiz-confirm-btn').style.display = 'none';
-            document.querySelector('.complete-btn').classList.add('show');
-            
-            // Adicionar pontos
-            addPoints(200);
-            showNotification('+200 pontos! Quiz concluído com sucesso!');
+            // Mostrar botão de confirmar
+            const confirmBtn = element.parentNode.parentNode.querySelector('.confirm-btn');
+            confirmBtn.style.display = 'inline-block';
         }
 
-        // Completar Módulo
-        function completeModule(moduleNumber) {
-            moduleProgress[moduleNumber].completed = true;
-            moduleProgress[moduleNumber].progress = 100;
+        function showQuizFeedback() {
+            const feedbackDiv = document.querySelector('.quiz-feedback');
+            const feedbackText = document.getElementById('feedbackText');
+            const coachTip = document.getElementById('coachTip');
+            const completeBtn = document.querySelector('.complete-btn');
             
-            // Adicionar pontos de conclusão
-            addPoints(300);
+            let feedback = '';
+            let tip = '';
             
-            // Adicionar conquista
-            if (moduleNumber === 1) {
-                userAchievements++;
-                showNotification('🏆 Nova conquista desbloqueada: "Primeiro Superpoder Descoberto"!');
+            if (currentModule === 1) {
+                const feedbacks = {
+                    'A': {
+                        text: 'Seu superpoder dominante é a SUPERAUDIÇÃO! Você tem uma capacidade incrível de escutar profundamente e captar nuances que outros perdem.',
+                        tip: 'Use essa habilidade para fazer perguntas mais inteligentes e oferecer soluções mais precisas nas conversas.'
+                    },
+                    'B': {
+                        text: 'Seu superpoder dominante é o RAIO-X MENTAL! Você analisa profundamente e vê além do superficial.',
+                        tip: 'Suas opiniões bem fundamentadas são seu diferencial. Use-as para liderar discussões importantes.'
+                    },
+                    'C': {
+                        text: 'Seu superpoder dominante é a VISÃO ALÉM DO ALCANCE! Você observa dinâmicas e detalhes que passam despercebidos.',
+                        tip: 'Use essa percepção para adaptar sua comunicação ao "clima" do ambiente e às pessoas envolvidas.'
+                    },
+                    'D': {
+                        text: 'Seu superpoder dominante é o FOCO DE LASER! Você consegue se concentrar intensamente no que realmente importa.',
+                        tip: 'Use essa concentração para manter conversas objetivas e entregar mensagens claras e diretas.'
+                    }
+                };
+                
+                const selectedFeedback = feedbacks[selectedAnswer] || feedbacks['A'];
+                feedback = selectedFeedback.text;
+                tip = selectedFeedback.tip;
+            } else if (currentModule === 2) {
+                if (selectedAnswer === 'B') {
+                    feedback = 'Correto! A sequência é PONTO → PROVA → PROPOSTA. Você dominou a essência do método!';
+                    tip = 'Pratique essa sequência em conversas do dia a dia. Comece sempre com o ponto principal, depois justifique e termine com uma ação clara.';
+                } else {
+                    feedback = 'A resposta correta é PONTO → PROVA → PROPOSTA. Mas não se preocupe, o importante é praticar!';
+                    tip = 'Lembre-se: primeiro o que você quer comunicar, depois por que é importante, e finalmente o que fazer com essa informação.';
+                }
             }
+            
+            feedbackText.textContent = feedback;
+            coachTip.textContent = tip;
+            
+            feedbackDiv.style.display = 'block';
+            completeBtn.style.display = 'inline-block';
+            
+            addPoints(200, `Respondeu ao quiz do Módulo ${currentModule}`);
+        }
+
+        // Completar módulo
+        function completeModule(moduleNumber) {
+            addPoints(300, `Concluiu o Módulo ${moduleNumber}`);
             
             // Voltar ao dashboard
-            setTimeout(() => {
-                document.getElementById(`module${moduleNumber}Content`).style.display = 'none';
-                document.getElementById(`module${moduleNumber}Content`).classList.remove('active');
-                document.getElementById('dashboard').style.display = 'block';
-                
-                updateProgress();
-                showNotification(`🎉 Módulo ${moduleNumber} concluído! +300 pontos de bônus!`);
-            }, 1000);
-        }
-
-        // Sistema de Senhas
-        let currentModuleToUnlock = null;
-
-        function requestPassword(moduleId) {
-            currentModuleToUnlock = moduleId;
-            const moduleNames = {
-                2: 'Módulo 2',
-                3: 'Módulo 3',
-                'step1': 'Passo 1',
-                'step2': 'Passo 2',
-                'step3': 'Passo 3',
-                'step4': 'Passo 4',
-                'step5': 'Passo 5',
-                'step6': 'Passo 6',
-                'step7': 'Passo 7'
-            };
+            document.getElementById(`module${moduleNumber}Content`).style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
             
-            document.getElementById('modalModuleName').textContent = moduleNames[moduleId];
-            document.getElementById('passwordModal').classList.add('show');
-            document.getElementById('passwordInput').focus();
-        }
-
-        function closePasswordModal() {
-            document.getElementById('passwordModal').classList.remove('show');
-            document.getElementById('passwordInput').value = '';
-            currentModuleToUnlock = null;
-        }
-
-        function validatePassword() {
-            const enteredPassword = document.getElementById('passwordInput').value;
-            const correctPassword = passwords[currentModuleToUnlock];
+            // Reset do módulo
+            currentModule = 0;
+            currentPage = 1;
+            selectedAnswer = '';
             
-            if (enteredPassword === correctPassword) {
-                // Desbloquear módulo
-                if (typeof currentModuleToUnlock === 'number') {
-                    moduleProgress[currentModuleToUnlock].unlocked = true;
-                    
-                    // Atualizar visual do botão
-                    const moduleCard = document.querySelector(`[onclick="requestPassword(${currentModuleToUnlock})"]`).closest('.module-card');
-                    moduleCard.classList.remove('locked');
-                    
-                    const button = moduleCard.querySelector('.module-btn');
-                    button.className = 'module-btn start';
-                    button.textContent = '🚀 INICIAR MÓDULO';
-                    button.onclick = () => startModule(currentModuleToUnlock);
-                }
-                
-                closePasswordModal();
-                showNotification(`✅ ${document.getElementById('modalModuleName').textContent} desbloqueado com sucesso!`);
-                addPoints(100);
-            } else {
-                showNotification('Senha incorreta. Verifique sua área de membros.', 'error');
+            showNotification(`Parabéns! Módulo ${moduleNumber} concluído! +300 pontos`);
+            
+            // Verificar se deve desbloquear próximo módulo automaticamente
+            if (moduleNumber === 1 && !unlockedModules.includes(2)) {
+                // Módulo 1 concluído, mas módulo 2 ainda precisa de senha
+                showNotification('Módulo 2 disponível! Use a senha da área de membros para desbloqueá-lo.');
             }
         }
 
-        // Sistema de Pontos e Progresso
-        function addPoints(points) {
+        // Sistema de pontuação
+        function addPoints(points, reason) {
             userPoints += points;
-            document.getElementById('userPoints').textContent = userPoints;
-            document.getElementById('currentPoints').textContent = userPoints;
-            updateProgress();
+            updateLevel();
         }
 
-        function updateProgress() {
-            // Atualizar progresso geral
-            const totalModules = 3;
-            let completedModules = 0;
-            
-            for (let i = 1; i <= totalModules; i++) {
-                if (moduleProgress[i].completed) {
-                    completedModules++;
-                }
-                
-                // Atualizar progresso individual do módulo
-                const progressElement = document.getElementById(`module${i}Progress`);
-                const progressBarElement = document.getElementById(`module${i}ProgressBar`);
-                
-                if (progressElement && progressBarElement) {
-                    progressElement.textContent = `${moduleProgress[i].progress}%`;
-                    progressBarElement.style.width = `${moduleProgress[i].progress}%`;
-                }
+        function updateLevel() {
+            if (userPoints >= 1500) {
+                userLevel = 'Mestre da Comunicação';
+            } else if (userPoints >= 1000) {
+                userLevel = 'Comunicador Avançado';
+            } else if (userPoints >= 500) {
+                userLevel = 'Comunicador Intermediário';
+            } else {
+                userLevel = 'Novato em Evolução';
             }
-            
-            // Atualizar barra de progresso geral
-            const overallProgress = Math.round((userPoints / 2500) * 100);
-            document.getElementById('overallProgress').style.width = `${Math.min(overallProgress, 100)}%`;
-            
-            // Atualizar conquistas
-            document.getElementById('userAchievements').textContent = userAchievements;
         }
 
-        // Sistema de Notificações
+        // Notificações
         function showNotification(message, type = 'success') {
             const notification = document.getElementById('notification');
-            const notificationText = document.getElementById('notificationText');
-            
-            notificationText.textContent = message;
+            notification.textContent = message;
             notification.className = `notification ${type}`;
             notification.classList.add('show');
             
@@ -1899,48 +1449,21 @@
             }, 4000);
         }
 
-        // Eventos de teclado
+        // Event listeners
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('show')) {
-                validatePassword();
-            }
-            
-            if (e.key === 'Escape') {
-                closePasswordModal();
+            if (e.key === 'Enter') {
+                const modal = document.getElementById('passwordModal');
+                if (modal.style.display === 'flex') {
+                    unlockModule();
+                }
             }
         });
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Aplicar animações suaves
-            document.body.style.opacity = '1';
-            
-            // Configurar scroll suave
-            document.documentElement.style.scrollBehavior = 'smooth';
-            
-            // Otimizações de performance
-            document.querySelectorAll('.module-card, .content-card, .quiz-section').forEach(el => {
-                el.classList.add('gpu-accelerated');
-            });
+            // Focar no campo de nome ao carregar
+            document.getElementById('userName').focus();
         });
-
-        // Otimizações de performance para animações
-        function optimizeAnimations() {
-            const cards = document.querySelectorAll('.module-card, .content-card');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-        }
-
-        // Chamar otimizações após carregamento
-        window.addEventListener('load', optimizeAnimations);
     </script>
 </body>
 </html>
