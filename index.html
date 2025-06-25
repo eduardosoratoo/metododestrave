@@ -11,33 +11,141 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
-            min-height: 100vh;
-            color: #333;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Login Screen Styles */
-        .login-screen {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+            min-height: 100vh;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* Animações suaves */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes scaleIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+
+        /* Transições suaves para todos os elementos interativos */
+        button, .card, .module-card, .progress-bar {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .user-stats {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Tela de Login */
+        .login-screen {
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 2rem;
         }
 
-        .login-container {
+        .login-card {
             background: white;
-            border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
             width: 100%;
             text-align: center;
         }
 
-        .login-logo {
+        .login-icon {
             width: 80px;
             height: 80px;
             background: linear-gradient(135deg, #1e40af, #3b82f6);
@@ -45,39 +153,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 2rem;
-            color: white;
             font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            color: white;
         }
 
         .login-title {
             font-size: 2rem;
+            font-weight: 700;
             color: #1e40af;
             margin-bottom: 0.5rem;
-            font-weight: bold;
         }
 
         .login-subtitle {
-            color: #64748b;
+            color: #6b7280;
             margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
         }
 
         .form-group {
+            margin-bottom: 1.5rem;
             text-align: left;
         }
 
         .form-label {
             display: block;
+            font-weight: 600;
             margin-bottom: 0.5rem;
             color: #374151;
-            font-weight: 600;
         }
 
         .form-input {
@@ -95,249 +197,217 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
-        .login-button {
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
             background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
             border: none;
-            padding: 1rem 2rem;
             border-radius: 10px;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
+            margin-bottom: 1.5rem;
             transition: all 0.3s ease;
-            margin-top: 1rem;
         }
 
-        .login-button:hover {
+        .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.4);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
         }
 
-        .login-info {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border: 1px solid #0ea5e9;
-            border-radius: 10px;
+        .login-help {
+            background: #f0f9ff;
             padding: 1rem;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: #0c4a6e;
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
         }
 
-        /* Main App Styles */
-        .app-container {
-            display: none;
+        .login-help-title {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
         }
 
-        .app-container.active {
-            display: block;
+        .login-help-text {
+            font-size: 0.875rem;
+            color: #6b7280;
         }
 
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            border-radius: 50%;
+        /* Tela de Boas-vindas */
+        .welcome-screen {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logo-text h1 {
-            font-size: 1.5rem;
-            color: #1e40af;
-            margin: 0;
-        }
-
-        .logo-text p {
-            font-size: 0.9rem;
-            color: #64748b;
-            margin: 0;
-        }
-
-        .user-stats {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1e40af;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 2rem;
         }
 
-        .welcome-section {
+        .welcome-card {
             background: white;
-            border-radius: 20px;
             padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            width: 100%;
             text-align: center;
         }
 
-        .welcome-section h1 {
+        .welcome-title {
             font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e40af;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .welcome-section p {
-            font-size: 1.2rem;
-            color: #4b5563;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .mentor-card {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
             display: flex;
             align-items: center;
-            gap: 2rem;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .mentor-section {
+            margin: 2rem 0;
+        }
+
+        .mentor-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .mentor-title {
+            font-style: italic;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
         }
 
         .mentor-avatar {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            background: linear-gradient(135deg, #059669, #10b981);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-size: 2rem;
+            margin: 0 auto 1rem;
+            color: white;
         }
 
-        .mentor-content h3 {
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .mentor-content p {
-            color: #4b5563;
+        .mentor-message {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #059669;
             font-style: italic;
-            line-height: 1.5;
+            color: #374151;
+            margin-bottom: 2rem;
         }
 
-        .start-button {
+        .start-btn {
+            padding: 1rem 2rem;
             background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
         }
 
-        .start-button:hover {
+        .start-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
         }
 
+        /* Dashboard */
         .dashboard {
-            display: none;
-        }
-
-        .dashboard.active {
-            display: block;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .progress-overview {
             background: white;
-            border-radius: 20px;
             padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .progress-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-container {
+            background: #f3f4f6;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
         }
 
         .progress-bar {
-            background: #e5e7eb;
-            border-radius: 10px;
-            height: 20px;
-            margin: 1rem 0;
-            overflow: hidden;
+            height: 100%;
+            background: linear-gradient(90deg, #059669, #10b981);
+            border-radius: 6px;
+            transition: width 0.8s ease;
         }
 
-        .progress-fill {
-            background: linear-gradient(135deg, #059669, #10b981);
-            height: 100%;
-            border-radius: 10px;
-            transition: width 0.5s ease;
+        .progress-text {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Módulos */
+        .modules-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 1.5rem;
         }
 
         .module-card {
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-        }
-
-        .module-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-        }
-
-        .module-card.completed {
-            border-color: #059669;
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
         .module-card.locked {
-            border-color: #f59e0b;
-            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4); }
         }
 
         .module-header {
@@ -358,193 +428,115 @@
             color: white;
         }
 
-        .module-icon.module1 { background: linear-gradient(135deg, #1e40af, #3b82f6); }
-        .module-icon.module2 { background: linear-gradient(135deg, #0891b2, #06b6d4); }
-        .module-icon.module3 { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+        .module-icon.blue {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+        }
+
+        .module-icon.teal {
+            background: linear-gradient(135deg, #0891b2, #06b6d4);
+        }
+
+        .module-icon.purple {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+        }
 
         .module-info h3 {
-            color: #1e40af;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f2937;
             margin-bottom: 0.5rem;
         }
 
         .module-info p {
-            color: #64748b;
+            color: #6b7280;
             font-size: 0.9rem;
         }
 
         .module-progress {
+            margin: 1.5rem 0;
+        }
+
+        .module-progress-label {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 1rem 0;
+            margin-bottom: 0.5rem;
         }
 
-        .progress-text {
-            font-weight: bold;
-            color: #1e40af;
+        .module-progress-text {
+            font-weight: 600;
+            color: #1f2937;
         }
 
-        .progress-percentage {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .module-progress-percent {
+            font-weight: 700;
             color: #059669;
         }
 
-        .module-button {
+        .module-progress-bar {
+            background: #f3f4f6;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .module-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #059669, #10b981);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .module-btn {
             width: 100%;
             padding: 1rem;
             border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
         }
 
-        .module-button.start {
+        .module-btn.start {
             background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
-            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
         }
 
-        .module-button.start:hover {
+        .module-btn.start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.6);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
         }
 
-        .module-button.completed {
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: white;
-            cursor: default;
-        }
-
-        .module-button.locked {
+        .module-btn.locked {
             background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            color: #92400e;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            color: white;
             position: relative;
             overflow: hidden;
         }
 
-        .module-button.locked:hover {
+        .module-btn.locked:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
         }
 
-        .module-button.locked::before {
-            content: '🔐';
-            margin-right: 0.5rem;
-        }
-
-        .module-button.locked::after {
+        .module-btn.locked::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shimmer 2s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 2s infinite;
         }
 
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
-        .achievements-section {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .achievement {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 15px;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .achievement.unlocked {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            transform: scale(1.05);
-        }
-
-        .achievement-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-name {
-            font-weight: bold;
-            color: #1e40af;
-            font-size: 0.9rem;
-        }
-
-        .steps-section {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .step-card {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            opacity: 0.6;
-            transition: all 0.3s ease;
-        }
-
-        .step-card.available {
-            opacity: 1;
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            transform: scale(1.02);
-        }
-
-        .step-number {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-weight: bold;
-        }
-
-        .step-title {
-            font-weight: bold;
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .step-description {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
+        /* Modal de Senha */
         .modal {
             display: none;
             position: fixed;
@@ -552,51 +544,62 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
-        }
-
-        .modal.active {
-            display: flex;
+            z-index: 1000;
             align-items: center;
             justify-content: center;
         }
 
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
+        .modal.show {
+            display: flex;
         }
 
-        .modal-header {
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            color: #6b7280;
             margin-bottom: 1.5rem;
         }
 
-        .modal-header h3 {
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-header p {
-            color: #64748b;
-        }
-
-        .password-input {
+        .modal-input {
             width: 100%;
             padding: 1rem;
             border: 2px solid #e5e7eb;
             border-radius: 10px;
-            font-size: 1.1rem;
-            margin: 1rem 0;
-            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        .password-input:focus {
+        .modal-input:focus {
             outline: none;
             border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
@@ -605,95 +608,74 @@
         .modal-buttons {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
         }
 
-        .modal-button {
+        .modal-btn {
             flex: 1;
-            padding: 1rem;
+            padding: 0.75rem;
             border: none;
-            border-radius: 10px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .modal-button.primary {
+        .modal-btn.cancel {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .modal-btn.cancel:hover {
+            background: #e5e7eb;
+        }
+
+        .modal-btn.confirm {
             background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
         }
 
-        .modal-button.secondary {
-            background: #e5e7eb;
-            color: #4b5563;
+        .modal-btn.confirm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
         }
 
-        .modal-button:hover {
-            transform: translateY(-2px);
-        }
-
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: white;
-            border-radius: 10px;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 1001;
-            transform: translateX(400px);
-            transition: all 0.3s ease;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification.success {
-            border-left: 4px solid #059669;
-        }
-
-        .notification.error {
-            border-left: 4px solid #dc2626;
-        }
-
-        .content-view {
+        /* Conteúdo do Módulo */
+        .module-content {
             display: none;
-            background: white;
-            border-radius: 20px;
             padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .content-view.active {
+        .module-content.active {
             display: block;
         }
 
-        .content-header {
+        .module-header-content {
             text-align: center;
             margin-bottom: 2rem;
         }
 
-        .content-title {
-            font-size: 2rem;
+        .module-title {
+            font-size: 2.5rem;
+            font-weight: 700;
             color: #1e40af;
             margin-bottom: 0.5rem;
         }
 
-        .content-subtitle {
-            color: #64748b;
+        .module-page-indicator {
+            color: #6b7280;
             margin-bottom: 1rem;
         }
 
-        .page-indicators {
+        .page-dots {
             display: flex;
             justify-content: center;
             gap: 0.5rem;
             margin-bottom: 2rem;
         }
 
-        .page-indicator {
+        .page-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -701,1697 +683,1264 @@
             transition: all 0.3s ease;
         }
 
-        .page-indicator.active {
+        .page-dot.active {
             background: #3b82f6;
             transform: scale(1.2);
+        }
+
+        .content-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
         }
 
         .content-section {
             margin-bottom: 2rem;
         }
 
-        .content-section h3 {
-            color: #1e40af;
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
+        .content-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-section p {
+            color: #374151;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-left: 4px solid #3b82f6;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h4 {
+            color: #1e40af;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
         .story-box {
-            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
             border-left: 4px solid #059669;
             padding: 1.5rem;
             border-radius: 10px;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
         }
 
-        .story-title {
-            font-weight: bold;
-            color: #065f46;
+        .story-box h4 {
+            color: #059669;
+            font-weight: 600;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .insight-box {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
+        .warning-box {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
             border-left: 4px solid #f59e0b;
             padding: 1.5rem;
             border-radius: 10px;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
         }
 
-        .insight-title {
-            font-weight: bold;
-            color: #92400e;
+        .warning-box h4 {
+            color: #d97706;
+            font-weight: 600;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .superpowers-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
+        .illustration {
+            text-align: center;
+            margin: 2rem 0;
         }
 
-        .superpower {
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 1rem;
-            transition: all 0.3s ease;
+        .illustration img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .superpower:hover {
-            border-color: #3b82f6;
-            transform: translateY(-2px);
+        .illustration-caption {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+            font-style: italic;
         }
 
-        .superpower-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .superpower-title {
-            font-weight: bold;
-            color: #1e40af;
-        }
-
-        .superpower-description {
-            color: #4b5563;
-            font-size: 0.9rem;
-        }
-
-        .navigation-buttons {
+        /* Navegação */
+        .navigation {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-top: 2rem;
-            gap: 1rem;
         }
 
-        .nav-button {
-            padding: 1rem 2rem;
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 10px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .nav-button.previous {
+        .nav-btn.back {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .nav-btn.back:hover {
             background: #e5e7eb;
-            color: #4b5563;
+            transform: translateX(-2px);
         }
 
-        .nav-button.next {
+        .nav-btn.next {
             background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
         }
 
-        .nav-button:hover {
+        .nav-btn.next:hover {
+            transform: translateX(2px);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .nav-btn.dashboard {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+
+        .nav-btn.dashboard:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
         }
 
-        .nav-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
+        /* Quiz */
         .quiz-section {
             background: white;
+            padding: 2.5rem;
             border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            display: none;
-        }
-
-        .quiz-section.active {
-            display: block;
-        }
-
-        .quiz-header {
-            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
-        }
-
-        .quiz-title {
-            font-size: 1.8rem;
-            color: #1e40af;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .quiz-subtitle {
-            color: #64748b;
-            margin-bottom: 1rem;
         }
 
         .quiz-question {
-            font-size: 1.1rem;
-            color: #1e40af;
-            margin-bottom: 2rem;
-            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
         }
 
         .quiz-options {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .quiz-option {
-            background: white;
+            padding: 1rem;
             border: 2px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 1.5rem;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            background: white;
         }
 
         .quiz-option:hover {
             border-color: #3b82f6;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #f8fafc;
         }
 
         .quiz-option.selected {
             border-color: #3b82f6;
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            background: #eff6ff;
         }
 
-        .option-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+        .quiz-confirm-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
-            flex-shrink: 0;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
         }
 
-        .option-content {
-            flex: 1;
+        .quiz-confirm-btn.show {
+            display: inline-block;
         }
 
-        .option-title {
-            font-weight: bold;
-            color: #1e40af;
-            margin-bottom: 0.3rem;
-        }
-
-        .option-description {
-            color: #64748b;
-            font-size: 0.9rem;
+        .quiz-confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
         }
 
         .quiz-feedback {
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            border: 2px solid #059669;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
             display: none;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-left: 4px solid #059669;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
         }
 
         .quiz-feedback.show {
             display: block;
+            animation: slideUp 0.5s ease-out;
         }
 
-        .feedback-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+        .quiz-feedback h4 {
+            color: #059669;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
         }
 
-        .feedback-title {
-            font-weight: bold;
-            color: #065f46;
-        }
-
-        .feedback-content {
-            color: #047857;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .coach-tip {
-            background: rgba(255,255,255,0.7);
-            border-radius: 10px;
-            padding: 1rem;
-            border-left: 4px solid #0891b2;
-        }
-
-        .coach-tip-header {
-            font-weight: bold;
-            color: #0c4a6e;
-            margin-bottom: 0.5rem;
-        }
-
-        .confirm-button {
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: white;
-            border: none;
+        .complete-btn {
             padding: 1rem 2rem;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: none;
-            margin: 1rem auto;
-        }
-
-        .confirm-button.show {
-            display: block;
-        }
-
-        .confirm-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
-        }
-
-        .complete-button {
             background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
-            padding: 1rem 2rem;
             border-radius: 10px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 1rem;
             display: none;
-            margin: 2rem auto;
         }
 
-        .complete-button.show {
-            display: block;
+        .complete-btn.show {
+            display: inline-block;
         }
 
-        .complete-button:hover {
+        .complete-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
         }
 
-        .certificate-section {
+        /* Notificações */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
             background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            display: none;
-        }
-
-        .certificate-section.active {
-            display: block;
-        }
-
-        .certificate-header {
-            margin-bottom: 2rem;
-        }
-
-        .certificate-title {
-            font-size: 2rem;
-            color: #1e40af;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .certificate-subtitle {
-            font-size: 1.2rem;
-            color: #4b5563;
-            margin-bottom: 1rem;
-        }
-
-        .certificate-description {
-            color: #64748b;
-            margin-bottom: 2rem;
-        }
-
-        .certificate {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 3px solid #f59e0b;
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .certificate::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(245, 158, 11, 0.1) 10px,
-                rgba(245, 158, 11, 0.1) 20px
-            );
-            animation: certificateShine 3s linear infinite;
-        }
-
-        @keyframes certificateShine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .certificate-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .certificate-badge {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .certificate-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #92400e;
-            margin-bottom: 1rem;
-        }
-
-        .certificate-text {
-            color: #92400e;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .certificate-details {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: #92400e;
-        }
-
-        .accept-certificate-button {
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: white;
-            border: none;
-            padding: 1.5rem 3rem;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-            box-shadow: 0 5px 20px rgba(5, 150, 105, 0.4);
-        }
-
-        .accept-certificate-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.6);
-        }
-
-        .back-button {
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 1.5rem;
             border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid #059669;
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
         }
 
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
+        .notification.show {
+            transform: translateX(0);
         }
 
-        .progress-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: conic-gradient(#3b82f6 0deg, #e5e7eb 0deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            position: relative;
+        .notification.error {
+            border-left-color: #ef4444;
         }
 
-        .progress-circle::before {
-            content: '';
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: white;
-            position: absolute;
-        }
-
-        .progress-icon {
-            font-size: 2rem;
-            z-index: 1;
-        }
-
-        .progress-label {
-            text-align: center;
-            font-weight: bold;
-            color: #1e40af;
-        }
-
+        /* Responsividade */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
             .header {
                 padding: 1rem;
-                flex-direction: column;
-                gap: 1rem;
             }
-            
+
             .user-stats {
                 gap: 1rem;
             }
-            
-            .welcome-section {
-                padding: 2rem 1rem;
+
+            .dashboard {
+                padding: 1rem;
             }
-            
-            .welcome-section h1 {
-                font-size: 2rem;
-            }
-            
-            .mentor-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            
+
             .modules-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .achievements-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
-            
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-content {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            
-            .navigation-buttons {
-                flex-direction: column;
-            }
-            
-            .quiz-options {
-                gap: 0.8rem;
-            }
-            
-            .quiz-option {
-                padding: 1rem;
-            }
-            
-            .certificate {
+
+            .module-card {
                 padding: 1.5rem;
             }
 
-            .login-container {
-                padding: 2rem;
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .modal-content {
                 margin: 1rem;
             }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Melhorias de performance */
+        .gpu-accelerated {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        /* Scroll suave personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #1e40af, #0891b2);
         }
     </style>
 </head>
 <body>
-    <!-- Login Screen -->
-    <div class="login-screen" id="loginScreen">
-        <div class="login-container">
-            <div class="login-logo">🎓</div>
+    <!-- Tela de Login -->
+    <div id="loginScreen" class="login-screen fade-in">
+        <div class="login-card scale-in">
+            <div class="login-icon">🎓</div>
             <h1 class="login-title">Portal Destrave na Hora H</h1>
             <p class="login-subtitle">Acesse sua jornada de transformação completa</p>
             
-            <form class="login-form" onsubmit="handleLogin(event)">
+            <form id="loginForm">
                 <div class="form-group">
-                    <label class="form-label" for="userName">Seu Nome Completo</label>
+                    <label class="form-label">Seu Nome Completo</label>
                     <input type="text" id="userName" class="form-input" placeholder="Digite seu nome completo" required>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="accessPassword">Senha de Acesso</label>
-                    <input type="password" id="accessPassword" class="form-input" placeholder="Digite sua senha de acesso" required>
+                    <label class="form-label">Senha de Acesso</label>
+                    <input type="password" id="userPassword" class="form-input" placeholder="Digite sua senha de acesso" required>
                 </div>
                 
-                <button type="submit" class="login-button">🚀 ACESSAR PORTAL</button>
+                <button type="submit" class="login-btn">🚀 ACESSAR PORTAL</button>
             </form>
             
-            <div class="login-info">
-                <strong>📧 Onde encontrar sua senha:</strong><br>
-                Verifique sua área de membros ou o email de boas-vindas que você recebeu após a compra.
+            <div class="login-help">
+                <div class="login-help-title">💡 Onde encontrar sua senha:</div>
+                <div class="login-help-text">Verifique sua área de membros ou o email de boas-vindas que você recebeu após a compra.</div>
             </div>
         </div>
     </div>
 
-    <!-- Main Application -->
-    <div class="app-container" id="appContainer">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">🎓</div>
-                <div class="logo-text">
-                    <h1>Portal Destrave na Hora H</h1>
-                    <p id="userLevel">Novato Explorador</p>
+    <!-- Tela de Boas-vindas -->
+    <div id="welcomeScreen" class="welcome-screen" style="display: none;">
+        <div class="welcome-card fade-in">
+            <h1 class="welcome-title">🎓 Bem-vindo à Sua Jornada de Transformação Completa!</h1>
+            <p class="welcome-subtitle">Você está prestes a descobrir e desenvolver seus superpoderes introvertidos através de uma jornada estruturada: 3 módulos iniciais de preparação + 7 passos práticos de transformação.</p>
+            
+            <div class="mentor-section">
+                <h2 class="mentor-name">Alex, Seu Mentor</h2>
+                <p class="mentor-title">Ex-introvertido tímido, hoje comunicador de impacto</p>
+                
+                <div class="mentor-avatar">🧠</div>
+                
+                <div class="mentor-message">
+                    "Olá <span id="welcomeUserName"></span>! Eu sou o Alex, e assim como você, já fui aquele introvertido que tinha ideias brilhantes mas travava na hora de falar. Hoje, vou te guiar nesta jornada completa: primeiro vamos descobrir seus superpoderes únicos, depois aplicá-los na prática através dos 7 passos de transformação!"
                 </div>
             </div>
-            <div class="user-stats">
-                <div class="stat">
-                    <div class="stat-number" id="userPoints">0</div>
-                    <div class="stat-label">Pontos</div>
+            
+            <button class="start-btn" onclick="showDashboard()">INICIAR MINHA JORNADA COMPLETA →</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div id="header" class="header" style="display: none;">
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+            <div class="logo-text">Portal Destrave na Hora H</div>
+            <div style="margin-left: 1rem; color: #6b7280; font-size: 0.9rem;">
+                <span id="headerUserName">Novato Explorador</span>
+            </div>
+        </div>
+        <div class="user-stats">
+            <div class="stat">
+                <div class="stat-number" id="userPoints">0</div>
+                <div class="stat-label">Pontos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="userAchievements">1</div>
+                <div class="stat-label">Conquistas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <div class="progress-overview slide-up">
+            <h2 class="progress-title">Sua Jornada Completa de Transformação</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="overallProgress" style="width: 0%"></div>
+            </div>
+            <p class="progress-text"><span id="currentPoints">0</span> / 2500 pontos para o próximo nível</p>
+        </div>
+
+        <!-- Fase 1: Descoberta dos Superpoderes -->
+        <div class="modules-section">
+            <h2 class="section-title">🎯 Fase 1: Descoberta dos Superpoderes</h2>
+            <div class="modules-grid">
+                <!-- Módulo 1 -->
+                <div class="module-card fade-in">
+                    <div class="module-header">
+                        <div class="module-icon blue">⚡</div>
+                        <div class="module-info">
+                            <h3>Módulo 1: Desperte Seus Superpoderes</h3>
+                            <p>Transforme sua percepção sobre introversão</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent" id="module1Progress">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" id="module1ProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn start" onclick="startModule(1)">🚀 INICIAR MÓDULO</button>
                 </div>
-                <div class="stat">
-                    <div class="stat-number" id="userAchievements">1</div>
-                    <div class="stat-label">Conquistas</div>
+
+                <!-- Módulo 2 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon teal">🛠️</div>
+                        <div class="module-info">
+                            <h3>Módulo 2: Domine o Método Destrave na Hora H™</h3>
+                            <p>Os 3 passos fundamentais para destravar</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent" id="module2Progress">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" id="module2ProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword(2)">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                </div>
+
+                <!-- Módulo 3 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon purple">🚀</div>
+                        <div class="module-info">
+                            <h3>Módulo 3: Prepare-se para a Transformação</h3>
+                            <p>Consolide seu aprendizado e prepare-se para os 7 passos</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent" id="module3Progress">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" id="module3ProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword(3)">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <!-- Welcome Section -->
-            <div class="welcome-section" id="welcomeSection">
-                <h1>🎯 Bem-vindo à Sua Jornada de Transformação Completa!</h1>
-                <p>Você está prestes a descobrir e desenvolver seus superpoderes introvertidos através de uma jornada estruturada: 3 módulos iniciais de preparação + 7 passos práticos de transformação.</p>
-                
-                <div class="mentor-card">
-                    <div class="mentor-avatar">👨‍🏫</div>
-                    <div class="mentor-content">
-                        <h3>Alex, Seu Mentor</h3>
-                        <p>Ex-introvertido tímido, hoje comunicador de impacto</p>
-                        <p>"Olá <span id="welcomeUserName"></span>! Eu sou o Alex, e assim como você, já fui aquele introvertido que tinha ideias brilhantes mas travava na hora de falar. Hoje, vou te guiar nesta jornada completa: primeiro vamos descobrir seus superpoderes únicos, depois aplicá-los na prática através dos 7 passos de transformação!"</p>
+        <!-- Fase 2: Os 7 Passos -->
+        <div class="modules-section">
+            <h2 class="section-title">🎯 Fase 2: Os 7 Passos da Transformação</h2>
+            <div class="modules-grid">
+                <!-- Passo 1 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon blue">1️⃣</div>
+                        <div class="module-info">
+                            <h3>Passo 1: Identifique Sua Situação</h3>
+                            <p>Mapeie seus desafios específicos</p>
+                        </div>
                     </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword('step1')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
                 </div>
-                
-                <button class="start-button" onclick="startJourney()">INICIAR MINHA JORNADA COMPLETA →</button>
+
+                <!-- Passo 2 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon teal">2️⃣</div>
+                        <div class="module-info">
+                            <h3>Passo 2: Prepare Sua Mente</h3>
+                            <p>Desenvolva a mentalidade certa</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword('step2')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon purple">3️⃣</div>
+                        <div class="module-info">
+                            <h3>Passo 3: Domine a Técnica dos 3 Pontos</h3>
+                            <p>A fórmula para organizar suas ideias</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword('step3')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                </div>
+
+                <!-- Passo 4 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon blue">4️⃣</div>
+                        <div class="module-info">
+                            <h3>Passo 4: Pratique em Situações Seguras</h3>
+                            <p>Construa confiança gradualmente</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword('step4')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                </div>
+
+                <!-- Passo 5 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon teal">5️⃣</div>
+                        <div class="module-info">
+                            <h3>Passo 5: Aplique em Reuniões</h3>
+                            <p>Destrave em contextos profissionais</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword('step5')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                </div>
+
+                <!-- Passo 6 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon purple">6️⃣</div>
+                        <div class="module-info">
+                            <h3>Passo 6: Expanda para Apresentações</h3>
+                            <p>Domine apresentações e palestras</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword('step6')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                </div>
+
+                <!-- Passo 7 -->
+                <div class="module-card locked fade-in">
+                    <div class="module-header">
+                        <div class="module-icon blue">7️⃣</div>
+                        <div class="module-info">
+                            <h3>Passo 7: Mantenha o Momentum</h3>
+                            <p>Sustente sua transformação</p>
+                        </div>
+                    </div>
+                    <div class="module-progress">
+                        <div class="module-progress-label">
+                            <span class="module-progress-text">Progresso</span>
+                            <span class="module-progress-percent">0%</span>
+                        </div>
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="module-btn locked" onclick="requestPassword('step7')">🔐 CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Dashboard -->
-            <div class="dashboard" id="dashboard">
-                <!-- Progress Overview -->
-                <div class="progress-overview">
-                    <h2>Sua Jornada Completa de Transformação</h2>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="overallProgress" style="width: 0%"></div>
-                    </div>
-                    <p id="progressText">0 / 2500 pontos para o próximo nível</p>
-                </div>
+    <!-- Conteúdo dos Módulos -->
+    <!-- Módulo 1 -->
+    <div id="module1Content" class="module-content">
+        <div class="module-header-content">
+            <h1 class="module-title">Módulo 1: Desperte Seus Superpoderes</h1>
+            <p class="module-page-indicator">Página <span id="module1CurrentPage">1</span> de <span id="module1TotalPages">6</span></p>
+            <div class="page-dots">
+                <div class="page-dot active"></div>
+                <div class="page-dot"></div>
+                <div class="page-dot"></div>
+                <div class="page-dot"></div>
+                <div class="page-dot"></div>
+                <div class="page-dot"></div>
+            </div>
+        </div>
 
-                <!-- Phase 1: Modules -->
-                <div class="steps-section">
-                    <h2>🎯 Fase 1: Descoberta dos Superpoderes</h2>
-                    <div class="modules-grid">
-                        <!-- Module 1 -->
-                        <div class="module-card" id="module1">
-                            <div class="module-header">
-                                <div class="module-icon module1">⚡</div>
-                                <div class="module-info">
-                                    <h3>Módulo 1: Desperte Seus Superpoderes</h3>
-                                    <p>Transforme sua percepção sobre introversão</p>
-                                </div>
-                            </div>
-                            <div class="module-progress">
-                                <span class="progress-text">Progresso</span>
-                                <span class="progress-percentage" id="module1Progress">0%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="module1ProgressBar" style="width: 0%"></div>
-                            </div>
-                            <button class="module-button start" id="module1Button" onclick="startModule(1)">🚀 INICIAR MÓDULO</button>
-                        </div>
-
-                        <!-- Module 2 -->
-                        <div class="module-card locked" id="module2">
-                            <div class="module-header">
-                                <div class="module-icon module2">🛠️</div>
-                                <div class="module-info">
-                                    <h3>Módulo 2: Domine o Método Destrave na Hora H™</h3>
-                                    <p>Os 3 passos fundamentais para destravar</p>
-                                </div>
-                            </div>
-                            <div class="module-progress">
-                                <span class="progress-text">Progresso</span>
-                                <span class="progress-percentage" id="module2Progress">0%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="module2ProgressBar" style="width: 0%"></div>
-                            </div>
-                            <button class="module-button locked" id="module2Button" onclick="requestPassword(2)">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                        </div>
-
-                        <!-- Module 3 -->
-                        <div class="module-card locked" id="module3">
-                            <div class="module-header">
-                                <div class="module-icon module3">🚀</div>
-                                <div class="module-info">
-                                    <h3>Módulo 3: Prepare-se para a Transformação</h3>
-                                    <p>Consolide seu aprendizado e prepare-se para os 7 passos</p>
-                                </div>
-                            </div>
-                            <div class="module-progress">
-                                <span class="progress-text">Progresso</span>
-                                <span class="progress-percentage" id="module3Progress">0%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="module3ProgressBar" style="width: 0%"></div>
-                            </div>
-                            <button class="module-button locked" id="module3Button" onclick="requestPassword(3)">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phase 2: 7 Steps -->
-                <div class="steps-section">
-                    <h2>🔥 Fase 2: Os 7 Passos da Transformação</h2>
-                    <p style="color: #64748b; text-align: center; margin-bottom: 2rem;">Complete todos os módulos iniciais para desbloquear esta fase.</p>
+        <!-- Página 1 -->
+        <div class="content-page" data-page="1">
+            <div class="content-card fade-in">
+                <div class="content-section">
+                    <h2>Chega de se Achar Menos! 🚀</h2>
+                    <h3>🎯 Transforme Sua Percepção Sobre Introversão</h3>
                     
-                    <div class="steps-grid">
-                        <div class="step-card" id="step1">
-                            <div class="step-number">1</div>
-                            <div class="step-title">Passo 1: A Virada de Chave</div>
-                            <div class="step-description">Entenda por que ser introvertido é um superpoder.</div>
-                        </div>
-                        <div class="step-card" id="step2">
-                            <div class="step-number">2</div>
-                            <div class="step-title">Passo 2: O Mapa da Empatia</div>
-                            <div class="step-description">Conecte-se profundamente com as pessoas.</div>
-                        </div>
-                        <div class="step-card" id="step3">
-                            <div class="step-number">3</div>
-                            <div class="step-title">Passo 3: A Arte da Escuta Ativa</div>
-                            <div class="step-description">Ouça mais, fale melhor.</div>
-                        </div>
-                        <div class="step-card" id="step4">
-                            <div class="step-number">4</div>
-                            <div class="step-title">Passo 4: Construindo Pontes</div>
-                            <div class="step-description">Crie conexões genuínas e duradouras.</div>
-                        </div>
-                        <div class="step-card" id="step5">
-                            <div class="step-number">5</div>
-                            <div class="step-title">Passo 5: O Poder da Preparação</div>
-                            <div class="step-description">Transforme ansiedade em confiança.</div>
-                        </div>
-                        <div class="step-card" id="step6">
-                            <div class="step-number">6</div>
-                            <div class="step-title">Passo 6: A Regra dos 3 Pontos</div>
-                            <div class="step-description">Comunique-se com clareza e impacto.</div>
-                        </div>
-                        <div class="step-card" id="step7">
-                            <div class="step-number">7</div>
-                            <div class="step-title">Passo 7: Seu Novo Eu</div>
-                            <div class="step-description">Integre tudo e torne-se imparável.</div>
-                        </div>
+                    <div class="illustration">
+                        <img src="superpoderes_introvertidos.jpg" alt="Superpoderes dos Introvertidos" style="max-width: 400px;">
+                        <div class="illustration-caption">Seus superpoderes introvertidos são reais e poderosos</div>
                     </div>
-                </div>
 
-                <!-- Achievements Section -->
-                <div class="achievements-section">
-                    <h2>Suas Conquistas</h2>
-                    <div class="achievements-grid">
-                        <div class="achievement unlocked" id="achievement1">
-                            <div class="achievement-icon">🎓</div>
-                            <div class="achievement-name">Pioneiro</div>
-                        </div>
-                        <div class="achievement" id="achievement2">
-                            <div class="achievement-icon">🧠</div>
-                            <div class="achievement-name">Mestre do Mindset</div>
-                        </div>
-                        <div class="achievement" id="achievement3">
-                            <div class="achievement-icon">🛠️</div>
-                            <div class="achievement-name">Arquiteto da Confiança</div>
-                        </div>
-                        <div class="achievement" id="achievement4">
-                            <div class="achievement-icon">🚀</div>
-                            <div class="achievement-name">Pronto para Decolar</div>
-                        </div>
-                        <div class="achievement" id="achievement5">
-                            <div class="achievement-icon">🏆</div>
-                            <div class="achievement-name">Destravado!</div>
-                        </div>
-                        <div class="achievement" id="achievement6">
-                            <div class="achievement-icon">⭐</div>
-                            <div class="achievement-name">Lenda Introvertida</div>
-                        </div>
+                    <div class="story-box">
+                        <h4>📖 A História de Ana</h4>
+                        <p>Ana sempre se considerou "menos" que seus colegas extrovertidos. Em reuniões, ela tinha ideias brilhantes, mas raramente as compartilhava. Achava que sua tendência a pensar antes de falar era uma fraqueza.</p>
+                        <p>Até o dia em que descobriu que sua capacidade de reflexão profunda era exatamente o que sua equipe precisava para resolver problemas complexos.</p>
                     </div>
-                </div>
 
-                <!-- Progress Circle -->
-                <div style="text-align: center; margin: 2rem 0;">
-                    <div class="progress-circle" id="progressCircle">
-                        <div class="progress-icon">💡</div>
+                    <h3>🧠 Por Que Você Não É "Menos"</h3>
+                    <p>A sociedade nos ensinou que ser extrovertido é melhor. Mas isso é um mito perigoso que limita seu potencial.</p>
+
+                    <div class="highlight-box">
+                        <h4>💡 Verdade Revelada:</h4>
+                        <p>Introvertidos processam informações de forma mais profunda, são melhores ouvintes e criam conexões mais autênticas. Você não é menos - você é diferente, e isso é seu superpoder!</p>
                     </div>
-                    <div class="progress-label" id="progressLabel">Seu Progresso<br>Iniciado na Arte</div>
                 </div>
             </div>
+        </div>
 
-            <!-- Content Views for Modules -->
-            <div class="content-view" id="moduleContent">
-                <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
+        <!-- Página 2 -->
+        <div class="content-page" data-page="2" style="display: none;">
+            <div class="content-card fade-in">
+                <div class="content-section">
+                    <h2>Seus Superpoderes Escondidos 🦸‍♂️</h2>
+                    <h3>🔍 Que Ninguém Te Contou Que Você Tinha</h3>
+                    
+                    <div class="illustration">
+                        <img src="ilustracao_superpoderes.jpg" alt="Ilustração dos Superpoderes" style="max-width: 400px;">
+                        <div class="illustration-caption">Descubra os 5 superpoderes que você já possui</div>
+                    </div>
+
+                    <h3>🎧 1. A Superaudição (Escuta Profunda)</h3>
+                    <p>Enquanto outros estão pensando no que vão falar, você realmente escuta. Capta nuances, entrelinhas e as verdadeiras preocupações das pessoas.</p>
+
+                    <h3>🔬 2. O Raio-X Mental (Análise Crítica)</h3>
+                    <p>Sua mente não se contenta com o superficial. Você cava fundo, entende causas, prevê consequências e vê a figura completa.</p>
+
+                    <h3>🎯 3. O Foco de Laser (Concentração Profunda)</h3>
+                    <p>Em um mundo cheio de distrações, sua capacidade de concentração é uma habilidade rara e valiosa.</p>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Importante:</h4>
+                        <p>Esses não são apenas "traços de personalidade". Quando usados intencionalmente, se transformam em ferramentas poderosas para comunicação de impacto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página 3 -->
+        <div class="content-page" data-page="3" style="display: none;">
+            <div class="content-card fade-in">
+                <div class="content-section">
+                    <h2>Mais Superpoderes Revelados 🌟</h2>
+                    
+                    <h3>👁️ 4. A Visão Além do Alcance (Observação Aguçada)</h3>
+                    <p>Você nota coisas que passam despercebidas: linguagem corporal, dinâmica de grupos, o "clima" de ambientes. É como ter um mapa do terreno em tempo real!</p>
+
+                    <h3>🧭 5. A Bússola Interna (Integridade e Convicção)</h3>
+                    <p>Quando você decide falar sobre algo que realmente acredita, suas palavras vêm carregadas de uma convicção e autenticidade magnéticas.</p>
+
+                    <div class="story-box">
+                        <h4>📖 O Caso do Carlos</h4>
+                        <p>Carlos era o "quieto" da equipe de marketing. Mas quando ele finalmente compartilhou sua análise sobre o comportamento do consumidor, baseada em semanas de observação silenciosa, a campanha resultante aumentou as vendas em 40%.</p>
+                        <p>Sua "quietude" não era passividade - era preparação estratégica!</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4>🎯 Exercício Prático:</h4>
+                        <p><strong>Seu Inventário de Superpoderes:</strong> Dos 5 superpoderes apresentados, quais você mais reconhece em si mesmo? Pense em uma situação recente onde um deles se manifestou.</p>
+                        <p>Reconhecer é o primeiro passo para usar intencionalmente!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página 4 -->
+        <div class="content-page" data-page="4" style="display: none;">
+            <div class="content-card fade-in">
+                <div class="content-section">
+                    <h2>Por Que às Vezes Parece Tão Difícil Falar? 🤔</h2>
+                    <h3>🔓 E Como Mudar Isso AGORA</h3>
+                    
+                    <div class="illustration">
+                        <img src="processo_comunicacao.png" alt="Processo de Comunicação" style="max-width: 500px;">
+                        <div class="illustration-caption">Entenda as "travas" que impedem sua comunicação</div>
+                    </div>
+
+                    <h3>🔒 As "Travas" Comuns que Seguram Sua Voz</h3>
+                    
+                    <h4>👹 1. O Monstrinho do "E Se?" (Medo do Julgamento)</h4>
+                    <p>"E se acharem minha ideia boba?", "E se eu gaguejar?", "E se ninguém se importar?". Esse monstrinho adora plantar dúvidas.</p>
+
+                    <h4>🎭 2. O Crítico Interno Super Exigente</h4>
+                    <p>Você quer que tudo seja perfeito, inclusive suas palavras. Se não tem CERTEZA ABSOLUTA, prefere ficar quieto. É o famoso "o ótimo inimigo do bom".</p>
+
+                    <h4>🔋 3. A "Bateria Social" no Vermelho</h4>
+                    <p>Ambientes barulhentos ou interações longas drenam sua energia. Quando a bateria está fraca, fica difícil ter clareza para se expressar.</p>
+
+                    <div class="warning-box">
+                        <h4>⚡ A Boa Notícia:</h4>
+                        <p>Essas "travas" não são cadeados indestrutíveis! São apenas portas que podem ser abertas com as chaves certas - e você está prestes a recebê-las.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página 5 -->
+        <div class="content-page" data-page="5" style="display: none;">
+            <div class="content-card fade-in">
+                <div class="content-section">
+                    <h2>A Dificuldade de "Entrar na Dança" 💃</h2>
+                    
+                    <h4>🎪 4. A Dificuldade de "Entrar na Dança"</h4>
+                    <p>Conversas em grupo, especialmente rápidas e cheias de interrupções, podem parecer uma "dança das cadeiras". Quando você está pronto para falar, o assunto já mudou.</p>
+
+                    <div class="story-box">
+                        <h4>📖 A Transformação do Lucas</h4>
+                        <p>Lucas sempre saía de reuniões frustrado, com a sensação de que suas ideias "morreram na praia". Ele tinha insights valiosos, mas nunca conseguia "entrar na conversa".</p>
+                        <p>Depois de aprender o Método Destrave na Hora H™, Lucas descobriu como usar seus superpoderes para não apenas "entrar na dança", mas liderar o ritmo!</p>
+                    </div>
+
+                    <h3>🗝️ O Método Destrave na Hora H™</h3>
+                    <p>No próximo módulo, você vai descobrir o método simples e poderoso que transforma suas "travas" em trampolins para uma comunicação de impacto.</p>
+
+                    <div class="highlight-box">
+                        <h4>🎯 Reflexão Final:</h4>
+                        <p>Das "travas" que exploramos (Monstrinho do "E Se?", Crítico Interno, Bateria Social, Dificuldade de "Entrar na Dança"), qual mais te afeta? Apenas nomear já é um passo poderoso para desativá-la.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página 6 - Quiz -->
+        <div class="content-page" data-page="6" style="display: none;">
+            <div class="quiz-section">
+                <h2>🎯 Quiz: Qual é Seu Superpoder Dominante?</h2>
+                <div class="quiz-question">
+                    Em uma reunião importante, qual é sua tendência natural?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-value="escuta">
+                        🎧 Escuto atentamente todos os pontos antes de formar minha opinião
+                    </div>
+                    <div class="quiz-option" data-value="analise">
+                        🔬 Analiso profundamente as implicações de cada proposta
+                    </div>
+                    <div class="quiz-option" data-value="observacao">
+                        👁️ Observo as reações e dinâmicas entre as pessoas
+                    </div>
+                    <div class="quiz-option" data-value="foco">
+                        🎯 Mantenho foco total no objetivo principal da reunião
+                    </div>
+                </div>
+                <button class="quiz-confirm-btn" onclick="confirmQuizAnswer(1)">✅ CONFIRMAR RESPOSTA</button>
                 
-                <div class="content-header">
-                    <h1 class="content-title" id="moduleTitle">Módulo 1: Desperte Seus Superpoderes</h1>
-                    <p class="content-subtitle" id="moduleSubtitle">Página 1 de 3</p>
-                    <div class="page-indicators" id="pageIndicators">
-                        <div class="page-indicator active"></div>
-                        <div class="page-indicator"></div>
-                        <div class="page-indicator"></div>
-                    </div>
+                <div class="quiz-feedback" id="quiz1Feedback">
+                    <h4>🎉 Excelente escolha!</h4>
+                    <div id="quiz1FeedbackText"></div>
+                    <p><strong>💡 Dica do Alex:</strong> <span id="quiz1Tip"></span></p>
                 </div>
-
-                <div id="modulePages">
-                    <!-- Pages will be dynamically loaded here -->
-                </div>
-
-                <div class="navigation-buttons">
-                    <button class="nav-button previous" id="prevButton" onclick="previousPage()" disabled>← Anterior</button>
-                    <button class="nav-button next" id="nextButton" onclick="nextPage()">Próxima →</button>
-                </div>
-            </div>
-
-            <!-- Quiz Section -->
-            <div class="quiz-section" id="quizSection">
-                <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
                 
-                <div class="quiz-header">
-                    <h1 class="quiz-title" id="quizTitle">🎯 Quiz: Qual é Seu Superpoder Dominante?</h1>
-                    <h2 class="quiz-subtitle" id="quizSubtitle">🎯 Descubra Seu Superpoder Dominante</h2>
-                    <p class="quiz-question" id="quizQuestion">Baseado no que você aprendeu, qual superpoder você mais se identifica?</p>
-                </div>
-
-                <div class="quiz-options" id="quizOptions">
-                    <!-- Quiz options will be dynamically loaded here -->
-                </div>
-
-                <button class="confirm-button" id="confirmButton" onclick="confirmQuizAnswer()">✅ CONFIRMAR RESPOSTA</button>
-
-                <div class="quiz-feedback" id="quizFeedback">
-                    <!-- Feedback will be shown here -->
-                </div>
-
-                <button class="complete-button" id="completeButton" onclick="completeModule()">✅ CONCLUIR MÓDULO (+500 pts)</button>
+                <button class="complete-btn" onclick="completeModule(1)">🏆 CONCLUIR MÓDULO</button>
             </div>
+        </div>
 
-            <!-- Certificate Section -->
-            <div class="certificate-section" id="certificateSection">
-                <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
-                
-                <div class="certificate-header">
-                    <h1 class="certificate-title">🎓 Cerimônia de Graduação Virtual</h1>
-                    <h2 class="certificate-subtitle">🎓 Parabéns, Você Se Formou!</h2>
-                    <p class="certificate-description">Você completou sua preparação! Está pronto para os 7 Passos da Transformação.</p>
-                </div>
-
-                <div class="certificate">
-                    <div class="certificate-content">
-                        <div class="certificate-badge">🏆</div>
-                        <div class="certificate-name">CERTIFICADO DE CONCLUSÃO</div>
-                        <div style="border: 2px solid #92400e; border-radius: 10px; padding: 1.5rem; margin: 1rem 0; background: white;">
-                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                <span style="font-size: 1.2rem;">🏅</span>
-                                <strong style="color: #92400e;">CERTIFICADO DE PREPARAÇÃO</strong>
-                            </div>
-                            <div class="certificate-text">
-                                Este certificado atesta que você completou os 3 módulos iniciais do Portal Destrave na Hora H e está preparado para a transformação completa.
-                            </div>
-                            <div class="certificate-details">
-                                <span>Data: <span id="certificateDate"></span></span>
-                                <span>Assinatura: Alex, Seu Mentor</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="accept-certificate-button" onclick="acceptCertificate()">✅ ACEITAR CERTIFICADO E CONCLUIR (+500 pts)</button>
-            </div>
+        <div class="navigation">
+            <button class="nav-btn dashboard" onclick="showDashboard()">← Voltar ao Dashboard</button>
+            <button class="nav-btn back" onclick="previousPage(1)" style="display: none;">← Anterior</button>
+            <button class="nav-btn next" onclick="nextPage(1)">Próxima →</button>
         </div>
     </div>
 
-    <!-- Password Modal -->
-    <div class="modal" id="passwordModal">
+    <!-- Modal de Senha -->
+    <div id="passwordModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Desbloquear: Módulo 2</h3>
-                <p>Para acessar este módulo, por favor, insira a senha:</p>
-            </div>
-            <input type="password" class="password-input" id="passwordInput" placeholder="Senha do Módulo">
+            <h3 class="modal-title">Desbloquear: <span id="modalModuleName"></span></h3>
+            <p class="modal-text">Para acessar este módulo, por favor, insira a senha:</p>
+            <input type="password" id="passwordInput" class="modal-input" placeholder="Senha do Módulo">
             <div class="modal-buttons">
-                <button class="modal-button secondary" onclick="closePasswordModal()">Cancelar</button>
-                <button class="modal-button primary" onclick="validatePassword()">Desbloquear</button>
+                <button class="modal-btn cancel" onclick="closePasswordModal()">Cancelar</button>
+                <button class="modal-btn confirm" onclick="validatePassword()">Desbloquear</button>
             </div>
         </div>
     </div>
 
-    <!-- Notification -->
-    <div class="notification" id="notification">
-        <span id="notificationText"></span>
+    <!-- Notificação -->
+    <div id="notification" class="notification">
+        <div id="notificationText"></div>
     </div>
 
     <script>
-        // Game State
-        let gameState = {
-            currentModule: 1,
-            currentPage: 1,
-            points: 0,
-            achievements: [1],
-            completedModules: [],
-            unlockedModules: [1],
-            selectedQuizAnswer: null,
-            quizAnswered: false,
-            level: 'Novato Explorador',
-            userName: ''
+        // Estado do aplicativo
+        let currentUser = '';
+        let userPoints = 0;
+        let userAchievements = 1;
+        let moduleProgress = {
+            1: { completed: false, progress: 0, currentPage: 1, totalPages: 6 },
+            2: { completed: false, progress: 0, unlocked: false },
+            3: { completed: false, progress: 0, unlocked: false }
         };
 
-        // Access password (hidden from user)
-        const ACCESS_PASSWORD = 'destrave2024';
-
-        // Module passwords (hidden from user)
-        const modulePasswords = {
+        // Senhas dos módulos (ocultas)
+        const passwords = {
             2: 'destrave',
-            3: 'transforma'
+            3: 'transforma',
+            'step1': 'passo1',
+            'step2': 'passo2',
+            'step3': 'passo3',
+            'step4': 'passo4',
+            'step5': 'passo5',
+            'step6': 'passo6',
+            'step7': 'passo7'
         };
 
-        // Module content data
-        const moduleData = {
-            1: {
-                title: "Módulo 1: Desperte Seus Superpoderes",
-                pages: [
-                    {
-                        title: "Chega de se Achar Menos!",
-                        subtitle: "🎯 Transforme Sua Percepção Sobre Introversão",
-                        content: `
-                            <div class="story-box">
-                                <div class="story-title">📖 A História de Ana</div>
-                                <p>Ana sempre se considerou "menos" que seus colegas extrovertidos. Em reuniões, ela tinha ideias brilhantes, mas raramente as compartilhava. Achava que sua tendência a pensar antes de falar era uma fraqueza.</p>
-                                <p>Até o dia em que descobriu que sua capacidade de reflexão profunda era exatamente o que sua equipe precisava para resolver problemas complexos.</p>
-                            </div>
-                            
-                            <div class="content-section">
-                                <h3>🧠 Por Que Você Não É "Menos"</h3>
-                                <p>A sociedade nos ensinou que ser extrovertido é melhor. Mas isso é um mito perigoso que limita seu potencial.</p>
-                                
-                                <div class="insight-box">
-                                    <div class="insight-title">💡 Verdade Revelada:</div>
-                                    <p>Introvertidos processam informações de forma mais profunda, são melhores ouvintes e criam conexões mais autênticas. Você não é menos - você é diferente, e isso é seu superpoder!</p>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "O Mito do Introvertido Chato",
-                        subtitle: "💥 Destruindo Estereótipos Limitantes",
-                        content: `
-                            <div class="story-box">
-                                <div class="story-title">📖 O Caso de Carlos</div>
-                                <p>Carlos era conhecido como "o quieto" da empresa. Seus colegas achavam que ele não tinha opiniões interessantes. Até que em uma apresentação crucial, ele surpreendeu a todos com insights profundos que salvaram um projeto de milhões.</p>
-                                <p>A partir daquele dia, todos queriam ouvir o que Carlos tinha a dizer.</p>
-                            </div>
-                            
-                            <div class="content-section">
-                                <h3>🌟 Os Mitos Que Nos Limitam</h3>
-                                
-                                <div class="insight-box">
-                                    <div class="insight-title">💡 Mito vs Realidade:</div>
-                                    <ul style="margin: 1rem 0; padding-left: 2rem;">
-                                        <li><strong>Mito:</strong> Introvertidos são chatos → <strong>Realidade:</strong> São profundos e interessantes</li>
-                                        <li><strong>Mito:</strong> Não sabem liderar → <strong>Realidade:</strong> São líderes empáticos e estratégicos</li>
-                                        <li><strong>Mito:</strong> Não gostam de pessoas → <strong>Realidade:</strong> Preferem qualidade à quantidade</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "Seus 5 Superpoderes Secretos",
-                        subtitle: "⚡ Descubra Seus Poderes Únicos",
-                        content: `
-                            <div class="story-box">
-                                <div class="story-title">📖 A Revelação de Lucas</div>
-                                <p>Lucas sempre invejou a facilidade dos extrovertidos para falar em público. Até descobrir que sua capacidade de preparação meticulosa e conexão emocional com a audiência o tornava um palestrante muito mais impactante que os "naturais".</p>
-                            </div>
-                            
-                            <div class="content-section">
-                                <h3>🚀 Seus 5 Superpoderes</h3>
-                                
-                                <div class="superpowers-list">
-                                    <div class="superpower" style="border-color: #3b82f6;">
-                                        <div class="superpower-header">
-                                            <span style="color: #3b82f6;">1. 🎯</span>
-                                            <span class="superpower-title">Super Foco</span>
-                                        </div>
-                                        <div class="superpower-description">Você consegue se concentrar profundamente em tarefas complexas enquanto outros se distraem.</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #059669;">
-                                        <div class="superpower-header">
-                                            <span style="color: #059669;">2. 👂</span>
-                                            <span class="superpower-title">Escuta Ativa Avançada</span>
-                                        </div>
-                                        <div class="superpower-description">Você realmente ouve as pessoas, não apenas espera sua vez de falar.</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #f59e0b;">
-                                        <div class="superpower-header">
-                                            <span style="color: #f59e0b;">3. 🧠</span>
-                                            <span class="superpower-title">Processamento Profundo</span>
-                                        </div>
-                                        <div class="superpower-description">Você analisa informações em camadas, vendo conexões que outros perdem.</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #0891b2;">
-                                        <div class="superpower-header">
-                                            <span style="color: #0891b2;">4. 💎</span>
-                                            <span class="superpower-title">Autenticidade Magnética</span>
-                                        </div>
-                                        <div class="superpower-description">Em um mundo de máscaras, sua genuinidade atrai pessoas que buscam conexões reais.</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #7c3aed;">
-                                        <div class="superpower-header">
-                                            <span style="color: #7c3aed;">5. 🎭</span>
-                                            <span class="superpower-title">Preparação Estratégica</span>
-                                        </div>
-                                        <div class="superpower-description">Você se prepara melhor que qualquer um. Quando chega sua hora de brilhar, você está pronto.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    }
-                ],
-                quiz: {
-                    title: "Quiz: Qual é Seu Superpoder Dominante?",
-                    subtitle: "Descubra Seu Superpoder Dominante",
-                    question: "Baseado no que você aprendeu, qual superpoder você mais se identifica?",
-                    options: [
-                        {
-                            id: 'focus',
-                            icon: '🎯',
-                            title: 'Super Foco',
-                            description: 'Concentração profunda em tarefas complexas',
-                            color: '#3b82f6',
-                            feedback: {
-                                title: 'Excelente escolha! Seu Super Foco é realmente impressionante.',
-                                content: 'Você tem a capacidade rara de mergulhar profundamente em projetos enquanto outros se distraem. Isso é uma vantagem competitiva incrível no mundo atual, cheio de distrações. Use esse superpoder para se destacar em reuniões e projetos importantes.',
-                                tip: 'Quando estiver em uma reunião, use seu foco para captar detalhes que outros perdem. Isso fará você brilhar!'
-                            }
-                        },
-                        {
-                            id: 'listening',
-                            icon: '👂',
-                            title: 'Escuta Ativa',
-                            description: 'Conexão genuína através da escuta',
-                            color: '#059669',
-                            feedback: {
-                                title: 'Fantástico! Sua Escuta Ativa é um superpoder raro e valioso.',
-                                content: 'Em um mundo onde todos querem falar, você tem o dom de realmente ouvir. Isso cria conexões profundas e faz as pessoas se sentirem verdadeiramente compreendidas. É por isso que as pessoas confiam em você.',
-                                tip: 'Use sua escuta ativa para fazer perguntas poderosas que mostrem seu interesse genuíno. As pessoas vão adorar conversar com você!'
-                            }
-                        },
-                        {
-                            id: 'processing',
-                            icon: '🧠',
-                            title: 'Processamento Profundo',
-                            description: 'Análise estratégica e insights únicos',
-                            color: '#f59e0b',
-                            feedback: {
-                                title: 'Incrível! Seu Processamento Profundo é uma vantagem estratégica.',
-                                content: 'Você vê padrões e conexões que outros não conseguem. Sua mente analítica é capaz de processar informações complexas e chegar a conclusões brilhantes. Isso é extremamente valioso em qualquer área.',
-                                tip: 'Compartilhe seus insights de forma estruturada. Quando você fala, as pessoas prestam atenção porque sabem que é algo importante!'
-                            }
-                        },
-                        {
-                            id: 'authenticity',
-                            icon: '💎',
-                            title: 'Autenticidade',
-                            description: 'Magnetismo natural e genuinidade',
-                            color: '#0891b2',
-                            feedback: {
-                                title: 'Maravilhoso! Sua Autenticidade é magnética e inspiradora.',
-                                content: 'Em um mundo cheio de máscaras e superficialidade, sua genuinidade é como um ímã para pessoas que buscam conexões reais. Você atrai as pessoas certas e constrói relacionamentos duradouros.',
-                                tip: 'Continue sendo você mesmo! Sua autenticidade é seu maior diferencial. Não tente imitar outros - seja a melhor versão de você!'
-                            }
-                        },
-                        {
-                            id: 'preparation',
-                            icon: '🎭',
-                            title: 'Preparação',
-                            description: 'Excelência através do planejamento',
-                            color: '#7c3aed',
-                            feedback: {
-                                title: 'Perfeito! Sua Preparação Estratégica é seu diferencial competitivo.',
-                                content: 'Você transforma ansiedade em excelência através da preparação. Enquanto outros improvisam, você chega preparado e confiante. Isso faz toda a diferença em momentos importantes.',
-                                tip: 'Use sua preparação como vantagem. Quando você se prepara bem, sua confiança natural aparece e você brilha!'
-                            }
-                        }
-                    ]
-                }
-            },
-            2: {
-                title: "Módulo 2: Domine o Método Destrave na Hora H™",
-                pages: [
-                    {
-                        title: "Os 3 Pilares da Transformação",
-                        subtitle: "🛠️ Fundamentos do Método Destrave na Hora H™",
-                        content: `
-                            <div class="content-section">
-                                <h3>🎯 O Método Que Vai Mudar Sua Vida</h3>
-                                <p>O Método Destrave na Hora H™ é baseado em 3 pilares fundamentais que transformaram a vida de milhares de introvertidos.</p>
-                                
-                                <div class="superpowers-list">
-                                    <div class="superpower" style="border-color: #3b82f6;">
-                                        <div class="superpower-header">
-                                            <span style="color: #3b82f6;">1. 🧠</span>
-                                            <span class="superpower-title">Mindset de Superpoder</span>
-                                        </div>
-                                        <div class="superpower-description">Transforme sua percepção sobre ser introvertido</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #059669;">
-                                        <div class="superpower-header">
-                                            <span style="color: #059669;">2. 🎯</span>
-                                            <span class="superpower-title">Estratégia de Preparação</span>
-                                        </div>
-                                        <div class="superpower-description">Use sua tendência natural de preparação como vantagem</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #f59e0b;">
-                                        <div class="superpower-header">
-                                            <span style="color: #f59e0b;">3. 🚀</span>
-                                            <span class="superpower-title">Execução Autêntica</span>
-                                        </div>
-                                        <div class="superpower-description">Aplique seus superpoderes na prática</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "A Fórmula do Sucesso",
-                        subtitle: "📈 Como Aplicar o Método na Prática",
-                        content: `
-                            <div class="content-section">
-                                <h3>🔥 A Fórmula Destrave na Hora H™</h3>
-                                
-                                <div class="insight-box">
-                                    <div class="insight-title">💡 Fórmula Secreta:</div>
-                                    <p style="font-size: 1.2rem; text-align: center; margin: 1rem 0;"><strong>Superpoder + Preparação + Autenticidade = Sucesso Garantido</strong></p>
-                                </div>
-                                
-                                <div class="story-box">
-                                    <div class="story-title">📖 Caso de Sucesso: Maria</div>
-                                    <p>Maria aplicou o método antes de uma apresentação importante. Resultado: promoção em 30 dias!</p>
-                                    <p>"Eu sempre soube que tinha potencial, mas não sabia como usar. O método me deu o caminho claro." - Maria, Gerente de Projetos</p>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "Seu Plano de Ação",
-                        subtitle: "📋 Próximos Passos para Sua Transformação",
-                        content: `
-                            <div class="content-section">
-                                <h3>🎯 Seu Roteiro de Transformação</h3>
-                                
-                                <div class="superpowers-list">
-                                    <div class="superpower" style="border-color: #3b82f6;">
-                                        <div class="superpower-header">
-                                            <span style="color: #3b82f6;">Semana 1-2:</span>
-                                            <span class="superpower-title">Identifique Seus Superpoderes</span>
-                                        </div>
-                                        <div class="superpower-description">Complete os exercícios de autoconhecimento</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #059669;">
-                                        <div class="superpower-header">
-                                            <span style="color: #059669;">Semana 3-4:</span>
-                                            <span class="superpower-title">Pratique a Preparação Estratégica</span>
-                                        </div>
-                                        <div class="superpower-description">Aplique as técnicas em situações reais</div>
-                                    </div>
-                                    
-                                    <div class="superpower" style="border-color: #f59e0b;">
-                                        <div class="superpower-header">
-                                            <span style="color: #f59e0b;">Semana 5+:</span>
-                                            <span class="superpower-title">Execute com Autenticidade</span>
-                                        </div>
-                                        <div class="superpower-description">Seja você mesmo e brilhe!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    }
-                ],
-                quiz: {
-                    title: "Quiz: Qual Pilar Você Mais Precisa Desenvolver?",
-                    subtitle: "Identifique Sua Área de Foco",
-                    question: "Qual aspecto você sente que mais precisa trabalhar?",
-                    options: [
-                        {
-                            id: 'mindset',
-                            icon: '🧠',
-                            title: 'Mindset',
-                            description: 'Transformar crenças limitantes',
-                            color: '#3b82f6',
-                            feedback: {
-                                title: 'Ótima percepção! O mindset é realmente a base de tudo.',
-                                content: 'Trabalhar suas crenças sobre introversão é fundamental. Quando você muda como se vê, tudo muda. Você está no caminho certo para uma transformação profunda.',
-                                tip: 'Pratique afirmações positivas diariamente: "Minha introversão é meu superpoder" e veja a diferença!'
-                            }
-                        },
-                        {
-                            id: 'preparation',
-                            icon: '🎯',
-                            title: 'Preparação',
-                            description: 'Estratégias práticas de preparação',
-                            color: '#059669',
-                            feedback: {
-                                title: 'Excelente foco! A preparação é seu diferencial competitivo.',
-                                content: 'Você entende que a preparação é sua vantagem natural. Quando você se prepara bem, sua confiança dispara e você se destaca naturalmente.',
-                                tip: 'Crie um ritual de preparação para situações importantes. Isso vai se tornar seu superpoder secreto!'
-                            }
-                        },
-                        {
-                            id: 'execution',
-                            icon: '🚀',
-                            title: 'Execução',
-                            description: 'Colocar em prática com autenticidade',
-                            color: '#f59e0b',
-                            feedback: {
-                                title: 'Perfeito! A execução autêntica é onde a mágica acontece.',
-                                content: 'Você sabe que conhecimento sem ação não gera resultados. Sua disposição para agir de forma autêntica é o que vai te levar ao próximo nível.',
-                                tip: 'Comece pequeno: aplique uma técnica por dia em conversas casuais. A prática leva à perfeição!'
-                            }
-                        }
-                    ]
-                }
-            },
-            3: {
-                title: "Módulo 3: Prepare-se para a Transformação",
-                pages: [
-                    {
-                        title: "Seu Plano de Ação Personalizado",
-                        subtitle: "🗺️ Seu Mapa para o Sucesso",
-                        content: `
-                            <div class="content-section">
-                                <h3>🎯 Agora vamos criar seu plano personalizado de transformação, baseado em seus objetivos específicos.</h3>
-                                
-                                <div class="insight-box">
-                                    <div class="insight-title">💡 Áreas de Foco:</div>
-                                    <ul style="margin: 1rem 0; padding-left: 2rem;">
-                                        <li>🎯 Apresentações e reuniões</li>
-                                        <li>🤝 Networking autêntico</li>
-                                        <li>👥 Liderança introvertida</li>
-                                        <li>💬 Conversas difíceis</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "Lidando com o Medo do Julgamento",
-                        subtitle: "🛡️ Blindagem Contra o Julgamento",
-                        content: `
-                            <div class="content-section">
-                                <h3>🛡️ Aprenda técnicas avançadas para neutralizar o medo do julgamento e se expressar com liberdade total.</h3>
-                                
-                                <div class="insight-box">
-                                    <div class="insight-title">💡 Técnicas de Blindagem:</div>
-                                    <ol style="margin: 1rem 0; padding-left: 2rem;">
-                                        <li><strong>Reframe Mental:</strong> "Eles estão curiosos, não julgando"</li>
-                                        <li><strong>Foco no Valor:</strong> "O que posso oferecer?"</li>
-                                        <li><strong>Aceitação Radical:</strong> "Nem todos vão gostar, e está tudo bem"</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        `
-                    }
-                ],
-                certificate: true
-            }
-        };
-
-        // Handle login
-        function handleLogin(event) {
-            event.preventDefault();
+        // Login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value.trim();
+            const password = document.getElementById('userPassword').value;
             
-            const userName = document.getElementById('userName').value.trim();
-            const password = document.getElementById('accessPassword').value;
-            
-            if (!userName) {
-                showNotification('Por favor, digite seu nome completo.', 'error');
-                return;
-            }
-            
-            if (password !== ACCESS_PASSWORD) {
-                showNotification('Senha incorreta. Verifique sua área de membros.', 'error');
-                return;
-            }
-            
-            // Store user name
-            gameState.userName = userName;
-            
-            // Show main app
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('appContainer').classList.add('active');
-            
-            // Update welcome message
-            document.getElementById('welcomeUserName').textContent = userName;
-            
-            showNotification(`Bem-vindo, ${userName}! Acesso liberado com sucesso.`, 'success');
-            initializeApp();
-        }
-
-        // Initialize the application
-        function initializeApp() {
-            updateUI();
-            updateProgressCircle();
-        }
-
-        // Start the journey
-        function startJourney() {
-            document.getElementById('welcomeSection').style.display = 'none';
-            document.getElementById('dashboard').classList.add('active');
-            showNotification('Bem-vindo à sua jornada de transformação!', 'success');
-        }
-
-        // Update UI based on game state
-        function updateUI() {
-            // Update points and achievements
-            document.getElementById('userPoints').textContent = gameState.points;
-            document.getElementById('userAchievements').textContent = gameState.achievements.length;
-            document.getElementById('userLevel').textContent = gameState.level;
-
-            // Update progress bar
-            const progressPercentage = (gameState.points / 2500) * 100;
-            document.getElementById('overallProgress').style.width = progressPercentage + '%';
-            document.getElementById('progressText').textContent = `${gameState.points} / 2500 pontos para o próximo nível`;
-
-            // Update modules
-            updateModuleUI();
-            updateAchievements();
-        }
-
-        // Update module UI
-        function updateModuleUI() {
-            for (let i = 1; i <= 3; i++) {
-                const moduleCard = document.getElementById(`module${i}`);
-                const moduleButton = document.getElementById(`module${i}Button`);
-                const moduleProgress = document.getElementById(`module${i}Progress`);
-                const moduleProgressBar = document.getElementById(`module${i}ProgressBar`);
-
-                if (gameState.completedModules.includes(i)) {
-                    // Module completed
-                    moduleCard.className = 'module-card completed';
-                    moduleButton.className = 'module-button completed';
-                    moduleButton.textContent = '✅ MÓDULO CONCLUÍDO';
-                    moduleButton.onclick = null;
-                    moduleProgress.textContent = '100%';
-                    moduleProgressBar.style.width = '100%';
-                } else if (gameState.unlockedModules.includes(i)) {
-                    // Module unlocked
-                    moduleCard.className = 'module-card';
-                    moduleButton.className = 'module-button start';
-                    moduleButton.textContent = '🚀 INICIAR MÓDULO';
-                    moduleButton.onclick = () => startModule(i);
-                    moduleProgress.textContent = '0%';
-                    moduleProgressBar.style.width = '0%';
-                } else {
-                    // Module locked
-                    moduleCard.className = 'module-card locked';
-                    moduleButton.className = 'module-button locked';
-                    moduleButton.textContent = 'CLIQUE PARA INSERIR SENHA E DESBLOQUEAR';
-                    moduleButton.onclick = () => requestPassword(i);
-                    moduleProgress.textContent = '0%';
-                    moduleProgressBar.style.width = '0%';
-                }
-            }
-        }
-
-        // Update achievements
-        function updateAchievements() {
-            for (let i = 1; i <= 6; i++) {
-                const achievement = document.getElementById(`achievement${i}`);
-                if (gameState.achievements.includes(i)) {
-                    achievement.classList.add('unlocked');
-                } else {
-                    achievement.classList.remove('unlocked');
-                }
-            }
-        }
-
-        // Update progress circle
-        function updateProgressCircle() {
-            const circle = document.getElementById('progressCircle');
-            const label = document.getElementById('progressLabel');
-            const progressPercentage = (gameState.points / 2500) * 100;
-            
-            circle.style.background = `conic-gradient(#3b82f6 ${progressPercentage * 3.6}deg, #e5e7eb 0deg)`;
-            
-            // Update level based on points
-            if (gameState.points >= 2500) {
-                gameState.level = 'Lenda Introvertida';
-                label.innerHTML = 'Seu Progresso<br>Lenda Introvertida';
-            } else if (gameState.points >= 2000) {
-                gameState.level = 'Mestre Destravado';
-                label.innerHTML = 'Seu Progresso<br>Mestre Destravado';
-            } else if (gameState.points >= 1500) {
-                gameState.level = 'Pronto para Decolar';
-                label.innerHTML = 'Seu Progresso<br>Pronto para Decolar';
-            } else if (gameState.points >= 1000) {
-                gameState.level = 'Arquiteto da Confiança';
-                label.innerHTML = 'Seu Progresso<br>Arquiteto da Confiança';
-            } else if (gameState.points >= 500) {
-                gameState.level = 'Mestre do Mindset';
-                label.innerHTML = 'Seu Progresso<br>Mestre do Mindset';
+            if (name && password === 'destrave2024') {
+                currentUser = name;
+                document.getElementById('welcomeUserName').textContent = name;
+                document.getElementById('headerUserName').textContent = name;
+                
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('welcomeScreen').style.display = 'flex';
+                
+                showNotification(`Bem-vindo, ${name}! Acesso liberado com sucesso.`);
             } else {
-                gameState.level = 'Iniciado na Arte';
-                label.innerHTML = 'Seu Progresso<br>Iniciado na Arte';
+                showNotification('Senha incorreta. Verifique sua área de membros.', 'error');
+            }
+        });
+
+        // Mostrar Dashboard
+        function showDashboard() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('header').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'block';
+            
+            // Animar elementos
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 100);
+            
+            updateProgress();
+            showNotification('Bem-vindo à sua jornada de transformação!');
+        }
+
+        // Iniciar Módulo
+        function startModule(moduleNumber) {
+            if (moduleNumber === 1 || moduleProgress[moduleNumber].unlocked) {
+                document.getElementById('dashboard').style.display = 'none';
+                document.getElementById(`module${moduleNumber}Content`).style.display = 'block';
+                document.getElementById(`module${moduleNumber}Content`).classList.add('active');
+                
+                // Resetar para primeira página
+                showPage(moduleNumber, 1);
+                
+                // Adicionar pontos por iniciar
+                if (moduleProgress[moduleNumber].progress === 0) {
+                    addPoints(50);
+                    showNotification(`+50 pontos! Módulo ${moduleNumber} iniciado!`);
+                }
+            } else {
+                showNotification('Este módulo está bloqueado. Use a senha para desbloqueá-lo.', 'error');
             }
         }
 
-        // Request password for module
-        function requestPassword(moduleNumber) {
-            gameState.currentModule = moduleNumber;
-            document.getElementById('modalTitle').textContent = `Desbloquear: Módulo ${moduleNumber}`;
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordModal').classList.add('active');
+        // Navegação entre páginas
+        function showPage(moduleNumber, pageNumber) {
+            const module = document.getElementById(`module${moduleNumber}Content`);
+            const pages = module.querySelectorAll('.content-page');
+            const dots = module.querySelectorAll('.page-dot');
+            const currentPageSpan = document.getElementById(`module${moduleNumber}CurrentPage`);
+            const backBtn = module.querySelector('.nav-btn.back');
+            const nextBtn = module.querySelector('.nav-btn.next');
+            
+            // Esconder todas as páginas
+            pages.forEach(page => page.style.display = 'none');
+            
+            // Mostrar página atual
+            const currentPage = pages[pageNumber - 1];
+            if (currentPage) {
+                currentPage.style.display = 'block';
+                currentPage.classList.add('fade-in');
+            }
+            
+            // Atualizar dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === pageNumber - 1);
+            });
+            
+            // Atualizar indicador
+            if (currentPageSpan) {
+                currentPageSpan.textContent = pageNumber;
+            }
+            
+            // Atualizar botões de navegação
+            if (backBtn) {
+                backBtn.style.display = pageNumber > 1 ? 'inline-block' : 'none';
+            }
+            
+            if (nextBtn) {
+                if (pageNumber < moduleProgress[moduleNumber].totalPages) {
+                    nextBtn.textContent = 'Próxima →';
+                    nextBtn.onclick = () => nextPage(moduleNumber);
+                } else {
+                    nextBtn.textContent = 'Ir para Quiz →';
+                    nextBtn.onclick = () => nextPage(moduleNumber);
+                }
+            }
+            
+            // Atualizar progresso do módulo
+            moduleProgress[moduleNumber].currentPage = pageNumber;
+            const progress = Math.round((pageNumber / moduleProgress[moduleNumber].totalPages) * 100);
+            moduleProgress[moduleNumber].progress = progress;
+            
+            // Adicionar pontos por página concluída
+            if (pageNumber > 1) {
+                addPoints(100);
+                showNotification('+100 pontos! Página concluída!');
+            }
+            
+            updateProgress();
         }
 
-        // Close password modal
+        function nextPage(moduleNumber) {
+            const currentPage = moduleProgress[moduleNumber].currentPage;
+            const totalPages = moduleProgress[moduleNumber].totalPages;
+            
+            if (currentPage < totalPages) {
+                showPage(moduleNumber, currentPage + 1);
+            }
+        }
+
+        function previousPage(moduleNumber) {
+            const currentPage = moduleProgress[moduleNumber].currentPage;
+            
+            if (currentPage > 1) {
+                showPage(moduleNumber, currentPage - 1);
+            }
+        }
+
+        // Quiz
+        let selectedQuizAnswer = null;
+
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('quiz-option')) {
+                // Remover seleção anterior
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Selecionar nova opção
+                e.target.classList.add('selected');
+                selectedQuizAnswer = e.target.getAttribute('data-value');
+                
+                // Mostrar botão de confirmar
+                document.querySelector('.quiz-confirm-btn').classList.add('show');
+            }
+        });
+
+        function confirmQuizAnswer(moduleNumber) {
+            if (!selectedQuizAnswer) return;
+            
+            const feedbacks = {
+                escuta: {
+                    text: "Sua Superaudição é seu superpoder dominante! Você tem a capacidade rara de realmente ouvir e compreender as pessoas.",
+                    tip: "Use esse superpoder fazendo perguntas inteligentes que mostrem que você realmente escutou. Isso cria conexão instantânea!"
+                },
+                analise: {
+                    text: "Seu Raio-X Mental é extraordinário! Você vê além da superfície e compreende as implicações profundas das situações.",
+                    tip: "Compartilhe suas análises de forma simples e visual. Use frases como 'Se olharmos mais fundo...' para introduzir seus insights."
+                },
+                observacao: {
+                    text: "Sua Visão Além do Alcance é impressionante! Você capta dinâmicas e sinais que outros perdem completamente.",
+                    tip: "Use suas observações para facilitar conversas. Frases como 'Percebo que...' podem abrir diálogos importantes."
+                },
+                foco: {
+                    text: "Seu Foco de Laser é seu diferencial! Em um mundo de distrações, sua concentração é um superpoder valioso.",
+                    tip: "Use seu foco para guiar conversas de volta ao essencial. Seja o 'GPS' que mantém todos no caminho certo."
+                }
+            };
+            
+            const feedback = feedbacks[selectedQuizAnswer];
+            document.getElementById('quiz1FeedbackText').textContent = feedback.text;
+            document.getElementById('quiz1Tip').textContent = feedback.tip;
+            
+            // Mostrar feedback
+            document.getElementById('quiz1Feedback').classList.add('show');
+            
+            // Esconder botão de confirmar e mostrar botão de completar
+            document.querySelector('.quiz-confirm-btn').style.display = 'none';
+            document.querySelector('.complete-btn').classList.add('show');
+            
+            // Adicionar pontos
+            addPoints(200);
+            showNotification('+200 pontos! Quiz concluído com sucesso!');
+        }
+
+        // Completar Módulo
+        function completeModule(moduleNumber) {
+            moduleProgress[moduleNumber].completed = true;
+            moduleProgress[moduleNumber].progress = 100;
+            
+            // Adicionar pontos de conclusão
+            addPoints(300);
+            
+            // Adicionar conquista
+            if (moduleNumber === 1) {
+                userAchievements++;
+                showNotification('🏆 Nova conquista desbloqueada: "Primeiro Superpoder Descoberto"!');
+            }
+            
+            // Voltar ao dashboard
+            setTimeout(() => {
+                document.getElementById(`module${moduleNumber}Content`).style.display = 'none';
+                document.getElementById(`module${moduleNumber}Content`).classList.remove('active');
+                document.getElementById('dashboard').style.display = 'block';
+                
+                updateProgress();
+                showNotification(`🎉 Módulo ${moduleNumber} concluído! +300 pontos de bônus!`);
+            }, 1000);
+        }
+
+        // Sistema de Senhas
+        let currentModuleToUnlock = null;
+
+        function requestPassword(moduleId) {
+            currentModuleToUnlock = moduleId;
+            const moduleNames = {
+                2: 'Módulo 2',
+                3: 'Módulo 3',
+                'step1': 'Passo 1',
+                'step2': 'Passo 2',
+                'step3': 'Passo 3',
+                'step4': 'Passo 4',
+                'step5': 'Passo 5',
+                'step6': 'Passo 6',
+                'step7': 'Passo 7'
+            };
+            
+            document.getElementById('modalModuleName').textContent = moduleNames[moduleId];
+            document.getElementById('passwordModal').classList.add('show');
+            document.getElementById('passwordInput').focus();
+        }
+
         function closePasswordModal() {
-            document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('passwordModal').classList.remove('show');
+            document.getElementById('passwordInput').value = '';
+            currentModuleToUnlock = null;
         }
 
-        // Validate password
         function validatePassword() {
             const enteredPassword = document.getElementById('passwordInput').value;
-            const correctPassword = modulePasswords[gameState.currentModule];
-
+            const correctPassword = passwords[currentModuleToUnlock];
+            
             if (enteredPassword === correctPassword) {
-                gameState.unlockedModules.push(gameState.currentModule);
-                updateModuleUI();
+                // Desbloquear módulo
+                if (typeof currentModuleToUnlock === 'number') {
+                    moduleProgress[currentModuleToUnlock].unlocked = true;
+                    
+                    // Atualizar visual do botão
+                    const moduleCard = document.querySelector(`[onclick="requestPassword(${currentModuleToUnlock})"]`).closest('.module-card');
+                    moduleCard.classList.remove('locked');
+                    
+                    const button = moduleCard.querySelector('.module-btn');
+                    button.className = 'module-btn start';
+                    button.textContent = '🚀 INICIAR MÓDULO';
+                    button.onclick = () => startModule(currentModuleToUnlock);
+                }
+                
                 closePasswordModal();
-                showNotification(`Módulo ${gameState.currentModule} desbloqueado com sucesso!`, 'success');
+                showNotification(`✅ ${document.getElementById('modalModuleName').textContent} desbloqueado com sucesso!`);
+                addPoints(100);
             } else {
-                showNotification('Senha incorreta. Tente novamente.', 'error');
+                showNotification('Senha incorreta. Verifique sua área de membros.', 'error');
             }
         }
 
-        // Start module
-        function startModule(moduleNumber) {
-            gameState.currentModule = moduleNumber;
-            gameState.currentPage = 1;
-            gameState.selectedQuizAnswer = null;
-            gameState.quizAnswered = false;
-            
-            loadModuleContent();
-            
-            document.getElementById('dashboard').classList.remove('active');
-            document.getElementById('moduleContent').classList.add('active');
-        }
-
-        // Load module content
-        function loadModuleContent() {
-            const module = moduleData[gameState.currentModule];
-            const currentPageData = module.pages[gameState.currentPage - 1];
-            
-            document.getElementById('moduleTitle').textContent = module.title;
-            document.getElementById('moduleSubtitle').textContent = `Página ${gameState.currentPage} de ${module.pages.length}`;
-            
-            // Update page indicators
-            const indicators = document.getElementById('pageIndicators');
-            indicators.innerHTML = '';
-            for (let i = 0; i < module.pages.length; i++) {
-                const indicator = document.createElement('div');
-                indicator.className = `page-indicator ${i === gameState.currentPage - 1 ? 'active' : ''}`;
-                indicators.appendChild(indicator);
-            }
-            
-            // Load page content
-            document.getElementById('modulePages').innerHTML = `
-                <div class="content-section">
-                    <h2>${currentPageData.title}</h2>
-                    <h3>${currentPageData.subtitle}</h3>
-                    ${currentPageData.content}
-                </div>
-            `;
-            
-            // Update navigation buttons
-            const prevButton = document.getElementById('prevButton');
-            const nextButton = document.getElementById('nextButton');
-            
-            prevButton.disabled = gameState.currentPage === 1;
-            
-            if (gameState.currentPage === module.pages.length) {
-                nextButton.textContent = 'Ir para Quiz →';
-                nextButton.onclick = startQuiz;
-            } else {
-                nextButton.textContent = 'Próxima →';
-                nextButton.onclick = nextPage;
-            }
-            
-            // Add points for page completion
-            addPoints(100);
-        }
-
-        // Navigate to previous page
-        function previousPage() {
-            if (gameState.currentPage > 1) {
-                gameState.currentPage--;
-                loadModuleContent();
-            }
-        }
-
-        // Navigate to next page
-        function nextPage() {
-            const module = moduleData[gameState.currentModule];
-            if (gameState.currentPage < module.pages.length) {
-                gameState.currentPage++;
-                loadModuleContent();
-            }
-        }
-
-        // Start quiz
-        function startQuiz() {
-            const module = moduleData[gameState.currentModule];
-            
-            // Check if module has certificate instead of quiz
-            if (module.certificate) {
-                showCertificate();
-                return;
-            }
-            
-            const quiz = module.quiz;
-            
-            document.getElementById('moduleContent').classList.remove('active');
-            document.getElementById('quizSection').classList.add('active');
-            
-            document.getElementById('quizTitle').textContent = quiz.title;
-            document.getElementById('quizSubtitle').textContent = quiz.subtitle;
-            document.getElementById('quizQuestion').textContent = quiz.question;
-            
-            // Load quiz options
-            const optionsContainer = document.getElementById('quizOptions');
-            optionsContainer.innerHTML = '';
-            
-            quiz.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'quiz-option';
-                optionElement.onclick = () => selectQuizOption(option.id, optionElement);
-                
-                optionElement.innerHTML = `
-                    <div class="option-icon" style="background: ${option.color};">${option.icon}</div>
-                    <div class="option-content">
-                        <div class="option-title">${option.title}</div>
-                        <div class="option-description">${option.description}</div>
-                    </div>
-                `;
-                
-                optionsContainer.appendChild(optionElement);
-            });
-            
-            // Reset quiz state
-            document.getElementById('confirmButton').classList.remove('show');
-            document.getElementById('quizFeedback').classList.remove('show');
-            document.getElementById('completeButton').classList.remove('show');
-            gameState.selectedQuizAnswer = null;
-            gameState.quizAnswered = false;
-        }
-
-        // Select quiz option
-        function selectQuizOption(optionId, element) {
-            if (gameState.quizAnswered) return;
-            
-            // Remove previous selection
-            document.querySelectorAll('.quiz-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            
-            // Select current option
-            element.classList.add('selected');
-            gameState.selectedQuizAnswer = optionId;
-            
-            // Show confirm button
-            document.getElementById('confirmButton').classList.add('show');
-        }
-
-        // Confirm quiz answer
-        function confirmQuizAnswer() {
-            if (!gameState.selectedQuizAnswer || gameState.quizAnswered) return;
-            
-            const module = moduleData[gameState.currentModule];
-            const selectedOption = module.quiz.options.find(opt => opt.id === gameState.selectedQuizAnswer);
-            
-            // Show feedback
-            const feedbackElement = document.getElementById('quizFeedback');
-            feedbackElement.innerHTML = `
-                <div class="feedback-header">
-                    <span style="color: #059669;">${selectedOption.icon}</span>
-                    <span class="feedback-title">${selectedOption.feedback.title}</span>
-                </div>
-                <div class="feedback-content">${selectedOption.feedback.content}</div>
-                <div class="coach-tip">
-                    <div class="coach-tip-header">Dica do Alex:</div>
-                    <div>${selectedOption.feedback.tip}</div>
-                </div>
-            `;
-            
-            feedbackElement.classList.add('show');
-            document.getElementById('confirmButton').classList.remove('show');
-            document.getElementById('completeButton').classList.add('show');
-            
-            gameState.quizAnswered = true;
-            addPoints(200);
-        }
-
-        // Complete module
-        function completeModule() {
-            gameState.completedModules.push(gameState.currentModule);
-            addPoints(500);
-            
-            // Add achievement
-            if (gameState.currentModule === 1 && !gameState.achievements.includes(2)) {
-                gameState.achievements.push(2);
-                showNotification('🏆 Nova Conquista: Mestre do Mindset!', 'success');
-            } else if (gameState.currentModule === 2 && !gameState.achievements.includes(3)) {
-                gameState.achievements.push(3);
-                showNotification('🏆 Nova Conquista: Arquiteto da Confiança!', 'success');
-            } else if (gameState.currentModule === 3 && !gameState.achievements.includes(4)) {
-                gameState.achievements.push(4);
-                showNotification('🏆 Nova Conquista: Pronto para Decolar!', 'success');
-            }
-            
-            backToDashboard();
-            showNotification(`Módulo ${gameState.currentModule} concluído com sucesso!`, 'success');
-        }
-
-        // Show certificate
-        function showCertificate() {
-            document.getElementById('moduleContent').classList.remove('active');
-            document.getElementById('certificateSection').classList.add('active');
-            
-            // Set certificate date
-            const today = new Date();
-            const dateString = today.toLocaleDateString('pt-BR');
-            document.getElementById('certificateDate').textContent = dateString;
-            
-            addPoints(100);
-        }
-
-        // Accept certificate
-        function acceptCertificate() {
-            gameState.completedModules.push(gameState.currentModule);
-            addPoints(500);
-            
-            // Add achievement
-            if (!gameState.achievements.includes(4)) {
-                gameState.achievements.push(4);
-                showNotification('🏆 Nova Conquista: Pronto para Decolar!', 'success');
-            }
-            
-            backToDashboard();
-            showNotification('Certificado aceito! Você está pronto para os 7 passos!', 'success');
-        }
-
-        // Back to dashboard
-        function backToDashboard() {
-            document.getElementById('moduleContent').classList.remove('active');
-            document.getElementById('quizSection').classList.remove('active');
-            document.getElementById('certificateSection').classList.remove('active');
-            document.getElementById('dashboard').classList.add('active');
-            updateUI();
-        }
-
-        // Add points
+        // Sistema de Pontos e Progresso
         function addPoints(points) {
-            gameState.points += points;
-            updateProgressCircle();
-            showNotification(`+${points} pontos! Página concluída!`, 'success');
+            userPoints += points;
+            document.getElementById('userPoints').textContent = userPoints;
+            document.getElementById('currentPoints').textContent = userPoints;
+            updateProgress();
         }
 
-        // Show notification
+        function updateProgress() {
+            // Atualizar progresso geral
+            const totalModules = 3;
+            let completedModules = 0;
+            
+            for (let i = 1; i <= totalModules; i++) {
+                if (moduleProgress[i].completed) {
+                    completedModules++;
+                }
+                
+                // Atualizar progresso individual do módulo
+                const progressElement = document.getElementById(`module${i}Progress`);
+                const progressBarElement = document.getElementById(`module${i}ProgressBar`);
+                
+                if (progressElement && progressBarElement) {
+                    progressElement.textContent = `${moduleProgress[i].progress}%`;
+                    progressBarElement.style.width = `${moduleProgress[i].progress}%`;
+                }
+            }
+            
+            // Atualizar barra de progresso geral
+            const overallProgress = Math.round((userPoints / 2500) * 100);
+            document.getElementById('overallProgress').style.width = `${Math.min(overallProgress, 100)}%`;
+            
+            // Atualizar conquistas
+            document.getElementById('userAchievements').textContent = userAchievements;
+        }
+
+        // Sistema de Notificações
         function showNotification(message, type = 'success') {
             const notification = document.getElementById('notification');
             const notificationText = document.getElementById('notificationText');
             
             notificationText.textContent = message;
-            notification.className = `notification ${type} show`;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
             
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 4000);
         }
 
-        // Handle Enter key in password input
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    validatePassword();
-                }
-            });
+        // Eventos de teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('show')) {
+                validatePassword();
+            }
             
-            document.getElementById('accessPassword').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    handleLogin(e);
-                }
+            if (e.key === 'Escape') {
+                closePasswordModal();
+            }
+        });
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Aplicar animações suaves
+            document.body.style.opacity = '1';
+            
+            // Configurar scroll suave
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Otimizações de performance
+            document.querySelectorAll('.module-card, .content-card, .quiz-section').forEach(el => {
+                el.classList.add('gpu-accelerated');
             });
         });
+
+        // Otimizações de performance para animações
+        function optimizeAnimations() {
+            const cards = document.querySelectorAll('.module-card, .content-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Chamar otimizações após carregamento
+        window.addEventListener('load', optimizeAnimations);
     </script>
 </body>
 </html>
