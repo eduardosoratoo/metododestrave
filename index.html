@@ -292,6 +292,29 @@
             border-color: #3b82f6;
             background: #dbeafe;
         }
+
+        .certificate-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 3px solid #f59e0b;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+        }
     </style>
     
     <script>
@@ -741,6 +764,12 @@
                             </div>
                         </div>
                         
+                        <div class="text-center mt-6">
+                            <button id="confirm-quiz-btn" onclick="confirmQuizAnswer()" class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors" style="display: none;">
+                                ✅ CONFIRMAR RESPOSTA
+                            </button>
+                        </div>
+                        
                         <div id="quiz-feedback" class="mt-6" style="display: none;"></div>
                     `
                 }
@@ -849,6 +878,12 @@
                             </div>
                         </div>
                         
+                        <div class="text-center mt-6">
+                            <button id="confirm-quiz-btn" onclick="confirmQuizAnswer()" class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors" style="display: none;">
+                                ✅ CONFIRMAR RESPOSTA
+                            </button>
+                        </div>
+                        
                         <div id="quiz-feedback" class="mt-6" style="display: none;"></div>
                     `
                 }
@@ -898,16 +933,21 @@
                             <p class="mb-4">Você completou sua preparação! Está pronto para os 7 Passos da Transformação.</p>
                         </div>
                         
-                        <div class="bg-yellow-100 p-6 rounded-lg mb-6">
-                            <h4 class="text-xl font-bold mb-4 text-center">🏆 Certificado de Conclusão</h4>
-                            <div class="bg-white p-4 rounded-lg border-2 border-yellow-400 mb-4">
-                                <h5 class="font-bold text-lg text-center">🎖️ CERTIFICADO DE CONCLUSÃO</h5>
-                                <p class="text-sm mt-2 text-center">Este certificado atesta que você completou os 3 módulos iniciais e está preparado para a transformação completa.</p>
-                                <p class="text-xs text-gray-600 mt-2 text-center">Data: ${new Date().toLocaleDateString('pt-BR')}</p>
+                        <div class="certificate-box">
+                            <h4 class="text-2xl font-bold mb-4 text-yellow-800">🏆 CERTIFICADO DE CONCLUSÃO</h4>
+                            <div class="bg-white p-6 rounded-lg border-2 border-yellow-600 mb-4 relative z-10">
+                                <h5 class="font-bold text-xl text-center mb-2">🎖️ CERTIFICADO DE PREPARAÇÃO</h5>
+                                <p class="text-sm mt-2 text-center">Este certificado atesta que você completou os 3 módulos iniciais do Portal Destrave na Hora H e está preparado para a transformação completa.</p>
+                                <p class="text-xs text-gray-600 mt-4 text-center">Data: ${new Date().toLocaleDateString('pt-BR')}</p>
+                                <p class="text-xs text-gray-600 text-center">Assinatura: Alex, Seu Mentor</p>
                             </div>
                         </div>
                         
-                        <div id="quiz-feedback" class="mt-6" style="display: none;"></div>
+                        <div class="text-center mt-6">
+                            <button onclick="completeModule()" class="bg-brand-success text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-colors text-lg">
+                                ✅ ACEITAR CERTIFICADO E CONCLUIR (+500 pts)
+                            </button>
+                        </div>
                     `
                 }
             }
@@ -936,7 +976,8 @@
             currentModule: null,
             currentPage: 0,
             completedModules: [],
-            quizAnswered: false
+            quizAnswered: false,
+            selectedQuizOption: null
         };
 
         const levels = [
@@ -966,6 +1007,7 @@
             user.currentModule = moduleId;
             user.currentPage = 0;
             user.quizAnswered = false;
+            user.selectedQuizOption = null;
             showModuleContent();
         }
 
@@ -1026,12 +1068,6 @@
                             </div>
                             
                             ${module.quiz.content}
-                            
-                            <div class="text-center mt-8" id="complete-module-section" style="display: none;">
-                                <button onclick="completeModule()" class="bg-brand-success text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-colors text-lg">
-                                    ✅ CONCLUIR MÓDULO (+500 pts)
-                                </button>
-                            </div>
                         </div>
                     </div>
                 `;
@@ -1066,45 +1102,97 @@
             
             // Adiciona seleção atual
             element.classList.add('selected');
+            user.selectedQuizOption = option;
             
-            // Mostra feedback baseado na opção
+            // Mostra botão de confirmação
+            const confirmBtn = document.getElementById('confirm-quiz-btn');
+            if (confirmBtn) {
+                confirmBtn.style.display = 'block';
+            }
+        }
+
+        function confirmQuizAnswer() {
+            if (!user.selectedQuizOption) {
+                showNotification('Por favor, selecione uma opção primeiro!', 'warning');
+                return;
+            }
+
             const feedbackDiv = document.getElementById('quiz-feedback');
             const moduleId = user.currentModule;
+            const option = user.selectedQuizOption;
             
             let feedbackContent = '';
             
             if (moduleId === 1) {
                 const messages = {
-                    'foco': 'Excelente! Seu Super Foco é uma vantagem competitiva incrível! Você consegue mergulhar profundamente em projetos enquanto outros se distraem.',
-                    'escuta': 'Perfeito! Sua Escuta Ativa cria conexões profundas e duradouras! As pessoas se sentem verdadeiramente ouvidas por você.',
-                    'processamento': 'Fantástico! Seu Processamento Profundo gera insights únicos! Você vê padrões e soluções que outros não conseguem.',
-                    'autenticidade': 'Maravilhoso! Sua Autenticidade atrai as pessoas certas! Em um mundo de máscaras, você é uma respiração de ar fresco.',
-                    'preparacao': 'Incrível! Sua Preparação garante resultados excepcionais! Quando você fala, as pessoas sabem que vale a pena ouvir.'
+                    'foco': {
+                        title: 'Excelente escolha! Seu Super Foco é realmente impressionante.',
+                        message: 'Você tem a capacidade rara de mergulhar profundamente em projetos enquanto outros se distraem. Isso é uma vantagem competitiva incrível no mundo atual, cheio de distrações. Use esse superpoder para se destacar em reuniões e projetos importantes.',
+                        tip: 'Dica do Alex: Quando estiver em uma reunião, use seu foco para captar detalhes que outros perdem. Isso fará você brilhar!'
+                    },
+                    'escuta': {
+                        title: 'Perfeito! Sua Escuta Ativa é um dom especial.',
+                        message: 'Em um mundo onde todos querem falar, você tem o superpoder de realmente ouvir. Isso cria conexões profundas e duradouras. As pessoas se sentem verdadeiramente compreendidas quando conversam com você.',
+                        tip: 'Dica do Alex: Use sua escuta ativa para fazer perguntas poderosas que mostrem seu interesse genuíno. Isso abrirá portas!'
+                    },
+                    'processamento': {
+                        title: 'Fantástico! Seu Processamento Profundo é único.',
+                        message: 'Você vê padrões e conexões que outros não conseguem. Sua mente analisa informações em camadas, gerando insights valiosos. Isso é ouro puro no mundo dos negócios e relacionamentos.',
+                        tip: 'Dica do Alex: Compartilhe seus insights de forma simples e clara. Sua profundidade de pensamento impressionará!'
+                    },
+                    'autenticidade': {
+                        title: 'Maravilhoso! Sua Autenticidade é magnética.',
+                        message: 'Em um mundo de máscaras e aparências, você é uma respiração de ar fresco. Sua genuinidade atrai as pessoas certas e cria conexões reais. Isso é um superpoder raro e valioso.',
+                        tip: 'Dica do Alex: Continue sendo você mesmo, mas com mais confiança. Sua autenticidade é seu maior trunfo!'
+                    },
+                    'preparacao': {
+                        title: 'Incrível! Sua Preparação é sua força secreta.',
+                        message: 'Você se prepara melhor que qualquer um. Quando chega sua hora de falar, você está pronto com conteúdo valioso e bem estruturado. Isso garante resultados excepcionais.',
+                        tip: 'Dica do Alex: Use sua preparação para antecipar perguntas e objeções. Isso mostrará sua competência!'
+                    }
                 };
+                const msg = messages[option];
                 feedbackContent = `
                     <div class="success-message">
-                        <h4 class="font-bold text-lg mb-2">🎯 ${messages[option]}</h4>
-                        <p>Agora você conhece seu superpoder dominante! Use essa consciência para potencializar suas comunicações.</p>
+                        <h4 class="font-bold text-lg mb-3">🎯 ${msg.title}</h4>
+                        <p class="mb-3">${msg.message}</p>
+                        <div class="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-500">
+                            <p class="text-sm font-medium">${msg.tip}</p>
+                        </div>
                     </div>
                 `;
             } else if (moduleId === 2) {
                 const scenarios = {
-                    'reuniao': 'Ótima escolha! Em reuniões, use: 1) Preparação (pesquise os participantes), 2) Gatilho (respire fundo antes de falar), 3) Execução (ofereça insights valiosos).',
-                    'apresentacao': 'Excelente! Para apresentações: 1) Preparação (estruture sua mensagem), 2) Gatilho (visualize o sucesso), 3) Execução (conecte-se emocionalmente).',
-                    'networking': 'Perfeito! No networking: 1) Preparação (defina objetivos claros), 2) Gatilho (lembre-se do seu valor), 3) Execução (seja genuinamente curioso).',
-                    'entrevista': 'Fantástico! Em entrevistas: 1) Preparação (estude a empresa), 2) Gatilho (afirme sua competência), 3) Execução (mostre seu valor único).'
+                    'reuniao': {
+                        title: 'Ótima escolha! Reuniões são onde você pode brilhar.',
+                        message: 'Para reuniões importantes, use: 1) Preparação (pesquise os participantes e pauta), 2) Gatilho (respire fundo e lembre-se do seu valor), 3) Execução (ofereça insights valiosos no momento certo).',
+                        tip: 'Dica do Alex: Chegue 5 minutos antes para se ambientar e ativar seu gatilho de confiança.'
+                    },
+                    'apresentacao': {
+                        title: 'Excelente! Apresentações são sua oportunidade de ouro.',
+                        message: 'Para apresentações impactantes: 1) Preparação (estruture sua mensagem com começo, meio e fim), 2) Gatilho (visualize o sucesso e conecte-se com seu propósito), 3) Execução (fale com o coração, não só com a mente).',
+                        tip: 'Dica do Alex: Pratique sua abertura até ela fluir naturalmente. Primeiros 30 segundos definem tudo!'
+                    },
+                    'networking': {
+                        title: 'Perfeito! Networking autêntico é seu forte.',
+                        message: 'No networking eficaz: 1) Preparação (defina objetivos claros e pesquise participantes), 2) Gatilho (lembre-se que você tem valor a oferecer), 3) Execução (seja genuinamente curioso sobre as pessoas).',
+                        tip: 'Dica do Alex: Foque em ajudar, não em vender. Pergunte: "Como posso ajudar?" em vez de "O que você faz?"'
+                    },
+                    'entrevista': {
+                        title: 'Fantástico! Entrevistas são onde você se destaca.',
+                        message: 'Em entrevistas vencedoras: 1) Preparação (estude a empresa e prepare histórias STAR), 2) Gatilho (afirme sua competência e valor único), 3) Execução (mostre como você resolve problemas reais).',
+                        tip: 'Dica do Alex: Prepare 3 perguntas inteligentes sobre a empresa. Isso mostra seu interesse genuíno!'
+                    }
                 };
+                const scenario = scenarios[option];
                 feedbackContent = `
                     <div class="success-message">
-                        <h4 class="font-bold text-lg mb-2">🎭 ${scenarios[option]}</h4>
-                        <p>Lembre-se: Preparação → Gatilho da Confiança → Execução Magnética!</p>
-                    </div>
-                `;
-            } else if (moduleId === 3) {
-                feedbackContent = `
-                    <div class="success-message">
-                        <h4 class="font-bold text-lg mb-2">🎉 Parabéns! Você está oficialmente preparado!</h4>
-                        <p>Você completou todos os módulos preparatórios e agora possui as ferramentas necessárias para sua transformação completa.</p>
+                        <h4 class="font-bold text-lg mb-3">🎭 ${scenario.title}</h4>
+                        <p class="mb-3">${scenario.message}</p>
+                        <div class="bg-green-50 p-3 rounded-lg border-l-4 border-green-500">
+                            <p class="text-sm font-medium">${scenario.tip}</p>
+                        </div>
+                        <p class="mt-3 text-center font-medium">Lembre-se: Preparação → Gatilho da Confiança → Execução Magnética!</p>
                     </div>
                 `;
             }
@@ -1112,16 +1200,29 @@
             feedbackDiv.innerHTML = feedbackContent;
             feedbackDiv.style.display = 'block';
             
-            // Mostra botão de conclusão após responder
+            // Esconde botão de confirmação e mostra botão de conclusão
+            const confirmBtn = document.getElementById('confirm-quiz-btn');
+            if (confirmBtn) {
+                confirmBtn.style.display = 'none';
+            }
+            
             user.quizAnswered = true;
-            const completeSection = document.getElementById('complete-module-section');
-            if (completeSection) {
-                completeSection.style.display = 'block';
+            
+            // Para módulo 3, não precisa de botão adicional pois já tem o botão de aceitar certificado
+            if (moduleId !== 3) {
+                const completeSection = document.createElement('div');
+                completeSection.className = 'text-center mt-8';
+                completeSection.innerHTML = `
+                    <button onclick="completeModule()" class="bg-brand-success text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-colors text-lg">
+                        ✅ CONCLUIR MÓDULO (+500 pts)
+                    </button>
+                `;
+                feedbackDiv.appendChild(completeSection);
             }
         }
 
         function completeModule() {
-            if (!user.quizAnswered) {
+            if (!user.quizAnswered && user.currentModule !== 3) {
                 showNotification('Por favor, responda ao quiz antes de concluir o módulo!', 'warning');
                 return;
             }
@@ -1157,6 +1258,7 @@
             user.currentModule = null;
             user.currentPage = 0;
             user.quizAnswered = false;
+            user.selectedQuizOption = null;
         }
 
         function showPasswordPrompt(moduleId) {
