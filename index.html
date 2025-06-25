@@ -13,9 +13,123 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
             min-height: 100vh;
             color: #333;
+        }
+
+        /* Login Screen Styles */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .login-title {
+            font-size: 2rem;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .login-subtitle {
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .login-button {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.4);
+        }
+
+        .login-info {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #0c4a6e;
+        }
+
+        /* Main App Styles */
+        .app-container {
+            display: none;
+        }
+
+        .app-container.active {
+            display: block;
         }
 
         .header {
@@ -40,7 +154,7 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -52,13 +166,13 @@
 
         .logo-text h1 {
             font-size: 1.5rem;
-            color: #2d3748;
+            color: #1e40af;
             margin: 0;
         }
 
         .logo-text p {
             font-size: 0.9rem;
-            color: #718096;
+            color: #64748b;
             margin: 0;
         }
 
@@ -75,12 +189,12 @@
         .stat-number {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #2d3748;
+            color: #1e40af;
         }
 
         .stat-label {
             font-size: 0.8rem;
-            color: #718096;
+            color: #64748b;
         }
 
         .container {
@@ -101,20 +215,20 @@
         .welcome-section h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .welcome-section p {
             font-size: 1.2rem;
-            color: #4a5568;
+            color: #4b5563;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
 
         .mentor-card {
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
             border-radius: 15px;
             padding: 2rem;
             margin: 2rem 0;
@@ -126,7 +240,7 @@
         .mentor-avatar {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -136,18 +250,18 @@
         }
 
         .mentor-content h3 {
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 0.5rem;
         }
 
         .mentor-content p {
-            color: #4a5568;
+            color: #4b5563;
             font-style: italic;
             line-height: 1.5;
         }
 
         .start-button {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
             padding: 1rem 3rem;
@@ -156,12 +270,12 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
         }
 
         .start-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.6);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6);
         }
 
         .dashboard {
@@ -181,7 +295,7 @@
         }
 
         .progress-bar {
-            background: #e2e8f0;
+            background: #e5e7eb;
             border-radius: 10px;
             height: 20px;
             margin: 1rem 0;
@@ -189,7 +303,7 @@
         }
 
         .progress-fill {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #059669, #10b981);
             height: 100%;
             border-radius: 10px;
             transition: width 0.5s ease;
@@ -217,13 +331,13 @@
         }
 
         .module-card.completed {
-            border-color: #48bb78;
-            background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+            border-color: #059669;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
         }
 
         .module-card.locked {
-            border-color: #ffd700;
-            background: linear-gradient(135deg, #fffbeb, #fef5e7);
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
         }
 
         .module-header {
@@ -244,17 +358,17 @@
             color: white;
         }
 
-        .module-icon.module1 { background: linear-gradient(135deg, #667eea, #764ba2); }
-        .module-icon.module2 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .module-icon.module3 { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .module-icon.module1 { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+        .module-icon.module2 { background: linear-gradient(135deg, #0891b2, #06b6d4); }
+        .module-icon.module3 { background: linear-gradient(135deg, #7c3aed, #a855f7); }
 
         .module-info h3 {
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 0.5rem;
         }
 
         .module-info p {
-            color: #718096;
+            color: #64748b;
             font-size: 0.9rem;
         }
 
@@ -267,13 +381,13 @@
 
         .progress-text {
             font-weight: bold;
-            color: #2d3748;
+            color: #1e40af;
         }
 
         .progress-percentage {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #48bb78;
+            color: #059669;
         }
 
         .module-button {
@@ -289,33 +403,33 @@
         }
 
         .module-button.start {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
         }
 
         .module-button.start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.6);
         }
 
         .module-button.completed {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             cursor: default;
         }
 
         .module-button.locked {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #744210;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: #92400e;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
             position: relative;
             overflow: hidden;
         }
 
         .module-button.locked:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
         }
 
         .module-button.locked::before {
@@ -355,7 +469,7 @@
         }
 
         .achievement {
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
             border-radius: 15px;
             padding: 1rem;
             text-align: center;
@@ -363,7 +477,7 @@
         }
 
         .achievement.unlocked {
-            background: linear-gradient(135deg, #fef5e7, #fed7aa);
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
             transform: scale(1.05);
         }
 
@@ -374,7 +488,7 @@
 
         .achievement-name {
             font-weight: bold;
-            color: #2d3748;
+            color: #1e40af;
             font-size: 0.9rem;
         }
 
@@ -393,7 +507,7 @@
         }
 
         .step-card {
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
@@ -403,12 +517,12 @@
 
         .step-card.available {
             opacity: 1;
-            background: linear-gradient(135deg, #fef5e7, #fed7aa);
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
             transform: scale(1.02);
         }
 
         .step-number {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
             width: 40px;
             height: 40px;
@@ -422,12 +536,12 @@
 
         .step-title {
             font-weight: bold;
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 0.5rem;
         }
 
         .step-description {
-            color: #718096;
+            color: #64748b;
             font-size: 0.9rem;
         }
 
@@ -464,18 +578,18 @@
         }
 
         .modal-header h3 {
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 0.5rem;
         }
 
         .modal-header p {
-            color: #718096;
+            color: #64748b;
         }
 
         .password-input {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #e5e7eb;
             border-radius: 10px;
             font-size: 1.1rem;
             margin: 1rem 0;
@@ -484,8 +598,8 @@
 
         .password-input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .modal-buttons {
@@ -505,13 +619,13 @@
         }
 
         .modal-button.primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
         }
 
         .modal-button.secondary {
-            background: #e2e8f0;
-            color: #4a5568;
+            background: #e5e7eb;
+            color: #4b5563;
         }
 
         .modal-button:hover {
@@ -536,11 +650,11 @@
         }
 
         .notification.success {
-            border-left: 4px solid #48bb78;
+            border-left: 4px solid #059669;
         }
 
         .notification.error {
-            border-left: 4px solid #f56565;
+            border-left: 4px solid #dc2626;
         }
 
         .content-view {
@@ -563,12 +677,12 @@
 
         .content-title {
             font-size: 2rem;
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 0.5rem;
         }
 
         .content-subtitle {
-            color: #718096;
+            color: #64748b;
             margin-bottom: 1rem;
         }
 
@@ -583,12 +697,12 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #e2e8f0;
+            background: #e5e7eb;
             transition: all 0.3s ease;
         }
 
         .page-indicator.active {
-            background: #667eea;
+            background: #3b82f6;
             transform: scale(1.2);
         }
 
@@ -597,7 +711,7 @@
         }
 
         .content-section h3 {
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -605,8 +719,8 @@
         }
 
         .story-box {
-            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
-            border-left: 4px solid #38b2ac;
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-left: 4px solid #059669;
             padding: 1.5rem;
             border-radius: 10px;
             margin: 1rem 0;
@@ -614,7 +728,7 @@
 
         .story-title {
             font-weight: bold;
-            color: #234e52;
+            color: #065f46;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -622,8 +736,8 @@
         }
 
         .insight-box {
-            background: linear-gradient(135deg, #fef5e7, #fed7aa);
-            border-left: 4px solid #ed8936;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
             padding: 1.5rem;
             border-radius: 10px;
             margin: 1rem 0;
@@ -631,7 +745,7 @@
 
         .insight-title {
             font-weight: bold;
-            color: #744210;
+            color: #92400e;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -647,14 +761,14 @@
 
         .superpower {
             background: white;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #e5e7eb;
             border-radius: 10px;
             padding: 1rem;
             transition: all 0.3s ease;
         }
 
         .superpower:hover {
-            border-color: #667eea;
+            border-color: #3b82f6;
             transform: translateY(-2px);
         }
 
@@ -667,11 +781,11 @@
 
         .superpower-title {
             font-weight: bold;
-            color: #2d3748;
+            color: #1e40af;
         }
 
         .superpower-description {
-            color: #4a5568;
+            color: #4b5563;
             font-size: 0.9rem;
         }
 
@@ -695,12 +809,12 @@
         }
 
         .nav-button.previous {
-            background: #e2e8f0;
-            color: #4a5568;
+            background: #e5e7eb;
+            color: #4b5563;
         }
 
         .nav-button.next {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
         }
 
@@ -734,7 +848,7 @@
 
         .quiz-title {
             font-size: 1.8rem;
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -743,13 +857,13 @@
         }
 
         .quiz-subtitle {
-            color: #718096;
+            color: #64748b;
             margin-bottom: 1rem;
         }
 
         .quiz-question {
             font-size: 1.1rem;
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 2rem;
             text-align: center;
         }
@@ -762,7 +876,7 @@
 
         .quiz-option {
             background: white;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #e5e7eb;
             border-radius: 15px;
             padding: 1.5rem;
             cursor: pointer;
@@ -773,14 +887,14 @@
         }
 
         .quiz-option:hover {
-            border-color: #667eea;
+            border-color: #3b82f6;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .quiz-option.selected {
-            border-color: #667eea;
-            background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
         }
 
         .option-icon {
@@ -801,18 +915,18 @@
 
         .option-title {
             font-weight: bold;
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 0.3rem;
         }
 
         .option-description {
-            color: #718096;
+            color: #64748b;
             font-size: 0.9rem;
         }
 
         .quiz-feedback {
-            background: linear-gradient(135deg, #f0fff4, #c6f6d5);
-            border: 2px solid #48bb78;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 2px solid #059669;
             border-radius: 15px;
             padding: 2rem;
             margin: 2rem 0;
@@ -832,11 +946,11 @@
 
         .feedback-title {
             font-weight: bold;
-            color: #22543d;
+            color: #065f46;
         }
 
         .feedback-content {
-            color: #2f855a;
+            color: #047857;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
@@ -845,17 +959,17 @@
             background: rgba(255,255,255,0.7);
             border-radius: 10px;
             padding: 1rem;
-            border-left: 4px solid #38b2ac;
+            border-left: 4px solid #0891b2;
         }
 
         .coach-tip-header {
             font-weight: bold;
-            color: #234e52;
+            color: #0c4a6e;
             margin-bottom: 0.5rem;
         }
 
         .confirm-button {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -873,11 +987,11 @@
 
         .confirm-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
         }
 
         .complete-button {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -895,7 +1009,7 @@
 
         .complete-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
         }
 
         .certificate-section {
@@ -918,7 +1032,7 @@
 
         .certificate-title {
             font-size: 2rem;
-            color: #2d3748;
+            color: #1e40af;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -928,18 +1042,18 @@
 
         .certificate-subtitle {
             font-size: 1.2rem;
-            color: #4a5568;
+            color: #4b5563;
             margin-bottom: 1rem;
         }
 
         .certificate-description {
-            color: #718096;
+            color: #64748b;
             margin-bottom: 2rem;
         }
 
         .certificate {
-            background: linear-gradient(135deg, #fef5e7, #fed7aa);
-            border: 3px solid #ed8936;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 3px solid #f59e0b;
             border-radius: 20px;
             padding: 2rem;
             margin: 2rem 0;
@@ -958,8 +1072,8 @@
                 45deg,
                 transparent,
                 transparent 10px,
-                rgba(237, 137, 54, 0.1) 10px,
-                rgba(237, 137, 54, 0.1) 20px
+                rgba(245, 158, 11, 0.1) 10px,
+                rgba(245, 158, 11, 0.1) 20px
             );
             animation: certificateShine 3s linear infinite;
         }
@@ -982,12 +1096,12 @@
         .certificate-name {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #744210;
+            color: #92400e;
             margin-bottom: 1rem;
         }
 
         .certificate-text {
-            color: #744210;
+            color: #92400e;
             margin-bottom: 1rem;
             line-height: 1.6;
         }
@@ -997,11 +1111,11 @@
             justify-content: space-between;
             margin-top: 2rem;
             font-size: 0.9rem;
-            color: #744210;
+            color: #92400e;
         }
 
         .accept-certificate-button {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
             padding: 1.5rem 3rem;
@@ -1011,16 +1125,16 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 2rem;
-            box-shadow: 0 5px 20px rgba(72, 187, 120, 0.4);
+            box-shadow: 0 5px 20px rgba(5, 150, 105, 0.4);
         }
 
         .accept-certificate-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.6);
+            box-shadow: 0 8px 25px rgba(5, 150, 105, 0.6);
         }
 
         .back-button {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
             padding: 0.8rem 1.5rem;
@@ -1036,14 +1150,14 @@
 
         .back-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
         }
 
         .progress-circle {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: conic-gradient(#667eea 0deg, #e2e8f0 0deg);
+            background: conic-gradient(#3b82f6 0deg, #e5e7eb 0deg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1068,7 +1182,7 @@
         .progress-label {
             text-align: center;
             font-weight: bold;
-            color: #2d3748;
+            color: #1e40af;
         }
 
         @media (max-width: 768px) {
@@ -1131,285 +1245,321 @@
             .certificate {
                 padding: 1.5rem;
             }
+
+            .login-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">
-            <div class="logo-icon">🚀</div>
-            <div class="logo-text">
-                <h1>Portal Destrave na Hora H</h1>
-                <p id="userLevel">Novato Explorador</p>
-            </div>
-        </div>
-        <div class="user-stats">
-            <div class="stat">
-                <div class="stat-number" id="userPoints">0</div>
-                <div class="stat-label">Pontos</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number" id="userAchievements">1</div>
-                <div class="stat-label">Conquistas</div>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-logo">🎓</div>
+            <h1 class="login-title">Portal Destrave na Hora H</h1>
+            <p class="login-subtitle">Acesse sua jornada de transformação completa</p>
+            
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" for="userName">Seu Nome Completo</label>
+                    <input type="text" id="userName" class="form-input" placeholder="Digite seu nome completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="accessPassword">Senha de Acesso</label>
+                    <input type="password" id="accessPassword" class="form-input" placeholder="Digite sua senha de acesso" required>
+                </div>
+                
+                <button type="submit" class="login-button">🚀 ACESSAR PORTAL</button>
+            </form>
+            
+            <div class="login-info">
+                <strong>📧 Onde encontrar sua senha:</strong><br>
+                Verifique sua área de membros ou o email de boas-vindas que você recebeu após a compra.
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <!-- Welcome Section -->
-        <div class="welcome-section" id="welcomeSection">
-            <h1>🎯 Bem-vindo à Sua Jornada de Transformação Completa!</h1>
-            <p>Você está prestes a descobrir e desenvolver seus superpoderes introvertidos através de uma jornada estruturada: 3 módulos iniciais de preparação + 7 passos práticos de transformação.</p>
-            
-            <div class="mentor-card">
-                <div class="mentor-avatar">👨‍🏫</div>
-                <div class="mentor-content">
-                    <h3>Alex, Seu Mentor</h3>
-                    <p>Ex-introvertido tímido, hoje comunicador de impacto</p>
-                    <p>"Olá! Eu sou o Alex, e assim como você, já fui aquele introvertido que tinha ideias brilhantes mas travava na hora de falar. Hoje, vou te guiar nesta jornada completa: primeiro vamos descobrir seus superpoderes únicos, depois aplicá-los na prática através dos 7 passos de transformação!"</p>
+    <!-- Main Application -->
+    <div class="app-container" id="appContainer">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">🎓</div>
+                <div class="logo-text">
+                    <h1>Portal Destrave na Hora H</h1>
+                    <p id="userLevel">Novato Explorador</p>
                 </div>
             </div>
-            
-            <button class="start-button" onclick="startJourney()">INICIAR MINHA JORNADA COMPLETA →</button>
+            <div class="user-stats">
+                <div class="stat">
+                    <div class="stat-number" id="userPoints">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="userAchievements">1</div>
+                    <div class="stat-label">Conquistas</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Dashboard -->
-        <div class="dashboard" id="dashboard">
-            <!-- Progress Overview -->
-            <div class="progress-overview">
-                <h2>Sua Jornada Completa de Transformação</h2>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="overallProgress" style="width: 0%"></div>
-                </div>
-                <p id="progressText">0 / 1000 pontos para o próximo nível</p>
-            </div>
-
-            <!-- Phase 1: Modules -->
-            <div class="steps-section">
-                <h2>🎯 Fase 1: Descoberta dos Superpoderes</h2>
-                <div class="modules-grid">
-                    <!-- Module 1 -->
-                    <div class="module-card" id="module1">
-                        <div class="module-header">
-                            <div class="module-icon module1">⚡</div>
-                            <div class="module-info">
-                                <h3>Módulo 1: Desperte Seus Superpoderes</h3>
-                                <p>Transforme sua percepção sobre introversão</p>
-                            </div>
-                        </div>
-                        <div class="module-progress">
-                            <span class="progress-text">Progresso</span>
-                            <span class="progress-percentage" id="module1Progress">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="module1ProgressBar" style="width: 0%"></div>
-                        </div>
-                        <button class="module-button start" id="module1Button" onclick="startModule(1)">🚀 INICIAR MÓDULO</button>
-                    </div>
-
-                    <!-- Module 2 -->
-                    <div class="module-card locked" id="module2">
-                        <div class="module-header">
-                            <div class="module-icon module2">🛠️</div>
-                            <div class="module-info">
-                                <h3>Módulo 2: Domine o Método Destrave na Hora H™</h3>
-                                <p>Os 3 passos fundamentais para destravar</p>
-                            </div>
-                        </div>
-                        <div class="module-progress">
-                            <span class="progress-text">Progresso</span>
-                            <span class="progress-percentage" id="module2Progress">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="module2ProgressBar" style="width: 0%"></div>
-                        </div>
-                        <button class="module-button locked" id="module2Button" onclick="requestPassword(2)">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                    </div>
-
-                    <!-- Module 3 -->
-                    <div class="module-card locked" id="module3">
-                        <div class="module-header">
-                            <div class="module-icon module3">🚀</div>
-                            <div class="module-info">
-                                <h3>Módulo 3: Prepare-se para a Transformação</h3>
-                                <p>Consolide seu aprendizado e prepare-se para os 7 passos</p>
-                            </div>
-                        </div>
-                        <div class="module-progress">
-                            <span class="progress-text">Progresso</span>
-                            <span class="progress-percentage" id="module3Progress">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="module3ProgressBar" style="width: 0%"></div>
-                        </div>
-                        <button class="module-button locked" id="module3Button" onclick="requestPassword(3)">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Phase 2: 7 Steps -->
-            <div class="steps-section">
-                <h2>🔥 Fase 2: Os 7 Passos da Transformação</h2>
-                <p style="color: #718096; text-align: center; margin-bottom: 2rem;">Complete todos os módulos iniciais para desbloquear esta fase.</p>
+        <div class="container">
+            <!-- Welcome Section -->
+            <div class="welcome-section" id="welcomeSection">
+                <h1>🎯 Bem-vindo à Sua Jornada de Transformação Completa!</h1>
+                <p>Você está prestes a descobrir e desenvolver seus superpoderes introvertidos através de uma jornada estruturada: 3 módulos iniciais de preparação + 7 passos práticos de transformação.</p>
                 
-                <div class="steps-grid">
-                    <div class="step-card" id="step1">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Passo 1: A Virada de Chave</div>
-                        <div class="step-description">Entenda por que ser introvertido é um superpoder.</div>
-                    </div>
-                    <div class="step-card" id="step2">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Passo 2: O Mapa da Empatia</div>
-                        <div class="step-description">Conecte-se profundamente com as pessoas.</div>
-                    </div>
-                    <div class="step-card" id="step3">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Passo 3: A Arte da Escuta Ativa</div>
-                        <div class="step-description">Ouça mais, fale melhor.</div>
-                    </div>
-                    <div class="step-card" id="step4">
-                        <div class="step-number">4</div>
-                        <div class="step-title">Passo 4: Construindo Pontes</div>
-                        <div class="step-description">Crie conexões genuínas e duradouras.</div>
-                    </div>
-                    <div class="step-card" id="step5">
-                        <div class="step-number">5</div>
-                        <div class="step-title">Passo 5: O Poder da Preparação</div>
-                        <div class="step-description">Transforme ansiedade em confiança.</div>
-                    </div>
-                    <div class="step-card" id="step6">
-                        <div class="step-number">6</div>
-                        <div class="step-title">Passo 6: A Regra dos 3 Pontos</div>
-                        <div class="step-description">Comunique-se com clareza e impacto.</div>
-                    </div>
-                    <div class="step-card" id="step7">
-                        <div class="step-number">7</div>
-                        <div class="step-title">Passo 7: Seu Novo Eu</div>
-                        <div class="step-description">Integre tudo e torne-se imparável.</div>
+                <div class="mentor-card">
+                    <div class="mentor-avatar">👨‍🏫</div>
+                    <div class="mentor-content">
+                        <h3>Alex, Seu Mentor</h3>
+                        <p>Ex-introvertido tímido, hoje comunicador de impacto</p>
+                        <p>"Olá <span id="welcomeUserName"></span>! Eu sou o Alex, e assim como você, já fui aquele introvertido que tinha ideias brilhantes mas travava na hora de falar. Hoje, vou te guiar nesta jornada completa: primeiro vamos descobrir seus superpoderes únicos, depois aplicá-los na prática através dos 7 passos de transformação!"</p>
                     </div>
                 </div>
+                
+                <button class="start-button" onclick="startJourney()">INICIAR MINHA JORNADA COMPLETA →</button>
             </div>
 
-            <!-- Achievements Section -->
-            <div class="achievements-section">
-                <h2>Suas Conquistas</h2>
-                <div class="achievements-grid">
-                    <div class="achievement unlocked" id="achievement1">
-                        <div class="achievement-icon">🎓</div>
-                        <div class="achievement-name">Pioneiro</div>
+            <!-- Dashboard -->
+            <div class="dashboard" id="dashboard">
+                <!-- Progress Overview -->
+                <div class="progress-overview">
+                    <h2>Sua Jornada Completa de Transformação</h2>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overallProgress" style="width: 0%"></div>
                     </div>
-                    <div class="achievement" id="achievement2">
-                        <div class="achievement-icon">🧠</div>
-                        <div class="achievement-name">Mestre do Mindset</div>
-                    </div>
-                    <div class="achievement" id="achievement3">
-                        <div class="achievement-icon">🛠️</div>
-                        <div class="achievement-name">Arquiteto da Confiança</div>
-                    </div>
-                    <div class="achievement" id="achievement4">
-                        <div class="achievement-icon">🚀</div>
-                        <div class="achievement-name">Pronto para Decolar</div>
-                    </div>
-                    <div class="achievement" id="achievement5">
-                        <div class="achievement-icon">🏆</div>
-                        <div class="achievement-name">Destravado!</div>
-                    </div>
-                    <div class="achievement" id="achievement6">
-                        <div class="achievement-icon">⭐</div>
-                        <div class="achievement-name">Lenda Introvertida</div>
-                    </div>
+                    <p id="progressText">0 / 2500 pontos para o próximo nível</p>
                 </div>
-            </div>
 
-            <!-- Progress Circle -->
-            <div style="text-align: center; margin: 2rem 0;">
-                <div class="progress-circle" id="progressCircle">
-                    <div class="progress-icon">💡</div>
-                </div>
-                <div class="progress-label" id="progressLabel">Seu Progresso<br>Iniciado na Arte</div>
-            </div>
-        </div>
-
-        <!-- Content Views for Modules -->
-        <div class="content-view" id="moduleContent">
-            <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
-            
-            <div class="content-header">
-                <h1 class="content-title" id="moduleTitle">Módulo 1: Desperte Seus Superpoderes</h1>
-                <p class="content-subtitle" id="moduleSubtitle">Página 1 de 3</p>
-                <div class="page-indicators" id="pageIndicators">
-                    <div class="page-indicator active"></div>
-                    <div class="page-indicator"></div>
-                    <div class="page-indicator"></div>
-                </div>
-            </div>
-
-            <div id="modulePages">
-                <!-- Pages will be dynamically loaded here -->
-            </div>
-
-            <div class="navigation-buttons">
-                <button class="nav-button previous" id="prevButton" onclick="previousPage()" disabled>← Anterior</button>
-                <button class="nav-button next" id="nextButton" onclick="nextPage()">Próxima →</button>
-            </div>
-        </div>
-
-        <!-- Quiz Section -->
-        <div class="quiz-section" id="quizSection">
-            <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
-            
-            <div class="quiz-header">
-                <h1 class="quiz-title" id="quizTitle">🎯 Quiz: Qual é Seu Superpoder Dominante?</h1>
-                <h2 class="quiz-subtitle" id="quizSubtitle">🎯 Descubra Seu Superpoder Dominante</h2>
-                <p class="quiz-question" id="quizQuestion">Baseado no que você aprendeu, qual superpoder você mais se identifica?</p>
-            </div>
-
-            <div class="quiz-options" id="quizOptions">
-                <!-- Quiz options will be dynamically loaded here -->
-            </div>
-
-            <button class="confirm-button" id="confirmButton" onclick="confirmQuizAnswer()">✅ CONFIRMAR RESPOSTA</button>
-
-            <div class="quiz-feedback" id="quizFeedback">
-                <!-- Feedback will be shown here -->
-            </div>
-
-            <button class="complete-button" id="completeButton" onclick="completeModule()">✅ CONCLUIR MÓDULO (+500 pts)</button>
-        </div>
-
-        <!-- Certificate Section -->
-        <div class="certificate-section" id="certificateSection">
-            <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
-            
-            <div class="certificate-header">
-                <h1 class="certificate-title">🎓 Cerimônia de Graduação Virtual</h1>
-                <h2 class="certificate-subtitle">🎓 Parabéns, Você Se Formou!</h2>
-                <p class="certificate-description">Você completou sua preparação! Está pronto para os 7 Passos da Transformação.</p>
-            </div>
-
-            <div class="certificate">
-                <div class="certificate-content">
-                    <div class="certificate-badge">🏆</div>
-                    <div class="certificate-name">CERTIFICADO DE CONCLUSÃO</div>
-                    <div style="border: 2px solid #744210; border-radius: 10px; padding: 1.5rem; margin: 1rem 0; background: white;">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
-                            <span style="font-size: 1.2rem;">🏅</span>
-                            <strong style="color: #744210;">CERTIFICADO DE PREPARAÇÃO</strong>
+                <!-- Phase 1: Modules -->
+                <div class="steps-section">
+                    <h2>🎯 Fase 1: Descoberta dos Superpoderes</h2>
+                    <div class="modules-grid">
+                        <!-- Module 1 -->
+                        <div class="module-card" id="module1">
+                            <div class="module-header">
+                                <div class="module-icon module1">⚡</div>
+                                <div class="module-info">
+                                    <h3>Módulo 1: Desperte Seus Superpoderes</h3>
+                                    <p>Transforme sua percepção sobre introversão</p>
+                                </div>
+                            </div>
+                            <div class="module-progress">
+                                <span class="progress-text">Progresso</span>
+                                <span class="progress-percentage" id="module1Progress">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="module1ProgressBar" style="width: 0%"></div>
+                            </div>
+                            <button class="module-button start" id="module1Button" onclick="startModule(1)">🚀 INICIAR MÓDULO</button>
                         </div>
-                        <div class="certificate-text">
-                            Este certificado atesta que você completou os 3 módulos iniciais do Portal Destrave na Hora H e está preparado para a transformação completa.
+
+                        <!-- Module 2 -->
+                        <div class="module-card locked" id="module2">
+                            <div class="module-header">
+                                <div class="module-icon module2">🛠️</div>
+                                <div class="module-info">
+                                    <h3>Módulo 2: Domine o Método Destrave na Hora H™</h3>
+                                    <p>Os 3 passos fundamentais para destravar</p>
+                                </div>
+                            </div>
+                            <div class="module-progress">
+                                <span class="progress-text">Progresso</span>
+                                <span class="progress-percentage" id="module2Progress">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="module2ProgressBar" style="width: 0%"></div>
+                            </div>
+                            <button class="module-button locked" id="module2Button" onclick="requestPassword(2)">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
                         </div>
-                        <div class="certificate-details">
-                            <span>Data: <span id="certificateDate"></span></span>
-                            <span>Assinatura: Alex, Seu Mentor</span>
+
+                        <!-- Module 3 -->
+                        <div class="module-card locked" id="module3">
+                            <div class="module-header">
+                                <div class="module-icon module3">🚀</div>
+                                <div class="module-info">
+                                    <h3>Módulo 3: Prepare-se para a Transformação</h3>
+                                    <p>Consolide seu aprendizado e prepare-se para os 7 passos</p>
+                                </div>
+                            </div>
+                            <div class="module-progress">
+                                <span class="progress-text">Progresso</span>
+                                <span class="progress-percentage" id="module3Progress">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="module3ProgressBar" style="width: 0%"></div>
+                            </div>
+                            <button class="module-button locked" id="module3Button" onclick="requestPassword(3)">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
                         </div>
                     </div>
                 </div>
+
+                <!-- Phase 2: 7 Steps -->
+                <div class="steps-section">
+                    <h2>🔥 Fase 2: Os 7 Passos da Transformação</h2>
+                    <p style="color: #64748b; text-align: center; margin-bottom: 2rem;">Complete todos os módulos iniciais para desbloquear esta fase.</p>
+                    
+                    <div class="steps-grid">
+                        <div class="step-card" id="step1">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Passo 1: A Virada de Chave</div>
+                            <div class="step-description">Entenda por que ser introvertido é um superpoder.</div>
+                        </div>
+                        <div class="step-card" id="step2">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Passo 2: O Mapa da Empatia</div>
+                            <div class="step-description">Conecte-se profundamente com as pessoas.</div>
+                        </div>
+                        <div class="step-card" id="step3">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Passo 3: A Arte da Escuta Ativa</div>
+                            <div class="step-description">Ouça mais, fale melhor.</div>
+                        </div>
+                        <div class="step-card" id="step4">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Passo 4: Construindo Pontes</div>
+                            <div class="step-description">Crie conexões genuínas e duradouras.</div>
+                        </div>
+                        <div class="step-card" id="step5">
+                            <div class="step-number">5</div>
+                            <div class="step-title">Passo 5: O Poder da Preparação</div>
+                            <div class="step-description">Transforme ansiedade em confiança.</div>
+                        </div>
+                        <div class="step-card" id="step6">
+                            <div class="step-number">6</div>
+                            <div class="step-title">Passo 6: A Regra dos 3 Pontos</div>
+                            <div class="step-description">Comunique-se com clareza e impacto.</div>
+                        </div>
+                        <div class="step-card" id="step7">
+                            <div class="step-number">7</div>
+                            <div class="step-title">Passo 7: Seu Novo Eu</div>
+                            <div class="step-description">Integre tudo e torne-se imparável.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Section -->
+                <div class="achievements-section">
+                    <h2>Suas Conquistas</h2>
+                    <div class="achievements-grid">
+                        <div class="achievement unlocked" id="achievement1">
+                            <div class="achievement-icon">🎓</div>
+                            <div class="achievement-name">Pioneiro</div>
+                        </div>
+                        <div class="achievement" id="achievement2">
+                            <div class="achievement-icon">🧠</div>
+                            <div class="achievement-name">Mestre do Mindset</div>
+                        </div>
+                        <div class="achievement" id="achievement3">
+                            <div class="achievement-icon">🛠️</div>
+                            <div class="achievement-name">Arquiteto da Confiança</div>
+                        </div>
+                        <div class="achievement" id="achievement4">
+                            <div class="achievement-icon">🚀</div>
+                            <div class="achievement-name">Pronto para Decolar</div>
+                        </div>
+                        <div class="achievement" id="achievement5">
+                            <div class="achievement-icon">🏆</div>
+                            <div class="achievement-name">Destravado!</div>
+                        </div>
+                        <div class="achievement" id="achievement6">
+                            <div class="achievement-icon">⭐</div>
+                            <div class="achievement-name">Lenda Introvertida</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Circle -->
+                <div style="text-align: center; margin: 2rem 0;">
+                    <div class="progress-circle" id="progressCircle">
+                        <div class="progress-icon">💡</div>
+                    </div>
+                    <div class="progress-label" id="progressLabel">Seu Progresso<br>Iniciado na Arte</div>
+                </div>
             </div>
 
-            <button class="accept-certificate-button" onclick="acceptCertificate()">✅ ACEITAR CERTIFICADO E CONCLUIR (+500 pts)</button>
+            <!-- Content Views for Modules -->
+            <div class="content-view" id="moduleContent">
+                <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
+                
+                <div class="content-header">
+                    <h1 class="content-title" id="moduleTitle">Módulo 1: Desperte Seus Superpoderes</h1>
+                    <p class="content-subtitle" id="moduleSubtitle">Página 1 de 3</p>
+                    <div class="page-indicators" id="pageIndicators">
+                        <div class="page-indicator active"></div>
+                        <div class="page-indicator"></div>
+                        <div class="page-indicator"></div>
+                    </div>
+                </div>
+
+                <div id="modulePages">
+                    <!-- Pages will be dynamically loaded here -->
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="nav-button previous" id="prevButton" onclick="previousPage()" disabled>← Anterior</button>
+                    <button class="nav-button next" id="nextButton" onclick="nextPage()">Próxima →</button>
+                </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="quiz-section" id="quizSection">
+                <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
+                
+                <div class="quiz-header">
+                    <h1 class="quiz-title" id="quizTitle">🎯 Quiz: Qual é Seu Superpoder Dominante?</h1>
+                    <h2 class="quiz-subtitle" id="quizSubtitle">🎯 Descubra Seu Superpoder Dominante</h2>
+                    <p class="quiz-question" id="quizQuestion">Baseado no que você aprendeu, qual superpoder você mais se identifica?</p>
+                </div>
+
+                <div class="quiz-options" id="quizOptions">
+                    <!-- Quiz options will be dynamically loaded here -->
+                </div>
+
+                <button class="confirm-button" id="confirmButton" onclick="confirmQuizAnswer()">✅ CONFIRMAR RESPOSTA</button>
+
+                <div class="quiz-feedback" id="quizFeedback">
+                    <!-- Feedback will be shown here -->
+                </div>
+
+                <button class="complete-button" id="completeButton" onclick="completeModule()">✅ CONCLUIR MÓDULO (+500 pts)</button>
+            </div>
+
+            <!-- Certificate Section -->
+            <div class="certificate-section" id="certificateSection">
+                <button class="back-button" onclick="backToDashboard()">← Voltar ao Dashboard</button>
+                
+                <div class="certificate-header">
+                    <h1 class="certificate-title">🎓 Cerimônia de Graduação Virtual</h1>
+                    <h2 class="certificate-subtitle">🎓 Parabéns, Você Se Formou!</h2>
+                    <p class="certificate-description">Você completou sua preparação! Está pronto para os 7 Passos da Transformação.</p>
+                </div>
+
+                <div class="certificate">
+                    <div class="certificate-content">
+                        <div class="certificate-badge">🏆</div>
+                        <div class="certificate-name">CERTIFICADO DE CONCLUSÃO</div>
+                        <div style="border: 2px solid #92400e; border-radius: 10px; padding: 1.5rem; margin: 1rem 0; background: white;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span style="font-size: 1.2rem;">🏅</span>
+                                <strong style="color: #92400e;">CERTIFICADO DE PREPARAÇÃO</strong>
+                            </div>
+                            <div class="certificate-text">
+                                Este certificado atesta que você completou os 3 módulos iniciais do Portal Destrave na Hora H e está preparado para a transformação completa.
+                            </div>
+                            <div class="certificate-details">
+                                <span>Data: <span id="certificateDate"></span></span>
+                                <span>Assinatura: Alex, Seu Mentor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="accept-certificate-button" onclick="acceptCertificate()">✅ ACEITAR CERTIFICADO E CONCLUIR (+500 pts)</button>
+            </div>
         </div>
     </div>
 
@@ -1444,8 +1594,12 @@
             unlockedModules: [1],
             selectedQuizAnswer: null,
             quizAnswered: false,
-            level: 'Novato Explorador'
+            level: 'Novato Explorador',
+            userName: ''
         };
+
+        // Access password (hidden from user)
+        const ACCESS_PASSWORD = 'destrave2024';
 
         // Module passwords (hidden from user)
         const modulePasswords = {
@@ -1516,41 +1670,41 @@
                                 <h3>🚀 Seus 5 Superpoderes</h3>
                                 
                                 <div class="superpowers-list">
-                                    <div class="superpower" style="border-color: #667eea;">
+                                    <div class="superpower" style="border-color: #3b82f6;">
                                         <div class="superpower-header">
-                                            <span style="color: #667eea;">1. 🎯</span>
+                                            <span style="color: #3b82f6;">1. 🎯</span>
                                             <span class="superpower-title">Super Foco</span>
                                         </div>
                                         <div class="superpower-description">Você consegue se concentrar profundamente em tarefas complexas enquanto outros se distraem.</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #48bb78;">
+                                    <div class="superpower" style="border-color: #059669;">
                                         <div class="superpower-header">
-                                            <span style="color: #48bb78;">2. 👂</span>
+                                            <span style="color: #059669;">2. 👂</span>
                                             <span class="superpower-title">Escuta Ativa Avançada</span>
                                         </div>
                                         <div class="superpower-description">Você realmente ouve as pessoas, não apenas espera sua vez de falar.</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #ed8936;">
+                                    <div class="superpower" style="border-color: #f59e0b;">
                                         <div class="superpower-header">
-                                            <span style="color: #ed8936;">3. 🧠</span>
+                                            <span style="color: #f59e0b;">3. 🧠</span>
                                             <span class="superpower-title">Processamento Profundo</span>
                                         </div>
                                         <div class="superpower-description">Você analisa informações em camadas, vendo conexões que outros perdem.</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #38b2ac;">
+                                    <div class="superpower" style="border-color: #0891b2;">
                                         <div class="superpower-header">
-                                            <span style="color: #38b2ac;">4. 💎</span>
+                                            <span style="color: #0891b2;">4. 💎</span>
                                             <span class="superpower-title">Autenticidade Magnética</span>
                                         </div>
                                         <div class="superpower-description">Em um mundo de máscaras, sua genuinidade atrai pessoas que buscam conexões reais.</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #9f7aea;">
+                                    <div class="superpower" style="border-color: #7c3aed;">
                                         <div class="superpower-header">
-                                            <span style="color: #9f7aea;">5. 🎭</span>
+                                            <span style="color: #7c3aed;">5. 🎭</span>
                                             <span class="superpower-title">Preparação Estratégica</span>
                                         </div>
                                         <div class="superpower-description">Você se prepara melhor que qualquer um. Quando chega sua hora de brilhar, você está pronto.</div>
@@ -1570,7 +1724,7 @@
                             icon: '🎯',
                             title: 'Super Foco',
                             description: 'Concentração profunda em tarefas complexas',
-                            color: '#667eea',
+                            color: '#3b82f6',
                             feedback: {
                                 title: 'Excelente escolha! Seu Super Foco é realmente impressionante.',
                                 content: 'Você tem a capacidade rara de mergulhar profundamente em projetos enquanto outros se distraem. Isso é uma vantagem competitiva incrível no mundo atual, cheio de distrações. Use esse superpoder para se destacar em reuniões e projetos importantes.',
@@ -1582,7 +1736,7 @@
                             icon: '👂',
                             title: 'Escuta Ativa',
                             description: 'Conexão genuína através da escuta',
-                            color: '#48bb78',
+                            color: '#059669',
                             feedback: {
                                 title: 'Fantástico! Sua Escuta Ativa é um superpoder raro e valioso.',
                                 content: 'Em um mundo onde todos querem falar, você tem o dom de realmente ouvir. Isso cria conexões profundas e faz as pessoas se sentirem verdadeiramente compreendidas. É por isso que as pessoas confiam em você.',
@@ -1594,7 +1748,7 @@
                             icon: '🧠',
                             title: 'Processamento Profundo',
                             description: 'Análise estratégica e insights únicos',
-                            color: '#ed8936',
+                            color: '#f59e0b',
                             feedback: {
                                 title: 'Incrível! Seu Processamento Profundo é uma vantagem estratégica.',
                                 content: 'Você vê padrões e conexões que outros não conseguem. Sua mente analítica é capaz de processar informações complexas e chegar a conclusões brilhantes. Isso é extremamente valioso em qualquer área.',
@@ -1606,7 +1760,7 @@
                             icon: '💎',
                             title: 'Autenticidade',
                             description: 'Magnetismo natural e genuinidade',
-                            color: '#38b2ac',
+                            color: '#0891b2',
                             feedback: {
                                 title: 'Maravilhoso! Sua Autenticidade é magnética e inspiradora.',
                                 content: 'Em um mundo cheio de máscaras e superficialidade, sua genuinidade é como um ímã para pessoas que buscam conexões reais. Você atrai as pessoas certas e constrói relacionamentos duradouros.',
@@ -1618,7 +1772,7 @@
                             icon: '🎭',
                             title: 'Preparação',
                             description: 'Excelência através do planejamento',
-                            color: '#9f7aea',
+                            color: '#7c3aed',
                             feedback: {
                                 title: 'Perfeito! Sua Preparação Estratégica é seu diferencial competitivo.',
                                 content: 'Você transforma ansiedade em excelência através da preparação. Enquanto outros improvisam, você chega preparado e confiante. Isso faz toda a diferença em momentos importantes.',
@@ -1640,25 +1794,25 @@
                                 <p>O Método Destrave na Hora H™ é baseado em 3 pilares fundamentais que transformaram a vida de milhares de introvertidos.</p>
                                 
                                 <div class="superpowers-list">
-                                    <div class="superpower" style="border-color: #667eea;">
+                                    <div class="superpower" style="border-color: #3b82f6;">
                                         <div class="superpower-header">
-                                            <span style="color: #667eea;">1. 🧠</span>
+                                            <span style="color: #3b82f6;">1. 🧠</span>
                                             <span class="superpower-title">Mindset de Superpoder</span>
                                         </div>
                                         <div class="superpower-description">Transforme sua percepção sobre ser introvertido</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #48bb78;">
+                                    <div class="superpower" style="border-color: #059669;">
                                         <div class="superpower-header">
-                                            <span style="color: #48bb78;">2. 🎯</span>
+                                            <span style="color: #059669;">2. 🎯</span>
                                             <span class="superpower-title">Estratégia de Preparação</span>
                                         </div>
                                         <div class="superpower-description">Use sua tendência natural de preparação como vantagem</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #ed8936;">
+                                    <div class="superpower" style="border-color: #f59e0b;">
                                         <div class="superpower-header">
-                                            <span style="color: #ed8936;">3. 🚀</span>
+                                            <span style="color: #f59e0b;">3. 🚀</span>
                                             <span class="superpower-title">Execução Autêntica</span>
                                         </div>
                                         <div class="superpower-description">Aplique seus superpoderes na prática</div>
@@ -1695,25 +1849,25 @@
                                 <h3>🎯 Seu Roteiro de Transformação</h3>
                                 
                                 <div class="superpowers-list">
-                                    <div class="superpower" style="border-color: #667eea;">
+                                    <div class="superpower" style="border-color: #3b82f6;">
                                         <div class="superpower-header">
-                                            <span style="color: #667eea;">Semana 1-2:</span>
+                                            <span style="color: #3b82f6;">Semana 1-2:</span>
                                             <span class="superpower-title">Identifique Seus Superpoderes</span>
                                         </div>
                                         <div class="superpower-description">Complete os exercícios de autoconhecimento</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #48bb78;">
+                                    <div class="superpower" style="border-color: #059669;">
                                         <div class="superpower-header">
-                                            <span style="color: #48bb78;">Semana 3-4:</span>
+                                            <span style="color: #059669;">Semana 3-4:</span>
                                             <span class="superpower-title">Pratique a Preparação Estratégica</span>
                                         </div>
                                         <div class="superpower-description">Aplique as técnicas em situações reais</div>
                                     </div>
                                     
-                                    <div class="superpower" style="border-color: #ed8936;">
+                                    <div class="superpower" style="border-color: #f59e0b;">
                                         <div class="superpower-header">
-                                            <span style="color: #ed8936;">Semana 5+:</span>
+                                            <span style="color: #f59e0b;">Semana 5+:</span>
                                             <span class="superpower-title">Execute com Autenticidade</span>
                                         </div>
                                         <div class="superpower-description">Seja você mesmo e brilhe!</div>
@@ -1733,7 +1887,7 @@
                             icon: '🧠',
                             title: 'Mindset',
                             description: 'Transformar crenças limitantes',
-                            color: '#667eea',
+                            color: '#3b82f6',
                             feedback: {
                                 title: 'Ótima percepção! O mindset é realmente a base de tudo.',
                                 content: 'Trabalhar suas crenças sobre introversão é fundamental. Quando você muda como se vê, tudo muda. Você está no caminho certo para uma transformação profunda.',
@@ -1745,7 +1899,7 @@
                             icon: '🎯',
                             title: 'Preparação',
                             description: 'Estratégias práticas de preparação',
-                            color: '#48bb78',
+                            color: '#059669',
                             feedback: {
                                 title: 'Excelente foco! A preparação é seu diferencial competitivo.',
                                 content: 'Você entende que a preparação é sua vantagem natural. Quando você se prepara bem, sua confiança dispara e você se destaca naturalmente.',
@@ -1757,7 +1911,7 @@
                             icon: '🚀',
                             title: 'Execução',
                             description: 'Colocar em prática com autenticidade',
-                            color: '#ed8936',
+                            color: '#f59e0b',
                             feedback: {
                                 title: 'Perfeito! A execução autêntica é onde a mágica acontece.',
                                 content: 'Você sabe que conhecimento sem ação não gera resultados. Sua disposição para agir de forma autêntica é o que vai te levar ao próximo nível.',
@@ -1811,6 +1965,37 @@
                 certificate: true
             }
         };
+
+        // Handle login
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const userName = document.getElementById('userName').value.trim();
+            const password = document.getElementById('accessPassword').value;
+            
+            if (!userName) {
+                showNotification('Por favor, digite seu nome completo.', 'error');
+                return;
+            }
+            
+            if (password !== ACCESS_PASSWORD) {
+                showNotification('Senha incorreta. Verifique sua área de membros.', 'error');
+                return;
+            }
+            
+            // Store user name
+            gameState.userName = userName;
+            
+            // Show main app
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('appContainer').classList.add('active');
+            
+            // Update welcome message
+            document.getElementById('welcomeUserName').textContent = userName;
+            
+            showNotification(`Bem-vindo, ${userName}! Acesso liberado com sucesso.`, 'success');
+            initializeApp();
+        }
 
         // Initialize the application
         function initializeApp() {
@@ -1896,7 +2081,7 @@
             const label = document.getElementById('progressLabel');
             const progressPercentage = (gameState.points / 2500) * 100;
             
-            circle.style.background = `conic-gradient(#667eea ${progressPercentage * 3.6}deg, #e2e8f0 0deg)`;
+            circle.style.background = `conic-gradient(#3b82f6 ${progressPercentage * 3.6}deg, #e5e7eb 0deg)`;
             
             // Update level based on points
             if (gameState.points >= 2500) {
@@ -2097,7 +2282,7 @@
             const feedbackElement = document.getElementById('quizFeedback');
             feedbackElement.innerHTML = `
                 <div class="feedback-header">
-                    <span style="color: #48bb78;">${selectedOption.icon}</span>
+                    <span style="color: #059669;">${selectedOption.icon}</span>
                     <span class="feedback-title">${selectedOption.feedback.title}</span>
                 </div>
                 <div class="feedback-content">${selectedOption.feedback.content}</div>
@@ -2119,11 +2304,6 @@
         function completeModule() {
             gameState.completedModules.push(gameState.currentModule);
             addPoints(500);
-            
-            // Unlock next module if applicable
-            if (gameState.currentModule < 3 && !gameState.unlockedModules.includes(gameState.currentModule + 1)) {
-                // Don't auto-unlock - require password
-            }
             
             // Add achievement
             if (gameState.currentModule === 1 && !gameState.achievements.includes(2)) {
@@ -2198,14 +2378,19 @@
             }, 4000);
         }
 
-        // Initialize app when page loads
-        document.addEventListener('DOMContentLoaded', initializeApp);
-
         // Handle Enter key in password input
-        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                validatePassword();
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    validatePassword();
+                }
+            });
+            
+            document.getElementById('accessPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleLogin(e);
+                }
+            });
         });
     </script>
 </body>
