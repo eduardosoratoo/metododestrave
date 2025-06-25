@@ -275,6 +275,27 @@
             font-size: 1.25rem;
             border: 1px solid #F6AD55;
         }
+
+        .module-locked {
+            opacity: 0.5;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .module-locked::after {
+            content: '🔒 Módulo Bloqueado - Clique para inserir senha';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            text-align: center;
+            z-index: 10;
+        }
     </style>
     
     <script>
@@ -377,7 +398,7 @@
                         <h3 class="text-2xl font-bold text-purple-800 mb-4">🎯 Fase 1: Descoberta dos Superpoderes</h3>
                         
                         <!-- Módulo 1 -->
-                        <div class="bg-white rounded-2xl shadow-lg p-6 mb-4 border-l-4 border-blue-500">
+                        <div id="module-1" class="bg-white rounded-2xl shadow-lg p-6 mb-4 border-l-4 border-blue-500">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
@@ -400,1200 +421,801 @@
                                     <span class="text-blue-600 font-bold" id="chapter1-1-status">🔓</span>
                                 </div>
                                 <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" onclick="openChapter(1, 2)">
-                                    <span class="text-sm text-gray-500">2. Seus 5 Superpoderes Escondidos</span>
-                                    <span class="text-gray-400" id="chapter1-2-status">🔒</span>
+                                    <span class="text-sm">2. O Mito do Introvertido Chato</span>
+                                    <span class="text-gray-400 font-bold" id="chapter1-2-status">🔒</span>
                                 </div>
                                 <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" onclick="openChapter(1, 3)">
-                                    <span class="text-sm text-gray-500">3. Por Que às Vezes Parece Difícil Falar?</span>
-                                    <span class="text-gray-400" id="chapter1-3-status">🔒</span>
+                                    <span class="text-sm">3. Seus 5 Superpoderes Secretos</span>
+                                    <span class="text-gray-400 font-bold" id="chapter1-3-status">🔒</span>
                                 </div>
                             </div>
-                            
-                            <button onclick="startModule(1)" class="w-full bg-blue-500 text-white font-bold py-2 rounded-lg hover:bg-blue-600 transition-colors text-sm">
-                                COMEÇAR MÓDULO 1
-                            </button>
+                            <button onclick="showModuleInteraction(1)" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors" disabled id="module1-interaction-btn">✨ Interação Final do Módulo</button>
                         </div>
-                        
+
                         <!-- Módulo 2 -->
-                        <div class="bg-white rounded-2xl shadow-lg p-6 mb-4 border-l-4 border-purple-500 opacity-50">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
-                                        <span class="text-2xl">🎯</span>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold text-brand-dark">Módulo 2: Domine o Método InvertCode™</h4>
-                                        <p class="text-gray-600">Os 3 passos fundamentais da transformação</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-2xl font-bold text-gray-400">🔒</div>
-                                    <div class="text-sm text-gray-500">Bloqueado</div>
-                                </div>
-                            </div>
-                            <p class="text-gray-500 italic text-sm">Complete o Módulo 1 para desbloquear</p>
-                        </div>
-                        
-                        <!-- Módulo 3 -->
-                        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 border-l-4 border-green-500 opacity-50">
+                        <div id="module-2" class="bg-white rounded-2xl shadow-lg p-6 mb-4 border-l-4 border-green-500 module-locked" onclick="showPasswordPrompt(2)">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center space-x-4">
                                     <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                                        <span class="text-2xl">🛠️</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-brand-dark">Módulo 2: Domine o Método Destrave na Hora H™</h4>
+                                        <p class="text-gray-600">Os 3 passos fundamentais para destravar</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-600" id="module2-progress">0%</div>
+                                    <div class="text-sm text-gray-500">Progresso</div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" onclick="openChapter(2, 1)">
+                                    <span class="text-sm">1. Passo 1: A Preparação Invisível</span>
+                                    <span class="text-gray-400 font-bold" id="chapter2-1-status">🔒</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" onclick="openChapter(2, 2)">
+                                    <span class="text-sm">2. Passo 2: O Gatilho da Confiança</span>
+                                    <span class="text-gray-400 font-bold" id="chapter2-2-status">🔒</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" onclick="openChapter(2, 3)">
+                                    <span class="text-sm">3. Passo 3: A Execução Magnética</span>
+                                    <span class="text-gray-400 font-bold" id="chapter2-3-status">🔒</span>
+                                </div>
+                            </div>
+                            <button onclick="showModuleInteraction(2)" class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition-colors" disabled id="module2-interaction-btn">✨ Interação Final do Módulo</button>
+                        </div>
+
+                        <!-- Módulo 3 -->
+                        <div id="module-3" class="bg-white rounded-2xl shadow-lg p-6 mb-4 border-l-4 border-yellow-500 module-locked" onclick="showPasswordPrompt(3)">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
                                         <span class="text-2xl">🚀</span>
                                     </div>
                                     <div>
                                         <h4 class="text-xl font-bold text-brand-dark">Módulo 3: Prepare-se para a Transformação</h4>
-                                        <p class="text-gray-600">Consolidação e preparação para os 7 passos</p>
+                                        <p class="text-gray-600">Consolide seu aprendizado e prepare-se para os 7 passos</p>
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <div class="text-2xl font-bold text-gray-400">🔒</div>
-                                    <div class="text-sm text-gray-500">Bloqueado</div>
+                                    <div class="text-2xl font-bold text-yellow-600" id="module3-progress">0%</div>
+                                    <div class="text-sm text-gray-500">Progresso</div>
                                 </div>
                             </div>
-                            <p class="text-gray-500 italic text-sm">Complete os Módulos 1 e 2 para desbloquear</p>
+                            
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" onclick="openChapter(3, 1)">
+                                    <span class="text-sm">1. Seu Plano de Ação Personalizado</span>
+                                    <span class="text-gray-400 font-bold" id="chapter3-1-status">🔒</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors" onclick="openChapter(3, 2)">
+                                    <span class="text-sm">2. Lidando com o Medo do Julgamento</span>
+                                    <span class="text-gray-400 font-bold" id="chapter3-2-status">🔒</span>
+                                </div>
+                            </div>
+                            <button onclick="showModuleInteraction(3)" class="w-full bg-yellow-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-yellow-600 transition-colors" disabled id="module3-interaction-btn">✨ Interação Final do Módulo</button>
                         </div>
                     </div>
-                    
-                    <!-- FASE 2: 7 PASSOS PRÁTICOS -->
-                    <div class="mb-8">
-                        <h3 class="text-2xl font-bold text-orange-800 mb-4">🔥 Fase 2: Os 7 Passos Práticos</h3>
+
+                    <!-- FASE 2: 7 PASSOS DE TRANSFORMAÇÃO -->
+                    <div id="seven-steps-container" class="opacity-50 pointer-events-none">
+                        <h3 class="text-2xl font-bold text-red-800 mb-4">🔥 Fase 2: Os 7 Passos da Transformação</h3>
                         
-                        <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-orange-500 opacity-50">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
-                                        <span class="text-2xl">🎪</span>
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <p class="text-center text-gray-600 mb-4">Complete todos os módulos iniciais para desbloquear esta fase.</p>
+                            
+                            <!-- Passos 1-7 (original) -->
+                            <div class="flex items-start space-x-6">
+                                <div class="flex flex-col items-center">
+                                    <div class="flex-grow w-1 h-full bg-gray-300"></div>
+                                </div>
+                                <div class="w-full">
+                                    <!-- Passo 1 -->
+                                    <div class="mb-8">
+                                        <h4 class="text-xl font-bold text-brand-dark">Passo 1: A Virada de Chave</h4>
+                                        <p class="text-gray-600">Entenda por que ser introvertido é um superpoder.</p>
                                     </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold text-brand-dark">Os 7 Passos de Transformação</h4>
-                                        <p class="text-gray-600">Aplicação prática do método na vida real</p>
+                                    <!-- Passo 2 -->
+                                    <div class="mb-8">
+                                        <h4 class="text-xl font-bold text-brand-dark">Passo 2: O Mapa da Empatia</h4>
+                                        <p class="text-gray-600">Conecte-se profundamente com as pessoas.</p>
+                                    </div>
+                                    <!-- Passo 3 -->
+                                    <div class="mb-8">
+                                        <h4 class="text-xl font-bold text-brand-dark">Passo 3: A Arte da Escuta Ativa</h4>
+                                        <p class="text-gray-600">Ouça mais, fale melhor.</p>
+                                    </div>
+                                    <!-- Passo 4 -->
+                                    <div class="mb-8">
+                                        <h4 class="text-xl font-bold text-brand-dark">Passo 4: Construindo Pontes</h4>
+                                        <p class="text-gray-600">Crie conexões genuínas e duradouras.</p>
+                                    </div>
+                                    <!-- Passo 5 -->
+                                    <div class="mb-8">
+                                        <h4 class="text-xl font-bold text-brand-dark">Passo 5: O Poder da Pausa</h4>
+                                        <p class="text-gray-600">Use o silêncio a seu favor.</p>
+                                    </div>
+                                    <!-- Passo 6 -->
+                                    <div class="mb-8">
+                                        <h4 class="text-xl font-bold text-brand-dark">Passo 6: Apresentações Impactantes</h4>
+                                        <p class="text-gray-600">Conquiste a plateia com sua autenticidade.</p>
+                                    </div>
+                                    <!-- Passo 7 -->
+                                    <div class="mb-8">
+                                        <h4 class="text-xl font-bold text-brand-dark">Passo 7: Celebrando Suas Vitórias</h4>
+                                        <p class="text-gray-600">Reconheça seu progresso e inspire outros.</p>
                                     </div>
                                 </div>
-                                <div class="text-right">
-                                    <div class="text-2xl font-bold text-gray-400">🔒</div>
-                                    <div class="text-sm text-gray-500">Bloqueado</div>
-                                </div>
                             </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-                                <div class="p-3 bg-gray-50 rounded-lg text-center">
-                                    <div class="text-2xl mb-1">🎯</div>
-                                    <div class="text-sm font-semibold text-gray-500">Passo 1: Clareza</div>
-                                </div>
-                                <div class="p-3 bg-gray-50 rounded-lg text-center">
-                                    <div class="text-2xl mb-1">⚡</div>
-                                    <div class="text-sm font-semibold text-gray-500">Passo 2: Energia</div>
-                                </div>
-                                <div class="p-3 bg-gray-50 rounded-lg text-center">
-                                    <div class="text-2xl mb-1">🎪</div>
-                                    <div class="text-sm font-semibold text-gray-500">Passo 3: Presença</div>
-                                </div>
-                                <div class="p-3 bg-gray-50 rounded-lg text-center">
-                                    <div class="text-2xl mb-1">🗣️</div>
-                                    <div class="text-sm font-semibold text-gray-500">Passo 4: Voz</div>
-                                </div>
-                                <div class="p-3 bg-gray-50 rounded-lg text-center">
-                                    <div class="text-2xl mb-1">🤝</div>
-                                    <div class="text-sm font-semibold text-gray-500">Passo 5: Conexão</div>
-                                </div>
-                                <div class="p-3 bg-gray-50 rounded-lg text-center">
-                                    <div class="text-2xl mb-1">💪</div>
-                                    <div class="text-sm font-semibold text-gray-500">Passo 6: Impacto</div>
-                                </div>
-                            </div>
-                            
-                            <div class="p-3 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg text-center mb-4">
-                                <div class="text-3xl mb-1">👑</div>
-                                <div class="text-sm font-bold text-orange-800">Passo 7: Maestria</div>
-                            </div>
-                            
-                            <p class="text-gray-500 italic text-sm text-center">Complete todos os 3 módulos iniciais para desbloquear os 7 passos práticos</p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Sidebar - Progresso e Conquistas -->
-                <div class="space-y-6">
-                    
-                    <!-- Mapa da Jornada -->
-                    <div class="journey-map">
-                        <h3 class="text-xl font-bold mb-4">🗺️ Sua Jornada Completa</h3>
-                        <div class="space-y-2">
-                            <div class="journey-step current">
-                                <div class="font-semibold">Módulos Iniciais</div>
-                                <div class="text-sm opacity-80">Descobrindo seus superpoderes</div>
-                            </div>
-                            <div class="journey-step">
-                                <div class="font-semibold">7 Passos Práticos</div>
-                                <div class="text-sm opacity-80">Aplicação na vida real</div>
-                            </div>
-                            <div class="journey-step">
-                                <div class="font-semibold">Maestria</div>
-                                <div class="text-sm opacity-80">Comunicador de impacto</div>
-                            </div>
+
+                <!-- Coluna Lateral - Perfil e Conquistas -->
+                <div class="lg:col-span-1 space-y-8">
+                    <!-- Perfil do Usuário -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                        <div class="avatar-container mb-4">
+                            <span id="profile-avatar">🚀</span>
+                            <div class="level-badge" id="profile-level">1</div>
                         </div>
+                        <h3 class="text-2xl font-bold text-brand-dark">Seu Progresso</h3>
+                        <p class="text-gray-600 mb-4" id="profile-status">Novato Explorador</p>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                            <div id="level-progress" class="bg-gradient-to-r from-purple-500 to-indigo-500 h-4 rounded-full" style="width: 0%;"></div>
+                        </div>
+                        <p class="text-sm text-gray-500" id="level-progress-text">0 / 1000 pontos para o próximo nível</p>
                     </div>
-                    
+
                     <!-- Conquistas -->
                     <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="text-xl font-bold text-brand-dark mb-4">🏆 Suas Conquistas</h3>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="achievement-card" id="achievement-1">
-                                <div class="text-2xl mb-2">🔍</div>
-                                <div class="text-sm font-semibold">Descobridor</div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-4 text-center">Suas Conquistas</h3>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div id="ach1" class="achievement-card" onclick="showAchievementDetails(1)">
+                                <div class="text-4xl mb-2">🎓</div>
+                                <p class="text-xs font-bold">Pioneiro</p>
                             </div>
-                            <div class="achievement-card" id="achievement-2">
-                                <div class="text-2xl mb-2">⚡</div>
-                                <div class="text-sm font-semibold">Superpoder</div>
+                            <div id="ach2" class="achievement-card" onclick="showAchievementDetails(2)">
+                                <div class="text-4xl mb-2">🧠</div>
+                                <p class="text-xs font-bold">Mestre do Mindset</p>
                             </div>
-                            <div class="achievement-card" id="achievement-3">
-                                <div class="text-2xl mb-2">🔓</div>
-                                <div class="text-sm font-semibold">Quebrador</div>
+                            <div id="ach3" class="achievement-card" onclick="showAchievementDetails(3)">
+                                <div class="text-4xl mb-2">🛠️</div>
+                                <p class="text-xs font-bold">Arquiteto da Confiança</p>
                             </div>
-                            <div class="achievement-card" id="achievement-4">
-                                <div class="text-2xl mb-2">📝</div>
-                                <div class="text-sm font-semibold">Reflexivo</div>
+                            <div id="ach4" class="achievement-card" onclick="showAchievementDetails(4)">
+                                <div class="text-4xl mb-2">🚀</div>
+                                <p class="text-xs font-bold">Pronto para Decolar</p>
                             </div>
-                            <div class="achievement-card" id="achievement-5">
-                                <div class="text-2xl mb-2">🎯</div>
-                                <div class="text-sm font-semibold">Focado</div>
+                            <div id="ach5" class="achievement-card" onclick="showAchievementDetails(5)">
+                                <div class="text-4xl mb-2">🏆</div>
+                                <p class="text-xs font-bold">Destravado!</p>
                             </div>
-                            <div class="achievement-card" id="achievement-6">
-                                <div class="text-2xl mb-2">👑</div>
-                                <div class="text-sm font-semibold">Mestre</div>
+                            <div id="ach6" class="achievement-card" onclick="showAchievementDetails(6)">
+                                <div class="text-4xl mb-2">⭐</div>
+                                <p class="text-xs font-bold">Lenda Introvertida</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Mentor Alex -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="w-12 h-12 bg-brand-purple rounded-full flex items-center justify-center">
-                                <span class="text-white text-xl">👨‍🏫</span>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-brand-dark">Alex, Seu Mentor</h3>
-                                <p class="text-sm text-gray-600">Sempre aqui para te apoiar</p>
-                            </div>
+
+                    <!-- Mapa da Jornada -->
+                    <div class="journey-map">
+                        <h3 class="text-2xl font-bold mb-4 text-center">Mapa da Sua Jornada</h3>
+                        <div id="journey-steps-container">
+                            <!-- Steps serão gerados via JS -->
                         </div>
-                        <div class="bg-blue-50 rounded-lg p-4">
-                            <p class="text-sm text-blue-800" id="mentor-message">
-                                "Que bom te ver aqui! Estou muito animado para começarmos esta jornada completa juntos. Primeiro vamos descobrir seus superpoderes, depois aplicá-los na prática!"
-                            </p>
-                        </div>
-                        <button onclick="openMentorChat()" class="w-full mt-3 bg-brand-purple text-white py-2 rounded-lg hover:opacity-90 transition-opacity">
-                            Conversar com Alex
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Tela de Capítulo (Módulos Iniciais) -->
-        <div id="chapter-screen" class="screen">
-            <div class="max-w-4xl mx-auto">
-                
-                <!-- Header do Capítulo -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                    <div class="flex items-center justify-between mb-4">
-                        <button onclick="backToDashboard()" class="flex items-center space-x-2 text-brand-blue hover:text-brand-dark transition-colors">
-                            <span>←</span>
-                            <span>Voltar ao Dashboard</span>
-                        </button>
-                        <div class="text-right">
-                            <div class="text-sm text-gray-500">Progresso do Capítulo</div>
-                            <div class="text-2xl font-bold text-brand-blue" id="chapter-progress">0%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                            <span class="text-2xl" id="chapter-icon">⚡</span>
-                        </div>
-                        <div>
-                            <h1 class="text-3xl font-bold text-brand-dark" id="chapter-title">Carregando...</h1>
-                            <p class="text-gray-600" id="chapter-subtitle">Preparando conteúdo...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Conteúdo do Capítulo -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                    <div id="chapter-content" class="prose max-w-none">
-                        <!-- Conteúdo será carregado dinamicamente -->
-                    </div>
-                </div>
-                
-                <!-- Exercícios e Interações -->
-                <div id="chapter-exercises" class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 mb-8" style="display: none;">
-                    <!-- Exercícios serão carregados dinamicamente -->
-                </div>
-                
-                <!-- Botões de Navegação -->
-                <div class="flex justify-between">
-                    <button id="prev-section" onclick="previousSection()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors" style="display: none;">
-                        ← Seção Anterior
-                    </button>
-                    <button id="next-section" onclick="nextSection()" class="bg-brand-success text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity ml-auto">
-                        Próxima Seção →
-                    </button>
-                </div>
-            </div>
+        <!-- Tela de Conteúdo do Capítulo -->
+        <div id="chapter-content-screen" class="screen">
+            <!-- Conteúdo será injetado aqui -->
         </div>
 
         <!-- Tela dos 7 Passos -->
-        <div id="seven-steps-screen" class="screen">
-            <div class="max-w-6xl mx-auto">
-                
-                <!-- Header dos 7 Passos -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                    <div class="flex items-center justify-between mb-4">
-                        <button onclick="backToDashboard()" class="flex items-center space-x-2 text-brand-blue hover:text-brand-dark transition-colors">
-                            <span>←</span>
-                            <span>Voltar ao Dashboard</span>
-                        </button>
-                        <div class="text-right">
-                            <div class="text-sm text-gray-500">Progresso dos 7 Passos</div>
-                            <div class="text-2xl font-bold text-orange-600" id="seven-steps-progress">0%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
-                            <span class="text-2xl">🔥</span>
-                        </div>
-                        <div>
-                            <h1 class="text-3xl font-bold text-brand-dark">Os 7 Passos de Transformação</h1>
-                            <p class="text-gray-600">Aplicação prática do Método InvertCode™ na vida real</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Grid dos 7 Passos -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    
-                    <!-- Passo 1 -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-blue-500 cursor-pointer hover:shadow-xl transition-shadow" onclick="openStep(1)">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">🎯</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-brand-dark">Passo 1: Clareza</h3>
-                            <p class="text-gray-600 text-sm">Organize suas ideias com precisão</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-blue-600 font-bold" id="step1-status">🔓 Disponível</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Passo 2 -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-purple-500 cursor-pointer hover:shadow-xl transition-shadow opacity-50" onclick="openStep(2)">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">⚡</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-brand-dark">Passo 2: Energia</h3>
-                            <p class="text-gray-600 text-sm">Gerencie sua bateria social</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-gray-400" id="step2-status">🔒 Bloqueado</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Passo 3 -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-green-500 cursor-pointer hover:shadow-xl transition-shadow opacity-50" onclick="openStep(3)">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">🎪</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-brand-dark">Passo 3: Presença</h3>
-                            <p class="text-gray-600 text-sm">Desenvolva sua presença autêntica</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-gray-400" id="step3-status">🔒 Bloqueado</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Passo 4 -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-yellow-500 cursor-pointer hover:shadow-xl transition-shadow opacity-50" onclick="openStep(4)">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">🗣️</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-brand-dark">Passo 4: Voz</h3>
-                            <p class="text-gray-600 text-sm">Liberte sua voz autêntica</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-gray-400" id="step4-status">🔒 Bloqueado</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Passo 5 -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-red-500 cursor-pointer hover:shadow-xl transition-shadow opacity-50" onclick="openStep(5)">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">🤝</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-brand-dark">Passo 5: Conexão</h3>
-                            <p class="text-gray-600 text-sm">Construa conexões genuínas</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-gray-400" id="step5-status">🔒 Bloqueado</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Passo 6 -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-indigo-500 cursor-pointer hover:shadow-xl transition-shadow opacity-50" onclick="openStep(6)">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">💪</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-brand-dark">Passo 6: Impacto</h3>
-                            <p class="text-gray-600 text-sm">Gere impacto real</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-gray-400" id="step6-status">🔒 Bloqueado</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Passo 7 -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-orange-500 cursor-pointer hover:shadow-xl transition-shadow opacity-50 md:col-span-2 lg:col-span-3" onclick="openStep(7)">
-                        <div class="text-center mb-4">
-                            <div class="w-20 h-20 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-3xl">👑</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-brand-dark">Passo 7: Maestria</h3>
-                            <p class="text-gray-600">Torne-se um comunicador de impacto</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-gray-400" id="step7-status">🔒 Bloqueado</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Informações sobre desbloqueio -->
-                <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
-                    <div class="flex items-center space-x-3">
-                        <span class="text-2xl">ℹ️</span>
-                        <div>
-                            <h4 class="font-bold text-blue-800">Como desbloquear os próximos passos</h4>
-                            <p class="text-blue-700">Complete cada passo na ordem para desbloquear o próximo. Cada passo inclui teoria, exercícios práticos e aplicação real.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tela de Passo Individual -->
-        <div id="step-screen" class="screen">
-            <div class="max-w-4xl mx-auto">
-                
-                <!-- Header do Passo -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                    <div class="flex items-center justify-between mb-4">
-                        <button onclick="backToSevenSteps()" class="flex items-center space-x-2 text-brand-blue hover:text-brand-dark transition-colors">
-                            <span>←</span>
-                            <span>Voltar aos 7 Passos</span>
-                        </button>
-                        <div class="text-right">
-                            <div class="text-sm text-gray-500">Progresso do Passo</div>
-                            <div class="text-2xl font-bold text-orange-600" id="step-progress">0%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
-                            <span class="text-2xl" id="step-icon">🎯</span>
-                        </div>
-                        <div>
-                            <h1 class="text-3xl font-bold text-brand-dark" id="step-title">Carregando...</h1>
-                            <p class="text-gray-600" id="step-subtitle">Preparando conteúdo...</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Conteúdo do Passo -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                    <div id="step-content" class="prose max-w-none">
-                        <!-- Conteúdo será carregado dinamicamente -->
-                    </div>
-                </div>
-                
-                <!-- Exercícios do Passo -->
-                <div id="step-exercises" class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-8 mb-8" style="display: none;">
-                    <!-- Exercícios serão carregados dinamicamente -->
-                </div>
-                
-                <!-- Botões de Navegação -->
-                <div class="flex justify-between">
-                    <button id="prev-step-section" onclick="previousStepSection()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors" style="display: none;">
-                        ← Seção Anterior
-                    </button>
-                    <button id="next-step-section" onclick="nextStepSection()" class="bg-orange-500 text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity ml-auto">
-                        Próxima Seção →
-                    </button>
-                </div>
-            </div>
+        <div id="seven-steps-screen" class="step-screen">
+            <!-- Conteúdo dos 7 passos aqui -->
         </div>
 
     </main>
 
-    <!-- Modal de Conquista -->
-    <div id="achievement-modal" class="modal">
-        <div class="modal-content text-center">
-            <div class="text-6xl mb-4" id="achievement-emoji">🏆</div>
-            <h2 class="text-3xl font-bold text-brand-dark mb-4" id="achievement-title">Conquista Desbloqueada!</h2>
-            <p class="text-lg text-gray-600 mb-6" id="achievement-description">Você alcançou um novo marco!</p>
-            <div class="text-2xl font-bold text-brand-orange mb-6">+<span id="achievement-points">100</span> Pontos</div>
-            <button onclick="closeAchievementModal()" class="bg-brand-success text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity">
-                Continuar Jornada
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal do Mentor -->
-    <div id="mentor-modal" class="modal">
-        <div class="modal-content">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center space-x-3">
-                    <div class="w-16 h-16 bg-brand-purple rounded-full flex items-center justify-center">
-                        <span class="text-white text-2xl">👨‍🏫</span>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-brand-dark">Conversa com Alex</h2>
-                        <p class="text-gray-600">Seu mentor pessoal</p>
-                    </div>
-                </div>
-                <button onclick="closeMentorModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+    <!-- Modal Genérico -->
+    <div id="generic-modal" class="modal">
+        <div class="modal-content max-w-2xl w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-2xl font-bold text-brand-dark"></h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
             </div>
-            
-            <div class="bg-gray-50 rounded-lg p-4 mb-4 max-h-96 overflow-y-auto" id="mentor-chat">
-                <div class="mentor-message mb-4">
-                    <div class="bg-brand-purple text-white rounded-lg p-3 inline-block max-w-xs">
-                        Olá! Como posso te ajudar hoje? Tem alguma dúvida sobre o conteúdo ou quer conversar sobre seus progressos?
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex space-x-2">
-                <input type="text" id="mentor-input" placeholder="Digite sua mensagem..." class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-purple focus:border-transparent">
-                <button onclick="sendMentorMessage()" class="bg-brand-purple text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
-                    Enviar
-                </button>
+            <div id="modal-body" class="prose max-w-none">
+                <!-- Conteúdo do modal -->
             </div>
         </div>
     </div>
 
     <script>
-        // Estado global da aplicação
-        let gameState = {
-            currentScreen: 'welcome',
-            userLevel: 1,
-            userPoints: 0,
-            userAchievements: 0,
-            currentModule: 0,
-            currentChapter: 0,
-            currentSection: 0,
-            currentStep: 0,
-            currentStepSection: 0,
-            completedChapters: [],
-            completedModules: [],
-            completedSteps: [],
-            unlockedAchievements: [],
-            userProfile: {
-                dominantSuperpower: null,
-                personalityType: null,
-                preferredLearningStyle: null
-            }
-        };
+        // ==================================================
+        // BANCO DE DADOS E ESTADO DO JOGO
+        // ==================================================
 
-        // Dados dos módulos e capítulos (mesmo do código anterior)
-        const moduleData = {
-            1: {
-                title: "Desperte Seus Superpoderes Introvertidos",
-                icon: "⚡",
-                chapters: {
-                    1: {
-                        title: "Chega de se Achar Menos!",
-                        subtitle: "Desmistificando o mito do comunicador ideal",
-                        icon: "💪",
-                        sections: [
-                            {
-                                title: "O Mito do Comunicador Ideal",
-                                content: `
-                                    <h2>Você Não Precisa Ser Outra Pessoa Para Brilhar</h2>
-                                    
-                                    <p>Sabe aquela sensação de estar numa roda de conversa, ou numa reunião de trabalho, e parecer que todo mundo recebeu um manual de "como ser incrível falando" menos você? Enquanto as ideias e palavras parecem jorrar com facilidade para alguns, você talvez se sinta mais como o Bruno, nosso amigo que mencionamos antes.</p>
-                                    
-                                    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 my-6">
-                                        <h3 class="font-bold text-blue-800 mb-2">A História do Bruno</h3>
-                                        <p class="text-blue-700">Bruno era um cara super competente, cheio de insights valiosos, mas que via o Zé Faísca – aquele colega que mal entendia do assunto, mas falava pelos cotovelos – levar a fama e os aplausos. Por muito tempo, Bruno pensou: "Será que o problema sou eu? Preciso ser mais como o Zé Faísca?"</p>
-                                    </div>
-                                    
-                                    <p>Muitos de nós, introvertidos, já tentamos vestir essa "fantasia" de extrovertido. Forçamos a barra em reuniões, tentamos ser o centro das atenções no happy hour, contamos aquela piada que não tinha nada a ver... e qual foi o resultado? Provavelmente, uma sensação de cansaço, de não estar sendo verdadeiro consigo mesmo.</p>
-                                    
-                                    <h3>A Sociedade do "Barulho"</h3>
-                                    <p>Vivemos numa cultura que, muitas vezes, parece aplaudir mais o "barulho" do que a "substância". É como se o volume da voz importasse mais do que a qualidade do que está sendo dito. E isso, meu amigo, é um problema para todo mundo, não só para quem tem um perfil mais quieto.</p>
-                                    
-                                    <div class="bg-orange-50 border-l-4 border-orange-400 p-6 my-6">
-                                        <h4 class="font-bold text-orange-800 mb-2">💡 Reflexão Importante</h4>
-                                        <p class="text-orange-700">Quantas ideias geniais já se perderam porque quem as tinha não era o mais "barulhento" da sala?</p>
-                                    </div>
-                                    
-                                    <h3>A Armadilha de Tentar Ser Quem Você Não É</h3>
-                                    <p>Quando você, com sua natureza mais introspectiva e seu ritmo de processar as coisas, tenta imitar esse "ideal" extrovertido, você entra numa cilada. Primeiro, porque gasta uma energia danada tentando "performar" um papel que não é seu. Segundo, porque você acaba escondendo justamente aquilo que te faz único e valioso: seu jeito de pensar, de analisar, de ver o mundo.</p>
-                                `
-                            },
-                            {
-                                title: "Validando Sua Experiência",
-                                content: `
-                                    <h2>Seu Jeito Quieto NÃO é Fraqueza</h2>
-                                    
-                                    <p>Se você se sente cansado de tentar "se soltar mais" à força, se sente que sua bateria social acaba rapidinho em ambientes muito agitados, se prefere pensar bem antes de falar... <strong>Parabéns, você não tem um defeito, você provavelmente tem um jeito introvertido de ser!</strong></p>
-                                    
-                                    <div class="bg-green-50 border-l-4 border-green-400 p-6 my-6">
-                                        <h3 class="font-bold text-green-800 mb-2">🌟 A Força Silenciosa que Mora em Você</h3>
-                                        <p class="text-green-700">O que o Método InvertCode™ vai te mostrar é que esse seu "jeito mais na sua" não é um obstáculo, mas sim a base de uma força comunicativa imensa. É como ter um motor potente, mas que opera de forma mais silenciosa e eficiente, sem precisar fazer alarde para mostrar seu valor.</p>
-                                    </div>
-                                    
-                                    <p>Chega de se sentir como um peixe fora d'água tentando nadar no aquário dos extrovertidos. E se eu te dissesse que o problema não é o peixe, mas o tamanho e o tipo de aquário que te mostraram até hoje?</p>
-                                    
-                                    <h3>O Primeiro Grande Segredo</h3>
-                                    <p>Aqui vai o primeiro grande segredo que o Método InvertCode™ quer compartilhar com você: <strong>o problema não é você, e você definitivamente não precisa virar outra pessoa para ter sua voz ouvida e suas ideias valorizadas.</strong></p>
-                                    
-                                    <div class="bg-purple-50 border-l-4 border-purple-400 p-6 my-6">
-                                        <h4 class="font-bold text-purple-800 mb-2">🚀 Prepare-se para a Descoberta</h4>
-                                        <p class="text-purple-700">No próximo capítulo, vamos mergulhar fundo no SEU aquário particular e descobrir que ele não só é incrível, como está cheio de superpoderes escondidos que talvez você nem imagine que tem!</p>
-                                    </div>
-                                `
-                            }
-                        ],
-                        exercises: [
-                            {
-                                type: "reflection",
-                                title: "Reflexão: Sua Experiência com o 'Mito do Comunicador'",
-                                question: "Pense em uma situação onde você tentou 'ser mais extrovertido' para se comunicar. Como foi essa experiência? O que você sentiu durante e depois?",
-                                placeholder: "Descreva sua experiência com detalhes...",
-                                points: 50
-                            },
-                            {
-                                type: "quiz",
-                                title: "Quiz: Identificando Padrões",
-                                question: "Qual dessas situações mais se parece com sua experiência?",
-                                options: [
-                                    "Forço a barra em reuniões e me sinto exausto depois",
-                                    "Evito falar para não parecer 'inadequado'",
-                                    "Tenho ideias ótimas mas não sei como expressá-las",
-                                    "Me comparo constantemente com pessoas mais falantes"
-                                ],
-                                points: 30
-                            }
-                        ]
-                    }
-                    // Outros capítulos aqui...
-                }
-            }
-            // Outros módulos aqui...
-        };
+        const chapters = {
+            // Módulo 1
+            '1-1': { 
+                title: "Chega de se Achar Menos!", 
+                points: 50, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>🎯 Transforme Sua Percepção Sobre Introversão</h3>
+                        
+                        <div class="story-box">
+                            <h4>A História de Ana</h4>
+                            <p>Ana sempre se considerou "menos" que seus colegas extrovertidos. Em reuniões, ela tinha ideias brilhantes, mas raramente as compartilhava. Achava que sua tendência a pensar antes de falar era uma fraqueza.</p>
+                            <p>Até o dia em que descobriu que sua capacidade de reflexão profunda era exatamente o que sua equipe precisava para resolver problemas complexos.</p>
+                        </div>
 
-        // Dados dos 7 passos
-        const stepsData = {
-            1: {
-                title: "Clareza",
-                subtitle: "Organize suas ideias com precisão",
-                icon: "🎯",
-                sections: [
-                    {
-                        title: "A Base de Tudo: Clareza Mental",
-                        content: `
-                            <h2>Por Que a Clareza é o Primeiro Passo</h2>
-                            
-                            <p>Imagine tentar construir uma casa sem uma planta baixa. Ou tentar cozinhar um prato sofisticado sem uma receita. É exatamente isso que acontece quando tentamos nos comunicar sem clareza: o resultado pode até sair, mas provavelmente não será o que esperávamos.</p>
-                            
-                            <div class="bg-blue-50 border-l-4 border-blue-400 p-6 my-6">
-                                <h3 class="font-bold text-blue-800 mb-2">🎯 O Poder da Clareza</h3>
-                                <p class="text-blue-700">Para nós, introvertidos, a clareza é ainda mais importante. Nossa mente naturalmente processa informações de forma profunda e detalhada. Quando organizamos esses pensamentos com clareza, nossa comunicação se torna incrivelmente poderosa.</p>
-                            </div>
-                            
-                            <h3>Os 3 Níveis de Clareza</h3>
+                        <h4>🧠 Por Que Você Não É "Menos"</h4>
+                        <p>A sociedade nos ensinou que ser extrovertido é melhor. Mas isso é um mito perigoso que limita seu potencial.</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Verdade Revelada:</h4>
+                            <p>Introvertidos processam informações de forma mais profunda, são melhores ouvintes e criam conexões mais autênticas. Você não é menos - você é diferente, e isso é seu superpoder!</p>
+                        </div>
+
+                        <h4>🔄 Mudança de Mindset</h4>
+                        <p>De hoje em diante, substitua estes pensamentos:</p>
+                        <ul>
+                            <li>❌ "Sou tímido demais" → ✅ "Sou reflexivo e cuidadoso"</li>
+                            <li>❌ "Não sei falar em público" → ✅ "Prefiro comunicação autêntica"</li>
+                            <li>❌ "Sou antissocial" → ✅ "Valorizo conexões profundas"</li>
+                        </ul>
+
+                        <div class="illustration-container">
+                            <h4>🎨 Visualize Sua Transformação</h4>
+                            <p>Imagine-se em uma reunião importante. Em vez de se esconder, você usa sua capacidade de escuta ativa para entender profundamente o problema. Quando fala, suas palavras têm peso e impacto.</p>
+                        </div>
+                    </div>
+                `
+            },
+            '1-2': { 
+                title: "O Mito do Introvertido Chato", 
+                points: 70, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>💥 Destruindo Estereótipos Limitantes</h3>
+                        
+                        <div class="story-box">
+                            <h4>O Caso de Carlos</h4>
+                            <p>Carlos era conhecido como "o quieto" da empresa. Seus colegas achavam que ele não tinha opiniões interessantes. Até que em uma apresentação crucial, ele surpreendeu a todos com insights profundos que salvaram um projeto de milhões.</p>
+                            <p>A partir daquele dia, todos queriam ouvir o que Carlos tinha a dizer.</p>
+                        </div>
+
+                        <h4>🎭 Os Mitos Que Nos Limitam</h4>
+                        <p>Vamos destruir os principais mitos sobre introvertidos:</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Mito vs Realidade:</h4>
+                            <ul>
+                                <li><strong>Mito:</strong> Introvertidos são chatos → <strong>Realidade:</strong> São profundos e interessantes</li>
+                                <li><strong>Mito:</strong> Não sabem liderar → <strong>Realidade:</strong> São líderes empáticos e estratégicos</li>
+                                <li><strong>Mito:</strong> Não gostam de pessoas → <strong>Realidade:</strong> Preferem qualidade à quantidade</li>
+                            </ul>
+                        </div>
+
+                        <h4>🌟 Sua Personalidade Magnética</h4>
+                        <p>Introvertidos têm um magnetismo único:</p>
+                        <ul>
+                            <li>🎯 <strong>Autenticidade:</strong> Você é genuíno, não artificial</li>
+                            <li>🧠 <strong>Profundidade:</strong> Suas conversas têm substância</li>
+                            <li>💎 <strong>Raridade:</strong> Em um mundo de superficialidade, você é um diamante</li>
+                        </ul>
+
+                        <div class="illustration-container">
+                            <h4>🎨 Exercício de Autoestima</h4>
+                            <p>Liste 3 momentos em que sua introversão foi uma vantagem. Pode ser quando você ouviu alguém que precisava desabafar, ou quando sua análise cuidadosa evitou um erro.</p>
+                        </div>
+                    </div>
+                `
+            },
+            '1-3': { 
+                title: "Seus 5 Superpoderes Secretos", 
+                points: 100, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>⚡ Descubra Seus Poderes Únicos</h3>
+                        
+                        <div class="story-box">
+                            <h4>A Revelação de Lucas</h4>
+                            <p>Lucas sempre invejou a facilidade dos extrovertidos para falar em público. Até descobrir que sua capacidade de preparação meticulosa e conexão emocional com a audiência o tornava um palestrante muito mais impactante que os "naturais".</p>
+                        </div>
+
+                        <h4>🦸‍♂️ Seus 5 Superpoderes</h4>
+                        
+                        <div class="superpoder-card" style="border-left-color: #3B82F6;">
+                            <h4>1. 🎯 Super Foco</h4>
+                            <p>Você consegue se concentrar profundamente em tarefas complexas enquanto outros se distraem. Isso te torna extremamente produtivo e eficiente.</p>
+                        </div>
+
+                        <div class="superpoder-card" style="border-left-color: #10B981;">
+                            <h4>2. 👂 Escuta Ativa Avançada</h4>
+                            <p>Você realmente ouve as pessoas, não apenas espera sua vez de falar. Isso cria conexões profundas e te dá insights únicos.</p>
+                        </div>
+
+                        <div class="superpoder-card" style="border-left-color: #F59E0B;">
+                            <h4>3. 🧠 Processamento Profundo</h4>
+                            <p>Você analisa informações em camadas, vendo conexões que outros perdem. Suas soluções são mais criativas e duradouras.</p>
+                        </div>
+
+                        <div class="superpoder-card" style="border-left-color: #8B5CF6;">
+                            <h4>4. 💎 Autenticidade Magnética</h4>
+                            <p>Em um mundo de máscaras, sua genuinidade atrai pessoas que buscam conexões reais. Você é um ímã para relacionamentos significativos.</p>
+                        </div>
+
+                        <div class="superpoder-card" style="border-left-color: #EF4444;">
+                            <h4>5. 🎭 Preparação Estratégica</h4>
+                            <p>Você se prepara melhor que qualquer um. Quando chega sua hora de brilhar, você está pronto com conteúdo de qualidade superior.</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>🚀 Ativação dos Superpoderes</h4>
+                            <p>Agora que você conhece seus poderes, é hora de usá-los conscientemente. Nos próximos módulos, você aprenderá técnicas específicas para potencializar cada um deles.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Módulo 2
+            '2-1': { 
+                title: "Passo 1: A Preparação Invisível", 
+                points: 80, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>🎯 O Segredo dos Grandes Comunicadores</h3>
+                        <p>Todo grande comunicador tem um segredo: a preparação invisível. Enquanto outros improvisam, você se prepara estrategicamente.</p>
+                        
+                        <div class="highlight-box">
+                            <h4>A Fórmula da Preparação Perfeita:</h4>
                             <ol>
-                                <li><strong>Clareza de Propósito:</strong> Por que você está falando?</li>
-                                <li><strong>Clareza de Conteúdo:</strong> O que você quer comunicar?</li>
-                                <li><strong>Clareza de Resultado:</strong> Que reação você espera?</li>
+                                <li><strong>Contexto:</strong> Entenda o ambiente e as pessoas</li>
+                                <li><strong>Objetivo:</strong> Defina claramente o que quer alcançar</li>
+                                <li><strong>Estrutura:</strong> Organize suas ideias em blocos lógicos</li>
+                                <li><strong>Ensaio Mental:</strong> Visualize diferentes cenários</li>
                             </ol>
-                        `
-                    }
-                ]
-            }
-            // Outros passos aqui...
+                        </div>
+                    </div>
+                `
+            },
+            '2-2': { 
+                title: "Passo 2: O Gatilho da Confiança", 
+                points: 100, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>🔥 Ative Sua Confiança Instantaneamente</h3>
+                        <p>Aprenda a técnica do "Gatilho da Confiança" - um método para acessar seu estado de máxima segurança em segundos.</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Técnica do Gatilho:</h4>
+                            <ol>
+                                <li><strong>Âncora Física:</strong> Escolha um gesto discreto</li>
+                                <li><strong>Memória de Sucesso:</strong> Relembre um momento de vitória</li>
+                                <li><strong>Respiração Poderosa:</strong> 4 segundos inspirando, 6 expirando</li>
+                                <li><strong>Afirmação Interna:</strong> "Eu tenho valor e minha voz importa"</li>
+                            </ol>
+                        </div>
+                    </div>
+                `
+            },
+            '2-3': { 
+                title: "Passo 3: A Execução Magnética", 
+                points: 120, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>✨ Transforme Preparação em Impacto</h3>
+                        <p>Agora você aprenderá a executar com magnetismo, usando sua autenticidade como força de atração.</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Os 3 Pilares da Execução Magnética:</h4>
+                            <ol>
+                                <li><strong>Presença Autêntica:</strong> Seja você mesmo, intensificado</li>
+                                <li><strong>Conexão Emocional:</strong> Fale ao coração, não só à mente</li>
+                                <li><strong>Valor Genuíno:</strong> Sempre ofereça algo útil</li>
+                            </ol>
+                        </div>
+                    </div>
+                `
+            },
+            // Módulo 3
+            '3-1': { 
+                title: "Seu Plano de Ação Personalizado", 
+                points: 150, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>🗺️ Seu Mapa para o Sucesso</h3>
+                        <p>Agora vamos criar seu plano personalizado de transformação, baseado em seus objetivos específicos.</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Áreas de Foco:</h4>
+                            <ul>
+                                <li>🎯 Apresentações e reuniões</li>
+                                <li>🤝 Networking autêntico</li>
+                                <li>💼 Liderança introvertida</li>
+                                <li>🗣️ Conversas difíceis</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            '3-2': { 
+                title: "Lidando com o Medo do Julgamento", 
+                points: 130, 
+                completed: false, 
+                content: `
+                    <div class="content-section">
+                        <h3>🛡️ Blindagem Contra o Julgamento</h3>
+                        <p>Aprenda técnicas avançadas para neutralizar o medo do julgamento e se expressar com liberdade total.</p>
+                        
+                        <div class="highlight-box">
+                            <h4>Técnicas de Blindagem:</h4>
+                            <ol>
+                                <li><strong>Reframe Mental:</strong> "Eles estão curiosos, não julgando"</li>
+                                <li><strong>Foco no Valor:</strong> "O que posso oferecer?"</li>
+                                <li><strong>Aceitação Radical:</strong> "Nem todos vão gostar, e está tudo bem"</li>
+                            </ol>
+                        </div>
+                    </div>
+                `
+            },
         };
 
-        // Mensagens do mentor
-        const mentorMessages = {
-            welcome: "Que bom te ver aqui! Estou muito animado para começarmos esta jornada completa juntos. Primeiro vamos descobrir seus superpoderes, depois aplicá-los na prática!",
-            modules_complete: "Parabéns! Você completou todos os módulos iniciais. Agora você está pronto para os 7 passos práticos. Vamos aplicar tudo que aprendeu!",
-            step1_unlocked: "Excelente! Você desbloqueou o primeiro passo prático. A clareza é realmente a base de tudo. Vamos começar a aplicar seus superpoderes!"
+        const modules = {
+            1: { 
+                title: "Desperte Seus Superpoderes", 
+                chapters: ['1-1', '1-2', '1-3'], 
+                password: "superpoder",
+                interaction: `
+                    <div class="text-center">
+                        <h3>🎉 Parabéns! Você Descobriu Seus Superpoderes!</h3>
+                        <p>Agora você sabe que ser introvertido é uma vantagem, não uma limitação.</p>
+                        <div class="bg-blue-100 p-4 rounded-lg mt-4">
+                            <h4>🎯 Quiz: Qual é Seu Superpoder Dominante?</h4>
+                            <p>Baseado no que você aprendeu, qual superpoder você mais se identifica?</p>
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Fazer Quiz</button>
+                        </div>
+                    </div>
+                `
+            },
+            2: { 
+                title: "Domine o Método Destrave na Hora H™", 
+                chapters: ['2-1', '2-2', '2-3'], 
+                password: "destrave",
+                interaction: `
+                    <div class="text-center">
+                        <h3>🚀 Você Dominou o Método!</h3>
+                        <p>Agora você tem as ferramentas para destravar em qualquer situação.</p>
+                        <div class="bg-green-100 p-4 rounded-lg mt-4">
+                            <h4>🎭 Simulador de Situações</h4>
+                            <p>Pratique o método em situações virtuais antes de aplicar na vida real.</p>
+                            <button class="bg-green-500 text-white px-4 py-2 rounded mt-2">Iniciar Simulação</button>
+                        </div>
+                    </div>
+                `
+            },
+            3: { 
+                title: "Prepare-se para a Transformação", 
+                chapters: ['3-1', '3-2'], 
+                password: "transforma",
+                interaction: `
+                    <div class="text-center">
+                        <h3>🎓 Cerimônia de Graduação Virtual</h3>
+                        <p>Você completou sua preparação! Está pronto para os 7 Passos da Transformação.</p>
+                        <div class="bg-yellow-100 p-4 rounded-lg mt-4">
+                            <h4>🏆 Certificado de Conclusão</h4>
+                            <p>Baixe seu certificado de conclusão dos módulos preparatórios.</p>
+                            <button class="bg-yellow-500 text-white px-4 py-2 rounded mt-2">Baixar Certificado</button>
+                        </div>
+                    </div>
+                `
+            },
         };
 
-        // Conquistas
         const achievements = {
-            1: { emoji: "🔍", title: "Descobridor", description: "Completou o primeiro capítulo", points: 100 },
-            2: { emoji: "⚡", title: "Superpoder", description: "Identificou seus superpoderes", points: 150 },
-            3: { emoji: "🔓", title: "Quebrador", description: "Identificou suas travas", points: 100 },
-            4: { emoji: "📝", title: "Reflexivo", description: "Escreveu reflexões profundas", points: 75 },
-            5: { emoji: "🎯", title: "Focado", description: "Completou um módulo inteiro", points: 200 },
-            6: { emoji: "👑", title: "Mestre", description: "Completou todos os 7 passos", points: 500 }
+            1: { name: "Pioneiro", description: "Iniciou a sua jornada de transformação.", unlocked: false },
+            2: { name: "Mestre do Mindset", description: "Completou o Módulo 1 e despertou seus superpoderes.", unlocked: false },
+            3: { name: "Arquiteto da Confiança", description: "Completou o Módulo 2 e dominou o Método Destrave na Hora H™.", unlocked: false },
+            4: { name: "Pronto para Decolar", description: "Completou o Módulo 3 e está pronto para a transformação.", unlocked: false },
+            5: { name: "Destravado!", description: "Completou os 7 Passos da Transformação.", unlocked: false },
+            6: { name: "Lenda Introvertida", description: "Completou 100% do portal e se tornou uma lenda.", unlocked: false },
         };
 
-        // Funções principais
+        let user = {
+            points: 0,
+            level: 1,
+            status: "Novato Explorador",
+            avatar: "🚀",
+            unlockedModules: { 1: true, 2: false, 3: false }, // Módulo 1 desbloqueado por padrão
+        };
+
+        const levels = [
+            { level: 1, minPoints: 0, status: "Novato Explorador", avatar: "🚀" },
+            { level: 2, minPoints: 1000, status: "Iniciado na Arte", avatar: "💡" },
+            { level: 3, minPoints: 2500, status: "Comunicador Confiante", avatar: "🎯" },
+            { level: 4, minPoints: 5000, status: "Mestre Introvertido", avatar: "⭐" },
+        ];
+
+        // ==================================================
+        // FUNÇÕES PRINCIPAIS DO JOGO
+        // ==================================================
+
         function startJourney() {
-            gameState.currentScreen = 'dashboard';
-            showScreen('dashboard-screen');
-            updateMentorMessage('welcome');
+            document.getElementById('welcome-screen').classList.remove('active');
+            document.getElementById('dashboard-screen').classList.add('active');
+            unlockAchievement(1);
             updateUI();
         }
 
-        function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-            document.getElementById(screenId).classList.add('active');
-        }
-
-        function startModule(moduleNum) {
-            gameState.currentModule = moduleNum;
-            gameState.currentChapter = 1;
-            gameState.currentSection = 0;
-            openChapter(moduleNum, 1);
-        }
-
-        function openChapter(moduleNum, chapterNum) {
-            if (moduleNum === 1 && chapterNum === 1) {
-                // Primeiro capítulo sempre desbloqueado
-            } else {
-                // Verificar se capítulo anterior foi completado
-                const prevChapterKey = `${moduleNum}-${chapterNum - 1}`;
-                if (!gameState.completedChapters.includes(prevChapterKey)) {
-                    alert('Complete o capítulo anterior primeiro!');
-                    return;
-                }
+        function openChapter(moduleId, chapterNumber) {
+            const chapterId = `${moduleId}-${chapterNumber}`;
+            
+            // Verifica se o módulo está desbloqueado
+            if (!user.unlockedModules[moduleId]) {
+                showPasswordPrompt(moduleId);
+                return;
             }
 
-            gameState.currentModule = moduleNum;
-            gameState.currentChapter = chapterNum;
-            gameState.currentSection = 0;
-            
-            loadChapterContent();
-            showScreen('chapter-screen');
-        }
-
-        function loadChapterContent() {
-            const module = moduleData[gameState.currentModule];
-            const chapter = module.chapters[gameState.currentChapter];
-            const section = chapter.sections[gameState.currentSection];
-
-            document.getElementById('chapter-icon').textContent = chapter.icon;
-            document.getElementById('chapter-title').textContent = chapter.title;
-            document.getElementById('chapter-subtitle').textContent = chapter.subtitle;
-            document.getElementById('chapter-content').innerHTML = section.content;
-
-            updateChapterProgress();
-            updateNavigationButtons();
-        }
-
-        function nextSection() {
-            const chapter = moduleData[gameState.currentModule].chapters[gameState.currentChapter];
-            
-            if (gameState.currentSection < chapter.sections.length - 1) {
-                gameState.currentSection++;
-                loadChapterContent();
-            } else {
-                // Mostrar exercícios
-                showChapterExercises();
+            // Verifica se o capítulo está bloqueado (lógica de sequência)
+            if (isChapterLocked(chapterId)) {
+                alert("Você precisa completar o capítulo anterior primeiro!");
+                return;
             }
-        }
 
-        function previousSection() {
-            if (gameState.currentSection > 0) {
-                gameState.currentSection--;
-                loadChapterContent();
-            }
-        }
-
-        function showChapterExercises() {
-            const chapter = moduleData[gameState.currentModule].chapters[gameState.currentChapter];
-            const exercisesContainer = document.getElementById('chapter-exercises');
+            const chapter = chapters[chapterId];
+            const screen = document.getElementById('chapter-content-screen');
             
-            let exercisesHTML = '<h3 class="text-2xl font-bold text-brand-dark mb-6">✨ Hora de Praticar!</h3>';
-            
-            chapter.exercises.forEach((exercise, index) => {
-                exercisesHTML += createExerciseHTML(exercise, index);
-            });
-            
-            exercisesHTML += `
-                <div class="text-center mt-8">
-                    <button onclick="completeChapter()" class="bg-brand-success text-white font-bold py-4 px-8 rounded-xl hover:opacity-90 transition-opacity text-lg">
-                        COMPLETAR CAPÍTULO →
-                    </button>
+            screen.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-fade-in">
+                    <button onclick="backToDashboard()" class="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg mb-6 hover:bg-gray-300 transition-colors">← Voltar ao Dashboard</button>
+                    <h2 class="text-4xl font-bold text-brand-dark mb-4">${chapter.title}</h2>
+                    <div class="prose max-w-none lg:prose-xl mb-8">
+                        ${chapter.content} 
+                    </div>
+                    <button onclick="completeChapter('${chapterId}')" class="w-full bg-brand-success text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-green-600 transition-colors">Marcar como Concluído (+${chapter.points} pts)</button>
                 </div>
             `;
-            
-            exercisesContainer.innerHTML = exercisesHTML;
-            exercisesContainer.style.display = 'block';
-            
-            // Esconder botões de navegação
-            document.getElementById('next-section').style.display = 'none';
-            document.getElementById('prev-section').style.display = 'none';
+
+            document.getElementById('dashboard-screen').classList.remove('active');
+            screen.classList.add('active');
         }
 
-        function createExerciseHTML(exercise, index) {
-            let html = `<div class="bg-white rounded-xl p-6 mb-6 shadow-lg">`;
-            html += `<h4 class="text-xl font-bold text-brand-dark mb-4">${exercise.title}</h4>`;
-            html += `<p class="text-gray-700 mb-4">${exercise.question}</p>`;
+        function completeChapter(chapterId) {
+            if (chapters[chapterId].completed) return;
 
-            switch (exercise.type) {
-                case 'reflection':
-                    html += `
-                        <textarea id="exercise-${index}" rows="5" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-transparent" placeholder="${exercise.placeholder}"></textarea>
-                        <div class="text-right mt-2">
-                            <span class="text-sm text-gray-500">+${exercise.points} pontos</span>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'quiz':
-                    html += '<div class="space-y-3">';
-                    exercise.options.forEach((option, optIndex) => {
-                        html += `
-                            <label class="flex items-center p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors">
-                                <input type="radio" name="exercise-${index}" value="${optIndex}" class="mr-3">
-                                <span>${option}</span>
-                            </label>
-                        `;
-                    });
-                    html += `</div><div class="text-right mt-2"><span class="text-sm text-gray-500">+${exercise.points} pontos</span></div>`;
-                    break;
-            }
-
-            html += '</div>';
-            return html;
-        }
-
-        function completeChapter() {
-            // Lógica de completar capítulo (mesmo do código anterior)
-            const chapter = moduleData[gameState.currentModule].chapters[gameState.currentChapter];
-            let totalPoints = 0;
+            chapters[chapterId].completed = true;
+            user.points += chapters[chapterId].points;
             
-            chapter.exercises.forEach((exercise, index) => {
-                const inputs = document.querySelectorAll(`[name="exercise-${index}"]`);
-                let answered = false;
-                
-                if (exercise.type === 'reflection') {
-                    const textarea = document.getElementById(`exercise-${index}`);
-                    if (textarea.value.trim().length > 50) {
-                        answered = true;
-                        if (textarea.value.trim().length > 200) {
-                            unlockAchievement(4);
-                        }
-                    }
-                } else {
-                    inputs.forEach(input => {
-                        if (input.checked) answered = true;
-                    });
-                }
-                
-                if (answered) {
-                    totalPoints += exercise.points;
-                }
-            });
-
-            const chapterKey = `${gameState.currentModule}-${gameState.currentChapter}`;
-            if (!gameState.completedChapters.includes(chapterKey)) {
-                gameState.completedChapters.push(chapterKey);
-            }
-
-            gameState.userPoints += totalPoints;
-
-            // Verificar se todos os módulos foram completados
-            checkModulesCompletion();
-
+            checkModuleCompletion(chapterId.split('-')[0]);
+            checkLevelUp();
             updateUI();
             backToDashboard();
         }
 
-        function checkModulesCompletion() {
-            // Verificar se todos os 3 módulos foram completados
-            const totalModules = 3;
-            const completedModulesCount = gameState.completedModules.length;
-            
-            if (completedModulesCount === totalModules && !gameState.sevenStepsUnlocked) {
-                gameState.sevenStepsUnlocked = true;
-                updateMentorMessage('modules_complete');
-                unlockAchievement(5); // Focado
-                
-                // Desbloquear primeiro passo
-                unlockStep(1);
-            }
+        function backToDashboard() {
+            document.getElementById('chapter-content-screen').classList.remove('active');
+            document.getElementById('dashboard-screen').classList.add('active');
         }
 
-        function unlockStep(stepNum) {
-            if (!gameState.unlockedSteps) {
-                gameState.unlockedSteps = [];
-            }
+        function showModuleInteraction(moduleId) {
+            const module = modules[moduleId];
+            document.getElementById('modal-title').innerText = `Interação Final: ${module.title}`;
+            document.getElementById('modal-body').innerHTML = module.interaction;
+            document.getElementById('generic-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('generic-modal').classList.remove('active');
+        }
+
+        function showAchievementDetails(achId) {
+            const achievement = achievements[achId];
+            const status = achievement.unlocked ? "Desbloqueada" : "Bloqueada";
+            document.getElementById('modal-title').innerText = `Conquista: ${achievement.name}`;
+            document.getElementById('modal-body').innerHTML = `<p><strong>Status:</strong> ${status}</p><p>${achievement.description}</p>`;
+            document.getElementById('generic-modal').classList.add('active');
+        }
+
+        // ==================================================
+        // LÓGICA DE PROGRESSÃO E DESBLOQUEIO
+        // ==================================================
+
+        function isChapterLocked(chapterId) {
+            const [moduleId, chapterNumber] = chapterId.split('-').map(Number);
             
-            if (!gameState.unlockedSteps.includes(stepNum)) {
-                gameState.unlockedSteps.push(stepNum);
-                
-                if (stepNum === 1) {
-                    updateMentorMessage('step1_unlocked');
+            // Se o módulo não estiver desbloqueado, o capítulo está bloqueado
+            if (!user.unlockedModules[moduleId]) {
+                return true;
+            }
+
+            // O primeiro capítulo de cada módulo está sempre desbloqueado se o módulo estiver desbloqueado
+            if (chapterNumber === 1) {
+                return false;
+            }
+
+            // Verifica se o capítulo anterior foi completado
+            const prevChapterId = `${moduleId}-${chapterNumber - 1}`;
+            return !chapters[prevChapterId].completed;
+        }
+
+        function checkModuleCompletion(moduleId) {
+            const moduleChapters = modules[moduleId].chapters;
+            const allCompleted = moduleChapters.every(id => chapters[id].completed);
+
+            if (allCompleted) {
+                document.getElementById(`module${moduleId}-interaction-btn`).disabled = false;
+                if (moduleId == 1) unlockAchievement(2);
+                if (moduleId == 2) unlockAchievement(3);
+                if (moduleId == 3) {
+                    unlockAchievement(4);
+                    unlockSevenSteps();
                 }
             }
         }
 
-        function openSevenSteps() {
-            if (!gameState.sevenStepsUnlocked) {
-                alert('Complete todos os 3 módulos iniciais primeiro!');
-                return;
-            }
-            
-            showScreen('seven-steps-screen');
+        function unlockSevenSteps() {
+            const container = document.getElementById('seven-steps-container');
+            container.classList.remove('opacity-50', 'pointer-events-none');
+            // Aqui você pode adicionar uma animação ou notificação
         }
 
-        function openStep(stepNum) {
-            if (!gameState.unlockedSteps || !gameState.unlockedSteps.includes(stepNum)) {
-                alert('Complete o passo anterior primeiro!');
-                return;
-            }
-
-            gameState.currentStep = stepNum;
-            gameState.currentStepSection = 0;
-            
-            loadStepContent();
-            showScreen('step-screen');
-        }
-
-        function loadStepContent() {
-            const step = stepsData[gameState.currentStep];
-            const section = step.sections[gameState.currentStepSection];
-
-            document.getElementById('step-icon').textContent = step.icon;
-            document.getElementById('step-title').textContent = `Passo ${gameState.currentStep}: ${step.title}`;
-            document.getElementById('step-subtitle').textContent = step.subtitle;
-            document.getElementById('step-content').innerHTML = section.content;
-
-            updateStepProgress();
-            updateStepNavigationButtons();
-        }
-
-        function nextStepSection() {
-            const step = stepsData[gameState.currentStep];
-            
-            if (gameState.currentStepSection < step.sections.length - 1) {
-                gameState.currentStepSection++;
-                loadStepContent();
-            } else {
-                // Mostrar exercícios do passo
-                showStepExercises();
+        function checkLevelUp() {
+            const nextLevel = levels.find(l => l.level === user.level + 1);
+            if (nextLevel && user.points >= nextLevel.minPoints) {
+                user.level = nextLevel.level;
+                user.status = nextLevel.status;
+                user.avatar = nextLevel.avatar;
+                // Adicionar notificação de level up
             }
         }
 
-        function previousStepSection() {
-            if (gameState.currentStepSection > 0) {
-                gameState.currentStepSection--;
-                loadStepContent();
+        function unlockAchievement(achId) {
+            if (!achievements[achId].unlocked) {
+                achievements[achId].unlocked = true;
+                // Adicionar notificação de conquista
             }
         }
 
-        function showStepExercises() {
-            // Implementar exercícios dos passos
-            const exercisesContainer = document.getElementById('step-exercises');
-            exercisesContainer.innerHTML = `
-                <h3 class="text-2xl font-bold text-brand-dark mb-6">🎯 Exercícios Práticos</h3>
-                <div class="bg-white rounded-xl p-6 mb-6 shadow-lg">
-                    <h4 class="text-xl font-bold text-brand-dark mb-4">Aplicação Prática</h4>
-                    <p class="text-gray-700 mb-4">Aplique o que aprendeu neste passo em uma situação real.</p>
-                    <textarea rows="5" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-transparent" placeholder="Descreva como você aplicou este passo..."></textarea>
-                </div>
-                <div class="text-center mt-8">
-                    <button onclick="completeStep()" class="bg-orange-500 text-white font-bold py-4 px-8 rounded-xl hover:opacity-90 transition-opacity text-lg">
-                        COMPLETAR PASSO →
-                    </button>
+        function showPasswordPrompt(moduleId) {
+            const moduleTitle = modules[moduleId].title;
+            document.getElementById('modal-title').innerText = `Desbloquear Módulo: ${moduleTitle}`;
+            document.getElementById('modal-body').innerHTML = `
+                <p>Para acessar este módulo, por favor, insira a senha:</p>
+                <input type="password" id="password-input" class="w-full p-2 border border-gray-300 rounded-md mb-4" placeholder="Senha do Módulo">
+                <button onclick="checkPassword(${moduleId})" class="w-full bg-brand-blue text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Desbloquear</button>
+                <div class="mt-4 text-sm text-gray-600">
+                    <p><strong>Senhas dos módulos:</strong></p>
+                    <p>Módulo 2: "destrave"</p>
+                    <p>Módulo 3: "transforma"</p>
                 </div>
             `;
-            exercisesContainer.style.display = 'block';
+            document.getElementById('generic-modal').classList.add('active');
         }
 
-        function completeStep() {
-            const stepKey = gameState.currentStep;
-            if (!gameState.completedSteps.includes(stepKey)) {
-                gameState.completedSteps.push(stepKey);
-            }
-
-            gameState.userPoints += 300; // Pontos por completar um passo
-
-            // Desbloquear próximo passo
-            if (gameState.currentStep < 7) {
-                unlockStep(gameState.currentStep + 1);
+        function checkPassword(moduleId) {
+            const passwordInput = document.getElementById('password-input').value;
+            if (passwordInput === modules[moduleId].password) {
+                user.unlockedModules[moduleId] = true;
+                closeModal();
+                updateUI();
+                alert(`Módulo ${modules[moduleId].title} desbloqueado com sucesso!`);
             } else {
-                // Completou todos os 7 passos
-                unlockAchievement(6); // Mestre
-            }
-
-            updateUI();
-            backToSevenSteps();
-        }
-
-        function backToDashboard() {
-            showScreen('dashboard-screen');
-            updateUI();
-        }
-
-        function backToSevenSteps() {
-            showScreen('seven-steps-screen');
-            updateUI();
-        }
-
-        function unlockAchievement(achievementId) {
-            if (!gameState.unlockedAchievements.includes(achievementId)) {
-                gameState.unlockedAchievements.push(achievementId);
-                gameState.userAchievements++;
-                gameState.userPoints += achievements[achievementId].points;
-                showAchievementModal(achievementId);
+                alert("Senha incorreta. Tente novamente.");
             }
         }
 
-        function showAchievementModal(achievementId) {
-            const achievement = achievements[achievementId];
-            document.getElementById('achievement-emoji').textContent = achievement.emoji;
-            document.getElementById('achievement-title').textContent = achievement.title;
-            document.getElementById('achievement-description').textContent = achievement.description;
-            document.getElementById('achievement-points').textContent = achievement.points;
-            document.getElementById('achievement-modal').classList.add('active');
-        }
-
-        function closeAchievementModal() {
-            document.getElementById('achievement-modal').classList.remove('active');
-        }
+        // ==================================================
+        // ATUALIZAÇÃO DA INTERFACE
+        // ==================================================
 
         function updateUI() {
-            // Atualizar header
-            document.getElementById('user-points').textContent = gameState.userPoints;
-            document.getElementById('user-achievements').textContent = gameState.userAchievements;
+            // Header
+            document.getElementById('user-points').innerText = user.points;
+            document.getElementById('user-level').innerText = user.level;
+            document.getElementById('user-status').innerText = user.status;
+            document.getElementById('user-avatar').innerText = user.avatar;
             
-            // Atualizar nível
-            const level = Math.floor(gameState.userPoints / 300) + 1;
-            gameState.userLevel = level;
-            document.getElementById('user-level').textContent = level;
-            
-            // Atualizar status
-            const statusTexts = ['Novato Explorador', 'Aprendiz Corajoso', 'Praticante Dedicado', 'Mestre Comunicador'];
-            const statusIndex = Math.min(level - 1, statusTexts.length - 1);
-            document.getElementById('user-status').textContent = statusTexts[statusIndex];
-            
-            // Atualizar avatar
-            const avatars = ['🚀', '⭐', '🔥', '👑'];
-            const avatarIndex = Math.min(level - 1, avatars.length - 1);
-            document.getElementById('user-avatar').textContent = avatars[avatarIndex];
-            
-            // Atualizar progresso global
-            const totalSteps = 10; // 3 módulos + 7 passos
-            const completedSteps = gameState.completedChapters.length + gameState.completedSteps.length;
-            const progressPercent = (completedSteps / totalSteps) * 100;
-            document.getElementById('global-progress').style.width = progressPercent + '%';
-            
-            // Atualizar conquistas visuais
-            gameState.unlockedAchievements.forEach(id => {
-                const achievementElement = document.getElementById(`achievement-${id}`);
-                if (achievementElement) {
-                    achievementElement.classList.add('unlocked');
-                }
-            });
-            
-            updateChapterStatuses();
-            updateStepStatuses();
-        }
+            const unlockedAchievements = Object.values(achievements).filter(a => a.unlocked).length;
+            document.getElementById('user-achievements').innerText = unlockedAchievements;
 
-        function updateChapterStatuses() {
-            // Atualizar status dos capítulos (mesmo do código anterior)
-            for (let i = 1; i <= 3; i++) {
-                const chapterKey = `1-${i}`;
-                const statusElement = document.getElementById(`chapter1-${i}-status`);
-                
-                if (statusElement) {
-                    if (gameState.completedChapters.includes(chapterKey)) {
-                        statusElement.textContent = '✅';
-                    } else if (i === 1 || gameState.completedChapters.includes(`1-${i-1}`)) {
-                        statusElement.textContent = '🔓';
-                    } else {
-                        statusElement.textContent = '🔒';
-                    }
-                }
-            }
-            
-            // Atualizar progresso do módulo 1
-            const module1Completed = gameState.completedChapters.filter(key => key.startsWith('1-')).length;
-            const module1Progress = Math.round((module1Completed / 3) * 100);
-            const progressElement = document.getElementById('module1-progress');
-            if (progressElement) {
-                progressElement.textContent = module1Progress + '%';
-            }
-        }
+            const totalChapters = Object.keys(chapters).length;
+            const completedChapters = Object.values(chapters).filter(c => c.completed).length;
+            const globalProgress = (completedChapters / totalChapters) * 100;
+            document.getElementById('global-progress').style.width = `${globalProgress}%`;
 
-        function updateStepStatuses() {
-            // Atualizar status dos 7 passos
-            for (let i = 1; i <= 7; i++) {
-                const statusElement = document.getElementById(`step${i}-status`);
-                
-                if (statusElement) {
-                    if (gameState.completedSteps.includes(i)) {
-                        statusElement.textContent = '✅ Completado';
-                        statusElement.className = 'text-green-600 font-bold';
-                    } else if (gameState.unlockedSteps && gameState.unlockedSteps.includes(i)) {
-                        statusElement.textContent = '🔓 Disponível';
-                        statusElement.className = 'text-blue-600 font-bold';
-                    } else {
-                        statusElement.textContent = '🔒 Bloqueado';
-                        statusElement.className = 'text-gray-400';
-                    }
-                }
-            }
-        }
+            // Dashboard - Módulos
+            for (const moduleId in modules) {
+                const moduleChapters = modules[moduleId].chapters;
+                const completedInModule = moduleChapters.filter(id => chapters[id].completed).length;
+                const moduleProgress = (completedInModule / moduleChapters.length) * 100;
+                document.getElementById(`module${moduleId}-progress`).innerText = `${Math.round(moduleProgress)}%`;
 
-        function updateChapterProgress() {
-            const chapter = moduleData[gameState.currentModule].chapters[gameState.currentChapter];
-            const progress = Math.round(((gameState.currentSection + 1) / chapter.sections.length) * 100);
-            document.getElementById('chapter-progress').textContent = progress + '%';
-        }
-
-        function updateStepProgress() {
-            const step = stepsData[gameState.currentStep];
-            const progress = Math.round(((gameState.currentStepSection + 1) / step.sections.length) * 100);
-            document.getElementById('step-progress').textContent = progress + '%';
-        }
-
-        function updateNavigationButtons() {
-            const prevBtn = document.getElementById('prev-section');
-            const nextBtn = document.getElementById('next-section');
-            
-            if (prevBtn) {
-                if (gameState.currentSection > 0) {
-                    prevBtn.style.display = 'block';
-                } else {
-                    prevBtn.style.display = 'none';
-                }
-            }
-            
-            if (nextBtn) {
-                const chapter = moduleData[gameState.currentModule].chapters[gameState.currentChapter];
-                if (gameState.currentSection < chapter.sections.length - 1) {
-                    nextBtn.textContent = 'Próxima Seção →';
-                } else {
-                    nextBtn.textContent = 'Ver Exercícios →';
-                }
-            }
-        }
-
-        function updateStepNavigationButtons() {
-            const prevBtn = document.getElementById('prev-step-section');
-            const nextBtn = document.getElementById('next-step-section');
-            
-            if (prevBtn) {
-                if (gameState.currentStepSection > 0) {
-                    prevBtn.style.display = 'block';
-                } else {
-                    prevBtn.style.display = 'none';
-                }
-            }
-            
-            if (nextBtn) {
-                const step = stepsData[gameState.currentStep];
-                if (gameState.currentStepSection < step.sections.length - 1) {
-                    nextBtn.textContent = 'Próxima Seção →';
-                } else {
-                    nextBtn.textContent = 'Ver Exercícios →';
-                }
-            }
-        }
-
-        function updateMentorMessage(messageKey) {
-            const message = mentorMessages[messageKey] || mentorMessages.welcome;
-            const messageElement = document.getElementById('mentor-message');
-            if (messageElement) {
-                messageElement.textContent = message;
-            }
-        }
-
-        function openMentorChat() {
-            document.getElementById('mentor-modal').classList.add('active');
-        }
-
-        function closeMentorModal() {
-            document.getElementById('mentor-modal').classList.remove('active');
-        }
-
-        function sendMentorMessage() {
-            const input = document.getElementById('mentor-input');
-            const message = input.value.trim();
-            
-            if (message) {
-                const chatContainer = document.getElementById('mentor-chat');
-                
-                // Adicionar mensagem do usuário
-                const userMessage = document.createElement('div');
-                userMessage.className = 'text-right mb-4';
-                userMessage.innerHTML = `
-                    <div class="bg-brand-blue text-white rounded-lg p-3 inline-block max-w-xs">
-                        ${message}
-                    </div>
-                `;
-                chatContainer.appendChild(userMessage);
-                
-                // Simular resposta do mentor
-                setTimeout(() => {
-                    const mentorResponse = generateMentorResponse(message);
-                    const mentorMessage = document.createElement('div');
-                    mentorMessage.className = 'mentor-message mb-4';
-                    mentorMessage.innerHTML = `
-                        <div class="bg-brand-purple text-white rounded-lg p-3 inline-block max-w-xs">
-                            ${mentorResponse}
-                        </div>
-                    `;
-                    chatContainer.appendChild(mentorMessage);
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
-                }, 1000);
-                
-                input.value = '';
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        }
-
-        function generateMentorResponse(userMessage) {
-            const responses = [
-                "Entendo sua perspectiva! Isso é muito comum entre introvertidos. Continue praticando e você vai ver a diferença.",
-                "Excelente pergunta! Lembre-se que cada pequeno progresso conta. Você está no caminho certo.",
-                "Fico feliz em saber que você está refletindo sobre isso. Essa consciência já é um grande passo.",
-                "Muito bem! Continue explorando seus superpoderes. Eles são únicos e valiosos.",
-                "Perfeito! Essa é exatamente a mentalidade que vai te levar longe. Continue assim!"
-            ];
-            
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
-
-        // Event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            const mentorInput = document.getElementById('mentor-input');
-            if (mentorInput) {
-                mentorInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        sendMentorMessage();
+                // Atualizar status dos capítulos
+                moduleChapters.forEach(chapterId => {
+                    const statusEl = document.getElementById(`chapter${chapterId.replace('-', '')}-status`);
+                    if (statusEl) {
+                        if (chapters[chapterId].completed) {
+                            statusEl.innerText = '✅';
+                        } else if (!isChapterLocked(chapterId)) {
+                            statusEl.innerText = '🔓';
+                        } else {
+                            statusEl.innerText = '🔒';
+                        }
                     }
                 });
+
+                // Atualizar status visual do módulo
+                const moduleDiv = document.getElementById(`module-${moduleId}`);
+                if (moduleDiv) {
+                    if (user.unlockedModules[moduleId]) {
+                        moduleDiv.classList.remove('module-locked');
+                        moduleDiv.onclick = null;
+                    } else {
+                        moduleDiv.classList.add('module-locked');
+                        moduleDiv.onclick = () => showPasswordPrompt(moduleId);
+                    }
+                }
             }
-            
-            updateUI();
-        });
+
+            // Lateral - Perfil
+            document.getElementById('profile-avatar').innerText = user.avatar;
+            document.getElementById('profile-level').innerText = user.level;
+            document.getElementById('profile-status').innerText = user.status;
+
+            const currentLevelInfo = levels.find(l => l.level === user.level);
+            const nextLevelInfo = levels.find(l => l.level === user.level + 1);
+            if (nextLevelInfo) {
+                const pointsInLevel = user.points - currentLevelInfo.minPoints;
+                const pointsForNextLevel = nextLevelInfo.minPoints - currentLevelInfo.minPoints;
+                const levelProgress = (pointsInLevel / pointsForNextLevel) * 100;
+                document.getElementById('level-progress').style.width = `${levelProgress}%`;
+                document.getElementById('level-progress-text').innerText = `${user.points} / ${nextLevelInfo.minPoints} pontos para o próximo nível`;
+            } else {
+                document.getElementById('level-progress').style.width = `100%`;
+                document.getElementById('level-progress-text').innerText = "Nível Máximo Alcançado!";
+            }
+
+            // Lateral - Conquistas
+            for (const achId in achievements) {
+                if (achievements[achId].unlocked) {
+                    document.getElementById(`ach${achId}`).classList.add('unlocked');
+                }
+            }
+
+            // Lateral - Mapa da Jornada
+            const journeyContainer = document.getElementById('journey-steps-container');
+            journeyContainer.innerHTML = '';
+            Object.keys(chapters).forEach(chapterId => {
+                const chapter = chapters[chapterId];
+                const el = document.createElement('div');
+                el.className = 'journey-step';
+                if (chapter.completed) el.classList.add('completed');
+                // Lógica para 'current' pode ser adicionada aqui
+                el.innerText = chapter.title;
+                journeyContainer.appendChild(el);
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', updateUI);
+
     </script>
+
 </body>
 </html>
 
