@@ -236,6 +236,62 @@
             padding-top: 2rem;
             border-top: 1px solid #e2e8f0;
         }
+
+        .notification-banner {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification-banner.show {
+            transform: translateX(0);
+        }
+
+        .feedback-message {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #0c4a6e;
+        }
+
+        .success-message {
+            background: #f0fdf4;
+            border: 1px solid #22c55e;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #15803d;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+        }
+
+        .quiz-option.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
     </style>
     
     <script>
@@ -257,6 +313,11 @@
     </script>
 </head>
 <body class="bg-brand-light text-gray-800">
+
+    <!-- Notification Banner -->
+    <div id="notification-banner" class="notification-banner">
+        <div id="notification-text"></div>
+    </div>
 
     <!-- Header com Progresso -->
     <header class="bg-brand-dark shadow-md sticky top-0 z-50">
@@ -623,33 +684,64 @@
                 quiz: {
                     title: "🎯 Quiz: Qual é Seu Superpoder Dominante?",
                     content: `
-                        <div class="text-center">
-                            <h3 class="text-2xl font-bold mb-4">🎉 Parabéns! Você Descobriu Seus Superpoderes!</h3>
-                            <p class="mb-6">Agora você sabe que ser introvertido é uma vantagem, não uma limitação.</p>
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold mb-4">🎯 Descubra Seu Superpoder Dominante</h3>
+                            <p class="mb-4">Baseado no que você aprendeu, qual superpoder você mais se identifica?</p>
+                        </div>
+                        
+                        <div id="quiz-options" class="space-y-3">
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'foco')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🎯</span>
+                                    <div>
+                                        <h4 class="font-bold">Super Foco</h4>
+                                        <p class="text-sm text-gray-600">Concentração profunda em tarefas complexas</p>
+                                    </div>
+                                </div>
+                            </div>
                             
-                            <div class="bg-blue-100 p-6 rounded-lg">
-                                <h4 class="text-xl font-bold mb-4">🎯 Descubra Seu Superpoder Dominante</h4>
-                                <p class="mb-4">Baseado no que você aprendeu, qual superpoder você mais se identifica?</p>
-                                
-                                <div class="space-y-3">
-                                    <button onclick="selectSuperpower('foco')" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors">
-                                        🎯 Super Foco - Concentração Profunda
-                                    </button>
-                                    <button onclick="selectSuperpower('escuta')" class="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition-colors">
-                                        👂 Escuta Ativa - Conexão Genuína
-                                    </button>
-                                    <button onclick="selectSuperpower('processamento')" class="w-full bg-yellow-500 text-white p-3 rounded-lg hover:bg-yellow-600 transition-colors">
-                                        🧠 Processamento Profundo - Análise Estratégica
-                                    </button>
-                                    <button onclick="selectSuperpower('autenticidade')" class="w-full bg-purple-500 text-white p-3 rounded-lg hover:bg-purple-600 transition-colors">
-                                        💎 Autenticidade - Magnetismo Natural
-                                    </button>
-                                    <button onclick="selectSuperpower('preparacao')" class="w-full bg-red-500 text-white p-3 rounded-lg hover:bg-red-600 transition-colors">
-                                        🎭 Preparação - Excelência Planejada
-                                    </button>
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'escuta')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">👂</span>
+                                    <div>
+                                        <h4 class="font-bold">Escuta Ativa</h4>
+                                        <p class="text-sm text-gray-600">Conexão genuína através da escuta</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'processamento')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🧠</span>
+                                    <div>
+                                        <h4 class="font-bold">Processamento Profundo</h4>
+                                        <p class="text-sm text-gray-600">Análise estratégica e insights únicos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'autenticidade')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">💎</span>
+                                    <div>
+                                        <h4 class="font-bold">Autenticidade</h4>
+                                        <p class="text-sm text-gray-600">Magnetismo natural e genuinidade</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'preparacao')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🎭</span>
+                                    <div>
+                                        <h4 class="font-bold">Preparação</h4>
+                                        <p class="text-sm text-gray-600">Excelência através do planejamento</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div id="quiz-feedback" class="mt-6" style="display: none;"></div>
                     `
                 }
             },
@@ -710,30 +802,54 @@
                 quiz: {
                     title: "🎭 Simulador de Situações",
                     content: `
-                        <div class="text-center">
-                            <h3 class="text-2xl font-bold mb-4">🚀 Você Dominou o Método!</h3>
-                            <p class="mb-6">Agora você tem as ferramentas para destravar em qualquer situação.</p>
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold mb-4">🎭 Pratique em Situações Virtuais</h3>
+                            <p class="mb-4">Escolha uma situação para praticar o Método Destrave na Hora H™:</p>
+                        </div>
+                        
+                        <div id="quiz-options" class="space-y-3">
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'reuniao')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">💼</span>
+                                    <div>
+                                        <h4 class="font-bold">Reunião de Trabalho Importante</h4>
+                                        <p class="text-sm text-gray-600">Aplique o método em reuniões estratégicas</p>
+                                    </div>
+                                </div>
+                            </div>
                             
-                            <div class="bg-green-100 p-6 rounded-lg">
-                                <h4 class="text-xl font-bold mb-4">🎭 Pratique em Situações Virtuais</h4>
-                                <p class="mb-4">Escolha uma situação para praticar o Método Destrave na Hora H™:</p>
-                                
-                                <div class="space-y-3">
-                                    <button onclick="practiceScenario('reuniao')" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors">
-                                        💼 Reunião de Trabalho Importante
-                                    </button>
-                                    <button onclick="practiceScenario('apresentacao')" class="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition-colors">
-                                        🎤 Apresentação para Clientes
-                                    </button>
-                                    <button onclick="practiceScenario('networking')" class="w-full bg-yellow-500 text-white p-3 rounded-lg hover:bg-yellow-600 transition-colors">
-                                        🤝 Evento de Networking
-                                    </button>
-                                    <button onclick="practiceScenario('entrevista')" class="w-full bg-purple-500 text-white p-3 rounded-lg hover:bg-purple-600 transition-colors">
-                                        📋 Entrevista de Emprego
-                                    </button>
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'apresentacao')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🎤</span>
+                                    <div>
+                                        <h4 class="font-bold">Apresentação para Clientes</h4>
+                                        <p class="text-sm text-gray-600">Use a preparação invisível em apresentações</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'networking')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">🤝</span>
+                                    <div>
+                                        <h4 class="font-bold">Evento de Networking</h4>
+                                        <p class="text-sm text-gray-600">Conecte-se autenticamente em eventos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-option" onclick="selectQuizOption(this, 'entrevista')">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">📋</span>
+                                    <div>
+                                        <h4 class="font-bold">Entrevista de Emprego</h4>
+                                        <p class="text-sm text-gray-600">Combine os 3 passos para impressionar</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div id="quiz-feedback" class="mt-6" style="display: none;"></div>
                     `
                 }
             },
@@ -777,25 +893,21 @@
                 quiz: {
                     title: "🎓 Cerimônia de Graduação Virtual",
                     content: `
-                        <div class="text-center">
+                        <div class="text-center mb-6">
                             <h3 class="text-2xl font-bold mb-4">🎓 Parabéns, Você Se Formou!</h3>
-                            <p class="mb-6">Você completou sua preparação! Está pronto para os 7 Passos da Transformação.</p>
-                            
-                            <div class="bg-yellow-100 p-6 rounded-lg">
-                                <h4 class="text-xl font-bold mb-4">🏆 Certificado de Conclusão</h4>
-                                <p class="mb-4">Você concluiu com sucesso os módulos preparatórios do Portal Destrave na Hora H!</p>
-                                
-                                <div class="bg-white p-4 rounded-lg border-2 border-yellow-400 mb-4">
-                                    <h5 class="font-bold text-lg">🎖️ CERTIFICADO DE CONCLUSÃO</h5>
-                                    <p class="text-sm mt-2">Este certificado atesta que você completou os 3 módulos iniciais e está preparado para a transformação completa.</p>
-                                    <p class="text-xs text-gray-600 mt-2">Data: ${new Date().toLocaleDateString('pt-BR')}</p>
-                                </div>
-                                
-                                <button onclick="unlockSevenSteps()" class="bg-yellow-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-yellow-600 transition-colors">
-                                    🚀 DESBLOQUEAR OS 7 PASSOS DA TRANSFORMAÇÃO
-                                </button>
+                            <p class="mb-4">Você completou sua preparação! Está pronto para os 7 Passos da Transformação.</p>
+                        </div>
+                        
+                        <div class="bg-yellow-100 p-6 rounded-lg mb-6">
+                            <h4 class="text-xl font-bold mb-4 text-center">🏆 Certificado de Conclusão</h4>
+                            <div class="bg-white p-4 rounded-lg border-2 border-yellow-400 mb-4">
+                                <h5 class="font-bold text-lg text-center">🎖️ CERTIFICADO DE CONCLUSÃO</h5>
+                                <p class="text-sm mt-2 text-center">Este certificado atesta que você completou os 3 módulos iniciais e está preparado para a transformação completa.</p>
+                                <p class="text-xs text-gray-600 mt-2 text-center">Data: ${new Date().toLocaleDateString('pt-BR')}</p>
                             </div>
                         </div>
+                        
+                        <div id="quiz-feedback" class="mt-6" style="display: none;"></div>
                     `
                 }
             }
@@ -823,7 +935,8 @@
             avatar: "🚀",
             currentModule: null,
             currentPage: 0,
-            completedModules: []
+            completedModules: [],
+            quizAnswered: false
         };
 
         const levels = [
@@ -852,6 +965,7 @@
 
             user.currentModule = moduleId;
             user.currentPage = 0;
+            user.quizAnswered = false;
             showModuleContent();
         }
 
@@ -894,7 +1008,7 @@
                                     ← Anterior
                                 </button>
                                 <button onclick="nextPage()" class="bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">
-                                    ${currentPage === module.pages.length - 1 ? 'Finalizar Módulo' : 'Próxima'} →
+                                    ${currentPage === module.pages.length - 1 ? 'Ir para Quiz' : 'Próxima'} →
                                 </button>
                             </div>
                         </div>
@@ -913,7 +1027,7 @@
                             
                             ${module.quiz.content}
                             
-                            <div class="text-center mt-8">
+                            <div class="text-center mt-8" id="complete-module-section" style="display: none;">
                                 <button onclick="completeModule()" class="bg-brand-success text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-colors text-lg">
                                     ✅ CONCLUIR MÓDULO (+500 pts)
                                 </button>
@@ -931,6 +1045,7 @@
             if (user.currentPage < module.pages.length) {
                 user.currentPage++;
                 user.points += 100; // Pontos por página
+                showNotification(`+100 pontos! Página concluída!`);
                 showModuleContent();
                 updateUI();
             }
@@ -943,7 +1058,74 @@
             }
         }
 
+        function selectQuizOption(element, option) {
+            // Remove seleção anterior
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Adiciona seleção atual
+            element.classList.add('selected');
+            
+            // Mostra feedback baseado na opção
+            const feedbackDiv = document.getElementById('quiz-feedback');
+            const moduleId = user.currentModule;
+            
+            let feedbackContent = '';
+            
+            if (moduleId === 1) {
+                const messages = {
+                    'foco': 'Excelente! Seu Super Foco é uma vantagem competitiva incrível! Você consegue mergulhar profundamente em projetos enquanto outros se distraem.',
+                    'escuta': 'Perfeito! Sua Escuta Ativa cria conexões profundas e duradouras! As pessoas se sentem verdadeiramente ouvidas por você.',
+                    'processamento': 'Fantástico! Seu Processamento Profundo gera insights únicos! Você vê padrões e soluções que outros não conseguem.',
+                    'autenticidade': 'Maravilhoso! Sua Autenticidade atrai as pessoas certas! Em um mundo de máscaras, você é uma respiração de ar fresco.',
+                    'preparacao': 'Incrível! Sua Preparação garante resultados excepcionais! Quando você fala, as pessoas sabem que vale a pena ouvir.'
+                };
+                feedbackContent = `
+                    <div class="success-message">
+                        <h4 class="font-bold text-lg mb-2">🎯 ${messages[option]}</h4>
+                        <p>Agora você conhece seu superpoder dominante! Use essa consciência para potencializar suas comunicações.</p>
+                    </div>
+                `;
+            } else if (moduleId === 2) {
+                const scenarios = {
+                    'reuniao': 'Ótima escolha! Em reuniões, use: 1) Preparação (pesquise os participantes), 2) Gatilho (respire fundo antes de falar), 3) Execução (ofereça insights valiosos).',
+                    'apresentacao': 'Excelente! Para apresentações: 1) Preparação (estruture sua mensagem), 2) Gatilho (visualize o sucesso), 3) Execução (conecte-se emocionalmente).',
+                    'networking': 'Perfeito! No networking: 1) Preparação (defina objetivos claros), 2) Gatilho (lembre-se do seu valor), 3) Execução (seja genuinamente curioso).',
+                    'entrevista': 'Fantástico! Em entrevistas: 1) Preparação (estude a empresa), 2) Gatilho (afirme sua competência), 3) Execução (mostre seu valor único).'
+                };
+                feedbackContent = `
+                    <div class="success-message">
+                        <h4 class="font-bold text-lg mb-2">🎭 ${scenarios[option]}</h4>
+                        <p>Lembre-se: Preparação → Gatilho da Confiança → Execução Magnética!</p>
+                    </div>
+                `;
+            } else if (moduleId === 3) {
+                feedbackContent = `
+                    <div class="success-message">
+                        <h4 class="font-bold text-lg mb-2">🎉 Parabéns! Você está oficialmente preparado!</h4>
+                        <p>Você completou todos os módulos preparatórios e agora possui as ferramentas necessárias para sua transformação completa.</p>
+                    </div>
+                `;
+            }
+            
+            feedbackDiv.innerHTML = feedbackContent;
+            feedbackDiv.style.display = 'block';
+            
+            // Mostra botão de conclusão após responder
+            user.quizAnswered = true;
+            const completeSection = document.getElementById('complete-module-section');
+            if (completeSection) {
+                completeSection.style.display = 'block';
+            }
+        }
+
         function completeModule() {
+            if (!user.quizAnswered) {
+                showNotification('Por favor, responda ao quiz antes de concluir o módulo!', 'warning');
+                return;
+            }
+
             const moduleId = user.currentModule;
             user.points += 500; // Pontos por completar módulo
             user.completedModules.push(moduleId);
@@ -965,8 +1147,8 @@
             updateUI();
             backToDashboard();
             
-            // Mostrar notificação de sucesso
-            alert(`🎉 Parabéns! Você completou o Módulo ${moduleId}!\n+500 pontos adicionados!`);
+            // Mostrar notificação de sucesso na tela
+            showNotification(`🎉 Parabéns! Módulo ${moduleId} concluído! +500 pontos!`);
         }
 
         function backToDashboard() {
@@ -974,6 +1156,7 @@
             document.getElementById('dashboard-screen').classList.add('active');
             user.currentModule = null;
             user.currentPage = 0;
+            user.quizAnswered = false;
         }
 
         function showPasswordPrompt(moduleId) {
@@ -998,9 +1181,9 @@
                 modules[moduleId].unlocked = true;
                 closeModal();
                 updateUI();
-                alert(`✅ Módulo ${moduleId} desbloqueado com sucesso!`);
+                showNotification(`✅ Módulo ${moduleId} desbloqueado com sucesso!`);
             } else {
-                alert("❌ Senha incorreta. Tente novamente.");
+                showNotification('❌ Senha incorreta. Tente novamente.', 'warning');
             }
         }
 
@@ -1011,17 +1194,17 @@
         function showAchievementDetails(achId) {
             const achievement = achievements[achId];
             const status = achievement.unlocked ? "✅ Desbloqueada" : "🔒 Bloqueada";
-            document.getElementById('modal-title').innerText = `Conquista: ${achievement.name}`;
-            document.getElementById('modal-body').innerHTML = `<p><strong>Status:</strong> ${status}</p><p>${achievement.description}</p>`;
-            document.getElementById('generic-modal').classList.add('active');
+            
+            // Mostrar detalhes na tela em vez de modal
+            showNotification(`${achievement.name}: ${achievement.description} (${status})`);
         }
 
         function unlockAchievement(achId) {
             if (!achievements[achId].unlocked) {
                 achievements[achId].unlocked = true;
-                // Mostrar notificação de conquista
+                // Mostrar notificação de conquista na tela
                 setTimeout(() => {
-                    alert(`🏆 Nova Conquista Desbloqueada: ${achievements[achId].name}!`);
+                    showNotification(`🏆 Nova Conquista: ${achievements[achId].name}!`);
                 }, 1000);
             }
         }
@@ -1032,7 +1215,7 @@
                 user.level = nextLevel.level;
                 user.status = nextLevel.status;
                 user.avatar = nextLevel.avatar;
-                alert(`🎉 Level Up! Você agora é ${user.status}!`);
+                showNotification(`🎉 Level Up! Você agora é ${user.status}!`);
             }
         }
 
@@ -1076,7 +1259,7 @@
                     </div>
                     
                     <div class="text-center">
-                        <button onclick="alert('Os 7 Passos serão implementados em breve!')" class="bg-red-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-600 transition-colors">
+                        <button onclick="showNotification('Os 7 Passos serão implementados em breve! Aguarde novidades.')" class="bg-red-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-600 transition-colors">
                             🚀 INICIAR OS 7 PASSOS
                         </button>
                     </div>
@@ -1084,26 +1267,30 @@
             `;
         }
 
-        // Funções do Quiz (exemplos)
-        function selectSuperpower(type) {
-            const messages = {
-                'foco': 'Excelente! Seu Super Foco é uma vantagem competitiva incrível!',
-                'escuta': 'Perfeito! Sua Escuta Ativa cria conexões profundas e duradouras!',
-                'processamento': 'Fantástico! Seu Processamento Profundo gera insights únicos!',
-                'autenticidade': 'Maravilhoso! Sua Autenticidade atrai as pessoas certas!',
-                'preparacao': 'Incrível! Sua Preparação garante resultados excepcionais!'
-            };
-            alert(`🎯 ${messages[type]}\n\nAgora você conhece seu superpoder dominante!`);
-        }
+        // ==================================================
+        // SISTEMA DE NOTIFICAÇÕES (SEM POP-UPS)
+        // ==================================================
 
-        function practiceScenario(scenario) {
-            const scenarios = {
-                'reuniao': 'Ótima escolha! Pratique usar o Método Destrave na Hora H™ em reuniões importantes.',
-                'apresentacao': 'Excelente! Aplique a Preparação Invisível em suas apresentações.',
-                'networking': 'Perfeito! Use sua Autenticidade Magnética em eventos de networking.',
-                'entrevista': 'Fantástico! Combine todos os 3 passos para impressionar em entrevistas.'
-            };
-            alert(`🎭 ${scenarios[scenario]}\n\nLembre-se: Preparação → Gatilho da Confiança → Execução Magnética!`);
+        function showNotification(message, type = 'success') {
+            const banner = document.getElementById('notification-banner');
+            const text = document.getElementById('notification-text');
+            
+            text.textContent = message;
+            
+            // Definir cor baseada no tipo
+            if (type === 'warning') {
+                banner.style.background = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
+            } else {
+                banner.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            }
+            
+            // Mostrar notificação
+            banner.classList.add('show');
+            
+            // Esconder após 4 segundos
+            setTimeout(() => {
+                banner.classList.remove('show');
+            }, 4000);
         }
 
         // ==================================================
