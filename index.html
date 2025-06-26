@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Destrave na Hora H</title>
+    <title>Portal Destrave na Hora H - Sua Jornada de Transformação Completa</title>
     <style>
         * {
             margin: 0;
@@ -11,1459 +11,2078 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
+        html {
             scroll-behavior: smooth;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+            min-height: 100vh;
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        /* Animações suaves */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes scaleIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+
+        /* Transições suaves para todos os elementos interativos */
+        button, .card, .module-card, .progress-bar {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .user-stats {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6b7280;
         }
 
         /* Tela de Login */
         .login-screen {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
         .login-card {
             background: white;
-            padding: 40px;
+            padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 400px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
             width: 100%;
+            text-align: center;
         }
 
-        .login-card h1 {
-            color: #2a5298;
-            margin-bottom: 30px;
-            font-size: 1.8rem;
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            color: white;
+        }
+
+        .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: #6b7280;
+            margin-bottom: 2rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
             text-align: left;
         }
 
-        .form-group input {
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .form-input {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
             border-radius: 10px;
-            font-size: 16px;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
-        .form-group input:focus {
+        .form-input:focus {
             outline: none;
-            border-color: #2a5298;
-            box-shadow: 0 0 10px rgba(42, 82, 152, 0.3);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .login-btn {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            padding: 1rem;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
+            margin-bottom: 1.5rem;
             transition: all 0.3s ease;
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(42, 82, 152, 0.4);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+        }
+
+        .login-help {
+            background: #f0f9ff;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .login-help-title {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-help-text {
+            font-size: 0.875rem;
+            color: #6b7280;
         }
 
         /* Tela de Boas-vindas */
         .welcome-screen {
-            display: none;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
         .welcome-card {
             background: white;
-            padding: 50px;
+            padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            max-width: 600px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
             width: 100%;
+            text-align: center;
         }
 
-        .welcome-card h1 {
-            color: #2a5298;
-            margin-bottom: 20px;
-            font-size: 2.2rem;
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .welcome-card p {
-            color: #666;
+        .welcome-subtitle {
             font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            color: #6b7280;
+            margin-bottom: 2rem;
         }
 
-        .start-journey-btn {
-            padding: 20px 40px;
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        .mentor-section {
+            margin: 2rem 0;
+        }
+
+        .mentor-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .mentor-title {
+            font-style: italic;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .mentor-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #059669, #10b981);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+
+        .mentor-message {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #059669;
+            font-style: italic;
+            color: #374151;
+            margin-bottom: 2rem;
+        }
+
+        .start-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: bold;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
         }
 
-        .start-journey-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
         }
 
         /* Dashboard */
         .dashboard {
-            display: none;
-            min-height: 100vh;
-            padding: 20px 0;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .header {
-            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+        .progress-overview {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .progress-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-container {
+            background: #f3f4f6;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #059669, #10b981);
+            border-radius: 6px;
+            transition: width 0.8s ease;
+        }
+
+        .progress-text {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Módulos */
+        .modules-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 40px;
-            border-radius: 15px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .welcome-message {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .welcome-message h2 {
-            color: #2a5298;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .welcome-message p {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 1.5rem;
         }
 
         .module-card {
             background: white;
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .module-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .module-card.unlocked {
-            border: 3px solid #4CAF50;
-        }
-
         .module-card.locked {
-            border: 3px solid #FFD700;
-            background: linear-gradient(135deg, #fff9c4 0%, #fff3a0 100%);
-            cursor: pointer;
-        }
-
-        .module-card.locked:hover {
-            background: linear-gradient(135deg, #fff3a0 0%, #ffed7a 100%);
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
             animation: shimmer 2s infinite;
         }
 
         @keyframes shimmer {
-            0% { box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3); }
-            50% { box-shadow: 0 25px 50px rgba(255, 215, 0, 0.5); }
-            100% { box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3); }
+            0%, 100% { box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4); }
         }
 
         .module-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .module-number {
-            background: #2a5298;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        .module-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .module-card h3 {
-            color: #2a5298;
             font-size: 1.5rem;
-            margin-bottom: 15px;
+            color: white;
         }
 
-        .module-card p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
+        .module-icon.blue {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+        }
+
+        .module-icon.teal {
+            background: linear-gradient(135deg, #0891b2, #06b6d4);
+        }
+
+        .module-icon.purple {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+        }
+
+        .module-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .module-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .module-progress {
+            margin: 1.5rem 0;
+        }
+
+        .module-progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .module-progress-text {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .module-progress-percent {
+            font-weight: 700;
+            color: #059669;
+        }
+
+        .module-progress-bar {
+            background: #f3f4f6;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .module-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #059669, #10b981);
+            border-radius: 4px;
+            transition: width 0.8s ease;
         }
 
         .module-btn {
             width: 100%;
-            padding: 15px;
+            padding: 1rem;
             border: none;
             border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
         }
 
         .module-btn.start {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
         }
 
         .module-btn.start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
         }
 
-        .locked-message {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #8B4513;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .module-btn.locked {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .locked-message:hover {
-            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-            transform: scale(1.02);
+        .module-btn.locked:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .module-btn.locked::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         /* Modal de Senha */
-        .password-modal {
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
             z-index: 1000;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
         }
 
         .modal-content {
             background: white;
-            padding: 40px;
+            padding: 2rem;
             border-radius: 20px;
-            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
             max-width: 400px;
             width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: modalSlideIn 0.3s ease-out;
         }
 
-        .modal-content h3 {
-            color: #2a5298;
-            margin-bottom: 20px;
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-title {
             font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
         }
 
-        .modal-content p {
-            color: #666;
-            margin-bottom: 25px;
+        .modal-text {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
         }
 
-        .modal-content input {
+        .modal-input {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
             border-radius: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
             transition: all 0.3s ease;
         }
 
-        .modal-content input:focus {
+        .modal-input:focus {
             outline: none;
-            border-color: #2a5298;
-            box-shadow: 0 0 10px rgba(42, 82, 152, 0.3);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .modal-buttons {
             display: flex;
-            gap: 15px;
+            gap: 1rem;
         }
 
         .modal-btn {
             flex: 1;
-            padding: 12px;
+            padding: 0.75rem;
             border: none;
             border-radius: 8px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .modal-btn.unlock {
-            background: #2a5298;
-            color: white;
         }
 
         .modal-btn.cancel {
-            background: #f0f0f0;
-            color: #666;
+            background: #f3f4f6;
+            color: #6b7280;
         }
 
-        .modal-btn:hover {
-            transform: translateY(-2px);
+        .modal-btn.cancel:hover {
+            background: #e5e7eb;
         }
 
-        /* Conteúdo dos Módulos */
-        .module-content {
-            display: none;
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .module-content h2 {
-            color: #2a5298;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .page-content {
-            display: none;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        .page-content.active {
-            display: block;
-        }
-
-        .page-content h3 {
-            color: #2a5298;
-            font-size: 1.5rem;
-            margin: 25px 0 15px 0;
-        }
-
-        .page-content h4 {
-            color: #1e3c72;
-            font-size: 1.2rem;
-            margin: 20px 0 10px 0;
-        }
-
-        .page-content p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .page-content ul {
-            margin: 15px 0;
-            padding-left: 30px;
-        }
-
-        .page-content li {
-            margin-bottom: 8px;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-left: 5px solid #2a5298;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-        }
-
-        .exercise-box {
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            border-left: 5px solid #9c27b0;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-        }
-
-        .exercise-box h4 {
-            color: #9c27b0;
-            margin-bottom: 10px;
-        }
-
-        /* Navegação entre páginas */
-        .page-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .nav-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn.prev {
-            background: #f0f0f0;
-            color: #666;
-        }
-
-        .nav-btn.next {
-            background: #2a5298;
+        .modal-btn.confirm {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
         }
 
+        .modal-btn.confirm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.2);
+        }
+
+        /* Conteúdo do Módulo */
+        .module-content-screen {
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .module-content-screen.show {
+            display: flex;
+        }
+
+        .module-content-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .module-content-header h2 {
+            font-size: 2rem;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .module-content-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .module-page-content {
+            flex-grow: 1;
+            line-height: 1.8;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        .module-page-content h3 {
+            font-size: 1.5rem;
+            color: #1e40af;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .module-page-content p {
+            margin-bottom: 1rem;
+        }
+
+        .module-page-content ul {
+            margin-bottom: 1rem;
+            margin-left: 1.5rem;
+        }
+
+        .module-page-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .module-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .page-indicator {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #e5e7eb;
+            color: #374151;
+        }
+
         .nav-btn:hover {
-            transform: translateY(-2px);
+            background: #d1d5db;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.2);
         }
 
         .nav-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
-        }
-
-        .page-indicator {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .page-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #ddd;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: #2a5298;
-            transform: scale(1.2);
-        }
-
-        .page-counter {
-            color: #666;
-            font-size: 14px;
-            margin-left: 10px;
         }
 
         /* Quiz */
-        .quiz-container {
-            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        .quiz-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .quiz-section h3 {
+            font-size: 1.8rem;
+            color: #1e40af;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .question-card {
+            background: #f9fafb;
             border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .quiz-question {
-            color: #e65100;
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+        .question-card p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
         }
 
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
         }
 
-        .quiz-option {
+        .option-btn {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
             background: white;
-            border: 2px solid #ffcc02;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #374151;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .option-btn.selected {
+            background: #dbeafe;
+            border-color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .confirm-quiz-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            border: none;
             border-radius: 10px;
-            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .quiz-option:hover {
-            background: #fff8e1;
-            transform: translateX(5px);
-        }
-
-        .quiz-option.selected {
-            background: #ffcc02;
-            color: white;
-            font-weight: bold;
+        .confirm-quiz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
         }
 
         .quiz-feedback {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            color: #374151;
+            font-size: 1rem;
             display: none;
-            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
-            border-left: 5px solid #4caf50;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .quiz-feedback.show {
+            display: block;
         }
 
         .quiz-feedback h4 {
-            color: #2e7d32;
-            margin-bottom: 10px;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
 
         .quiz-feedback p {
-            color: #388e3c;
-            line-height: 1.6;
+            margin-bottom: 0.5rem;
         }
 
-        .confirm-btn {
-            background: #ff9800;
+        .quiz-feedback .alex-tip {
+            font-style: italic;
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .finish-module-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: none;
-        }
-
-        .confirm-btn:hover {
-            background: #f57c00;
-            transform: translateY(-2px);
-        }
-
-        .complete-btn {
-            background: #4caf50;
-            color: white;
-            padding: 15px 40px;
             border: none;
             border-radius: 10px;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 2rem;
             display: none;
-            margin-top: 20px;
         }
 
-        .complete-btn:hover {
-            background: #45a049;
+        .finish-module-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+        }
+
+        /* Certificado */
+        .certificate-screen {
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .certificate-screen.show {
+            display: flex;
+        }
+
+        .certificate-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .certificate-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-subtitle {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .certificate-details {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .certificate-details p {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: #374151;
+        }
+
+        .certificate-details strong {
+            color: #1e40af;
+        }
+
+        .accept-certificate-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .accept-certificate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
         }
 
         /* Notificações */
-        .notification {
+        .notification-container {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #4caf50;
+            z-index: 1000;
+        }
+
+        .notification {
+            background: #1e40af;
             color: white;
-            padding: 15px 25px;
+            padding: 1rem 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            z-index: 1001;
-            transform: translateX(400px);
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideInNotification 0.5s forwards, fadeOutNotification 0.5s 3.5s forwards;
         }
 
-        .notification.show {
-            transform: translateX(0);
+        @keyframes slideInNotification {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .notification.error {
-            background: #f44336;
+        @keyframes fadeOutNotification {
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
         }
 
-        /* Responsivo */
+        /* Responsividade */
         @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .user-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .login-card, .welcome-card, .module-content-screen, .modal-content, .certificate-screen {
+                padding: 2rem;
+            }
+
+            .login-title, .welcome-title, .module-content-header h2, .certificate-title {
+                font-size: 1.8rem;
+            }
+
             .modules-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .container {
-                padding: 10px;
+
+            .module-card {
+                padding: 1.5rem;
             }
-            
-            .module-content {
-                padding: 20px;
+
+            .module-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
-            
-            .page-navigation {
-                flex-direction: column;
-                gap: 15px;
+
+            .module-info h3 {
+                font-size: 1.1rem;
+            }
+
+            .module-info p {
+                font-size: 0.8rem;
+            }
+
+            .module-btn {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-btn, .confirm-quiz-btn, .accept-certificate-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .quiz-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .option-btn {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
+
     <!-- Tela de Login -->
     <div id="loginScreen" class="login-screen">
-        <div class="login-card">
-            <h1>Bem-vindo(a) ao Portal<br>Destrave na Hora H!</h1>
+        <div class="login-card fade-in">
+            <div class="login-icon">🔑</div>
+            <h1 class="login-title">Bem-vindo(a) ao Portal!</h1>
+            <p class="login-subtitle">Sua jornada para destravar começa aqui.</p>
             <div class="form-group">
-                <input type="text" id="userName" placeholder="Seu Nome Completo" required>
+                <label for="userName" class="form-label">Seu Nome Completo:</label>
+                <input type="text" id="userName" class="form-input" placeholder="Ex: Ana Paula Silva">
             </div>
             <div class="form-group">
-                <input type="password" id="userPassword" placeholder="Senha de Acesso" required>
+                <label for="loginPassword" class="form-label">Senha de Acesso:</label>
+                <input type="password" id="loginPassword" class="form-input" placeholder="********">
             </div>
-            <button class="login-btn" onclick="login()">Acessar Portal</button>
+            <button id="loginBtn" class="login-btn">ENTRAR NO PORTAL</button>
+            <div class="login-help">
+                <h4 class="login-help-title">Precisa de Ajuda?</h4>
+                <p class="login-help-text">Sua senha de acesso inicial foi enviada para o seu e-mail de cadastro. Caso não a encontre, verifique sua caixa de spam ou entre em contato com o suporte.</p>
+            </div>
         </div>
     </div>
 
     <!-- Tela de Boas-vindas -->
-    <div id="welcomeScreen" class="welcome-screen">
-        <div class="welcome-card">
-            <h1>Olá, <span id="welcomeName"></span>!</h1>
-            <p>Prepare-se para uma jornada transformadora. Aqui, você vai descobrir seus superpoderes, dominar a comunicação e destravar em momentos importantes da sua vida.</p>
-            <button class="start-journey-btn" onclick="showDashboard()">🚀 INICIAR MINHA JORNADA COMPLETA</button>
+    <div id="welcomeScreen" class="welcome-screen" style="display: none;">
+        <div class="welcome-card fade-in">
+            <h1 class="welcome-title">Olá, <span id="displayUserName"></span>! 👋</h1>
+            <p class="welcome-subtitle">Que bom ter você aqui! Prepare-se para uma jornada transformadora.</p>
+
+            <div class="mentor-section">
+                <div class="mentor-avatar">👨‍🏫</div>
+                <h3 class="mentor-name">Alex, Seu Mentor</h3>
+                <p class="mentor-title">Especialista em Comunicação Autêntica</p>
+                <div class="mentor-message">
+                    "Seja muito bem-vindo(a)! Minha missão é te guiar para que você destrave sua voz autêntica e conquiste o impacto que merece, sendo 100% você mesmo. Estou aqui para te apoiar em cada passo dessa jornada. Vamos juntos!"
+                </div>
+            </div>
+
+            <button id="startJourneyBtn" class="start-btn">COMEÇAR MINHA JORNADA AGORA! 🚀</button>
         </div>
     </div>
 
     <!-- Dashboard Principal -->
-    <div id="dashboard" class="dashboard">
-        <div class="container">
-            <div class="header">
-                <h1>Portal Destrave na Hora H</h1>
+    <div id="dashboardScreen" class="dashboard" style="display: none;">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">💡</div>
+                <span class="logo-text">Destrave na Hora H</span>
             </div>
-
-            <div class="welcome-message">
-                <h2>Bem-vindo(a), <span id="dashboardName"></span>!</h2>
-                <p>Seu caminho para destravar em momentos importantes começa agora. Escolha um módulo para iniciar sua transformação.</p>
-            </div>
-
-            <div class="modules-grid">
-                <!-- Módulo 1 -->
-                <div class="module-card unlocked">
-                    <div class="module-header">
-                        <div class="module-number">1</div>
-                    </div>
-                    <h3>Módulo 1: Desperte Seus Superpoderes</h3>
-                    <p>Descubra o poder da introversão e como transformá-la em sua maior força.</p>
-                    <button class="module-btn start" onclick="startModule(1)">🚀 INICIAR MÓDULO</button>
+            <div class="user-stats">
+                <div class="stat">
+                    <div id="userPoints" class="stat-number">0</div>
+                    <div class="stat-label">Pontos</div>
                 </div>
-
-                <!-- Módulo 2 -->
-                <div class="module-card locked" onclick="requestPassword(2)">
-                    <div class="module-header">
-                        <div class="module-number">2</div>
-                    </div>
-                    <h3>Módulo 2: Domine o Método Destrave na Hora H</h3>
-                    <p>Aprenda os 3 passos fundamentais para se comunicar com confiança e impacto.</p>
-                    <div class="locked-message">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</div>
+                <div class="stat">
+                    <div id="userLevel" class="stat-number">Novato</div>
+                    <div class="stat-label">Nível</div>
                 </div>
-
-                <!-- Módulo 3 -->
-                <div class="module-card locked" onclick="requestPassword(3)">
-                    <div class="module-header">
-                        <div class="module-number">3</div>
-                    </div>
-                    <h3>Módulo 3: Prepare-se para a Transformação</h3>
-                    <p>Consolide seu aprendizado e prepare-se para aplicar o método na prática.</p>
-                    <div class="locked-message">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</div>
+                <div class="stat">
+                    <div id="userAchievements" class="stat-number">0</div>
+                    <div class="stat-label">Conquistas</div>
                 </div>
             </div>
-        </div>
+        </header>
+
+        <main class="main-content slide-up">
+            <section class="progress-overview">
+                <h2 class="progress-title">Seu Progresso Geral</h2>
+                <div class="progress-bar-container">
+                    <div id="overallProgressBar" class="progress-bar" style="width: 0%;"></div>
+                </div>
+                <p class="progress-text"><span id="overallProgressText">0%</span> Concluído</p>
+            </section>
+
+            <section class="modules-section">
+                <h2 class="section-title">Módulos da Jornada 📚</h2>
+                <div class="modules-grid">
+
+                    <!-- Módulo 1 -->
+                    <div id="module1Card" class="module-card">
+                        <div class="module-header">
+                            <div class="module-icon blue">1</div>
+                            <div class="module-info">
+                                <h3>Módulo 1: Desperte Seus Superpoderes</h3>
+                                <p>Descubra a força que já existe em você.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module1ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module1ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module1Btn" class="module-btn start">🚀 INICIAR MÓDULO</button>
+                    </div>
+
+                    <!-- Módulo 2 -->
+                    <div id="module2Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon teal">2</div>
+                            <div class="module-info">
+                                <h3>Módulo 2: Domine o Método Destrave na Hora H</h3>
+                                <p>Os 3 passos para sua voz ter vez.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module2ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module2ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module2Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <!-- Módulo 3 -->
+                    <div id="module3Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon purple">3</div>
+                            <div class="module-info">
+                                <h3>Módulo 3: Prepare-se para a Transformação</h3>
+                                <p>Consolidação e plano de ação.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module3ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module3ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module3Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <!-- Módulos 4-7 (7 Passos) -->
+                    <div id="module4Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon blue">4</div>
+                            <div class="module-info">
+                                <h3>Módulo 4: O Poder da Escuta Ativa</h3>
+                                <p>O primeiro passo para uma comunicação eficaz.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module4ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module4ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module4Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <div id="module5Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon teal">5</div>
+                            <div class="module-info">
+                                <h3>Módulo 5: Clareza e Concisão</h3>
+                                <p>Comunique suas ideias com precisão.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module5ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module5ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module5Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <div id="module6Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon purple">6</div>
+                            <div class="module-info">
+                                <h3>Módulo 6: Linguagem Corporal e Expressão</h3>
+                                <p>O que seu corpo diz sobre você.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module6ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module6ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module6Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <div id="module7Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon blue">7</div>
+                            <div class="module-info">
+                                <h3>Módulo 7: Lidando com Conflitos</h3>
+                                <p>Transforme desafios em oportunidades.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module7ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module7ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module7Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <div id="module8Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon teal">8</div>
+                            <div class="module-info">
+                                <h3>Módulo 8: Networking Autêntico</h3>
+                                <p>Conecte-se de forma significativa.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module8ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module8ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module8Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <div id="module9Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon purple">9</div>
+                            <div class="module-info">
+                                <h3>Módulo 9: Apresentações Impactantes</h3>
+                                <p>Conquiste sua audiência.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module9ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module9ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module9Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                    <div id="module10Card" class="module-card locked">
+                        <div class="module-header">
+                            <div class="module-icon blue">10</div>
+                            <div class="module-info">
+                                <h3>Módulo 10: Sustentando a Transformação</h3>
+                                <p>Mantenha sua voz autêntica sempre ativa.</p>
+                            </div>
+                        </div>
+                        <div class="module-progress">
+                            <div class="module-progress-label">
+                                <span class="module-progress-text">Progresso do Módulo:</span>
+                                <span id="module10ProgressPercent" class="module-progress-percent">0%</span>
+                            </div>
+                            <div class="module-progress-bar">
+                                <div id="module10ProgressBar" class="module-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="module10Btn" class="module-btn locked">CLIQUE PARA INSERIR SENHA E DESBLOQUEAR</button>
+                    </div>
+
+                </div>
+            </section>
+        </main>
     </div>
 
     <!-- Modal de Senha -->
-    <div id="passwordModal" class="password-modal">
+    <div id="passwordModal" class="modal">
         <div class="modal-content">
-            <h3>Desbloquear Módulo</h3>
-            <p>Insira a senha para acessar este módulo:</p>
-            <input type="password" id="modulePassword" placeholder="Senha">
+            <h3 class="modal-title">Desbloquear Módulo</h3>
+            <p class="modal-text">Para acessar este módulo, por favor, insira a senha:</p>
+            <input type="password" id="modulePasswordInput" class="modal-input" placeholder="Senha do Módulo">
             <div class="modal-buttons">
-                <button class="modal-btn unlock" onclick="unlockModule()">Desbloquear</button>
-                <button class="modal-btn cancel" onclick="closePasswordModal()">Cancelar</button>
+                <button id="cancelPasswordBtn" class="modal-btn cancel">Cancelar</button>
+                <button id="confirmPasswordBtn" class="modal-btn confirm">Desbloquear</button>
             </div>
         </div>
     </div>
 
-    <!-- Conteúdo do Módulo 1 -->
-    <div id="module1Content" class="module-content">
-        <h2>Módulo 1: Desperte Seus Superpoderes</h2>
-        
-        <!-- Página 1 -->
-        <div class="page-content active" data-page="1">
-            <h3>🎯 Transforme Sua Introversão em Superpoder</h3>
-            <p>Você já se sentiu como se estivesse assistindo a vida passar pela janela enquanto outros tomavam a frente? Como se tivesse ideias incríveis, mas na hora H, sua voz simplesmente... sumisse?</p>
-            
-            <p>Se você se identificou, respire fundo e sorria: você não está sozinho, e mais importante ainda, <strong>não há nada de errado com você</strong>.</p>
-            
-            <div class="highlight-box">
-                <h4>💡 A Verdade Que Ninguém Te Contou</h4>
-                <p>Sua introversão não é um bug no sistema - é uma feature premium! Enquanto o mundo valoriza quem fala mais alto, você tem algo muito mais raro: a capacidade de pensar profundamente, observar com precisão e se comunicar com autenticidade.</p>
-            </div>
-            
-            <p>Imagine por um momento que sua mente é como uma Ferrari. Potente, sofisticada, capaz de performances incríveis. O problema? Você nunca recebeu o manual de instruções. Então, em vez de acelerar nas pistas da vida, você fica ali, no ponto morto, vendo carros "mais simples" passarem por você.</p>
-            
-            <p>O <strong>Método Destrave na Hora H</strong> é exatamente esse manual que estava faltando. Não para te transformar em outra pessoa, mas para te ensinar a usar todo o potencial que já existe em você.</p>
-        </div>
+    <!-- Notificações -->
+    <div id="notificationContainer" class="notification-container"></div>
 
-        <!-- Página 2 -->
-        <div class="page-content" data-page="2">
-            <h3>🦸‍♂️ Seus Superpoderes Escondidos</h3>
-            <p>Enquanto você se preocupa com o que "não tem", vamos descobrir os superpoderes incríveis que você já carrega:</p>
-            
-            <h4>1. A Superaudição (Escuta Profunda)</h4>
-            <p>Enquanto muita gente está mais preocupada em falar do que em ouvir, você tem a capacidade incrível de realmente escutar o que os outros dizem (e o que não dizem também!). Você capta nuances, entrelinhas, as verdadeiras preocupações.</p>
-            
-            <h4>2. O Raio-X Mental (Análise Crítica)</h4>
-            <p>Sua mente não se contenta com o superficial. Você gosta de cavar fundo, entender as causas, prever consequências, ver a figura completa. Suas opiniões tendem a ser mais bem fundamentadas e persuasivas.</p>
-            
-            <h4>3. O Foco de Laser (Concentração Profunda)</h4>
-            <p>Em um mundo cheio de distrações, conseguir se concentrar profundamente é uma habilidade rara e valiosa. Isso te ajuda a manter a linha de raciocínio e entregar mensagens claras.</p>
-            
-            <div class="exercise-box">
-                <h4>✏️ Exercício: Seu Inventário de Superpoderes</h4>
-                <p>Dos superpoderes listados acima, quais você sente que são "a sua cara"? Pense em uma situação recente onde um desses superpoderes se manifestou. Como ele influenciou a situação?</p>
-            </div>
+    <!-- Conteúdo dos Módulos (Estrutura Base) -->
+    <div id="moduleContentScreen" class="module-content-screen">
+        <div class="module-content-header">
+            <h2 id="moduleContentTitle"></h2>
+            <p id="moduleContentSubtitle"></p>
         </div>
-
-        <!-- Página 3 -->
-        <div class="page-content" data-page="3">
-            <h3>🔓 E Carlos Descobriu Seu Poder</h3>
-            <p>Deixe-me te contar sobre Carlos, um engenheiro de 32 anos que se sentia invisível nas reuniões da empresa. Ele tinha ideias brilhantes, mas sempre que tentava falar, alguém o interrompia ou o assunto mudava.</p>
-            
-            <p>Carlos pensava que o problema era "não ser bom de papo". Até descobrir que seu verdadeiro superpoder era a <strong>análise profunda</strong>. Enquanto outros davam opiniões rasas, ele conseguia ver problemas e soluções que ninguém mais enxergava.</p>
-            
-            <div class="highlight-box">
-                <h4>🎯 A Transformação de Carlos</h4>
-                <p>Quando Carlos aprendeu a usar o Método Destrave na Hora H, ele parou de tentar "competir no grito" e começou a usar sua análise profunda estrategicamente. Resultado? Em 3 meses, foi promovido a líder de projeto.</p>
-            </div>
-            
-            <h4>4. A Visão Além do Alcance (Observação Aguçada)</h4>
-            <p>Você nota coisas que passam despercebidas: linguagem corporal, dinâmica de grupos, o "clima" de um ambiente. É como ter um mapa do terreno em tempo real!</p>
-            
-            <h4>5. A Bússola Interna (Integridade e Convicção)</h4>
-            <p>Quando você fala sobre algo que realmente acredita, suas palavras vêm carregadas de uma autenticidade que é magnética. As pessoas sentem quando você está sendo verdadeiro.</p>
+        <div id="modulePageContent" class="module-page-content"></div>
+        <div class="module-navigation">
+            <button id="prevPageBtn" class="nav-btn">Página Anterior</button>
+            <span id="pageIndicator" class="page-indicator">Página 1 de X</span>
+            <button id="nextPageBtn" class="nav-btn primary">Próxima Página</button>
         </div>
-
-        <!-- Página 4 -->
-        <div class="page-content" data-page="4">
-            <h3>🚧 Por Que às Vezes Parece Tão Difícil Falar?</h3>
-            <p>Se você tem todos esses superpoderes, por que às vezes parece tão difícil simplesmente falar o que pensa? Vamos identificar as "travas" mais comuns:</p>
-            
-            <h4>1. O Monstrinho do "E Se?" (Medo do Julgamento)</h4>
-            <p>Você pensa mil vezes antes de falar, imaginando todas as possíveis reações negativas. "E se acharem minha ideia boba?", "E se eu gaguejar?". A verdade? A maioria das pessoas está mais preocupada com os próprios "monstrinhos".</p>
-            
-            <h4>2. O Crítico Interno Super Exigente</h4>
-            <p>Você tem um padrão de qualidade altíssimo. Quer que tudo seja perfeito, inclusive suas palavras. Se a frase não sai "exatamente como imaginou", prefere ficar quieto. É o famoso "o ótimo inimigo do bom".</p>
-            
-            <h4>3. A "Bateria Social" no Vermelho</h4>
-            <p>Ambientes barulhentos ou interações sociais longas drenam sua energia. Quando a bateria está fraca, fica difícil ter clareza para se expressar. Não é má vontade, é física!</p>
-            
-            <h4>4. A Dificuldade de "Entrar na Dança"</h4>
-            <p>Conversas em grupo podem parecer uma "dança das cadeiras". Quando você finalmente está pronto para falar, o assunto já mudou ou alguém já "pegou seu lugar".</p>
-        </div>
-
-        <!-- Página 5 -->
-        <div class="page-content" data-page="5">
-            <h3>🔑 A Dificuldade de "Entrar na Dança" - A História do Lucas</h3>
-            <p>Lucas trabalhava em uma startup e sempre se sentia frustrado nas reuniões de brainstorming. Enquanto ele processava as informações e formulava uma resposta bem pensada, os colegas já tinham mudado de assunto três vezes.</p>
-            
-            <p>"Parece que todo mundo tem um manual de como participar dessas conversas, menos eu", ele me disse na primeira sessão de coaching.</p>
-            
-            <div class="highlight-box">
-                <h4>💡 O Insight de Lucas</h4>
-                <p>O problema não era Lucas ser "lento" - era ele estar jogando um jogo diferente. Enquanto outros jogavam "ping-pong verbal", ele estava jogando xadrez mental. Ambos são válidos, mas precisam de estratégias diferentes.</p>
+        <div id="quizSection" class="quiz-section" style="display: none;">
+            <h3 id="quizQuestion"></h3>
+            <div id="quizOptions" class="options-grid"></div>
+            <div class="quiz-actions">
+                <button id="confirmQuizBtn" class="confirm-quiz-btn">✅ CONFIRMAR RESPOSTA</button>
             </div>
-            
-            <p>Depois de aprender o Método Destrave na Hora H, Lucas descobriu como:</p>
-            <ul>
-                <li>Sinalizar que tinha algo a contribuir sem interromper o fluxo</li>
-                <li>Usar frases de transição para "entrar na dança" no momento certo</li>
-                <li>Aproveitar sua capacidade de síntese para fazer intervenções poderosas</li>
-            </ul>
-            
-            <div class="exercise-box">
-                <h4>✏️ Identificando Suas Travas</h4>
-                <p>Das "travas" que exploramos (O Monstrinho do "E Se?", O Crítico Interno, A Bateria Social no Vermelho, A Dificuldade de "Entrar na Dança"), qual delas você sente que mais te afeta? Descreva uma situação específica onde essa trava te impediu de se expressar.</p>
+            <div id="quizFeedback" class="quiz-feedback">
+                <h4 id="feedbackTitle"></h4>
+                <p id="feedbackText"></p>
+                <p class="alex-tip" id="alexTip"></p>
             </div>
-        </div>
-
-        <!-- Página 6 - Quiz -->
-        <div class="page-content" data-page="6">
-            <h3>🎯 Descubra Seu Superpoder Dominante</h3>
-            <div class="quiz-container">
-                <div class="quiz-question">Em uma reunião importante, qual é sua tendência natural?</div>
-                <div class="quiz-options">
-                    <div class="quiz-option" onclick="selectOption(this, 'A')">
-                        A) Escuto atentamente todos os pontos antes de formar minha opinião
-                    </div>
-                    <div class="quiz-option" onclick="selectOption(this, 'B')">
-                        B) Analiso profundamente os prós e contras de cada proposta
-                    </div>
-                    <div class="quiz-option" onclick="selectOption(this, 'C')">
-                        C) Observo as reações e dinâmicas entre as pessoas
-                    </div>
-                    <div class="quiz-option" onclick="selectOption(this, 'D')">
-                        D) Foco intensamente no problema central a ser resolvido
-                    </div>
-                </div>
-                <button class="confirm-btn" onclick="showQuizFeedback()">✅ CONFIRMAR RESPOSTA</button>
-                
-                <div class="quiz-feedback">
-                    <h4>🎉 Excelente escolha!</h4>
-                    <p id="feedbackText"></p>
-                    <p><strong>Dica do Alex:</strong> <span id="coachTip"></span></p>
-                </div>
-                
-                <button class="complete-btn" onclick="completeModule(1)">🏆 CONCLUIR MÓDULO</button>
-            </div>
-        </div>
-
-        <!-- Navegação -->
-        <div class="page-navigation">
-            <button class="nav-btn prev" onclick="previousPage(1)" disabled>← Anterior</button>
-            <div class="page-indicator">
-                <div class="page-dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="page-counter">Página 1 de 6</div>
-            </div>
-            <button class="nav-btn next" onclick="nextPage(1)">Próxima →</button>
+            <button id="finishModuleBtn" class="finish-module-btn">CONCLUIR MÓDULO E VOLTAR AO DASHBOARD</button>
         </div>
     </div>
 
-    <!-- Conteúdo do Módulo 2 -->
-    <div id="module2Content" class="module-content">
-        <h2>Módulo 2: Domine o Método Destrave na Hora H</h2>
-        
-        <!-- Página 1 -->
-        <div class="page-content active" data-page="1">
-            <h3>🎯 Os 3 Passos Simples do Método Destrave na Hora H</h3>
-            <p>No módulo anterior, descobrimos que você tem superpoderes incríveis e identificamos as "travas" que às vezes aparecem. Agora chegou a hora da grande revelação!</p>
-            
-            <p>O <strong>Método Destrave na Hora H</strong> é como o "manual perdido" da sua Ferrari mental. E este manual é surpreendentemente simples, mas incrivelmente poderoso. Ele se baseia em apenas <strong>3 Passos Fundamentais</strong>.</p>
-            
-            <div class="highlight-box">
-                <h4>🤔 Por que só 3 Passos?</h4>
-                <p>Imagine que você quer montar um móvel. Se você tem um manual simples que diz: 1) Separe as peças, 2) Veja a ordem de montagem, 3) Use as ferramentas certas - a montagem fica fácil, rápida e o resultado é perfeito!</p>
-            </div>
-            
-            <p>O Método Destrave na Hora H funciona igual para sua comunicação. Te dá os 3 Passos essenciais para você "montar" suas ideias e palavras de forma que elas saiam com clareza, impacto e sendo 100% você.</p>
-            
-            <h4>🔥 Os 3 Passos Mágicos:</h4>
-            <ol>
-                <li><strong>PONTO:</strong> Vá direto ao que importa</li>
-                <li><strong>PROVA:</strong> Mostre por que isso é verdade</li>
-                <li><strong>PROPOSTA:</strong> Diga o que fazer com essa informação</li>
-            </ol>
+    <!-- Tela de Certificado -->
+    <div id="certificateScreen" class="certificate-screen">
+        <div class="certificate-icon">🏆</div>
+        <h1 class="certificate-title">Parabéns, <span id="certificateUserName"></span>!</h1>
+        <p class="certificate-subtitle">Você concluiu o Módulo 3: Prepare-se para a Transformação!</p>
+        <div class="certificate-details">
+            <p>Este certificado atesta sua dedicação e preparo para aplicar o <strong>Método Destrave na Hora H</strong> em sua vida.</p>
+            <p>Você está agora pronto(a) para os próximos passos da sua jornada de comunicação autêntica.</p>
+            <p>Data de Conclusão: <strong id="completionDate"></strong></p>
         </div>
-
-        <!-- Página 2 -->
-        <div class="page-content" data-page="2">
-            <h3>🎯 PASSO 1: PONTO - Vá Direto ao Que Importa</h3>
-            <p>O primeiro passo é começar com o que realmente importa. Não rodeios, não "preparação de terreno" excessiva. Vá direto ao ponto principal.</p>
-            
-            <div class="highlight-box">
-                <h4>❌ Jeito Comum (que não funciona):</h4>
-                <p>"Então... eu estava pensando... não sei se vocês concordam, mas talvez... seria interessante considerar... se não for muito incômodo... a possibilidade de..."</p>
-                
-                <h4>✅ Jeito Destrave na Hora H:</h4>
-                <p>"Acredito que devemos mudar nossa estratégia de marketing."</p>
-            </div>
-            
-            <h4>🎯 Como Formular Seu PONTO:</h4>
-            <ul>
-                <li><strong>Seja específico:</strong> "Precisamos contratar mais pessoas" vs "Precisamos contratar 2 desenvolvedores até março"</li>
-                <li><strong>Use convicção:</strong> "Acredito que..." em vez de "Talvez..."</li>
-                <li><strong>Uma ideia por vez:</strong> Não misture 3 assuntos diferentes</li>
-            </ul>
-            
-            <div class="exercise-box">
-                <h4>✏️ Pratique Seu PONTO</h4>
-                <p>Pense em algo que você gostaria de comunicar no trabalho ou vida pessoal. Escreva em uma frase clara e direta, começando com "Acredito que..." ou "Proponho que..."</p>
-            </div>
-        </div>
-
-        <!-- Página 3 -->
-        <div class="page-content" data-page="3">
-            <h3>📊 PASSO 2: PROVA - Mostre Por Que Isso é Verdade</h3>
-            <p>Depois de apresentar seu ponto, você precisa dar credibilidade a ele. Aqui é onde seus superpoderes introvertidos brilham!</p>
-            
-            <h4>🔍 Tipos de PROVA que funcionam:</h4>
-            
-            <h4>1. Dados e Fatos</h4>
-            <p>"Nossos concorrentes cresceram 40% no último trimestre usando essa estratégia."</p>
-            
-            <h4>2. Experiência Pessoal</h4>
-            <p>"Quando implementei isso no projeto anterior, reduzimos os erros em 60%."</p>
-            
-            <h4>3. Lógica e Consequências</h4>
-            <p>"Se continuarmos assim, em 6 meses estaremos perdendo clientes para a concorrência."</p>
-            
-            <h4>4. Exemplos Concretos</h4>
-            <p>"A empresa X fez exatamente isso e aumentou a satisfação do cliente de 70% para 95%."</p>
-            
-            <div class="highlight-box">
-                <h4>💡 Seu Superpoder em Ação</h4>
-                <p>Lembra da sua capacidade de análise profunda? É aqui que ela se torna uma arma secreta! Enquanto outros dão opiniões rasas, você apresenta argumentos sólidos e bem fundamentados.</p>
-            </div>
-        </div>
-
-        <!-- Página 4 -->
-        <div class="page-content" data-page="4">
-            <h3>🚀 PASSO 3: PROPOSTA - Diga o Que Fazer</h3>
-            <p>Muita gente para no problema. Você vai além: apresenta a solução clara e específica.</p>
-            
-            <h4>🎯 Como Criar uma PROPOSTA Poderosa:</h4>
-            
-            <h4>1. Seja Específico</h4>
-            <p><strong>❌ Vago:</strong> "Precisamos melhorar a comunicação"<br>
-            <strong>✅ Específico:</strong> "Proponho reuniões semanais de 30 minutos às segundas-feiras"</p>
-            
-            <h4>2. Inclua Próximos Passos</h4>
-            <p>"Sugiro que comecemos testando isso por 30 dias e avaliemos os resultados."</p>
-            
-            <h4>3. Facilite a Decisão</h4>
-            <p>"Posso preparar um piloto para apresentarmos na próxima reunião. O que acham?"</p>
-            
-            <div class="exercise-box">
-                <h4>✏️ Método Completo em Ação</h4>
-                <p><strong>PONTO:</strong> "Acredito que devemos implementar home office 2 dias por semana."</p>
-                <p><strong>PROVA:</strong> "Estudos mostram 25% de aumento na produtividade e nossa pesquisa interna indica que 80% da equipe quer essa flexibilidade."</p>
-                <p><strong>PROPOSTA:</strong> "Proponho um teste de 3 meses, começando na próxima segunda. Posso elaborar as diretrizes até sexta?"</p>
-            </div>
-        </div>
-
-        <!-- Página 5 -->
-        <div class="page-content" data-page="5">
-            <h3>⚡ Gerenciando Sua Energia Social</h3>
-            <p>Para você, um ambiente barulhento ou uma reunião longa não é apenas "chato" - é literalmente um dreno de energia. Sua "bateria social" é um recurso valioso!</p>
-            
-            <h4>🔋 Estratégias de Energia:</h4>
-            
-            <h4>1. Preparação Estratégica</h4>
-            <p>Antes de entrar em um ambiente socialmente exigente, defina um objetivo claro: "Vou fazer uma pergunta relevante" ou "Vou conversar com duas pessoas específicas". Isso direciona seu foco e economiza energia.</p>
-            
-            <h4>2. O "Ponto de Recarga" Secreto</h4>
-            <p>Identifique um local tranquilo onde possa se retirar por alguns minutos para "respirar" e recalibrar. Pode ser o banheiro, um corredor menos movimentado, ou um momento para olhar o celular. Não é fuga, é estratégia!</p>
-            
-            <h4>3. A Saída Elegante</h4>
-            <p>Reconheça os sinais de que sua energia está acabando. Tenha frases prontas: "Foi um prazer conversar, preciso ir agora" ou "Vou pegar uma água". Sua saúde mental é prioridade.</p>
-            
-            <div class="highlight-box">
-                <h4>🎯 Construindo Pontes de Clareza</h4>
-                <p>Use o poder da pergunta prévia: "Podemos conversar sobre X? Tenho algumas ideias que gostaria de compartilhar." Isso prepara o terreno e reduz a ansiedade da incerteza.</p>
-            </div>
-        </div>
-
-        <!-- Página 6 - Quiz -->
-        <div class="page-content" data-page="6">
-            <h3>🎯 Teste Seu Domínio do Método</h3>
-            <div class="quiz-container">
-                <div class="quiz-question">Qual é a ordem correta dos 3 passos do Método Destrave na Hora H?</div>
-                <div class="quiz-options">
-                    <div class="quiz-option" onclick="selectOption(this, 'A')">
-                        A) Prova → Ponto → Proposta
-                    </div>
-                    <div class="quiz-option" onclick="selectOption(this, 'B')">
-                        B) Ponto → Prova → Proposta
-                    </div>
-                    <div class="quiz-option" onclick="selectOption(this, 'C')">
-                        C) Proposta → Ponto → Prova
-                    </div>
-                    <div class="quiz-option" onclick="selectOption(this, 'D')">
-                        D) Ponto → Proposta → Prova
-                    </div>
-                </div>
-                <button class="confirm-btn" onclick="showQuizFeedback()">✅ CONFIRMAR RESPOSTA</button>
-                
-                <div class="quiz-feedback">
-                    <h4>🎉 Perfeito!</h4>
-                    <p id="feedbackText"></p>
-                    <p><strong>Dica do Alex:</strong> <span id="coachTip"></span></p>
-                </div>
-                
-                <button class="complete-btn" onclick="completeModule(2)">🏆 CONCLUIR MÓDULO</button>
-            </div>
-        </div>
-
-        <!-- Navegação -->
-        <div class="page-navigation">
-            <button class="nav-btn prev" onclick="previousPage(2)" disabled>← Anterior</button>
-            <div class="page-indicator">
-                <div class="page-dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="page-counter">Página 1 de 6</div>
-            </div>
-            <button class="nav-btn next" onclick="nextPage(2)">Próxima →</button>
-        </div>
+        <button id="acceptCertificateBtn" class="accept-certificate-btn">ACEITAR CERTIFICADO E VOLTAR AO DASHBOARD</button>
     </div>
-
-    <!-- Conteúdo do Módulo 3 -->
-    <div id="module3Content" class="module-content">
-        <h2>Módulo 3: Prepare-se para a Transformação</h2>
-        
-        <!-- Página 1 -->
-        <div class="page-content active" data-page="1">
-            <h3>🎯 Consolidando Sua Jornada</h3>
-            <p>Parabéns por chegar até aqui! Você descobriu seus superpoderes introvertidos e dominou o Método Destrave na Hora H. Agora é hora de consolidar todo esse aprendizado e se preparar para a aplicação prática.</p>
-            
-            <div class="highlight-box">
-                <h4>🏆 O Que Você Já Conquistou:</h4>
-                <ul>
-                    <li>✅ Identificou seus superpoderes únicos</li>
-                    <li>✅ Reconheceu e nomeou suas "travas"</li>
-                    <li>✅ Aprendeu os 3 passos do método</li>
-                    <li>✅ Desenvolveu estratégias de energia social</li>
-                </ul>
-            </div>
-            
-            <h4>🚀 Recapitulando Seus Superpoderes:</h4>
-            <ul>
-                <li><strong>Superaudição:</strong> Escuta profunda e captação de nuances</li>
-                <li><strong>Raio-X Mental:</strong> Análise crítica e pensamento profundo</li>
-                <li><strong>Foco de Laser:</strong> Capacidade de concentração intensa</li>
-                <li><strong>Visão Além do Alcance:</strong> Observação aguçada</li>
-                <li><strong>Bússola Interna:</strong> Integridade e convicção autêntica</li>
-            </ul>
-            
-            <p>Estes não são apenas traços de personalidade - são ferramentas poderosas que, quando usadas intencionalmente, transformam sua comunicação.</p>
-        </div>
-
-        <!-- Página 2 -->
-        <div class="page-content" data-page="2">
-            <h3>🔄 Integrando o Método na Vida Real</h3>
-            <p>Agora que você domina a teoria, vamos falar sobre como aplicar o Método Destrave na Hora H em situações reais do dia a dia.</p>
-            
-            <h4>📋 Situações Práticas de Aplicação:</h4>
-            
-            <h4>1. Reuniões de Trabalho</h4>
-            <p><strong>PONTO:</strong> "Acredito que precisamos revisar nosso cronograma de entrega."<br>
-            <strong>PROVA:</strong> "Os últimos 3 projetos atrasaram em média 2 semanas, impactando a satisfação do cliente."<br>
-            <strong>PROPOSTA:</strong> "Sugiro adicionarmos 20% de buffer em todos os prazos a partir do próximo sprint."</p>
-            
-            <h4>2. Conversas Pessoais</h4>
-            <p><strong>PONTO:</strong> "Sinto que precisamos conversar sobre nossa comunicação."<br>
-            <strong>PROVA:</strong> "Nas últimas semanas, tivemos alguns mal-entendidos que poderiam ter sido evitados."<br>
-            <strong>PROPOSTA:</strong> "Que tal reservarmos 30 minutos no domingo para alinharmos a semana?"</p>
-            
-            <h4>3. Apresentações</h4>
-            <p><strong>PONTO:</strong> "Nossa estratégia de marketing digital precisa de ajustes."<br>
-            <strong>PROVA:</strong> "O ROI caiu 15% nos últimos 3 meses, enquanto nossos concorrentes cresceram."<br>
-            <strong>PROPOSTA:</strong> "Proponho realocação de 30% do budget para redes sociais e influenciadores."</p>
-            
-            <div class="exercise-box">
-                <h4>✏️ Seu Plano de Ação</h4>
-                <p>Identifique 3 situações da sua vida (trabalho, família, amigos) onde você pode aplicar o Método Destrave na Hora H esta semana. Para cada uma, esboce rapidamente o PONTO, PROVA e PROPOSTA.</p>
-            </div>
-        </div>
-
-        <!-- Página 3 -->
-        <div class="page-content" data-page="3">
-            <h3>🎓 Cerimônia de Graduação Virtual</h3>
-            <p>Chegou o momento especial! Você completou sua jornada de preparação e está oficialmente pronto para aplicar o Método Destrave na Hora H na vida real.</p>
-            
-            <div class="highlight-box">
-                <h4>🏆 Certificado de Preparação</h4>
-                <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: #2a5298;">
-                    Certificamos que <span id="certificateName"></span><br>
-                    completou com sucesso os módulos preparatórios do<br>
-                    <strong>MÉTODO DESTRAVE NA HORA H</strong><br>
-                    e está preparado(a) para a transformação completa.
-                </p>
-                <p style="text-align: center; margin-top: 20px;">
-                    <em>"Sua voz autêntica é seu maior poder.<br>
-                    Agora você tem as ferramentas para usá-la."</em>
-                </p>
-            </div>
-            
-            <h4>🎯 Próximos Passos na Sua Jornada:</h4>
-            <p>Você está agora preparado para avançar para os <strong>7 Passos Práticos</strong> da transformação completa, onde aplicará tudo que aprendeu em situações reais e desafiadoras.</p>
-            
-            <p>Lembre-se: você não está se transformando em outra pessoa. Você está descobrindo e potencializando quem você sempre foi. Sua introversão é seu superpoder, e agora você tem o manual para usá-la.</p>
-            
-            <div class="exercise-box">
-                <h4>🎉 Celebre Sua Conquista</h4>
-                <p>Antes de seguir para os próximos passos, tome um momento para reconhecer o quanto você já evoluiu. Escreva uma frase sobre como se sente agora comparado ao início desta jornada.</p>
-            </div>
-            
-            <button class="complete-btn" onclick="completeModule(3)" style="display: block; margin: 30px auto;">🎓 ACEITAR CERTIFICADO E CONCLUIR</button>
-        </div>
-
-        <!-- Navegação -->
-        <div class="page-navigation">
-            <button class="nav-btn prev" onclick="previousPage(3)" disabled>← Anterior</button>
-            <div class="page-indicator">
-                <div class="page-dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="page-counter">Página 1 de 3</div>
-            </div>
-            <button class="nav-btn next" onclick="nextPage(3)">Próxima →</button>
-        </div>
-    </div>
-
-    <!-- Notificação -->
-    <div id="notification" class="notification"></div>
 
     <script>
         // Variáveis globais
-        let currentUser = '';
-        let currentModule = 0;
-        let currentPage = 1;
-        let selectedAnswer = '';
-        let currentModuleToUnlock = 0;
-        let unlockedModules = [1]; // Módulo 1 sempre desbloqueado
-        let modulePages = {
-            1: 6,
-            2: 6,
-            3: 3
-        };
-
-        // Senhas dos módulos (ocultas do usuário)
-        const modulePasswords = {
-            2: 'destrave',
-            3: 'transforma'
-        };
-
-        // Sistema de pontuação
+        let userName = '';
         let userPoints = 0;
         let userLevel = 'Novato';
+        let userAchievements = 0;
+        let currentModule = 0;
+        let currentPage = 0;
+        let selectedOption = null;
+        let moduleProgress = {
+            1: { completedPages: 0, totalPages: 6, completed: false, points: 0 },
+            2: { completedPages: 0, totalPages: 6, completed: false, points: 0 }, // Updated totalPages
+            3: { completedPages: 0, totalPages: 5, completed: false, points: 0 }, // Updated totalPages
+            4: { completedPages: 0, totalPages: 1, completed: false, points: 0 },
+            5: { completedPages: 0, totalPages: 1, completed: false, points: 0 },
+            6: { completedPages: 0, totalPages: 1, completed: false, points: 0 },
+            7: { completedPages: 0, totalPages: 1, completed: false, points: 0 },
+            8: { completedPages: 0, totalPages: 1, completed: false, points: 0 },
+            9: { completedPages: 0, totalPages: 1, completed: false, points: 0 },
+            10: { completedPages: 0, totalPages: 1, completed: false, points: 0 },
+        };
 
-        // Login
-        function login() {
-            const name = document.getElementById('userName').value.trim();
-            const password = document.getElementById('userPassword').value;
-            
-            if (!name) {
-                showNotification('Por favor, insira seu nome completo.', 'error');
-                return;
-            }
-            
-            if (password !== 'destrave2024') {
-                showNotification('Senha incorreta. Verifique na área de membros.', 'error');
-                return;
-            }
-            
-            currentUser = name;
-            document.getElementById('welcomeName').textContent = name;
-            document.getElementById('dashboardName').textContent = name;
-            document.getElementById('certificateName').textContent = name;
-            
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('welcomeScreen').style.display = 'flex';
-            
-            showNotification(`Bem-vindo(a), ${name}!`);
-        }
+        const modulePasswords = {
+            2: 'destrave',
+            3: 'transforma',
+            4: 'passo4',
+            5: 'passo5',
+            6: 'passo6',
+            7: 'passo7',
+            8: 'passo8',
+            9: 'passo9',
+            10: 'passo10',
+        };
 
-        // Mostrar dashboard
-        function showDashboard() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
-        }
-
-        // Iniciar módulo
-        function startModule(moduleNumber) {
-            if (!unlockedModules.includes(moduleNumber)) {
-                showNotification('Este módulo está bloqueado. Insira a senha para desbloqueá-lo.', 'error');
-                return;
-            }
-            
-            currentModule = moduleNumber;
-            currentPage = 1;
-            
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById(`module${moduleNumber}Content`).style.display = 'block';
-            
-            updatePageDisplay(moduleNumber);
-            addPoints(50, `Iniciou o Módulo ${moduleNumber}`);
-            
-            showNotification(`Módulo ${moduleNumber} iniciado! +50 pontos`);
-        }
-
-        // Solicitar senha
-        function requestPassword(moduleNumber) {
-            currentModuleToUnlock = moduleNumber;
-            document.getElementById('passwordModal').style.display = 'flex';
-            document.getElementById('modulePassword').value = '';
-            document.getElementById('modulePassword').focus();
-        }
-
-        // Fechar modal de senha
-        function closePasswordModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-            currentModuleToUnlock = 0;
-        }
-
-        // Desbloquear módulo
-        function unlockModule() {
-            const password = document.getElementById('modulePassword').value;
-            
-            if (password === modulePasswords[currentModuleToUnlock]) {
-                unlockedModules.push(currentModuleToUnlock);
-                
-                // Atualizar visual do módulo
-                const moduleCard = document.querySelector(`.module-card:nth-child(${currentModuleToUnlock})`);
-                moduleCard.classList.remove('locked');
-                moduleCard.classList.add('unlocked');
-                moduleCard.onclick = null;
-                
-                const lockedMessage = moduleCard.querySelector('.locked-message');
-                lockedMessage.outerHTML = `<button class="module-btn start" onclick="startModule(${currentModuleToUnlock})">🚀 INICIAR MÓDULO</button>`;
-                
-                closePasswordModal();
-                showNotification(`Módulo ${currentModuleToUnlock} desbloqueado com sucesso!`);
-                addPoints(100, `Desbloqueou o Módulo ${currentModuleToUnlock}`);
-            } else {
-                showNotification('Senha incorreta. Verifique na área de membros.', 'error');
-            }
-        }
-
-        // Navegação entre páginas
-        function nextPage(moduleNumber) {
-            if (currentPage < modulePages[moduleNumber]) {
-                currentPage++;
-                updatePageDisplay(moduleNumber);
-                addPoints(100, `Completou página ${currentPage - 1} do Módulo ${moduleNumber}`);
-            }
-        }
-
-        function previousPage(moduleNumber) {
-            if (currentPage > 1) {
-                currentPage--;
-                updatePageDisplay(moduleNumber);
-            }
-        }
-
-        function updatePageDisplay(moduleNumber) {
-            const moduleContent = document.getElementById(`module${moduleNumber}Content`);
-            const pages = moduleContent.querySelectorAll('.page-content');
-            const dots = moduleContent.querySelectorAll('.dot');
-            const counter = moduleContent.querySelector('.page-counter');
-            const prevBtn = moduleContent.querySelector('.nav-btn.prev');
-            const nextBtn = moduleContent.querySelector('.nav-btn.next');
-            
-            // Atualizar páginas
-            pages.forEach((page, index) => {
-                page.classList.toggle('active', index + 1 === currentPage);
-            });
-            
-            // Atualizar dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index + 1 === currentPage);
-            });
-            
-            // Atualizar contador
-            counter.textContent = `Página ${currentPage} de ${modulePages[moduleNumber]}`;
-            
-            // Atualizar botões
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === modulePages[moduleNumber];
-            
-            if (currentPage === modulePages[moduleNumber]) {
-                nextBtn.textContent = 'Ir para Quiz →';
-            } else {
-                nextBtn.textContent = 'Próxima →';
-            }
-        }
-
-        // Quiz
-        function selectOption(element, answer) {
-            // Remover seleção anterior
-            const options = element.parentNode.querySelectorAll('.quiz-option');
-            options.forEach(opt => opt.classList.remove('selected'));
-            
-            // Selecionar nova opção
-            element.classList.add('selected');
-            selectedAnswer = answer;
-            
-            // Mostrar botão de confirmar
-            const confirmBtn = element.parentNode.parentNode.querySelector('.confirm-btn');
-            confirmBtn.style.display = 'inline-block';
-        }
-
-        function showQuizFeedback() {
-            const feedbackDiv = document.querySelector('.quiz-feedback');
-            const feedbackText = document.getElementById('feedbackText');
-            const coachTip = document.getElementById('coachTip');
-            const completeBtn = document.querySelector('.complete-btn');
-            
-            let feedback = '';
-            let tip = '';
-            
-            if (currentModule === 1) {
-                const feedbacks = {
-                    'A': {
-                        text: 'Seu superpoder dominante é a SUPERAUDIÇÃO! Você tem uma capacidade incrível de escutar profundamente e captar nuances que outros perdem.',
-                        tip: 'Use essa habilidade para fazer perguntas mais inteligentes e oferecer soluções mais precisas nas conversas.'
-                    },
-                    'B': {
-                        text: 'Seu superpoder dominante é o RAIO-X MENTAL! Você analisa profundamente e vê além do superficial.',
-                        tip: 'Suas opiniões bem fundamentadas são seu diferencial. Use-as para liderar discussões importantes.'
-                    },
-                    'C': {
-                        text: 'Seu superpoder dominante é a VISÃO ALÉM DO ALCANCE! Você observa dinâmicas e detalhes que passam despercebidos.',
-                        tip: 'Use essa percepção para adaptar sua comunicação ao "clima" do ambiente e às pessoas envolvidas.'
-                    },
-                    'D': {
-                        text: 'Seu superpoder dominante é o FOCO DE LASER! Você consegue se concentrar intensamente no que realmente importa.',
-                        tip: 'Use essa concentração para manter conversas objetivas e entregar mensagens claras e diretas.'
+        // Conteúdo dos Módulos
+        const moduleContent = {
+            1: [
+                {
+                    title: "Módulo 1: Desperte Seus Superpoderes",
+                    subtitle: "Capítulo 1.1: Chega de se Achar Menos! (Seu Jeito Quieto é Seu Ponto Forte)",
+                    content: `
+                        <p>Sabe aquela sensação de estar numa roda de conversa, ou numa reunião de trabalho, e parecer que todo mundo recebeu um manual de "como ser incrível falando" menos você? Enquanto as ideias e palavras parecem jorrar com facilidade para alguns, você talvez se sinta mais como o Bruno, nosso amigo que mencionamos antes. Lembra dele? O cara super competente, cheio de insights valiosos, mas que via o Zé Faísca – aquele colega que mal entendia do assunto, mas falava pelos cotovelos – levar a fama e os aplausos.</p>
+                        <p>Por muito tempo, o Bruno, e talvez você também, pode ter pensado: "Será que o problema sou eu? Preciso ser mais como o Zé Faísca? Preciso falar mais alto, ser mais piadista, interromper mais para ser notado?". Muitos de nós, introvertidos, já tentamos vestir essa "fantasia" de extrovertido. Forçamos a barra em reuniões, tentamos ser o centro das atenções no happy hour, contamos aquela piada que não tinha nada a ver... e qual foi o resultado? Provavelmente, uma sensação de cansaço, de não estar sendo verdadeiro consigo mesmo, e uma frustração ainda maior por parecer que "não levamos jeito para a coisa".</p>
+                        <p>Mas aqui vai o primeiro grande segredo que o Método Destrave na Hora H quer compartilhar com você: o problema não é você, e você definitivamente não precisa virar outra pessoa para ter sua voz ouvida e suas ideias valorizadas.</p>
+                        <h3>O Mito do "Comunicador Ideal" (e por que ele te atrapalha)</h3>
+                        <p>Por muito tempo, especialmente no mundo corporativo ou em rodas sociais mais barulhentas, criou-se um mito: o de que o "comunicador ideal" é aquele que fala muito, que é super expansivo, que domina qualquer ambiente com sua presença marcante. É o famoso "quem não é visto, não é lembrado", levado ao extremo. Essa ideia, no fundo, é uma visão bem limitada do que realmente significa se comunicar bem.</p>
+                        <ul>
+                            <li><strong>A Sociedade do "Barulho":</strong> Vivemos numa cultura que, muitas vezes, parece aplaudir mais o "barulho" do que a "substância". É como se o volume da voz importasse mais do que a qualidade do que está sendo dito. E isso, meu amigo, é um problema para todo mundo, não só para quem tem um perfil mais quieto. Quantas ideias geniais já se perderam porque quem as tinha não era o mais "barulhento" da sala?</li>
+                            <li><strong>A Armadilha de Tentar Ser Quem Você Não É:</strong> Quando você, com sua natureza mais introspectiva e seu ritmo de processar as coisas, tenta imitar esse "ideal" extrovertido, você entra numa cilada. Primeiro, porque gasta uma energia danada tentando "performar" um papel que não é seu. Segundo, porque você acaba escondendo justamente aquilo que te faz único e valioso: seu jeito de pensar, de analisar, de ver o mundo.</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: "Módulo 1: Desperte Seus Superpoderes",
+                    subtitle: "Capítulo 1.1: Chega de se Achar Menos! (Continuação)",
+                    content: `
+                        <h3>Validando Sua Experiência: Seu Jeito Quieto NÃO é Fraqueza</h3>
+                        <p>Se você se sente cansado de tentar "se soltar mais" à força, se sente que sua bateria social acaba rapidinho em ambientes muito agitados, se prefere pensar bem antes de falar... Parabéns, você não tem um defeito, você provavelmente tem um jeito introvertido de ser! E isso, ao contrário do que muitos pensam, não é uma sentença de silêncio ou invisibilidade.</p>
+                        <ul>
+                            <li><strong>A Força Silenciosa que Mora em Você:</strong> O que o Método Destrave na Hora H vai te mostrar é que esse seu "jeito mais na sua" não é um obstáculo, mas sim a base de uma força comunicativa imensa. É como ter um motor potente, mas que opera de forma mais silenciosa e eficiente, sem precisar fazer alarde para mostrar seu valor.</li>
+                        </ul>
+                        <p>Chega de se sentir como um peixe fora d\'água tentando nadar no aquário dos extrovertidos. E se eu te dissesse que o problema não é o peixe, mas o tamanho e o tipo de aquário que te mostraram até hoje? Prepare-se, porque no próximo capítulo vamos mergulhar fundo no SEU aquário particular e descobrir que ele não só é incrível, como está cheio de superpoderes escondidos que talvez você nem imagine que tem!</p>
+                    `
+                },
+                {
+                    title: "Módulo 1: Desperte Seus Superpoderes",
+                    subtitle: "Capítulo 1.2: Seus Superpoderes Escondidos (Que Ninguém Te Contou Que Você Tinha)",
+                    content: `
+                        <p>No capítulo anterior, a gente começou a desmistificar aquela ideia de que você precisa ser um "showman" para se comunicar bem, certo? Falamos sobre como seu "jeito mais quieto" não é um defeito, mas sim o seu ponto de partida para uma comunicação poderosa e autêntica.</p>
+                        <p>Agora, prepare-se, porque vamos abrir o seu "baú de tesouros" pessoal e descobrir os superpoderes incríveis que você já carrega aí dentro, mesmo que ninguém nunca tenha te contado sobre eles!</p>
+                        <p>Pense na Ana, aquela profissional super inteligente que mencionamos. Ela se sentia frustrada por não conseguir expor suas ideias geniais nas reuniões, enquanto via outros colegas, nem sempre tão preparados, dominarem a conversa. O que a Ana, e talvez você, ainda não tinha sacado é que, enquanto o "barulho" acontecia, sua mente introvertida estava trabalhando a todo vapor, como um supercomputador silencioso. Ela estava escutando de verdade, analisando cada detalhe, conectando os pontos de uma forma que ninguém mais conseguia. Isso, meu amigo, não é ser "passivo" ou "desligado". Isso é ter superpoderes!</p>
+                        <h3>Quais são esses tais Superpoderes Introvertidos?</h3>
+                        <p>Vamos listar alguns dos mais comuns e poderosos. Enquanto lê, vá pensando: "Opa, isso aqui tem a ver comigo!".</p>
+                        <ul>
+                            <li><strong>1. A Superaudição (Escuta Profunda):</strong> Enquanto muita gente está mais preocupada em falar do que em ouvir, você provavelmente tem a capacidade incrível de realmente escutar o que os outros dizem (e o que não dizem também!). Você capta nuances, entrelinhas, as verdadeiras preocupações.</li>
+                            <li>Na comunicação, isso é ouro! Permite que você entenda de verdade o outro lado, faça perguntas mais inteligentes e ofereça soluções muito mais precisas.</li>
+                            <li><strong>2. O Raio-X Mental (Análise Crítica e Pensamento Profundo):</strong> Sua mente não se contenta com o superficial. Você gosta de cavar fundo, entender as causas, prever consequências, ver a figura completa.</li>
+                            <li>Na comunicação, isso te dá munição de primeira! Suas opiniões e argumentos tendem a ser mais bem fundamentados, mais lógicos e, por isso, muito mais persuasivos quando você aprende a expressá-los.</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: "Módulo 1: Desperte Seus Superpoderes",
+                    subtitle: "Capítulo 1.2: Seus Superpoderes Escondidos (Continuação)",
+                    content: `
+                        <ul>
+                            <li><strong>3. O Foco de Laser (Capacidade de Concentração):</strong> Em um mundo cheio de distrações, conseguir se concentrar profundamente em uma tarefa, em uma conversa ou em um problema é uma habilidade rara e valiosa.</li>
+                            <li>Na comunicação, isso te ajuda a manter a linha de raciocínio, a não se perder em conversas paralelas e a entregar sua mensagem de forma clara e objetiva.</li>
+                            <li><strong>4. A Visão Além do Alcance (Observação Aguçada):</strong> Você nota coisas que passam despercebidas pela maioria: a linguagem corporal de alguém, a dinâmica de um grupo, o "clima" de um ambiente.</li>
+                            <li>Na comunicação, isso é como ter um \'mapa do terreno\' em tempo real! Te ajuda a "ler" as pessoas e as situações, adaptando sua abordagem para ser mais eficaz.</li>
+                            <li><strong>5. A Bússola Interna (Integridade e Convicção):</strong> Geralmente, quando um introvertido decide falar sobre algo que realmente acredita, suas palavras vêm carregadas de uma convicção e autenticidade que são difíceis de ignorar.</li>
+                            <li>Na comunicação, essa sinceridade é magnética! As pessoas sentem quando você está sendo verdadeiro, e isso constrói confiança e respeito.</li>
+                        </ul>
+                        <h3>Pequeno Exercício: Seu Inventário de Superpoderes</h3>
+                        <p>Pegue um papel e caneta (ou abra um bloco de notas aí no celular mesmo). Releia os superpoderes acima. Quais deles você sente que são "a sua cara"? Marque aqueles com os quais você mais se identifica. Não precisa ter todos, e talvez você até tenha outros que não listamos aqui! O importante é começar a reconhecer e valorizar essas qualidades incríveis que já fazem parte de você.</p>
+                        <p><strong>Seu Superpoder em Ação:</strong> Pense em uma situação recente (pode ser uma conversa, uma reunião, ou até mesmo um pensamento que você teve) onde você percebeu que um de seus superpoderes introvertidos (escuta profunda, análise crítica, foco de laser, observação aguçada, integridade) estava em jogo. Como ele se manifestou? O que você fez (ou deixou de fazer) que foi influenciado por esse superpoder? Anote suas observações. Reconhecer é o primeiro passo para usar intencionalmente!</p>
+                        <p>Lembre-se: esses não são apenas "traços de personalidade". Quando você aprende a usá-los de forma intencional, através do Método Destrave na Hora H, eles se transformam em ferramentas poderosas para uma comunicação que realmente te representa e que faz a diferença.</p>
+                    `
+                },
+                {
+                    title: "Módulo 1: Desperte Seus Superpoderes",
+                    subtitle: "Capítulo 1.3: Por Que às Vezes Parece Tão Difícil Falar? (E Como Mudar Isso AGORA)",
+                    content: `
+                        <p>Então, no capítulo anterior, a gente descobriu que você tem um verdadeiro arsenal de superpoderes aí dentro, certo? A superaudição, o raio-x mental, o foco de laser... Coisas incríveis que muita gente adoraria ter. Mas aí surge aquela pulga atrás da orelha: "Se eu tenho tudo isso, por que raios às vezes parece tão difícil simplesmente falar o que eu penso?"</p>
+                        <p>Você não está viajando, essa sensação é super real e muito comum para quem tem um jeito mais introvertido de ser. É como ter uma Ferrari na garagem, com o tanque cheio e todas as peças funcionando, mas sentir que tem alguma coisa emperrando a ignição ou que o freio de mão está puxado.</p>
+                        <h3>As "Travas" Comuns que Seguram Sua Voz (Você Não Está Sozinho Nessa!)</h3>
+                        <p>Vamos dar uma olhada em algumas dessas "travas" que adoram aparecer bem na hora H e nos deixar com cara de paisagem:</p>
+                        <ul>
+                            <li><strong>1. O Monstrinho do "E Se?": (O Famoso Medo do Julgamento)</strong></li>
+                            <li>Sabe quando você pensa mil vezes antes de falar, imaginando todas as possíveis reações negativas? "E se acharem minha ideia boba?", "E se eu gaguejar?", "E se ninguém se importar?". Esse monstrinho adora plantar dúvidas e minar nossa confiança. A verdade? A maioria das pessoas está mais preocupada com os próprios "monstrinhos" do que em te julgar tão severamente.</li>
+                            <li><strong>2. O Crítico Interno Super Exigente:</strong></li>
+                            <li>Muitos de nós, introvertidos, temos um padrão de qualidade altíssimo para nós mesmos. Queremos que tudo seja perfeito, inclusive nossas palavras. Aí, se a frase não sai "exatamente como a gente imaginou", ou se não temos CERTEZA ABSOLUTA do que vamos dizer, preferimos ficar quietos. É o famoso "o ótimo inimigo do bom".</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: "Módulo 1: Desperte Seus Superpoderes",
+                    subtitle: "Capítulo 1.3: Por Que às Vezes Parece Tão Difícil Falar? (Continuação)",
+                    content: `
+                        <ul>
+                            <li><strong>3. A "Bateria Social" no Vermelho:</strong></li>
+                            <li>Lembra que falamos que sua energia social funciona diferente? Ambientes muito barulhentos, com muita gente falando ao mesmo tempo, ou interações sociais muito longas podem, literalmente, "drenar sua pilha". E quando a bateria está fraca, fica difícil ter clareza e força para se expressar. Não é má vontade, é física (ou quase!).</li>
+                            <li><strong>4. A Dificuldade de "Entrar na Dança":</strong></li>
+                            <li>Conversas em grupo, especialmente aquelas mais rápidas e cheias de interrupções, podem parecer uma "dança das cadeiras" para quem precisa de um tempinho para processar e formular suas ideias. Quando você finalmente está pronto para falar, o assunto já mudou, ou alguém já "pegou seu lugar".</li>
+                        </ul>
+                        <p><strong>Identificando Suas Travas:</strong> Das \'travas\' que exploramos (O Monstrinho do \'E Se?\', O Crítico Interno, A Bateria Social no Vermelho, A Dificuldade de \'Entrar na Dança\'), qual delas você sente que mais te afeta no dia a dia? Descreva uma situação específica onde essa \'trava\' te impediu de se expressar. Apenas o ato de nomear e descrever já é um passo poderoso para desativá-la.</p>
+                        <h3>A Boa Notícia: Essas "Travas" Têm Chave (E o Nome Dela é "Método Destrave na Hora H"!)</h3>
+                        <p>Se você se identificou com uma (ou todas!) essas situações, respira fundo e sorria: não há nada de errado com você! Essas são apenas algumas das formas como o "sistema operacional" introvertido reage aos desafios do mundo. É como tentar rodar um programa super sofisticado (sua mente!) em um computador que não veio com o manual de instruções certo.</p>
+                        <p>A grande sacada, e o que o Método Destrave na Hora H vai te entregar, é exatamente esse "manual perdido". Vamos entender que essas "travas" não são cadeados indestrutíveis, mas sim portas que podem ser abertas com as chaves certas.</p>
+                        <ul>
+                            <li>O medo do julgamento pode ser encarado com mais autoconfiança.</li>
+                            <li>O crítico interno pode ser treinado para ser um aliado, e não um carrasco.</li>
+                            <li>Sua bateria social pode ser gerenciada de forma inteligente.</li>
+                            <li>E você pode sim aprender a "entrar na dança" das conversas, do seu jeito e no seu tempo.</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: "Módulo 1: Desperte Seus Superpoderes",
+                    subtitle: "Quiz: Descubra Seu Superpoder Dominante",
+                    content: `
+                        <p>Chegamos ao final do Módulo 1! Agora é hora de consolidar seu aprendizado e descobrir qual dos seus superpoderes introvertidos se destaca mais em você. Responda à pergunta abaixo para revelar seu superpoder dominante e receber um feedback personalizado do Alex!</p>
+                    `,
+                    quiz: {
+                        question: "Em uma situação social ou profissional, qual destas habilidades você naturalmente usa mais ou se sente mais à vontade para aplicar?",
+                        options: [
+                            { text: "Observar e analisar profundamente antes de falar.", feedback: { title: "Seu Superpoder Dominante: O Raio-X Mental!", text: "Você possui uma capacidade incrível de análise crítica e pensamento profundo. Sua mente não se contenta com o superficial, buscando sempre entender as causas e prever consequências. Use essa habilidade para fundamentar seus argumentos e oferecer soluções precisas. Lembre-se: a profundidade do seu pensamento é um trunfo inestimável!", tip: "Dica do Alex: Antes de uma reunião importante, dedique um tempo para pesquisar e analisar o tema. Isso ativará seu Raio-X Mental e te dará confiança para contribuir com insights valiosos quando for a sua vez de falar." } },
+                            { text: "Escutar atentamente o que os outros dizem, captando nuances e entrelinhas.", feedback: { title: "Seu Superpoder Dominante: A Superaudição!", text: "Sua escuta profunda é um dom raro. Você capta não apenas as palavras, mas as emoções e as verdadeiras intenções por trás delas. Isso te torna um comunicador empático e um resolvedor de problemas nato. Valorize sua capacidade de ouvir de verdade, pois ela abre portas para conexões autênticas e soluções inovadoras.", tip: "Dica do Alex: Em conversas, pratique a escuta ativa. Faça perguntas abertas e resuma o que o outro disse para confirmar seu entendimento. Isso não só mostra que você está presente, mas também te dá tempo para formular suas respostas com mais clareza." } },
+                            { text: "Manter o foco em uma tarefa ou conversa, sem se distrair facilmente.", feedback: { title: "Seu Superpoder Dominante: O Foco de Laser!", text: "Sua capacidade de concentração é notável. Em um mundo cheio de distrações, você consegue mergulhar fundo em um assunto, garantindo que sua mensagem seja entregue de forma clara e objetiva. Use seu foco para preparar suas intervenções e manter a linha de raciocínio, tornando suas contribuições mais impactantes.", tip: "Dica do Alex: Quando precisar se expressar, visualize sua mensagem como um feixe de laser: direto e preciso. Elimine distrações e concentre-se no ponto principal que você quer transmitir. Isso te ajudará a ser conciso e impactante." } },
+                            { text: "Perceber detalhes no ambiente ou na linguagem corporal das pessoas.", feedback: { title: "Seu Superpoder Dominante: A Visão Além do Alcance!", text: "Você tem uma observação aguçada que te permite \'ler\' as situações e as pessoas de forma única. Essa habilidade te dá um \'mapa do terreno\' em tempo real, permitindo que você adapte sua abordagem e se comunique de forma mais eficaz. Confie em sua intuição e nos sinais que você capta!", tip: "Dica do Alex: Antes de entrar em uma conversa ou reunião, observe o ambiente e as pessoas. Note a linguagem corporal, o tom de voz. Isso te dará pistas valiosas sobre como se posicionar e qual a melhor forma de interagir." } },
+                            { text: "Falar apenas quando realmente acredito no que vou dizer, com convicção.", feedback: { title: "Seu Superpoder Dominante: A Bússola Interna!", text: "Sua integridade e convicção são magnéticas. Quando você decide falar, suas palavras vêm carregadas de autenticidade, e as pessoas sentem isso. Essa sinceridade constrói confiança e respeito, tornando sua voz poderosa e influente. Nunca subestime o poder da sua verdade!", tip: "Dica do Alex: Escolha a dedo os momentos para se pronunciar. Não sinta a pressão de falar por falar. Quando você se manifestar, faça-o com a convicção que vem de dentro. Sua autenticidade é sua maior força." } }
+                        ]
                     }
-                };
-                
-                const selectedFeedback = feedbacks[selectedAnswer] || feedbacks['A'];
-                feedback = selectedFeedback.text;
-                tip = selectedFeedback.tip;
-            } else if (currentModule === 2) {
-                if (selectedAnswer === 'B') {
-                    feedback = 'Correto! A sequência é PONTO → PROVA → PROPOSTA. Você dominou a essência do método!';
-                    tip = 'Pratique essa sequência em conversas do dia a dia. Comece sempre com o ponto principal, depois justifique e termine com uma ação clara.';
-                } else {
-                    feedback = 'A resposta correta é PONTO → PROVA → PROPOSTA. Mas não se preocupe, o importante é praticar!';
-                    tip = 'Lembre-se: primeiro o que você quer comunicar, depois por que é importante, e finalmente o que fazer com essa informação.';
                 }
+            ],
+            2: [
+                {
+                    title: "Módulo 2: Domine o Método Destrave na Hora H",
+                    subtitle: "Capítulo 2.1: Os 3 Passos Simples para Sua Voz Ter Vez",
+                    content: `
+                        <p>No módulo anterior, você descobriu seus superpoderes e entendeu que suas \'travas\' são apenas portas a serem abertas. Agora, vamos mergulhar no coração do <strong>Método Destrave na Hora H</strong>, um guia simples e poderoso para você usar toda a sua potência comunicativa.</p>
+                        <p>Pense nele como o manual da sua \'Ferrari mental\'. Ele é feito sob medida para você, introvertido, finalmente:</p>
+                        <ul>
+                            <li>Entender a força incrível que já existe aí dentro.</li>
+                            <li>Aprender a \'ligar o motor\' dessa potência sem medo e sem precisar gritar.</li>
+                            <li>Falar o que pensa, defender suas ideias e ser verdadeiramente ouvido, em qualquer situação.</li>
+                        </ul>
+                        <p>Este método se baseia em <strong>3 passos simples e sequenciais</strong> que, quando aplicados, transformam a forma como você se comunica, garantindo que suas ideias sejam não apenas ouvidas, mas também valorizadas e compreendidas. Prepare-se para pegar as chaves!</p>
+                    `
+                },
+                {
+                    title: "Módulo 2: Domine o Método Destrave na Hora H",
+                    subtitle: "Capítulo 2.2: Passo 1 - O PONTO (Vá Direto ao que Importa)",
+                    content: `
+                        <h3>O que é o PONTO?</h3>
+                        <p>O PONTO é a essência da sua mensagem. É a ideia principal, a conclusão, a recomendação mais importante que você quer transmitir. Em um mundo onde a atenção é um recurso escasso, ir direto ao ponto é um superpoder, especialmente para introvertidos que tendem a ser mais concisos e a valorizar a substância.</p>
+                        <p>Muitas vezes, por medo de não sermos compreendidos ou por querermos dar contexto demais, acabamos enrolando e perdendo a atenção do ouvinte. O PONTO te ensina a inverter essa lógica: comece pelo fim, pela sua conclusão.</p>
+                        <h4>Como Identificar Seu PONTO:</h4>
+                        <ul>
+                            <li><strong>Qual é a ÚNICA coisa que eu quero que a pessoa lembre?</strong> Se ela esquecer todo o resto, o que é inegociável?</li>
+                            <li><strong>Qual é a minha principal recomendação ou conclusão?</strong></li>
+                            <li><strong>Se eu tivesse apenas 10 segundos para falar, o que eu diria?</strong></li>
+                        </ul>
+                        <p><strong>Exemplo Prático:</strong></p>
+                        <p>Em vez de: "Olha, eu estive pensando sobre o projeto X, e a gente teve algumas dificuldades com a equipe Y, e o prazo está apertado, então talvez a gente devesse considerar..."</p>
+                        <p>Diga: "Minha recomendação para o projeto X é: precisamos estender o prazo em uma semana."</p>
+                        <p>Viu a diferença? O PONTO é claro, direto e impactante. Ele respeita o tempo do ouvinte e posiciona você como alguém que tem clareza e objetividade.</p>
+                        <h4>Exercício: Encontre o PONTO</h4>
+                        <p>Pense em uma situação recente onde você precisou comunicar algo importante. Qual foi o PONTO principal que você queria transmitir? Tente reformular sua mensagem começando por ele. Anote como você faria isso.</p>
+                    `
+                },
+                {
+                    title: "Módulo 2: Domine o Método Destrave na Hora H",
+                    subtitle: "Capítulo 2.3: Passo 2 - O CONTEXTO (O Essencial para Entender)",
+                    content: `
+                        <h3>O que é o CONTEXTO?</h3>
+                        <p>Depois de apresentar o PONTO, é hora de fornecer o CONTEXTO. Mas atenção: não é para despejar todas as informações que você tem! O CONTEXTO é o mínimo de informação necessária para que o seu PONTO seja compreendido e aceito. Ele responde à pergunta: "Por que isso é importante?" ou "Como chegamos a essa conclusão?".</p>
+                        <p>Para introvertidos, que tendem a ser detalhistas e a analisar tudo profundamente, o desafio aqui é filtrar. Você tem muitas informações valiosas, mas nem todas são relevantes para aquele momento. O CONTEXTO deve ser conciso e focado naquilo que realmente dá suporte ao seu PONTO.</p>
+                        <h4>Como Construir um CONTEXTO Eficaz:</h4>
+                        <ul>
+                            <li><strong>Selecione apenas os fatos e dados mais relevantes.</strong> O que o ouvinte PRECISA saber para entender seu PONTO?</li>
+                            <li><strong>Use exemplos claros e objetivos.</strong> Uma boa história ou um dado impactante valem mais que mil palavras.</li>
+                            <li><strong>Seja breve.</strong> Se o CONTEXTO for muito longo, você corre o risco de perder a atenção que conquistou com o PONTO.</li>
+                        </ul>
+                        <p><strong>Exemplo Prático (continuando o anterior):</strong></p>
+                        <p>PONTO: "Minha recomendação para o projeto X é: precisamos estender o prazo em uma semana."</p>
+                        <p>CONTEXTO: "Analisamos os dados de performance da equipe Y nas últimas duas semanas e identificamos um gargalo inesperado na fase de testes, que consumiu 3 dias a mais do que o previsto. Além disso, a integração com o novo sistema Z apresentou uma incompatibilidade que exigirá 2 dias adicionais de desenvolvimento. Para garantir a qualidade final e evitar retrabalho, a extensão do prazo é crucial."</p>
+                        <p>Percebe como o CONTEXTO justifica o PONTO sem se perder em detalhes desnecessários? Ele dá credibilidade à sua fala.</p>
+                        <h4>Exercício: Adicione o CONTEXTO</h4>
+                        <p>Para o PONTO que você identificou no exercício anterior, quais seriam os 2 ou 3 pontos de CONTEXTO mais importantes para justificá-lo? Escreva-os de forma concisa.</p>
+                    `
+                },
+                {
+                    title: "Módulo 2: Domine o Método Destrave na Hora H",
+                    subtitle: "Capítulo 2.4: Passo 3 - A AÇÃO (O Que Fazer Agora?)",
+                    content: `
+                        <h3>O que é a AÇÃO?</h3>
+                        <p>O último passo do Método Destrave na Hora H é a AÇÃO. Depois de apresentar seu PONTO e justificar com o CONTEXTO, você precisa dizer ao seu ouvinte o que ele deve fazer a seguir. Qual é o próximo passo? O que você espera dele? A AÇÃO transforma sua comunicação em algo produtivo e direcionado.</p>
+                        <p>Muitas conversas se perdem porque, mesmo com boas ideias e justificativas, não há um chamado claro para a ação. As pessoas ficam sem saber o que fazer com a informação. Para introvertidos, que muitas vezes preferem a clareza e a objetividade, este passo é fundamental para garantir que sua mensagem não apenas seja ouvida, mas também gere resultados.</p>
+                        <h4>Como Definir uma AÇÃO Clara:</h4>
+                        <ul>
+                            <li><strong>Seja específico.</strong> Evite generalizações.</li>
+                            <li><strong>Defina um responsável.</strong> Quem fará o quê?</li>
+                            <li><strong>Estabeleça um prazo (se aplicável).</strong> Quando isso deve ser feito?</li>
+                            <li><strong>Indique o resultado esperado.</strong> O que acontecerá se a ação for executada?</li>
+                        </ul>
+                        <p><strong>Exemplo Prático (continuando o anterior):</strong></p>
+                        <p>PONTO: "Minha recomendação para o projeto X é: precisamos estender o prazo em uma semana."</p>
+                        <p>CONTEXTO: "Analisamos os dados de performance da equipe Y nas últimas duas semanas e identificamos um gargalo inesperado na fase de testes, que consumiu 3 dias a mais do que o previsto. Além disso, a integração com o novo sistema Z apresentou uma incompatibilidade que exigirá 2 dias adicionais de desenvolvimento. Para garantir a qualidade final e evitar retrabalho, a extensão do prazo é crucial."</p>
+                        <p>AÇÃO: "Peço que você aprove a extensão do prazo até a próxima sexta-feira para que a equipe possa ajustar o cronograma e garantir a entrega sem falhas."</p>
+                        <p>Com PONTO, CONTEXTO e AÇÃO, sua comunicação se torna uma ferramenta poderosa, clara e persuasiva. Você não apenas informa, você influencia e direciona.</p>
+                        <h4>Exercício: Defina a AÇÃO</h4>
+                        <p>Para o PONTO e CONTEXTO que você definiu nos exercícios anteriores, qual seria a AÇÃO clara e específica que você esperaria do seu ouvinte? Escreva-a.</p>
+                    `
+                },
+                {
+                    title: "Módulo 2: Domine o Método Destrave na Hora H",
+                    subtitle: "Capítulo 2.5: A Regra dos 3 Pontos (Infográfico Interativo)",
+                    content: `
+                        <h3>Visualizando o Método: A Regra dos 3 Pontos</h3>
+                        <p>Para solidificar seu entendimento do Método Destrave na Hora H, imagine-o como uma estrutura de três pontos essenciais que você sempre deve ter em mente ao se comunicar:</p>
+                        <p><strong>1. PONTO:</strong> O que é mais importante? A sua principal mensagem, a conclusão, a recomendação. Comece por aqui!</p>
+                        <p><strong>2. CONTEXTO:</strong> Por que isso é importante? Os fatos, dados e exemplos essenciais que justificam o seu PONTO. Seja conciso!</p>
+                        <p><strong>3. AÇÃO:</strong> O que deve ser feito? O próximo passo claro e específico que você espera do seu ouvinte. Direcione!</p>
+                        <p>Esta estrutura simples, mas poderosa, garante que sua comunicação seja sempre clara, persuasiva e orientada a resultados. Pratique-a em suas conversas diárias, e você verá a diferença!</p>
+                        <p><strong>Infográfico Interativo:</strong></p>
+                        <div style="border: 2px solid #3b82f6; padding: 20px; border-radius: 10px; text-align: center; background-color: #e0f2fe;">
+                            <h4 style="color: #1e40af; margin-bottom: 15px;">A Regra dos 3 Pontos</h4>
+                            <p style="font-size: 1.2em; font-weight: bold; color: #059669;">PONTO</p>
+                            <p style="font-size: 0.9em; color: #6b7280; margin-bottom: 10px;">A mensagem principal. Comece por aqui.</p>
+                            <span style="font-size: 2em; color: #1e40af;">⬇️</span>
+                            <p style="font-size: 1.2em; font-weight: bold; color: #059669;">CONTEXTO</p>
+                            <p style="font-size: 0.9em; color: #6b7280; margin-bottom: 10px;">Os fatos e dados essenciais. Justifique.</p>
+                            <span style="font-size: 2em; color: #1e40af;">⬇️</span>
+                            <p style="font-size: 1.2em; font-weight: bold; color: #059669;">AÇÃO</p>
+                            <p style="font-size: 0.9em; color: #6b7280;">O que deve ser feito. Direcione.</p>
+                        </div>
+                        <p style="margin-top: 20px;">Clique nos elementos do infográfico para ver mais detalhes sobre cada ponto!</p>
+                    `
+                },
+                {
+                    title: "Módulo 2: Domine o Método Destrave na Hora H",
+                    subtitle: "Quiz: Aplique a Regra dos 3 Pontos",
+                    content: `
+                        <p>Parabéns! Você dominou os 3 passos do Método Destrave na Hora H. Agora, vamos testar sua habilidade de aplicar a Regra dos 3 Pontos em uma situação prática. Leia o cenário abaixo e escolha a melhor forma de comunicação.</p>
+                    `,
+                    quiz: {
+                        question: "Você precisa informar ao seu chefe que o relatório mensal, que deveria ser entregue hoje, terá um atraso de 2 dias devido a um problema inesperado com o software de análise de dados. Qual a melhor forma de comunicar isso usando a Regra dos 3 Pontos?",
+                        options: [
+                            { text: "\'Chefe, o software de análise de dados deu problema, então o relatório vai atrasar uns dois dias.\'", feedback: { title: "Feedback do Alex: Quase lá!", text: "Essa resposta tem o PONTO e a AÇÃO, mas falta o CONTEXTO claro. Seu chefe pode ficar sem entender o \'porquê\' do atraso, o que pode gerar mais perguntas e menos confiança. Lembre-se de que o contexto, mesmo que breve, dá credibilidade à sua mensagem.", tip: "Dica do Alex: Sempre que possível, adicione um breve contexto para justificar seu ponto. Isso mostra profissionalismo e proatividade na resolução de problemas." } },
+                            { text: "\'O relatório mensal terá um atraso de 2 dias. O software de análise de dados apresentou um problema inesperado que já estamos resolvendo. Preciso da sua aprovação para ajustar a data de entrega.\'", feedback: { title: "Feedback do Alex: Excelente!", text: "Perfeito! Você começou com o PONTO (o atraso), deu o CONTEXTO essencial (problema no software) e finalizou com uma AÇÃO clara (aprovação para ajustar a data). Sua comunicação foi direta, completa e orientada para a solução. Continue assim!", tip: "Dica do Alex: Essa é a essência do Método Destrave na Hora H. Comece pelo que importa, justifique brevemente e diga o que precisa ser feito. Simples e eficaz!" } },
+                            { text: "\'Tivemos um problema com o software de análise de dados que causou um atraso. Vou tentar entregar o relatório o mais rápido possível.\'", feedback: { title: "Feedback do Alex: Precisa de mais clareza!", text: "Aqui você deu o CONTEXTO primeiro, o que não é o ideal, e a AÇÃO é muito vaga (\'o mais rápido possível\'). O chefe não sabe exatamente o que esperar. O PONTO deve vir primeiro para prender a atenção, e a AÇÃO precisa ser específica.", tip: "Dica do Alex: Comece sempre pelo PONTO para garantir que sua mensagem principal seja captada. E seja sempre específico na AÇÃO para que o ouvinte saiba exatamente o que fazer." } }
+                        ]
+                    }
+                }
+            ],
+            3: [
+                {
+                    title: "Módulo 3: Prepare-se para a Transformação",
+                    subtitle: "Capítulo 3.1: Consolidando Seu Aprendizado",
+                    content: `
+                        <p>Parabéns! Você chegou ao Módulo 3, o que significa que você já absorveu os fundamentos do Método Destrave na Hora H e está pronto para consolidar seu aprendizado e aplicá-lo na prática. Este módulo é sobre transformar o conhecimento em ação e garantir que sua voz autêntica seja uma constante em sua vida.</p>
+                        <p>Relembre os principais conceitos que você aprendeu:</p>
+                        <ul>
+                            <li><strong>Seus Superpoderes Introvertidos:</strong> Reconheça e valorize suas habilidades únicas como escuta profunda, análise crítica, foco de laser, observação aguçada e integridade. Eles são seus maiores trunfos.</li>
+                            <li><strong>As Travas da Comunicação:</strong> Identifique os medos e padrões que te impedem de se expressar e aprenda a desativá-los.</li>
+                            <li><strong>A Regra dos 3 Pontos (PONTO, CONTEXTO, AÇÃO):</strong> A estrutura fundamental para uma comunicação clara, concisa e persuasiva.</li>
+                        </ul>
+                        <p>A verdadeira transformação acontece quando você leva o que aprendeu para o seu dia a dia. Não basta saber, é preciso fazer!</p>
+                    `
+                },
+                {
+                    title: "Módulo 3: Prepare-se para a Transformação",
+                    subtitle: "Capítulo 3.2: Situações Reais de Aplicação",
+                    content: `
+                        <p>Vamos explorar como você pode aplicar o Método Destrave na Hora H em diferentes cenários da sua vida, tanto pessoal quanto profissional.</p>
+                        <h4>No Trabalho:</h4>
+                        <ul>
+                            <li><strong>Reuniões:</strong> Em vez de esperar a vez de falar e talvez perder a oportunidade, prepare seu PONTO, CONTEXTO e AÇÃO antes. Quando surgir uma brecha, vá direto ao ponto. Ex: "Minha sugestão para o problema X é Y (PONTO). Baseado nos dados A e B (CONTEXTO), acredito que isso nos trará o resultado Z (AÇÃO)."</li>
+                            <li><strong>Feedback:</strong> Ao dar ou receber feedback, use a estrutura. Ex: "Percebi que o relatório X atrasou (PONTO). Entendo que houve um problema com o software (CONTEXTO). Gostaria que, no futuro, você me avisasse com antecedência se houver algum impedimento (AÇÃO)."</li>
+                            <li><strong>Apresentações:</strong> Comece com a conclusão mais importante. Depois, apresente os dados que a suportam. Finalize com o que você quer que a audiência faça.</li>
+                        </ul>
+                        <h4>Na Vida Pessoal:</h4>
+                        <ul>
+                            <li><strong>Conversas Difíceis:</strong> Se precisar abordar um assunto delicado, prepare-se. Ex: "Preciso conversar sobre nosso orçamento doméstico (PONTO). Notei que nossos gastos com lazer aumentaram 20% este mês (CONTEXTO). Proponho que a gente revise nossas despesas juntos no fim de semana (AÇÃO)."</li>
+                            <li><strong>Expressar Opiniões:</strong> Em discussões com amigos ou família, se você tem uma opinião forte, use a estrutura para ser ouvido sem ser agressivo. Ex: "Eu acredito que a melhor opção para as férias é a praia (PONTO). O motivo é que todos nós precisamos relaxar e o contato com a natureza nos fará bem (CONTEXTO). Que tal pesquisarmos pacotes para a Bahia? (AÇÃO)."</li>
+                        </ul>
+                        <p>A prática leva à perfeição. Comece pequeno, em situações de menor pressão, e vá aumentando a complexidade. Cada vez que você aplicar o método, sua confiança aumentará.</p>
+                    `
+                },
+                {
+                    title: "Módulo 3: Prepare-se para a Transformação",
+                    subtitle: "Capítulo 3.3: Seu Plano de Ação Pessoal",
+                    content: `
+                        <p>Agora é a sua vez de criar um plano de ação personalizado para continuar sua jornada de transformação. A consistência é a chave para o sucesso.</p>
+                        <h4>Defina Metas Claras:</h4>
+                        <p>Pense em 2 ou 3 situações específicas nos próximos 30 dias onde você se compromete a aplicar o Método Destrave na Hora H. Seja realista, mas desafiador.</p>
+                        <ul>
+                            <li><strong>Meta 1:</strong> Ex: Na próxima reunião de equipe, vou apresentar uma ideia usando PONTO, CONTEXTO e AÇÃO.</li>
+                            <li><strong>Meta 2:</strong> Ex: Vou ter uma conversa difícil com um amigo sobre X, aplicando a estrutura.</li>
+                            <li><strong>Meta 3:</strong> Ex: Vou praticar a escuta profunda em todas as minhas interações sociais esta semana.</li>
+                        </ul>
+                        <h4>Monitore Seu Progresso:</h4>
+                        <p>Após cada situação, reflita: O que funcionou? O que poderia ter sido melhor? Como você se sentiu? Anote suas observações em um diário ou bloco de notas.</p>
+                        <h4>Busque Feedback:</h4>
+                        <p>Se possível, peça a um amigo de confiança ou colega para te dar feedback sobre sua comunicação. Isso pode oferecer insights valiosos.</p>
+                        <h4>Celebre Suas Conquistas:</h4>
+                        <p>Cada vez que você aplicar o método e sentir que sua voz teve vez, celebre! Pequenas vitórias constroem grandes transformações.</p>
+                        <p>Lembre-se: a jornada para destravar sua voz é contínua. Haverá dias bons e dias desafiadores. O importante é não desistir e continuar praticando.</p>
+                    `
+                },
+                {
+                    title: "Módulo 3: Prepare-se para a Transformação",
+                    subtitle: "Capítulo 3.4: Cerimônia de Graduação Virtual",
+                    content: `
+                        <p>Chegamos ao final do Módulo 3 e, com ele, ao final desta etapa inicial da sua jornada no Portal Destrave na Hora H. É um momento de celebração e reconhecimento por todo o seu esforço e dedicação.</p>
+                        <p>Você não apenas aprendeu conceitos valiosos, mas também começou a aplicá-los, a reconhecer seus superpoderes e a desativar as travas que te impediam de se expressar plenamente. Você está no caminho certo para se tornar um comunicador autêntico e impactante, sendo 100% você mesmo.</p>
+                        <p>Esta é a sua <strong>Cerimônia de Graduação Virtual</strong>. Respire fundo, sinta a satisfação de ter chegado até aqui e prepare-se para receber seu certificado de conclusão deste módulo.</p>
+                        <p>Este certificado não é apenas um pedaço de papel virtual; é um símbolo do seu compromisso com o seu desenvolvimento, da sua coragem de enfrentar desafios e da sua capacidade de transformação. Ele atesta que você está preparado para levar sua voz autêntica para o mundo.</p>
+                        <p>Parabéns, graduando(a)! O mundo precisa da sua voz. Vá e destrave!</p>
+                    `,
+                    quiz: {
+                        question: "Para finalizar o Módulo 3 e receber seu certificado, qual é a sua principal takeaway (aprendizado chave) deste módulo?",
+                        options: [
+                            { text: "A importância de reconhecer e usar meus superpoderes introvertidos na comunicação.", feedback: { title: "Feedback do Alex: Excelente Reflexão!", text: "Reconhecer e valorizar seus superpoderes é fundamental. Eles são a base da sua comunicação autêntica. Lembre-se sempre de que sua introversão é uma força, não uma fraqueza.", tip: "Dica do Alex: Continue identificando e aplicando seus superpoderes em diferentes situações. Quanto mais você os usa, mais fortes eles se tornam!" } },
+                            { text: "A eficácia da Regra dos 3 Pontos (PONTO, CONTEXTO, AÇÃO) para uma comunicação clara e persuasiva.", feedback: { title: "Feedback do Alex: Aprendizado Essencial!", text: "A Regra dos 3 Pontos é a espinha dorsal do Método Destrave na Hora H. Dominá-la garantirá que suas mensagens sejam sempre diretas, justificadas e com um chamado claro para a ação. É uma ferramenta poderosa para qualquer situação.", tip: "Dica do Alex: Pratique a Regra dos 3 Pontos em conversas do dia a dia, e não apenas em situações formais. Quanto mais natural ela se tornar, mais fluida será sua comunicação." } },
+                            { text: "A necessidade de criar um plano de ação pessoal e praticar consistentemente para a transformação.", feedback: { title: "Feedback do Alex: Visão Estratégica!", text: "O conhecimento só se transforma em poder com a ação. Seu compromisso em criar um plano e praticar é o que realmente levará à sua transformação. A consistência é o segredo para o sucesso a longo prazo.", tip: "Dica do Alex: Mantenha seu plano de ação visível e revise-o regularmente. Pequenos passos diários levam a grandes resultados. E não se esqueça de celebrar cada vitória!" } }
+                        ]
+                    }
+                }
+            ]
+        };
+
+        // Funções de navegação e lógica do portal
+        function showScreen(screenId) {
+            document.querySelectorAll('body > div').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            document.getElementById(screenId).style.display = 'flex';
+            if (screenId === 'dashboardScreen') {
+                document.getElementById(screenId).style.flexDirection = 'column';
             }
-            
-            feedbackText.textContent = feedback;
-            coachTip.textContent = tip;
-            
-            feedbackDiv.style.display = 'block';
-            completeBtn.style.display = 'inline-block';
-            
-            addPoints(200, `Respondeu ao quiz do Módulo ${currentModule}`);
+            window.scrollTo(0, 0); // Volta para o topo da página ao mudar de tela
         }
 
-        // Completar módulo
-        function completeModule(moduleNumber) {
-            addPoints(300, `Concluiu o Módulo ${moduleNumber}`);
-            
-            // Voltar ao dashboard
-            document.getElementById(`module${moduleNumber}Content`).style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
-            
-            // Reset do módulo
-            currentModule = 0;
-            currentPage = 1;
-            selectedAnswer = '';
-            
-            showNotification(`Parabéns! Módulo ${moduleNumber} concluído! +300 pontos`);
-            
-            // Verificar se deve desbloquear próximo módulo automaticamente
-            if (moduleNumber === 1 && !unlockedModules.includes(2)) {
-                // Módulo 1 concluído, mas módulo 2 ainda precisa de senha
-                showNotification('Módulo 2 disponível! Use a senha da área de membros para desbloqueá-lo.');
-            }
-        }
-
-        // Sistema de pontuação
-        function addPoints(points, reason) {
-            userPoints += points;
-            updateLevel();
-        }
-
-        function updateLevel() {
-            if (userPoints >= 1500) {
-                userLevel = 'Mestre da Comunicação';
-            } else if (userPoints >= 1000) {
-                userLevel = 'Comunicador Avançado';
-            } else if (userPoints >= 500) {
-                userLevel = 'Comunicador Intermediário';
-            } else {
-                userLevel = 'Novato em Evolução';
-            }
-        }
-
-        // Notificações
         function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
+            const notificationContainer = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
             notification.className = `notification ${type}`;
-            notification.classList.add('show');
-            
+            notification.textContent = message;
+            notificationContainer.appendChild(notification);
+
             setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
+                notification.remove();
+            }, 4000); // Notificação desaparece após 4 segundos
         }
 
-        // Event listeners
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const modal = document.getElementById('passwordModal');
-                if (modal.style.display === 'flex') {
-                    unlockModule();
+        function updateDashboardStats() {
+            document.getElementById('userPoints').textContent = userPoints;
+            document.getElementById('userLevel').textContent = userLevel;
+            document.getElementById('userAchievements').textContent = userAchievements;
+
+            // Atualizar progresso geral
+            let totalCompletedPages = 0;
+            let totalPossiblePages = 0;
+            for (const moduleId in moduleProgress) {
+                totalCompletedPages += moduleProgress[moduleId].completedPages;
+                totalPossiblePages += moduleProgress[moduleId].totalPages;
+            }
+            const overallProgress = totalPossiblePages > 0 ? (totalCompletedPages / totalPossiblePages) * 100 : 0;
+            document.getElementById('overallProgressBar').style.width = `${overallProgress.toFixed(0)}%`;
+            document.getElementById('overallProgressText').textContent = `${overallProgress.toFixed(0)}%`;
+
+            // Atualizar cards dos módulos
+            for (let i = 1; i <= 10; i++) {
+                const moduleCard = document.getElementById(`module${i}Card`);
+                const moduleBtn = document.getElementById(`module${i}Btn`);
+                const moduleProgressFill = document.getElementById(`module${i}ProgressBar`);
+                const moduleProgressPercent = document.getElementById(`module${i}ProgressPercent`);
+
+                const progress = moduleProgress[i].totalPages > 0 ? (moduleProgress[i].completedPages / moduleProgress[i].totalPages) * 100 : 0;
+                moduleProgressFill.style.width = `${progress.toFixed(0)}%`;
+                moduleProgressPercent.textContent = `${progress.toFixed(0)}%`;
+
+                if (moduleProgress[i].completed) {
+                    moduleCard.classList.remove('locked');
+                    moduleBtn.classList.remove('locked');
+                    moduleBtn.classList.add('start');
+                    moduleBtn.textContent = '✅ MÓDULO CONCLUÍDO';
+                    moduleBtn.disabled = true;
+                } else if (i > 1 && !moduleProgress[i-1].completed && i !== 4 && i !== 5 && i !== 6 && i !== 7 && i !== 8 && i !== 9 && i !== 10) { // Lógica de desbloqueio sequencial para módulos 2 e 3
+                    moduleCard.classList.add('locked');
+                    moduleBtn.classList.add('locked');
+                    moduleBtn.classList.remove('start');
+                    moduleBtn.textContent = 'CLIQUE PARA INSERIR SENHA E DESBLOQUEAR';
+                    moduleBtn.disabled = false;
+                } else if (i === 2 && !moduleProgress[1].completed) { // Módulo 2 depende do 1
+                    moduleCard.classList.add('locked');
+                    moduleBtn.classList.add('locked');
+                    moduleBtn.classList.remove('start');
+                    moduleBtn.textContent = 'CONCLUA O MÓDULO 1 PARA DESBLOQUEAR';
+                    moduleBtn.disabled = true;
+                } else if (i === 3 && !moduleProgress[2].completed) { // Módulo 3 depende do 2
+                    moduleCard.classList.add('locked');
+                    moduleBtn.classList.add('locked');
+                    moduleBtn.classList.remove('start');
+                    moduleBtn.textContent = 'CONCLUA O MÓDULO 2 PARA DESBLOQUEAR';
+                    moduleBtn.disabled = true;
+                } else if (i >= 4 && !moduleProgress[3].completed) { // Módulos 4-10 dependem do 3
+                    moduleCard.classList.add('locked');
+                    moduleBtn.classList.add('locked');
+                    moduleBtn.classList.remove('start');
+                    moduleBtn.textContent = 'CONCLUA O MÓDULO 3 PARA DESBLOQUEAR';
+                    moduleBtn.disabled = true;
+                } else {
+                    moduleCard.classList.remove('locked');
+                    moduleBtn.classList.remove('locked');
+                    moduleBtn.classList.add('start');
+                    moduleBtn.textContent = '🚀 INICIAR MÓDULO';
+                    moduleBtn.disabled = false;
                 }
             }
+        }
+
+        function loadModulePage(moduleId, pageIndex) {
+            currentModule = moduleId;
+            currentPage = pageIndex;
+            const pageContent = moduleContent[moduleId][pageIndex];
+
+            document.getElementById('moduleContentTitle').textContent = pageContent.title;
+            document.getElementById('moduleContentSubtitle').textContent = pageContent.subtitle;
+            document.getElementById('modulePageContent').innerHTML = pageContent.content;
+
+            // Atualizar indicador de página
+            const totalPages = moduleContent[moduleId].length;
+            document.getElementById('pageIndicator').textContent = `Página ${pageIndex + 1} de ${totalPages}`;
+
+            // Lógica dos botões de navegação
+            document.getElementById('prevPageBtn').disabled = (pageIndex === 0);
+            document.getElementById('nextPageBtn').disabled = (pageIndex === totalPages - 1 && !pageContent.quiz);
+
+            // Mostrar/Esconder Quiz
+            const quizSection = document.getElementById('quizSection');
+            const finishModuleBtn = document.getElementById('finishModuleBtn');
+            const confirmQuizBtn = document.getElementById('confirmQuizBtn');
+            const quizFeedback = document.getElementById('quizFeedback');
+
+            if (pageContent.quiz) {
+                quizSection.style.display = 'block';
+                document.getElementById('quizQuestion').textContent = pageContent.quiz.question;
+                const optionsGrid = document.getElementById('quizOptions');
+                optionsGrid.innerHTML = '';
+                pageContent.quiz.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    button.className = 'option-btn';
+                    button.textContent = option.text;
+                    button.onclick = () => selectOption(button, index);
+                    optionsGrid.appendChild(button);
+                });
+                confirmQuizBtn.style.display = 'block';
+                finishModuleBtn.style.display = 'none';
+                quizFeedback.classList.remove('show');
+                selectedOption = null;
+            } else {
+                quizSection.style.display = 'none';
+                finishModuleBtn.style.display = 'none';
+            }
+
+            showScreen('moduleContentScreen');
+            updateModuleProgress(moduleId, pageIndex + 1);
+        }
+
+        function updateModuleProgress(moduleId, pagesCompleted) {
+            moduleProgress[moduleId].completedPages = pagesCompleted;
+            if (pagesCompleted === moduleContent[moduleId].length && !moduleContent[moduleId][pagesCompleted - 1].quiz) {
+                moduleProgress[moduleId].completed = true;
+                showNotification(`Módulo ${moduleId} concluído! Você ganhou 100 pontos!`);
+                userPoints += 100;
+                userAchievements += 1; // Exemplo de conquista
+                updateDashboardStats();
+                // Se for o módulo 3, mostrar tela de certificado
+                if (moduleId === 3) {
+                    showCertificateScreen();
+                }
+            }
+            updateDashboardStats();
+        }
+
+        function selectOption(button, index) {
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            selectedOption = index;
+        }
+
+        function confirmQuiz() {
+            if (selectedOption === null) {
+                showNotification('Por favor, selecione uma opção antes de confirmar.', 'error');
+                return;
+            }
+
+            const quizFeedback = document.getElementById('quizFeedback');
+            const feedbackTitle = document.getElementById('feedbackTitle');
+            const feedbackText = document.getElementById('feedbackText');
+            const alexTip = document.getElementById('alexTip');
+            const finishModuleBtn = document.getElementById('finishModuleBtn');
+            const confirmQuizBtn = document.getElementById('confirmQuizBtn');
+
+            const currentQuiz = moduleContent[currentModule][currentPage].quiz;
+            const feedback = currentQuiz.options[selectedOption].feedback;
+
+            feedbackTitle.textContent = feedback.title;
+            feedbackText.textContent = feedback.text;
+            alexTip.textContent = feedback.tip;
+            quizFeedback.classList.add('show');
+
+            confirmQuizBtn.style.display = 'none';
+            finishModuleBtn.style.display = 'block';
+
+            // Marcar módulo como concluído após o quiz
+            moduleProgress[currentModule].completedPages = moduleContent[currentModule].length;
+            moduleProgress[currentModule].completed = true;
+            showNotification(`Módulo ${currentModule} concluído! Você ganhou 100 pontos!`);
+            userPoints += 100;
+            userAchievements += 1; // Exemplo de conquista
+            updateDashboardStats();
+
+            // Se for o módulo 3, mostrar tela de certificado
+            if (currentModule === 3) {
+                showCertificateScreen();
+            }
+        }
+
+        function showCertificateScreen() {
+            document.getElementById('certificateUserName').textContent = userName;
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('completionDate').textContent = today.toLocaleDateString('pt-BR', options);
+            showScreen('certificateScreen');
+        }
+
+        // Event Listeners
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            userName = document.getElementById('userName').value;
+            const loginPassword = document.getElementById('loginPassword').value;
+
+            if (userName.trim() === '' || loginPassword.trim() === '') {
+                showNotification('Por favor, preencha seu nome e a senha de acesso.', 'error');
+                return;
+            }
+
+            if (loginPassword === 'destrave2024') {
+                document.getElementById('displayUserName').textContent = userName;
+                showScreen('welcomeScreen');
+            } else {
+                showNotification('Senha de acesso incorreta. Tente novamente.', 'error');
+            }
+        });
+
+        document.getElementById('startJourneyBtn').addEventListener('click', () => {
+            showScreen('dashboardScreen');
+            updateDashboardStats();
+        });
+
+        // Lógica para botões de módulo
+        document.getElementById('module1Btn').addEventListener('click', () => loadModulePage(1, 0));
+        document.getElementById('module2Btn').addEventListener('click', () => {
+            if (moduleProgress[1].completed) {
+                showPasswordModal(2);
+            } else {
+                showNotification('Conclua o Módulo 1 para desbloquear o Módulo 2.', 'error');
+            }
+        });
+        document.getElementById('module3Btn').addEventListener('click', () => {
+            if (moduleProgress[2].completed) {
+                showPasswordModal(3);
+            } else {
+                showNotification('Conclua o Módulo 2 para desbloquear o Módulo 3.', 'error');
+            }
+        });
+        // Adicionar listeners para os módulos 4-10, dependendo do módulo 3
+        for (let i = 4; i <= 10; i++) {
+            document.getElementById(`module${i}Btn`).addEventListener('click', () => {
+                if (moduleProgress[3].completed) {
+                    showPasswordModal(i);
+                } else {
+                    showNotification('Conclua o Módulo 3 para desbloquear os módulos avançados.', 'error');
+                }
+            });
+        }
+
+        // Navegação entre páginas do módulo
+        document.getElementById('prevPageBtn').addEventListener('click', () => {
+            if (currentPage > 0) {
+                loadModulePage(currentModule, currentPage - 1);
+            }
+        });
+
+        document.getElementById('nextPageBtn').addEventListener('click', () => {
+            const totalPages = moduleContent[currentModule].length;
+            if (currentPage < totalPages - 1) {
+                loadModulePage(currentModule, currentPage + 1);
+            } else if (moduleContent[currentModule][currentPage].quiz) {
+                // Se for a última página e tiver quiz, o botão 'Próxima Página' não deve avançar, mas sim confirmar o quiz
+                showNotification('Por favor, responda ao quiz para continuar.', 'info');
+            } else {
+                // Se for a última página e não tiver quiz, o módulo é concluído
+                showNotification(`Módulo ${currentModule} concluído! Você ganhou 100 pontos!`);
+                userPoints += 100;
+                userAchievements += 1; // Exemplo de conquista
+                moduleProgress[currentModule].completed = true;
+                updateDashboardStats();
+                if (currentModule === 3) {
+                    showCertificateScreen();
+                } else {
+                    showScreen('dashboardScreen');
+                }
+            }
+        });
+
+        // Lógica do Modal de Senha
+        let currentModuleToUnlock = 0;
+        function showPasswordModal(moduleId) {
+            currentModuleToUnlock = moduleId;
+            document.getElementById('passwordModal').classList.add('show');
+            document.getElementById('modulePasswordInput').value = ''; // Limpa o campo da senha
+        }
+
+        document.getElementById('cancelPasswordBtn').addEventListener('click', () => {
+            document.getElementById('passwordModal').classList.remove('show');
+        });
+
+        document.getElementById('confirmPasswordBtn').addEventListener('click', () => {
+            const enteredPassword = document.getElementById('modulePasswordInput').value;
+            if (enteredPassword === modulePasswords[currentModuleToUnlock]) {
+                document.getElementById('passwordModal').classList.remove('show');
+                loadModulePage(currentModuleToUnlock, 0);
+            } else {
+                showNotification('Senha incorreta. Tente novamente.', 'error');
+            }
+        });
+
+        // Lógica do Quiz
+        document.getElementById('confirmQuizBtn').addEventListener('click', confirmQuiz);
+        document.getElementById('finishModuleBtn').addEventListener('click', () => {
+            showScreen('dashboardScreen');
+        });
+
+        // Lógica do Certificado
+        document.getElementById('acceptCertificateBtn').addEventListener('click', () => {
+            showScreen('dashboardScreen');
         });
 
         // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            // Focar no campo de nome ao carregar
-            document.getElementById('userName').focus();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Define o total de páginas para o Módulo 3
+            moduleProgress[3].totalPages = moduleContent[3].length;
+            updateDashboardStats();
         });
+
     </script>
 </body>
 </html>
