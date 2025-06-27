@@ -80,6 +80,35 @@
         .module-btn.start:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3); }
         .module-btn.locked { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; }
         .module-btn.locked:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); }
+        .module-btn.completed { background: linear-gradient(135deg, #059669, #10b981); color: white; }
+        .module-btn.completed:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
+        .module-card.completed { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #10b981; }
+        
+        /* Estilos melhorados para Quiz */
+        .quiz-container { background: #f8fafc; padding: 2rem; border-radius: 15px; margin: 2rem 0; border: 1px solid #e2e8f0; }
+        .quiz-question { font-size: 1.3rem; font-weight: 700; color: #1e40af; margin-bottom: 2rem; text-align: center; }
+        .quiz-options { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+        .quiz-option { background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 1.2rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .quiz-option:hover { border-color: #3b82f6; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15); transform: translateY(-2px); }
+        .quiz-option.selected { border-color: #3b82f6; background: linear-gradient(135deg, #dbeafe, #bfdbfe); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
+        .quiz-option.correct { border-color: #10b981; background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+        .quiz-option.incorrect { border-color: #ef4444; background: linear-gradient(135deg, #fee2e2, #fecaca); }
+        .quiz-option-text { font-weight: 500; color: #374151; line-height: 1.5; }
+        .quiz-option.selected .quiz-option-text { color: #1e40af; font-weight: 600; }
+        .quiz-option.correct .quiz-option-text { color: #059669; font-weight: 600; }
+        .quiz-option.incorrect .quiz-option-text { color: #dc2626; font-weight: 600; }
+        
+        .quiz-feedback { margin-top: 2rem; padding: 1.5rem; border-radius: 12px; display: none; }
+        .quiz-feedback.correct { background: linear-gradient(135deg, #d1fae5, #a7f3d0); border: 2px solid #10b981; }
+        .quiz-feedback.incorrect { background: linear-gradient(135deg, #fee2e2, #fecaca); border: 2px solid #ef4444; }
+        .quiz-feedback-icon { font-size: 2rem; margin-bottom: 1rem; text-align: center; }
+        .quiz-feedback-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; text-align: center; }
+        .quiz-feedback.correct .quiz-feedback-title { color: #059669; }
+        .quiz-feedback.incorrect .quiz-feedback-title { color: #dc2626; }
+        .quiz-feedback-text { color: #374151; line-height: 1.6; margin-bottom: 1rem; }
+        .quiz-feedback-tip { background: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6; }
+        .quiz-feedback-tip-title { font-weight: 700; color: #1e40af; margin-bottom: 0.5rem; }
+        .quiz-feedback-tip-text { color: #374151; font-size: 0.95rem; }
         
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; }
         .modal.show { display: flex; }
@@ -569,9 +598,29 @@
                 
                 userData.modules.forEach(module => {
                     const moduleCard = document.createElement('div');
-                    moduleCard.className = `module-card ${!module.unlocked ? 'locked' : ''}`;
+                    let cardClass = 'module-card';
+                    if (module.completed) {
+                        cardClass += ' completed';
+                    } else if (!module.unlocked) {
+                        cardClass += ' locked';
+                    }
+                    moduleCard.className = cardClass;
                     
                     const progressPercent = Math.round((module.completedPages / module.pages) * 100);
+                    
+                    let buttonClass = 'module-btn';
+                    let buttonText = '';
+                    
+                    if (module.completed) {
+                        buttonClass += ' completed';
+                        buttonText = 'MÓDULO FINALIZADO';
+                    } else if (module.unlocked) {
+                        buttonClass += ' start';
+                        buttonText = 'INICIAR MÓDULO';
+                    } else {
+                        buttonClass += ' locked';
+                        buttonText = 'BLOQUEADO';
+                    }
                     
                     moduleCard.innerHTML = `
                         <div class="module-header">
@@ -590,8 +639,8 @@
                                 <div class="module-progress-fill" style="width: ${progressPercent}%;"></div>
                             </div>
                         </div>
-                        <button class="module-btn ${module.unlocked ? 'start' : 'locked'}" data-module-id="${module.id}">
-                            ${module.completed ? 'REVISAR MÓDULO' : module.unlocked ? 'INICIAR MÓDULO' : 'BLOQUEADO'}
+                        <button class="${buttonClass}" data-module-id="${module.id}">
+                            ${buttonText}
                         </button>
                     `;
                     
@@ -604,7 +653,10 @@
                         const moduleId = parseInt(e.target.dataset.moduleId);
                         const module = userData.modules.find(m => m.id === moduleId);
                         
-                        if (!module.unlocked) {
+                        if (module.completed) {
+                            // Permitir revisar módulo finalizado
+                            openModule(module);
+                        } else if (!module.unlocked) {
                             if (module.hasPassword) {
                                 showPasswordModal(module);
                             } else {
@@ -639,13 +691,15 @@
                 document.getElementById('moduleContentSubtitle').textContent = content.subtitle;
                 
                 if (content.quiz) {
-                    // Renderizar quiz
+                    // Renderizar quiz com novos estilos
                     let quizHTML = `<div class="quiz-container">
-                        <h4>${content.quiz.question}</h4>
+                        <div class="quiz-question">${content.quiz.question}</div>
                         <div class="quiz-options">`;
                     
                     content.quiz.options.forEach((option, index) => {
-                        quizHTML += `<button class="quiz-option" data-correct="${option.correct}">${option.text}</button>`;
+                        quizHTML += `<div class="quiz-option" data-correct="${option.correct}">
+                            <div class="quiz-option-text">${option.text}</div>
+                        </div>`;
                     });
                     
                     quizHTML += `</div><div id="quizFeedback" class="quiz-feedback"></div></div>`;
@@ -654,19 +708,46 @@
                     // Adicionar listeners às opções do quiz
                     document.querySelectorAll('.quiz-option').forEach(btn => {
                         btn.addEventListener('click', (e) => {
-                            const isCorrect = e.target.dataset.correct === 'true';
+                            const clickedOption = e.currentTarget;
+                            const isCorrect = clickedOption.dataset.correct === 'true';
                             const feedback = document.getElementById('quizFeedback');
                             
-                            document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+                            // Desabilitar todas as opções
+                            document.querySelectorAll('.quiz-option').forEach(option => {
+                                option.style.pointerEvents = 'none';
+                                const optionIsCorrect = option.dataset.correct === 'true';
+                                
+                                if (optionIsCorrect) {
+                                    option.classList.add('correct');
+                                } else if (option === clickedOption && !isCorrect) {
+                                    option.classList.add('incorrect');
+                                }
+                            });
                             
+                            // Mostrar feedback
+                            feedback.style.display = 'block';
                             if (isCorrect) {
-                                e.target.style.background = '#10b981';
-                                e.target.style.color = 'white';
-                                feedback.innerHTML = `<div class="info-box"><p class="info-box-title">✅ Correto!</p><p>${content.quiz.feedback.correct}</p><p><strong>${content.quiz.tip}</strong></p></div>`;
+                                feedback.className = 'quiz-feedback correct';
+                                feedback.innerHTML = `
+                                    <div class="quiz-feedback-icon">✅</div>
+                                    <div class="quiz-feedback-title">Correto!</div>
+                                    <div class="quiz-feedback-text">${content.quiz.feedback.correct}</div>
+                                    <div class="quiz-feedback-tip">
+                                        <div class="quiz-feedback-tip-title">💡 Dica do Alex:</div>
+                                        <div class="quiz-feedback-tip-text">${content.quiz.tip}</div>
+                                    </div>
+                                `;
                             } else {
-                                e.target.style.background = '#ef4444';
-                                e.target.style.color = 'white';
-                                feedback.innerHTML = `<div class="info-box"><p class="info-box-title">❌ Não foi dessa vez!</p><p>${content.quiz.feedback.incorrect}</p><p><strong>${content.quiz.tip}</strong></p></div>`;
+                                feedback.className = 'quiz-feedback incorrect';
+                                feedback.innerHTML = `
+                                    <div class="quiz-feedback-icon">❌</div>
+                                    <div class="quiz-feedback-title">Não foi dessa vez!</div>
+                                    <div class="quiz-feedback-text">${content.quiz.feedback.incorrect}</div>
+                                    <div class="quiz-feedback-tip">
+                                        <div class="quiz-feedback-tip-title">💡 Dica do Alex:</div>
+                                        <div class="quiz-feedback-tip-text">${content.quiz.tip}</div>
+                                    </div>
+                                `;
                             }
                         });
                     });
