@@ -189,21 +189,78 @@
 
 
     <script>
+        // Listener que garante que todo o HTML foi carregado antes de rodar o script
         document.addEventListener('DOMContentLoaded', () => {
 
-            // Variáveis globais
-            let userName = '';
-            let currentModuleId = 0;
-            let currentPageIndex = 0;
-            let moduleToUnlock = 0;
+            // --- SEÇÃO DE LOGIN - ISOLADA E PRIORIZADA ---
+            
+            const loginBtn = document.getElementById('loginBtn');
+            const userNameInput = document.getElementById('userName');
+            const passwordInput = document.getElementById('loginPassword');
+            const passwordErrorMessage = document.getElementById('passwordErrorMessage');
             const CORRECT_PASSWORD = 'destrave2025';
 
-            const AppState = {
-                userProgress: {
-                    points: 0,
-                    level: 'Iniciante',
-                    achievements: 0
-                },
+            // Função para trocar de tela de forma segura
+            function showScreen(screenId) {
+                const screenIds = ['loginScreen', 'welcomeScreen', 'dashboardScreen', 'moduleContentScreen', 'certificateScreen'];
+                screenIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.style.display = 'none';
+                    }
+                });
+                const targetScreen = document.getElementById(screenId);
+                if (targetScreen) {
+                    targetScreen.style.display = 'flex';
+                }
+            }
+            
+            // Listener do botão de login
+            if (loginBtn) {
+                loginBtn.addEventListener('click', () => {
+                    // Diagnóstico: Esta mensagem DEVE aparecer no console (F12) ao clicar.
+                    console.log("Botão de login clicado!");
+
+                    const userName = userNameInput.value.trim();
+                    const password = passwordInput.value.trim();
+
+                    if (!userName) {
+                        alert('Por favor, digite seu nome.'); // Usando alert para diagnóstico
+                        return;
+                    }
+                    if (password !== CORRECT_PASSWORD) {
+                        alert('Senha padrão incorreta.'); // Usando alert para diagnóstico
+                        return;
+                    }
+
+                    // Se chegou aqui, login está correto
+                    console.log("Login validado com sucesso. Navegando para a tela de boas-vindas.");
+                    document.getElementById('displayUserName').textContent = userName;
+                    document.getElementById('certificateUserName').textContent = userName;
+                    showScreen('welcomeScreen');
+                });
+            }
+
+            // Listener para validação de senha em tempo real
+            if (passwordInput) {
+                passwordInput.addEventListener('input', (e) => {
+                    const typedPassword = e.target.value;
+                    if (typedPassword.length === 0) {
+                        passwordErrorMessage.textContent = '';
+                        passwordInput.classList.remove('valid', 'invalid');
+                        return;
+                    }
+                    if (typedPassword === CORRECT_PASSWORD) {
+                        passwordErrorMessage.textContent = '';
+                        passwordInput.classList.add('valid');
+                        passwordInput.classList.remove('invalid');
+                    } else {
+                        passwordErrorMessage.textContent = 'Senha incorreta.';
+                        passwordInput.classList.add('invalid');
+                        passwordInput.classList.remove('valid');
+                    }
+                });
+            }
                 modules: [
                     { id: 1, title: "Desvendando a Introversão", subtitle: "Sua Força Oculta.", unlocked: true, hasPassword: false, completed: false, pages: 4, completedPages: 0, iconColor: "blue" },
                     { id: 2, title: "A Chave do Destrave", subtitle: "O Mindset do Introvertido Poderoso.", unlocked: false, hasPassword: false, completed: false, pages: 4, completedPages: 0, iconColor: "teal" },
