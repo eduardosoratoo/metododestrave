@@ -48,11 +48,17 @@
         .login-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #1e40af, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.5rem; color: white; }
         .login-title { font-size: 2rem; font-weight: 700; color: #1e40af; margin-bottom: 0.5rem; }
         .login-subtitle { color: #6b7280; margin-bottom: 2rem; }
-        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group { margin-bottom: 0.5rem; text-align: left; } /* Margin ajustada */
         .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; }
         .form-input { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; transition: all 0.3s ease; }
         .form-input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
-        .login-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-bottom: 1.5rem; transition: all 0.3s ease; }
+        
+        /* NOVAS CLASSES PARA VALIDAÇÃO */
+        .input-error-message { color: #ef4444; font-size: 0.875rem; text-align: left; margin-top: 0.25rem; height: 1.2rem; }
+        .form-input.invalid { border-color: #ef4444; }
+        .form-input.valid { border-color: #10b981; }
+
+        .login-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 1.5rem; margin-bottom: 1.5rem; transition: all 0.3s ease; }
         .login-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3); }
         .login-help { background: #f0f9ff; padding: 1rem; border-radius: 10px; border-left: 4px solid #3b82f6; }
         .login-help-title { font-weight: 600; color: #1e40af; margin-bottom: 0.5rem; }
@@ -181,6 +187,7 @@
             <div class="form-group">
                 <label for="loginPassword" class="form-label">Senha Padrão:</label>
                 <input type="password" id="loginPassword" class="form-input" placeholder="********">
+                <p id="passwordErrorMessage" class="input-error-message"></p>
             </div>
             <button id="loginBtn" class="login-btn">ENTRAR NO PORTAL</button>
             <div class="login-help">
@@ -294,6 +301,7 @@
             let currentModuleId = 0;
             let currentPageIndex = 0;
             let moduleToUnlock = 0;
+            const CORRECT_PASSWORD = 'destrave2025';
 
             const AppState = {
                 userProgress: {
@@ -613,7 +621,6 @@
                     AppState.userProgress.achievements += 1;
                     showNotification(`Módulo ${moduleId} concluído! +100 pontos! ✨`);
 
-                    // Desbloquear o próximo módulo SE ele não tiver senha
                     const nextModule = AppState.modules.find(m => m.id === moduleId + 1);
                     if (nextModule && !nextModule.hasPassword) {
                         nextModule.unlocked = true;
@@ -638,7 +645,7 @@
                     showNotification('Por favor, digite seu nome.', true);
                     return;
                 }
-                if (password !== 'destrave2025') {
+                if (password !== CORRECT_PASSWORD) {
                     showNotification('Senha padrão incorreta.', true);
                     return;
                 }
@@ -646,6 +653,32 @@
                 getEl('displayUserName').textContent = userName;
                 getEl('certificateUserName').textContent = userName;
                 showScreen('welcomeScreen');
+            });
+            
+            // NOVO: Event Listener para validação em tempo real
+            getEl('loginPassword').addEventListener('input', (e) => {
+                const passwordInput = e.target;
+                const password = passwordInput.value;
+                const errorMessageElement = getEl('passwordErrorMessage');
+
+                if (password.length === 0) {
+                    errorMessageElement.textContent = '';
+                    passwordInput.classList.remove('valid', 'invalid');
+                    return;
+                }
+
+                if (password === CORRECT_PASSWORD) {
+                    errorMessageElement.textContent = '';
+                    passwordInput.classList.add('valid');
+                    passwordInput.classList.remove('invalid');
+                } else {
+                    // Mostra o erro apenas se o usuário digitou algo substancial
+                    if (password.length > 3) { 
+                        errorMessageElement.textContent = 'Senha incorreta.';
+                        passwordInput.classList.add('invalid');
+                        passwordInput.classList.remove('valid');
+                    }
+                }
             });
             
             getEl('startJourneyBtn').addEventListener('click', () => {
