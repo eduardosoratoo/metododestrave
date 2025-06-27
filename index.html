@@ -5,39 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Destrave na Hora H - Sua Jornada de Transformação Completa</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
-            min-height: 100vh;
-            color: #1f2937;
-            overflow-x: hidden;
-        }
-
-        /* Animações suaves */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%); min-height: 100vh; color: #1f2937; overflow-x: hidden; }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         .slide-up { animation: slideUp 0.6s ease-out; }
-        .scale-in { animation: scaleIn 0.5s ease-out; }
-
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
         button, .card, .module-card, .progress-bar { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        /* Estilos do Header, Login, Welcome, Dashboard, Módulos, Modal, Notificações, etc. */
         .header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 100; }
         .logo { display: flex; align-items: center; gap: 0.75rem; }
-        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #1e40af, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color:white; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #1e40af, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; }
         .logo-text { font-size: 1.5rem; font-weight: 700; color: #1e40af; }
         .user-stats { display: flex; gap: 2rem; align-items: center; }
         .stat { text-align: center; }
@@ -54,21 +32,18 @@
         .form-input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
         .login-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-bottom: 1.5rem; transition: all 0.3s ease; }
         .login-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3); }
-        .login-help { background: #f0f9ff; padding: 1rem; border-radius: 10px; border-left: 4px solid #3b82f6; }
-        .login-help-title { font-weight: 600; color: #1e40af; margin-bottom: 0.5rem; }
-        .login-help-text { font-size: 0.875rem; color: #6b7280; }
         .welcome-screen { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 2rem; }
         .welcome-card { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); max-width: 800px; width: 100%; text-align: center; }
-        .welcome-title { font-size: 2.5rem; font-weight: 700; color: #1e40af; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .welcome-title { font-size: 2.5rem; font-weight: 700; color: #1e40af; margin-bottom: 1rem; }
         .welcome-subtitle { font-size: 1.1rem; color: #6b7280; margin-bottom: 2rem; }
         .mentor-section { margin: 2rem 0; }
-        .mentor-name { font-size: 1.5rem; font-weight: 600; color: #1e40af; margin-bottom: 0.5rem; }
-        .mentor-title { font-style: italic; color: #6b7280; margin-bottom: 1.5rem; }
         .mentor-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #059669, #10b981); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; color: white; }
+        .mentor-name { font-size: 1.5rem; font-weight: 600; color: #1e40af; }
+        .mentor-title { font-style: italic; color: #6b7280; margin-bottom: 1.5rem; }
         .mentor-message { background: #f8fafc; padding: 1.5rem; border-radius: 15px; border-left: 4px solid #059669; font-style: italic; color: #374151; margin-bottom: 2rem; }
         .start-btn { padding: 1rem 2rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
         .start-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
-        .dashboard { padding: 2rem; max-width: 1200px; margin: 0 auto; display: none; flex-direction: column; }
+        .dashboard { padding: 2rem; max-width: 1200px; margin: 0 auto; display: none; }
         .progress-overview { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 2rem; }
         .progress-title { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; }
         .progress-bar-container { background: #f3f4f6; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 1rem; }
@@ -77,135 +52,118 @@
         .modules-section { margin-bottom: 2rem; }
         .section-title { font-size: 1.8rem; font-weight: 700; color: white; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
-        .module-card { background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; }
-        .module-card.locked { background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; }
+        .module-card { background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .module-card.locked { background: #e2e8f0; border: 2px dashed #94a3b8; }
+        .module-card.locked .module-icon { filter: grayscale(100%); }
         .module-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .module-icon { width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; }
-        .module-icon.blue { background: linear-gradient(135deg, #1e40af, #3b82f6); }
-        .module-icon.teal { background: linear-gradient(135deg, #0891b2, #06b6d4); }
-        .module-icon.purple { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-        .module-info h3 { font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.5rem; }
+        .module-icon { width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; flex-shrink: 0; }
+        .module-info { flex-grow: 1; }
+        .module-info h3 { font-size: 1.3rem; font-weight: 700; color: #1f2937; margin-bottom: 0.25rem; }
         .module-info p { color: #6b7280; font-size: 0.9rem; }
-        .module-progress { margin: 1.5rem 0; }
-        .module-progress-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-        .module-progress-text { font-weight: 600; color: #1f2937; }
-        .module-progress-percent { font-weight: 700; color: #059669; }
-        .module-progress-bar { background: #f3f4f6; height: 8px; border-radius: 4px; overflow: hidden; }
-        .module-progress-fill { height: 100%; background: linear-gradient(90deg, #059669, #10b981); border-radius: 4px; transition: width 0.8s ease; }
-        .module-btn { width: 100%; padding: 1rem; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .module-status { margin-top: auto; padding-top: 1.5rem; }
+        .module-btn { width: 100%; padding: 1rem; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
         .module-btn.start { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; }
         .module-btn.start:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3); }
-        .module-btn.locked { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; position: relative; overflow: hidden; }
-        .module-btn.locked:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); }
+        .module-btn.locked { background: #94a3b8; color: #475569; cursor: not-allowed; }
+        .module-btn.unlock { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; cursor: pointer; }
+        .module-btn.unlock:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); }
+        .module-btn.completed { background: linear-gradient(135deg, #059669, #10b981); color: white; cursor: default; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; }
         .modal.show { display: flex; }
-        .modal-content { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); max-width: 400px; width: 90%; text-align: center; animation: modalSlideIn 0.3s ease-out; }
-        @keyframes modalSlideIn { from { opacity: 0; transform: scale(0.9) translateY(-20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .modal-content { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); max-width: 400px; width: 90%; text-align: center; }
         .modal-title { font-size: 1.5rem; font-weight: 700; color: #1e40af; margin-bottom: 1rem; }
         .modal-text { color: #6b7280; margin-bottom: 1.5rem; }
-        .modal-input { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; margin-bottom: 1.5rem; transition: all 0.3s ease; }
-        .modal-input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .modal-input { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; margin-bottom: 1.5rem; text-transform: uppercase; }
         .modal-buttons { display: flex; gap: 1rem; }
-        .modal-btn { flex: 1; padding: 0.75rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .modal-btn { flex: 1; padding: 0.75rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
         .modal-btn.cancel { background: #f3f4f6; color: #6b7280; }
-        .modal-btn.cancel:hover { background: #e5e7eb; }
         .modal-btn.confirm { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; }
-        .modal-btn.confirm:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(30, 64, 175, 0.2); }
-        .module-content-screen { min-height: 100vh; display: none; flex-direction: column; padding: 2rem; max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-top: 2rem; margin-bottom: 2rem; }
+        .module-content-screen { min-height: 100vh; display: none; flex-direction: column; background: white; margin: 2rem auto; padding: 2rem; max-width: 900px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
         .module-content-screen.show { display: flex; }
-        .module-content-header { text-align: center; margin-bottom: 2rem; border-bottom: 2px solid #3b82f6; padding-bottom: 1.5rem; }
-        .module-content-header h2 { font-size: 2.2rem; color: #1e40af; margin-bottom: 0.5rem; }
-        .module-content-header p { color: #6b7280; font-size: 1.1rem; }
+        .module-content-header h2 { font-size: 2rem; color: #1e40af; }
+        .module-content-header p { color: #6b7280; font-size: 1.1rem; margin-bottom: 2rem; }
         .module-page-content { flex-grow: 1; line-height: 1.8; color: #374151; font-size: 1.1rem; }
-        .module-page-content h3 { font-size: 1.6rem; color: #1e40af; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+        .module-page-content h3 { font-size: 1.5rem; color: #1e40af; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #dbeafe; padding-bottom: 0.5rem; }
         .module-page-content p { margin-bottom: 1rem; }
-        .module-page-content ul { margin-bottom: 1rem; margin-left: 1.5rem; list-style-type: '✔ '; }
-        .module-page-content li { margin-bottom: 0.75rem; padding-left: 0.5rem; }
-        .info-box { background-color: #f0f9ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; }
-        .info-box-title { font-weight: 700; color: #1e40af; margin-bottom: 0.5rem; }
-        .exercise-box { background-color: #fefce8; border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; }
-        .exercise-box-title { font-weight: 700; color: #b45309; margin-bottom: 0.5rem; }
+        .module-page-content ul { list-style-position: inside; padding-left: 1rem; }
+        .module-page-content li { margin-bottom: 0.75rem; }
+        .module-page-content blockquote { border-left: 4px solid #059669; background: #f0fdfa; padding: 1rem; margin: 1.5rem 0; border-radius: 8px; font-style: italic; }
+        .module-page-content .interactive-exercise { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 15px; padding: 1.5rem; margin: 2rem 0; }
+        .module-page-content .interactive-exercise h4 { color: #1e40af; margin-bottom: 1rem; }
+        .module-page-content .interactive-textarea { width: 100%; min-height: 120px; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 1rem; margin-top: 0.5rem; }
+        .module-page-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+        .module-page-content th, .module-page-content td { border: 1px solid #e5e7eb; padding: 0.8rem; text-align: left; }
+        .module-page-content th { background-color: #f3f4f6; font-weight: 700; }
         .module-navigation { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; }
         .page-indicator { font-size: 0.9rem; color: #6b7280; }
-        .nav-btn { padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: #e5e7eb; color: #374151; }
-        .nav-btn:hover { background: #d1d5db; }
+        .nav-btn { padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; background: #e5e7eb; color: #374151; }
         .nav-btn.primary { background: linear-gradient(135deg, #059669, #10b981); color: white; }
-        .nav-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(5, 150, 105, 0.2); }
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .quiz-section { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e5e7eb; }
+        .quiz-section { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e5e7eb; display: none; }
         .quiz-section h3 { font-size: 1.8rem; color: #1e40af; margin-bottom: 1.5rem; text-align: center; }
-        .question-card { background: #f9fafb; border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); }
-        .question-card p { font-size: 1.1rem; font-weight: 600; color: #374151; margin-bottom: 1rem; }
-        .options-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
-        .option-btn { width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 8px; background: white; text-align: left; cursor: pointer; font-size: 1rem; color: #374151; transition: all 0.2s ease; }
+        .question-card p { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+        .options-grid { display: grid; gap: 0.75rem; }
+        .option-btn { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 8px; background: white; text-align: left; cursor: pointer; font-size: 1rem; transition: all 0.2s ease; }
         .option-btn:hover { border-color: #3b82f6; background: #eff6ff; }
         .option-btn.selected { background: #dbeafe; border-color: #3b82f6; font-weight: 600; }
         .quiz-actions { display: flex; justify-content: center; margin-top: 2rem; }
-        .confirm-quiz-btn { padding: 1rem 2rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-        .confirm-quiz-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
-        .quiz-feedback { margin-top: 1.5rem; padding: 1.5rem; border-radius: 15px; background: #f0f9ff; border-left: 4px solid #3b82f6; color: #374151; font-size: 1rem; display: none; animation: fadeIn 0.5s ease-out; }
+        .confirm-quiz-btn, .finish-module-btn { padding: 1rem 2rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
+        .quiz-feedback { margin-top: 1.5rem; padding: 1.5rem; border-radius: 15px; background: #f0f9ff; border-left: 4px solid #3b82f6; display: none; }
         .quiz-feedback.show { display: block; }
         .quiz-feedback h4 { color: #1e40af; margin-bottom: 0.5rem; font-size: 1.2rem; }
-        .quiz-feedback p { margin-bottom: 0.5rem; }
-        .quiz-feedback .alex-tip { font-style: italic; color: #059669; font-weight: 600; margin-top: 1rem; }
-        .finish-module-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-top: 2rem; display: none; }
-        .finish-module-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
-        .certificate-screen { min-height: 100vh; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-top: 2rem; margin-bottom: 2rem; text-align: center; }
-        .certificate-screen.show { display: flex; }
-        .certificate-icon { width: 100px; height: 100px; background: linear-gradient(135deg, #f59e0b, #fbbf24); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; margin-bottom: 1.5rem; }
-        .certificate-title { font-size: 2.5rem; font-weight: 700; color: #1e40af; margin-bottom: 1rem; }
-        .certificate-subtitle { font-size: 1.2rem; color: #6b7280; margin-bottom: 2rem; }
-        .certificate-details { background: #f9fafb; padding: 2rem; border-radius: 15px; border: 1px solid #e5e7eb; margin-bottom: 2rem; width: 100%; }
-        .certificate-details p { font-size: 1.1rem; margin-bottom: 0.75rem; color: #374151; }
-        .certificate-details strong { color: #1e40af; }
-        .accept-certificate-btn { padding: 1rem 2rem; background: linear-gradient(135deg, #059669, #10b981); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-        .accept-certificate-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
-        .notification-container { position: fixed; top: 20px; right: 20px; z-index: 2000; }
+        .quiz-feedback .alex-tip { font-style: italic; color: #059669; font-weight: 600; margin-top: 0.5rem; }
+        .finish-module-btn { margin-top: 2rem; display: none; }
+        .notification-container { position: fixed; top: 20px; right: 20px; z-index: 1000; }
         .notification { background: #1e40af; color: white; padding: 1rem 1.5rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); margin-bottom: 10px; opacity: 0; transform: translateY(-20px); animation: slideInNotification 0.5s forwards, fadeOutNotification 0.5s 3.5s forwards; }
+        .notification.error { background: #ef4444; }
         @keyframes slideInNotification { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutNotification { to { opacity: 0; transform: translateY(-20px); } }
-        @media (max-width: 768px) { .header { flex-direction: column; gap: 1rem; } .user-stats { width: 100%; justify-content: space-around; } .login-card, .welcome-card, .module-content-screen, .modal-content, .certificate-screen { padding: 2rem; } .login-title, .welcome-title, .module-content-header h2, .certificate-title { font-size: 1.8rem; } .modules-grid { grid-template-columns: 1fr; } .module-card { padding: 1.5rem; } .module-icon { width: 50px; height: 50px; font-size: 1.2rem; } .module-info h3 { font-size: 1.1rem; } .module-info p { font-size: 0.8rem; } .module-btn { padding: 0.8rem; font-size: 0.9rem; } .nav-btn, .confirm-quiz-btn, .accept-certificate-btn { padding: 0.8rem 1.2rem; font-size: 0.9rem; } .quiz-section h3 { font-size: 1.5rem; } .option-btn { padding: 0.6rem 0.8rem; font-size: 0.9rem; } }
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .login-card, .welcome-card, .module-content-screen { padding: 1.5rem; }
+            .login-title, .welcome-title, .module-content-header h2 { font-size: 1.8rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="loginScreen" class="login-screen" style="display: flex;">
-        <div class="login-card fade-in">
-            <div class="login-icon">🔑</div>
+    <!-- Tela de Login -->
+    <div id="loginScreen" class="login-screen fade-in">
+        <div class="login-card">
+            <div class="logo-icon" style="margin: 0 auto 1.5rem; width: 80px; height: 80px; font-size: 2rem;">💡</div>
             <h1 class="login-title">Destrave na Hora H</h1>
-            <p class="login-subtitle">Insira seus dados para começar a jornada.</p>
+            <p class="login-subtitle">Sua jornada para destravar começa aqui.</p>
             <div class="form-group">
                 <label for="userName" class="form-label">Seu Nome:</label>
-                <input type="text" id="userName" class="form-input" placeholder="Digite seu nome completo">
+                <input type="text" id="userName" class="form-input" placeholder="Digite seu nome">
             </div>
             <div class="form-group">
-                <label for="loginPassword" class="form-label">Senha Padrão:</label>
+                <label for="loginPassword" class="form-label">Senha de Acesso:</label>
                 <input type="password" id="loginPassword" class="form-input" placeholder="********">
             </div>
             <button id="loginBtn" class="login-btn">ENTRAR NO PORTAL</button>
-            <div class="login-help">
-                <h4 class="login-help-title">Precisa de Ajuda?</h4>
-                <p class="login-help-text">Sua senha de acesso foi enviada para seu e-mail. Caso não a encontre, verifique na área de membros ou entre em contato com o suporte.</p>
-            </div>
         </div>
     </div>
 
+    <!-- Tela de Boas-vindas -->
     <div id="welcomeScreen" class="welcome-screen">
-        <div class="welcome-card fade-in">
+        <div class="welcome-card">
             <h1 class="welcome-title">Olá, <span id="displayUserName"></span>! 👋</h1>
-            <p class="welcome-subtitle">Sua voz tem poder. Vamos descobrir juntos como usar!</p>
+            <p class="welcome-subtitle">Que bom ter você aqui! Prepare-se para uma jornada transformadora.</p>
             <div class="mentor-section">
                 <div class="mentor-avatar">👨‍🏫</div>
                 <h3 class="mentor-name">Alex, Seu Mentor Digital</h3>
                 <p class="mentor-title">Especialista em Comunicação Autêntica</p>
                 <div class="mentor-message">
-                    "Que alegria ter você aqui! Por muito tempo, o mundo tentou nos convencer de que era preciso ser um showman para ser ouvido. Pura conversa! Sua mente quieta é a base de uma potência incrível. Estou aqui para te entregar o mapa e as chaves dessa sua 'Ferrari mental'. Vamos juntos?"
+                    "Seja muito bem-vindo(a)! Minha missão é te guiar para que você destrave sua voz autêntica e conquiste o impacto que merece, sendo 100% você mesmo. Estou aqui para te apoiar em cada passo dessa jornada. Vamos juntos!"
                 </div>
             </div>
             <button id="startJourneyBtn" class="start-btn">COMEÇAR MINHA JORNADA! 🚀</button>
         </div>
     </div>
 
+    <!-- Dashboard Principal -->
     <div id="dashboardScreen" class="dashboard">
         <header class="header">
             <div class="logo">
@@ -214,20 +172,15 @@
             </div>
             <div class="user-stats">
                 <div class="stat">
-                    <div id="userPoints" class="stat-number">0</div>
-                    <div class="stat-label">Pontos</div>
+                    <div id="userNameHeader" class="stat-number">Aluno</div>
+                    <div class="stat-label">Aluno(a)</div>
                 </div>
                 <div class="stat">
-                    <div id="userLevel" class="stat-number">Iniciante</div>
-                    <div class="stat-label">Nível</div>
-                </div>
-                <div class="stat">
-                    <div id="userAchievements" class="stat-number">0</div>
-                    <div class="stat-label">Conquistas</div>
+                    <div id="modulesCompleted" class="stat-number">0/10</div>
+                    <div class="stat-label">Módulos</div>
                 </div>
             </div>
         </header>
-
         <main class="main-content slide-up">
             <section class="progress-overview">
                 <h2 class="progress-title">Seu Progresso na Jornada</h2>
@@ -236,19 +189,20 @@
                 </div>
                 <p class="progress-text"><span id="overallProgressText">0%</span> Concluído</p>
             </section>
-
             <section class="modules-section">
-                <h2 class="section-title">Módulos da Jornada 🗺️</h2>
+                <h2 class="section-title">🗺️ Módulos da Jornada</h2>
                 <div id="modulesGrid" class="modules-grid">
-                    </div>
+                    <!-- Cards dos Módulos serão gerados via JS -->
+                </div>
             </section>
         </main>
     </div>
 
+    <!-- Modal de Senha -->
     <div id="passwordModal" class="modal">
         <div class="modal-content">
             <h3 class="modal-title">🔑 Desbloquear Módulo</h3>
-            <p id="modalText" class="modal-text">Para acessar este módulo, por favor, insira a senha:</p>
+            <p id="modalText" class="modal-text">Para acessar este módulo, insira a senha:</p>
             <input type="password" id="modulePasswordInput" class="modal-input" placeholder="Senha do Módulo">
             <div class="modal-buttons">
                 <button id="cancelPasswordBtn" class="modal-btn cancel">Cancelar</button>
@@ -257,502 +211,541 @@
         </div>
     </div>
 
+    <!-- Notificações -->
     <div id="notificationContainer" class="notification-container"></div>
 
+    <!-- Conteúdo dos Módulos -->
     <div id="moduleContentScreen" class="module-content-screen">
         <div class="module-content-header">
             <h2 id="moduleContentTitle"></h2>
             <p id="moduleContentSubtitle"></p>
         </div>
         <div id="modulePageContent" class="module-page-content"></div>
+        
+        <div id="quizSection" class="quiz-section">
+            <div class="question-card">
+                <p id="quizQuestion"></p>
+                <div id="quizOptions" class="options-grid"></div>
+            </div>
+            <div class="quiz-actions">
+                <button id="confirmQuizBtn" class="confirm-quiz-btn">✅ Confirmar Resposta</button>
+            </div>
+            <div id="quizFeedback" class="quiz-feedback">
+                <h4 id="feedbackTitle"></h4>
+                <p id="feedbackText"></p>
+                <p class="alex-tip" id="alexTip"></p>
+            </div>
+            <button id="finishModuleBtn" class="finish-module-btn">Concluir Módulo e Voltar 🚀</button>
+        </div>
+
         <div class="module-navigation">
             <button id="prevPageBtn" class="nav-btn">Página Anterior</button>
             <span id="pageIndicator" class="page-indicator">Página 1 de X</span>
             <button id="nextPageBtn" class="nav-btn primary">Próxima Página</button>
         </div>
-        <button id="finishModuleBtn" class="finish-module-btn">CONCLUIR MÓDULO E VOLTAR</button>
     </div>
-
-    <div id="certificateScreen" class="certificate-screen">
-        <div class="certificate-icon">🏆</div>
-        <h1 class="certificate-title">Parabéns, <span id="certificateUserName"></span>!</h1>
-        <p class="certificate-subtitle">Você concluiu com sucesso a jornada Destrave na Hora H!</p>
-        <div class="certificate-details">
-            <p>Este certificado celebra sua dedicação em desvendar sua força oculta, dominar o mindset do <strong>Introvertido Poderoso</strong> e aprender a usar sua voz com autenticidade e impacto.</p>
-            <p>O mundo precisa da sua perspectiva. Continue brilhando!</p>
-            <p>Data de Conclusão: <strong id="completionDate"></strong></p>
-        </div>
-        <button id="acceptCertificateBtn" class="accept-certificate-btn">VOLTAR AO DASHBOARD</button>
-    </div>
-
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    // ----- ESTADO DA APLICAÇÃO E CONFIGURAÇÕES GLOBAIS -----
 
-            // Variáveis globais
-            let userName = '';
-            let currentModuleId = 0;
-            let currentPageIndex = 0;
-            let moduleToUnlock = 0;
+    let appState = {
+        userName: '',
+        currentModule: 0,
+        currentPage: 0,
+        selectedQuizOption: null,
+        modules: {}
+    };
 
-            const AppState = {
-                userProgress: {
-                    points: 0,
-                    level: 'Iniciante',
-                    achievements: 0
+    const TOTAL_MODULES = 10;
+
+    const modulePasswords = {
+        4: 'HORADOSHOW',
+        5: 'COMUNIQUE',
+        6: 'CONFIANCA',
+        7: 'SEMPRESSAO',
+        8: 'MENTEFORTE',
+        9: 'CONEXAO',
+        10: 'LEGADO'
+    };
+
+    // ----- CONTEÚDO DOS MÓDULOS -----
+    const moduleData = {
+        1: { 
+            title: "Desvendando a Introversão: Sua Força Oculta", 
+            icon: "🔎",
+            pages: [
+                {
+                    subtitle: "Introdução: Sua Voz Tem Poder!",
+                    content: `<p>Cansado de ter ideias brilhantes que nunca veem a luz do dia? De sentir que sua voz se perde no burburinho, enquanto o reconhecimento vai para quem fala mais alto?</p><p>Sabe aquela reunião importante onde você tem A SACADA genial, mas sua voz resolve tirar férias? A oportunidade passa, e fica aquela sensação amarga de 'e se eu tivesse falado?'.</p><blockquote>Se essa cena te parece familiar, pode respirar aliviado: você não está sozinho e, o mais importante, você chegou ao lugar certo.</blockquote><p>Sua mente mais quieta, seu jeito observador e seu pensamento profundo não são desvantagens – são a base de uma potência comunicativa incrível. É como ter uma Ferrari na garagem, e este guia vai te ensinar onde fica a chave e como sentir a vibração do motor.</p>`
                 },
-                modules: [
-                    { id: 1, title: "Desvendando a Introversão", subtitle: "Sua Força Oculta.", unlocked: true, hasPassword: false, completed: false, pages: 4, completedPages: 0, iconColor: "blue" },
-                    { id: 2, title: "A Chave do Destrave", subtitle: "O Mindset do Introvertido Poderoso.", unlocked: false, hasPassword: false, completed: false, pages: 4, completedPages: 0, iconColor: "teal" },
-                    { id: 3, title: "Comunicação Autêntica", subtitle: "Sua Voz, Seu Impacto.", unlocked: false, hasPassword: false, completed: false, pages: 4, completedPages: 0, iconColor: "purple" },
-                    { id: 4, title: "Navegando em Ambientes Extrovertidos", subtitle: "Estratégias Práticas.", unlocked: false, hasPassword: true, password: "navegar", completed: false, pages: 4, completedPages: 0, iconColor: "blue" },
-                    { id: 5, title: "Liderança Introvertida", subtitle: "Inspirando pelo Exemplo Silencioso.", unlocked: false, hasPassword: true, password: "liderar", completed: false, pages: 4, completedPages: 0, iconColor: "teal" },
-                    { id: 6, title: "Criatividade e Inovação", subtitle: "O Mundo Interior do Introvertido.", unlocked: false, hasPassword: true, password: "inovar", completed: false, pages: 4, completedPages: 0, iconColor: "purple" },
-                    { id: 7, title: "Relacionamentos Significativos", subtitle: "Conexões Profundas.", unlocked: false, hasPassword: true, password: "conectar", completed: false, pages: 4, completedPages: 0, iconColor: "blue" },
-                    { id: 8, title: "Bem-Estar e Autocuidado", subtitle: "Priorizando Sua Saúde Mental.", unlocked: false, hasPassword: true, password: "cuidar", completed: false, pages: 4, completedPages: 0, iconColor: "teal" },
-                    { id: 9, title: "O Introvertido no Mundo Digital", subtitle: "Conectando Online com Propósito.", unlocked: false, hasPassword: true, password: "digital", completed: false, pages: 4, completedPages: 0, iconColor: "purple" },
-                    { id: 10, title: "Seu Legado Introvertido", subtitle: "Impacto e Propósito.", unlocked: false, hasPassword: true, password: "legado", completed: false, pages: 5, completedPages: 0, iconColor: "blue" },
-                ]
-            };
-            
-            // --- BANCO DE DADOS DE CONTEÚDO ---
-            const moduleContent = {
-                1: [
-                    {
-                        title: "Módulo 1: Desvendando a Introversão",
-                        subtitle: "Capítulo 1.1: Introversão Não é Timidez",
-                        content: `<h3>Você não é tímido, você só recarrega diferente!</h3><p>É super comum confundirem introversão com timidez, mas vamos esclarecer isso de uma vez por todas. Pense assim: sua 'bateria social' funciona de um jeito único.</p><p><strong>Introversão</strong> é um traço de personalidade. É sobre como você obtém energia. Se você se sente revigorado depois de um tempo sozinho, lendo um livro ou ouvindo música, você provavelmente é introvertido. Você não tem medo de pessoas, apenas prefere interações mais profundas e menos estímulos.</p><p><strong>Timidez</strong>, por outro lado, é ansiedade social. É o medo de ser julgado ou avaliado negativamente. Uma pessoa tímida pode querer muito estar em uma festa, mas o medo a paralisa. Um introvertido pode até ser um palestrante incrível, desde que tenha tempo para se preparar e recarregar as energias depois.</p><div class="info-box"><p class="info-box-title">💡 Ponto Chave</p><p><strong>Introversão = Fonte de Energia.</strong> Você recarrega na solitude.</p><p><strong>Timidez = Medo.</strong> É a ansiedade em situações sociais.</p><p>Entender essa diferença é o primeiro passo para abraçar quem você é, sem culpa!</p></div>`
-                    },
-                    {
-                        title: "Módulo 1: Desvendando a Introversão",
-                        subtitle: "Capítulo 1.2: Seus Superpoderes Escondidos",
-                        content: `<h3>Você tem superpoderes. Sim, é sério.</h3><p>Seu jeito mais quieto e observador não é uma desvantagem. É a fonte de habilidades incríveis que, em um mundo barulhento, são raras e extremamente valiosas. Vamos conhecer algumas delas?</p><ul><li><strong>🎧 A Superaudição (Escuta Profunda):</strong> Enquanto todos estão pensando no que vão falar, você realmente escuta. Você capta as entrelinhas, as emoções. Isso te torna um mestre em entender pessoas e resolver conflitos.</li><li><strong>🧠 O Raio-X Mental (Análise Crítica):</strong> Sua mente vai fundo. Você não se contenta com o superficial, o que te torna excelente em planejamento, estratégia e em encontrar soluções que ninguém mais viu.</li><li><strong>🎯 O Foco de Laser (Concentração):</strong> Em um mundo de distrações, sua capacidade de mergulhar em uma tarefa é ouro. Isso resulta em um trabalho de altíssima qualidade e precisão.</li><li><strong>🧐 A Visão Além do Alcance (Observação Aguçada):</strong> Você lê o ambiente e as pessoas. Nota a linguagem corporal e as dinâmicas de grupo, o que te dá um mapa estratégico para qualquer interação social.</li><li><strong>🧭 A Bússola Interna (Integridade):</strong> Quando você fala, suas palavras têm peso. Elas vêm de um lugar de convicção e autenticidade, e isso constrói uma confiança magnética.</li></ul>`
-                    },
-                    {
-                        title: "Módulo 1: Desvendando a Introversão",
-                        subtitle: "Capítulo 1.3: O Preço do Silêncio",
-                        content: `<h3>Por que às vezes parece tão difícil?</h3><p>Mesmo com tantos superpoderes, sabemos que nem tudo são flores. Viver em um mundo que aplaude a extroversão pode trazer alguns desafios bem comuns. Se você se identificar com algum, saiba que não está sozinho e que há solução!</p><ul><li><strong>Bateria em 1%:</strong> A famosa exaustão social. Reuniões longas e festas barulhentas podem te deixar completamente sem energia.</li><li><strong>Aversão ao "Small Talk":</strong> Conversas sobre o tempo podem parecer uma perda de tempo para você, que prefere ir direto ao que importa.</li><li><strong>O Fantasma da Invisibilidade:</strong> A frustração de ter uma ideia genial e ver outra pessoa, que falou mais alto, levar o crédito.</li><li><strong>O Crítico Interno:</strong> Aquela vozinha que te julga e te faz pensar mil vezes antes de falar, paralisando você com o medo de errar.</li></ul><div class="info-box"><p class="info-box-title">💡 Fique Tranquilo(a)</p><p>Reconhecer esses desafios é o primeiro passo para superá-los. Nos próximos módulos, vamos te dar as ferramentas exatas para transformar cada um desses obstáculos em oportunidades.</p></div>`
-                    },
-                    {
-                        title: "Módulo 1: Conclusão e Quiz",
-                        subtitle: "Quiz: Hora de Testar seus Conhecimentos!",
-                        quiz: { question: "Qual é a principal diferença entre introversão e timidez?", options: [{ text: "Não há diferença, são a mesma coisa.", correct: false }, { text: "Introversão é sobre como você recarrega sua energia, enquanto a timidez é o medo do julgamento social.", correct: true }, { text: "Introvertidos não gostam de pessoas, tímidos sim.", correct: false }], feedback: { correct: "Exato! Você entendeu a base de tudo. Introversão é sua forma de operar no mundo. Timidez é uma ansiedade que pode ser superada. Reconhecer isso é libertador!", incorrect: "Quase lá! Lembre-se: Introversão é sobre ENERGIA (recarregar sozinho), enquanto timidez é sobre MEDO (do julgamento). Você pode ser um introvertido super confiante!" }, tip: "Dica do Alex: Abrace sua necessidade de recarregar. Não é um defeito, é o seu design. É o que permite que seus superpoderes funcionem em máxima capacidade!" }
-                    }
-                ],
-                2: [
-                    {
-                        title: "Módulo 2: A Chave do Destrave",
-                        subtitle: "Capítulo 2.1: Aceitação e Autocompaixão",
-                        content: `<h3>O passo mais importante: pare de tentar ser outra pessoa.</h3><p>A jornada para destravar seu potencial começa com a aceitação total de quem você é. Por muito tempo, a sociedade nos disse para 'sermos mais extrovertidos'. O resultado? Cansaço, frustração e a sensação de que estamos usando uma máscara.</p><p>A verdadeira força não está em mudar, mas em <strong>otimizar quem você já é</strong>. Abrace sua introversão. Ela não é uma falha, é sua característica mais valiosa.</p><div class="exercise-box"><p class="exercise-box-title">✍️ Exercício Rápido: Reconheça seus Sinais</p><p>Pense na última vez que se sentiu esgotado(a) socialmente. Quais foram os sinais? Irritabilidade? Cansaço extremo? A sensação de estar 'atuando'? Anote. Reconhecer esses sinais é o primeiro passo para respeitar seus limites.</p></div><h3>Seja gentil consigo mesmo.</h3><p>Autocompaixão é entender que sua necessidade de recarga e seu estilo de comunicação são válidos. Em vez de se criticar, diga a si mesmo: 'Eu opero de uma maneira diferente, e igualmente eficaz'.</p>`
-                    },
-                    {
-                        title: "Módulo 2: A Chave do Destrave",
-                        subtitle: "Capítulo 2.2: Gerenciando sua Energia Social",
-                        content: `<h3>Sua energia social é um recurso precioso. Use-a com sabedoria!</h3><p>Pense na sua energia social como a bateria de um celular. Interações a drenam, a solitude a recarrega. Gerenciar isso é a chave para evitar a exaustão.</p><h4>Estratégias Práticas:</h4><ul><li><strong>Planeje seus Eventos:</strong> Se tem uma festa ou reunião longa, reserve um tempo 'off' antes e depois.</li><li><strong>Faça Pausas Estratégicas:</strong> Durante um evento, não hesite em dar uma 'escapada' de 5 minutos para tomar um ar.</li><li><strong>Qualidade > Quantidade:</strong> Em vez de tentar falar com 20 pessoas, foque em ter 2 ou 3 conversas mais profundas.</li><li><strong>Aprenda a Dizer 'Não':</strong> "Agradeço o convite, mas preciso de um tempo para mim" é um ato de autocuidado.</li></ul>`
-                    },
-                    {
-                        title: "Módulo 2: A Chave do Destrave",
-                        subtitle: "Capítulo 2.3: Desativando o Crítico Interno",
-                        content: `<h3>Aquela vozinha chata? Vamos colocá-la no mudo.</h3><p>O 'crítico interno' é aquela voz que diz: "Não fale, vão te achar bobo". Ele se alimenta do medo do julgamento. Desativá-lo é essencial para você agir.</p><h4>Como silenciar essa voz:</h4><ol><li><strong>Identifique o Crítico:</strong> Dê um nome a essa voz. "Lá vem o Zé Furação de novo". Reconhecê-la já diminui seu poder.</li><li><strong>Questione a Validade:</strong> O que ele diz é um fato ou um medo? Na maioria das vezes, são apenas suposições pessimistas.</li><li><strong>Substitua o Pensamento:</strong> Quando o crítico disser "Você vai errar", responda internamente: "Eu me preparei, e mesmo que eu cometa um erro, o valor da minha mensagem continua o mesmo".</li></ol><div class="info-box"><p class="info-box-title">💡 Dica de Ouro: Foque no Conteúdo</p><p>Em vez de se preocupar com a sua performance, concentre-se no valor da sua mensagem. Quando você acredita no que tem a dizer, o medo do julgamento perde a força.</p></div>`
-                    },
-                    {
-                        title: "Módulo 2: Conclusão e Quiz",
-                        subtitle: "Quiz: Teste seu novo Mindset!",
-                        quiz: { question: "Qual é a estratégia mais eficaz para evitar a exaustão social para um introvertido?", options: [{ text: "Forçar-se a ir a todos os eventos para se acostumar.", correct: false }, { text: "Planejar os eventos, fazer pausas estratégicas e focar em conversas de qualidade.", correct: true }, { text: "Evitar completamente qualquer tipo de interação social.", correct: false }], feedback: { correct: "Perfeito! Você entendeu a essência do gerenciamento de energia. Não se trata de evitar, mas de interagir de forma inteligente e sustentável.", incorrect: "Cuidado com os extremos! A solução não é se isolar nem se forçar ao limite. O caminho do meio, com planejamento e estratégia, é o que te permitirá brilhar sem se apagar." }, tip: "Dica do Alex: Trate seu tempo de recarga como um compromisso sério na sua agenda. É tão importante quanto qualquer reunião de trabalho." }
-                    }
-                ],
-                3: [
-                     {
-                        title: "Módulo 3: Comunicação Autêntica",
-                        subtitle: "Capítulo 3.1: A Arte da Escuta Ativa",
-                        content: `<h3>Ouça para conectar, não para responder.</h3><p>A escuta ativa é seu superpoder mais natural. Em um mundo onde todos querem falar, a capacidade de realmente ouvir se destaca. Isso vai muito além de ficar em silêncio; envolve presença total.</p><h4>Como aprimorar sua escuta:</h4><ul><li><strong>Esteja 100% Presente:</strong> Guarde o celular, esqueça a lista de supermercado. Foque totalmente no interlocutor.</li><li><strong>Ouça para Entender:</strong> Seu objetivo não é formular a resposta perfeita, mas sim compreender de verdade a perspectiva do outro. Suspenda o julgamento.</li><li><strong>Não Interrompa:</strong> Deixe a pessoa concluir o raciocínio. Isso demonstra respeito e garante que você captou a mensagem completa.</li></ul>`
-                    },
-                    {
-                        title: "Módulo 3: Comunicação Autêntica",
-                        subtitle: "Capítulo 3.2: Fazendo Perguntas que Geram Conexão",
-                        content: `<h3>Perguntas são pontes para conversas profundas.</h3><p>Sua escuta ativa, combinada com perguntas inteligentes, pode transformar uma conversa superficial em uma conexão significativa. É a sua forma de guiar a conversa para um território mais interessante.</p><h4>Tipos de Perguntas Poderosas:</h4><ul><li><strong>Abertas:</strong> Troque "Você gostou da reunião?" por "O que você achou mais interessante na reunião de hoje?". Incentive a elaboração.</li><li><strong>De Esclarecimento:</strong> "Você poderia me dar um exemplo?" ou "Pode explicar um pouco mais sobre isso?". Mostra seu interesse genuíno.</li><li><strong>De Sentimento:</strong> "Como você se sentiu com isso?". Leva a conversa para um nível mais pessoal e profundo.</li></ul><div class="info-box"><p class="info-box-title">💡 Experimente</p><p>Na sua próxima conversa, tente fazer pelo menos duas perguntas abertas. Observe como a qualidade da interação muda.</p></div>`
-                    },
-                    {
-                        title: "Módulo 3: Comunicação Autêntica",
-                        subtitle: "Capítulo 3.3: Expressando Ideias com o Método PREP",
-                        content: `<h3>Tenha clareza e impacto na sua fala.</h3><p>O desafio não é ter boas ideias, mas expressá-las de forma que todos entendam. O método PREP é uma ferramenta simples e poderosa para organizar seus pensamentos e comunicar de forma persuasiva.</p><ul><li><strong>P (Point / Ponto):</strong> Comece com sua ideia principal. Vá direto ao ponto. Ex: "Eu acredito que devemos adotar a nova ferramenta X."</li><li><strong>R (Reason / Razão):</strong> Dê a principal razão. Por que sua ideia é boa? Ex: "Porque ela vai automatizar nosso processo e economizar 10 horas de trabalho por semana."</li><li><strong>E (Example / Exemplo):</strong> Ilustre com um exemplo concreto. Ex: "A equipe Y já testou e conseguiu reduzir o tempo de relatório de 3 horas para 15 minutos."</li><li><strong>P (Point / Ponto):</strong> Reforce seu ponto principal. Ex: "Por isso, a implementação da ferramenta X é crucial para nossa eficiência."</li></ul>`
-                    },
-                    {
-                        title: "Módulo 3: Conclusão e Quiz",
-                        subtitle: "Quiz: Comunique-se com Poder!",
-                        quiz: { question: "Ao usar a escuta ativa, qual deve ser seu principal objetivo?", options: [{ text: "Formular uma resposta inteligente o mais rápido possível.", correct: false }, { text: "Compreender verdadeiramente a perspectiva da outra pessoa, sem julgamento.", correct: true }, { text: "Encontrar falhas no argumento do outro para vencer a discussão.", correct: false }], feedback: { correct: "Perfeito! A escuta genuína busca a compreensão e a conexão, não a competição. Esse é o segredo para construir relacionamentos fortes e ser um comunicador eficaz.", incorrect: "Cuidado com essa armadilha! O objetivo da escuta ativa não é preparar sua próxima fala, mas sim conectar-se com a fala atual do outro. A compreensão vem antes da resposta." }, tip: "Dica do Alex: O silêncio é seu amigo. Após alguém falar, fazer uma pequena pausa antes de responder mostra que você está processando, e não apenas esperando sua vez." }
-                    }
-                ],
-                4: [
-                    {
-                        title: "Módulo 4: Navegando em Ambientes Extrovertidos",
-                        subtitle: "Capítulo 4.1: Brilhando em Reuniões",
-                        content: `<h3>A preparação é 90% da sua vitória.</h3><p>Reuniões podem parecer intimidantes, mas com estratégia, você pode fazer sua voz ser ouvida. O segredo não é falar mais, mas falar melhor.</p><h4>Plano de Ação para Reuniões:</h4><ul><li><strong>Estude a Pauta:</strong> Peça a pauta com antecedência. Reflita sobre os tópicos e anote suas ideias.</li><li><strong>Defina 1 ou 2 Pontos-Chave:</strong> Você não precisa opinar sobre tudo. Escolha os tópicos onde sua contribuição é mais valiosa e foque neles.</li><li><strong>Use um 'Gancho':</strong> Para entrar na conversa, conecte sua fala com algo que já foi dito. Ex: "Aproveitando o que a Maria disse sobre o prazo...".</li><li><strong>Seja Conciso (Use o PREP!):</strong> Apresente sua ideia de forma clara e direta. Lembre-se do Ponto, Razão, Exemplo, Ponto.</li></ul><div class="info-box"><p class="info-box-title">💡 Dica Extra</p><p>Se não conseguiu falar, não tem problema! Envie um e-mail de acompanhamento com suas ideias. Isso garante que sua contribuição seja registrada.</p></div>`
-                    },
-                    {
-                        title: "Módulo 4: Navegando em Ambientes Extrovertidos",
-                        subtitle: "Capítulo 4.2: Networking com Propósito",
-                        content: `<h3>Qualidade, não quantidade.</h3><p>Networking não é sobre coletar cartões, é sobre construir relacionamentos. Para introvertidos, isso é uma vantagem, pois somos ótimos em profundidade.</p><h4>Como fazer networking do seu jeito:</h4><ul><li><strong>Pesquise Antes:</strong> Se for a um evento, veja quem vai. Identifique 2 ou 3 pessoas com quem você gostaria de conversar.</li><li><strong>Foque em Conversas Um a Um:</strong> Procure pessoas que estão sozinhas ou em dupla. É mais fácil e menos desgastante.</li><li><strong>Seja Curioso:</strong> Use sua escuta ativa. Faça perguntas sobre o trabalho e os interesses da outra pessoa. Pessoas adoram falar sobre si mesmas.</li><li><strong>Pense em Como Ajudar:</strong> Em vez de 'o que eu posso ganhar?', pense 'como posso contribuir?'. Oferecer valor é a forma mais rápida de criar uma conexão genuína.</li></ul>`
-                    },
-                    {
-                        title: "Módulo 4: Navegando em Ambientes Extrovertidos",
-                        subtitle: "Capítulo 4.3: O "Small Talk" sem Sofrimento",
-                        content: `<h3>Transforme conversas superficiais em pontes.</h3><p>O 'small talk' pode parecer torturante, mas encare-o como um aquecimento. É a porta de entrada para conversas mais profundas. Com uma estrutura, fica mais fácil.</p><h4>Use o Método F.O.R.D.:</h4><p>Uma estrutura simples para guiar a conversa para tópicos interessantes e seguros.</p><ul><li><strong>F (Família):</strong> "Você é daqui mesmo?", "Tem filhos?" (use com bom senso).</li><li><strong>O (Ocupação):</strong> "Com o que você trabalha?", "O que te levou para essa área?".</li><li><strong>R (Recreação):</strong> "O que você gosta de fazer no tempo livre?", "Algum hobby interessante?".</li><li><strong>D (Dreams / Sonhos):</strong> "Algum projeto ou viagem que você está planejando?".</li></ul><div class="exercise-box"><p class="exercise-box-title">✍️ Seu Desafio</p><p>No seu próximo evento social, tente usar um dos tópicos do F.O.R.D. para iniciar uma conversa. Veja como ter um 'roteiro' pode diminuir a ansiedade.</p></div>`
-                    },
-                    {
-                        title: "Módulo 4: Conclusão e Quiz",
-                        subtitle: "Quiz: Teste suas Estratégias!",
-                        quiz: { question: "Qual é a estratégia mais poderosa para um introvertido se destacar em uma reunião?", options: [{ text: "Interromper os outros para mostrar assertividade.", correct: false }, { text: "Falar sobre todos os tópicos da pauta.", correct: false }, { text: "Preparar-se com antecedência, definindo 1-2 pontos-chave para contribuir de forma concisa.", correct: true }], feedback: { correct: "Exatamente! A preparação transforma ansiedade em confiança. Você não precisa dominar a reunião, apenas fazer contribuições estratégicas e bem pensadas. Esse é o seu poder.", incorrect: "Lembre-se, sua força não está no volume ou na quantidade, mas na qualidade e na preparação. Focar em 1 ou 2 contribuições de alto valor é muito mais eficaz." }, tip: "Dica do Alex: Sua preparação é seu superpoder secreto. Enquanto outros improvisam, você chega com um plano. Use isso a seu favor!" }
-                    }
-                ],
-                // Os módulos 5 a 10 seguiriam a mesma estrutura detalhada...
-                 5: [
-                    { title: "Módulo 5: Liderança Introvertida", subtitle: "Capítulo 5.1: O Líder Observador", content: `<h3>Lidere com calma e sabedoria.</h3><p>As qualidades do introvertido são, na verdade, superpoderes de liderança. Sua escuta ativa leva a uma compreensão profunda da equipe, seu pensamento estratégico resulta em decisões mais assertivas e sua calma sob pressão inspira confiança.</p>` },
-                    { title: "Módulo 5: Liderança Introvertida", subtitle: "Capítulo 5.2: Construindo Equipes Fortes", content: `<h3>Crie um ambiente de segurança e mérito.</h3><p>Sua empatia natural permite que você conheça cada membro da equipe individualmente. Você cria um ambiente onde todos se sentem seguros para contribuir e onde os resultados são mais valorizados do que as aparências.</p>` },
-                    { title: "Módulo 5: Liderança Introvertida", subtitle: "Capítulo 5.3: Influência Silenciosa", content: `<h3>Suas ações falam mais alto.</h3><p>A influência do líder introvertido é construída na integridade, autenticidade e consistência. Cumprir o que promete e liderar pelo exemplo são suas ferramentas mais poderosas para conquistar respeito e confiança duradouros.</p>` },
-                    { title: "Módulo 5: Conclusão e Quiz", subtitle: "Quiz Rápido!", quiz: { question: "Como um líder introvertido tende a influenciar sua equipe?", options: [{ text: "Através de discursos altos e motivacionais.", correct: false }, { text: "Pela integridade, consistência de suas ações e liderança pelo exemplo.", correct: true }, { text: "Impondo decisões de forma autoritária.", correct: false }], feedback: { correct: "Perfeito! A influência silenciosa é duradoura e poderosa. A equipe confia em um líder cujas ações refletem suas palavras.", incorrect: "Na verdade, a força do líder introvertido está no oposto. Ele influencia pela confiança que constrói com suas ações consistentes e seu caráter íntegro." }, tip: "Dica do Alex: Foque em ser um exemplo de dedicação e ética. Sua equipe vai seguir suas ações, não apenas suas palavras." } }
-                ],
-                 6: [
-                    { title: "Módulo 6: Criatividade e Inovação", subtitle: "Capítulo 6.1: Seu Laboratório de Ideias", content: `<h3>A solitude é o berço da inovação.</h3><p>É no silêncio, livre de distrações, que sua mente tem liberdade para conectar pontos e gerar ideias revolucionárias. O tempo sozinho não é vazio, é produtivo. Proteja esse espaço.</p>` },
-                    { title: "Módulo 6: Criatividade e Inovação", subtitle: "Capítulo 6.2: Da Mente para o Mundo", content: `<h3>Tire suas ideias do papel.</h3><p>Uma ideia genial na sua mente não muda o mundo. Quebre o projeto em pequenas etapas e lembre-se do mantra: 'Feito é melhor que perfeito'. A ação é o que transforma sonhos em realidade.</p>` },
-                    { title: "Módulo 6: Criatividade e Inovação", subtitle: "Capítulo 6.3: Colaborando em Equipe", content: `<h3>Encontre seu papel criativo.</h3><p>Em uma equipe, você pode ser o 'pensador profundo' que analisa a viabilidade, o 'refinador de ideias' que melhora o que foi proposto, ou o 'executor focado' que garante a qualidade final. Sua contribuição é essencial.</p>` },
-                    { title: "Módulo 6: Conclusão e Quiz", subtitle: "Quiz Rápido!", quiz: { question: "Qual o mantra que ajuda um introvertido a superar o perfeccionismo paralisante?", options: [{ text: "'Tudo ou nada'.", correct: false }, { text: "'Feito é melhor que perfeito'.", correct: true }, { text: "'Devagar e sempre'.", correct: false }], feedback: { correct: "Isso mesmo! Esperar a perfeição pode impedir que suas ideias vejam a luz do dia. O importante é começar e ir aprimorando no processo.", incorrect: "Cuidado com o perfeccionismo! O mantra 'Feito é melhor que perfeito' te liberta para agir e colocar suas ideias no mundo, que é onde elas podem fazer a diferença." }, tip: "Dica do Alex: Sua primeira versão não precisa ser a versão final. Dê o primeiro passo." } }
-                ],
-                7: [
-                    { title: "Módulo 7: Relacionamentos Significativos", subtitle: "Capítulo 7.1: Amizade e Amor", content: `<h3>Profundidade é sua moeda.</h3><p>Você prospera em conexões autênticas. Invista sua energia em poucas e boas amizades. Sua lealdade, empatia e capacidade de ouvir são presentes para quem está ao seu lado.</p>` },
-                    { title: "Módulo 7: Relacionamentos Significativos", subtitle: "Capítulo 7.2: Família e Ciclo Social", content: `<h3>Comunique suas necessidades com amor.</h3><p>Ajude seus familiares a entenderem sua necessidade de recarga. Explique sobre sua 'bateria social' e proponha atividades mais calmas. Eles te amam e vão entender se você comunicar com clareza.</p>` },
-                    { title: "Módulo 7: Relacionamentos Significativos", subtitle: "Capítulo 7.3: Conflitos com Sabedoria", content: `<h3>Pause antes de reagir.</h3><p>Sua tendência a processar é uma vantagem em conflitos. Peça um tempo para pensar. Isso permite que você aborde o problema com calma e lógica, focando na solução, e não em atacar a pessoa.</p>` },
-                    { title: "Módulo 7: Conclusão e Quiz", subtitle: "Quiz Rápido!", quiz: { question: "Ao lidar com familiares extrovertidos que não entendem sua necessidade de solidão, o que é mais eficaz?", options: [{ text: "Ficar com raiva e se isolar sem explicações.", correct: false }, { text: "Explicar calmamente sobre sua 'bateria social' e como o tempo sozinho te ajuda a ser mais presente depois.", correct: true }, { text: "Fingir ser extrovertido para agradá-los.", correct: false }], feedback: { correct: "Exato! A comunicação é a chave. Educar as pessoas que você ama sobre como você funciona, de forma gentil, abre portas para a compreensão e o respeito mútuo.", incorrect: "A melhor abordagem é a comunicação aberta e honesta. Explicar suas necessidades com calma ajuda a preservar o relacionamento e a cuidar da sua energia." }, tip: "Dica do Alex: Diga algo como: 'Adoro estar com vocês, mas agora preciso recarregar um pouco para poder aproveitar ainda mais depois.' É honesto, gentil e eficaz." } }
-                ],
-                8: [
-                    { title: "Módulo 8: Bem-Estar e Autocuidado", subtitle: "Capítulo 8.1: Seu Santuário de Recarga", content: `<h3>O autocuidado não é um luxo, é uma necessidade.</h3><p>Trate seu tempo de recarga como um compromisso inadiável. Crie um 'santuário' físico em sua casa, um espaço sagrado para a solitude, e descubra as atividades que realmente revitalizam sua alma.</p>` },
-                    { title: "Módulo 8: Bem-Estar e Autocuidado", subtitle: "Capítulo 8.2: Mindfulness para Introvertidos", content: `<h3>Conecte-se com o presente.</h3><p>A prática da atenção plena (mindfulness) é natural para introvertidos. Ela ajuda a acalmar a mente, gerenciar a sobrecarga e observar seus pensamentos sem julgamento, reduzindo o poder do crítico interno.</p>` },
-                    { title: "Módulo 8: Bem-Estar e Autocuidado", subtitle: "Capítulo 8.3: Sinais de Sobrecarga (e como agir)", content: `<h3>Aprenda a ler seus sinais de 'bateria fraca'.</h3><p>Irritabilidade, fadiga extrema e dificuldade de concentração são sinais de alerta. Ao percebê-los, a ação imediata é se retirar e recarregar. Priorize sua energia para evitar o burnout.</p>` },
-                    { title: "Módulo 8: Conclusão e Quiz", subtitle: "Quiz Rápido!", quiz: { question: "Qual é a primeira e mais importante ação ao identificar sinais de sobrecarga ou burnout?", options: [{ text: "Tomar mais café para continuar produtivo.", correct: false }, { text: "Retirar-se, cancelar compromissos não essenciais e dedicar-se a atividades de recarga.", correct: true }, { text: "Ignorar os sinais e esperar que passem sozinhos.", correct: false }], feedback: { correct: "Perfeito! A prioridade máxima é proteger sua energia. Reconhecer os sinais e agir imediatamente é um ato de inteligência e autocuidado que previne problemas maiores.", incorrect: "Ignorar os sinais de sobrecarga é o caminho mais rápido para o esgotamento total. A ação correta é pausar e recarregar imediatamente." }, tip: "Dica do Alex: Ouça seu corpo e sua mente. Eles sempre te avisam quando é hora de fazer uma pausa. Não ignore esses avisos." } }
-                ],
-                9: [
-                    { title: "Módulo 9: O Introvertido no Mundo Digital", subtitle: "Capítulo 9.1: Redes Sociais a seu Favor", content: `<h3>Use o digital como seu aliado.</h3><p>A comunicação online pode ser um paraíso para introvertidos. Ela te dá tempo para processar e formular respostas bem pensadas. Use a escrita para expressar sua profundidade e conecte-se em grupos de interesse.</p>` },
-                    { title: "Módulo 9: O Introvertido no Mundo Digital", subtitle: "Capítulo 9.2: Compartilhando seu Conhecimento", content: `<h3>Sua voz tem alcance global.</h3><p>Crie conteúdo que reflita suas paixões. Blogs, newsletters ou vídeos pré-gravados são formas excelentes de compartilhar seu conhecimento sem a pressão da interação ao vivo. Sua autenticidade atrairá a audiência certa.</p>` },
-                    { title: "Módulo 9: O Introvertido no Mundo Digital", subtitle: "Capítulo 9.3: Protegendo sua Energia Online", content: `<h3>Estabeleça limites digitais claros.</h3><p>A sobrecarga digital é real. Desative notificações, defina horários para checar redes sociais e faça 'detox digitais' regularmente. Seu bem-estar offline depende do seu equilíbrio online.</p>` },
-                    { title: "Módulo 9: Conclusão e Quiz", subtitle: "Quiz Rápido!", quiz: { question: "Para proteger sua energia online, qual é uma prática essencial?", options: [{ text: "Estar online 24/7 para não perder nada.", correct: false }, { text: "Desativar notificações desnecessárias e definir horários específicos para interagir.", correct: true }, { text: "Seguir o maior número de pessoas possível.", correct: false }], feedback: { correct: "Exato! Você está no controle da tecnologia, e não o contrário. Gerenciar as interrupções é fundamental para proteger seu foco e sua energia mental.", incorrect: "O segredo para a saúde digital é o controle. Estar sempre 'ligado' é a receita para a sobrecarga. É preciso gerenciar as interrupções de forma proativa." }, tip: "Dica do Alex: Sua paz mental vale mais do que qualquer notificação. Seja o guardião do seu tempo e da sua atenção." } }
-                ],
-                10: [
-                    { title: "Módulo 10: Seu Legado Introvertido", subtitle: "Capítulo 10.1: Encontrando seu Propósito", content: `<h3>Deixe sua marca, do seu jeito.</h3><p>O que te move? Qual problema no mundo te incomoda? Seu propósito geralmente está na intersecção da sua paixão com uma necessidade do mundo. Sua capacidade de reflexão é a ferramenta perfeita para encontrar essa resposta.</p>` },
-                    { title: "Módulo 10: Seu Legado Introvertido", subtitle: "Capítulo 10.2: Mentoria e Inspiração", content: `<h3>Seja o exemplo que você queria ter.</h3><p>Você não precisa de um palco para inspirar. Ao viver sua verdade como um introvertido bem-sucedido e autêntico, você se torna um farol para outros. Sua jornada é uma poderosa ferramenta de mentoria silenciosa.</p>` },
-                    { title: "Módulo 10: Seu Legado Introvertido", subtitle: "Capítulo 10.3: O Futuro é Introvertido", content: `<h3>Celebre sua singularidade!</h3><p>O mundo está mudando. Habilidades como pensamento profundo, foco, empatia e criatividade são mais valorizadas do que nunca. O futuro não é barulhento, é profundo. E ele é seu.</p><p>Abrace sua identidade. Use sua voz, do seu jeito. O mundo está esperando para ouvi-la.</p>` },
-                    {
-                        title: "Módulo 10: Conclusão da Jornada",
-                        subtitle: "Sua Jornada Continua...",
-                        content: `<h3>Parabéns, você completou a jornada!</h3><p>Chegamos ao fim dos nossos módulos, mas sua jornada está apenas começando. Você desvendou seus superpoderes, aprendeu a gerenciar sua energia, a comunicar sua verdade e a navegar no mundo com confiança, sendo 100% você.</p><ul><li>Sua introversão é sua maior força.</li><li>Sua voz, expressa do seu jeito, tem um poder imenso.</li><li>O mundo precisa da sua perspectiva, da sua profundidade e da sua calma.</li></ul><div class="info-box"><p class="info-box-title">🏆 Uma Mensagem Final do Alex</p><p>Foi uma honra te guiar até aqui. Nunca se esqueça do poder que reside no seu silêncio. Continue praticando, continue explorando e, acima de tudo, continue celebrando a pessoa incrível que você é. Agora vá, e deixe sua marca autêntica no mundo. Destrave na Hora H!</p></div>`
-                    },
-                    {
-                        title: "Módulo 10: Quiz Final",
-                        subtitle: "Quiz: Reflexão Final",
-                        quiz: { question: "Qual é a mensagem principal do curso 'Destrave na Hora H'?", options: [{ text: "Que você precisa mudar e se tornar mais extrovertido para ter sucesso.", correct: false }, { text: "Que sua introversão é uma força poderosa e, com as estratégias certas, você pode ser autêntico, confiante e impactante.", correct: true }, { text: "Que a comunicação é uma habilidade apenas para quem fala muito.", correct: false }], feedback: { correct: "PERFEITO! Você captou a alma da nossa jornada. Sua autenticidade é sua maior força. Agora é levar esse conhecimento para a vida e continuar brilhando, do seu jeito único!", incorrect: "Vamos recapitular o ponto principal! A jornada inteira foi para mostrar que você NÃO precisa mudar. Trata-se de abraçar sua natureza introvertida e usá-la como sua maior vantagem." }, tip: "Dica do Alex: Sua jornada não termina aqui. Reveja os módulos sempre que precisar de um lembrete do seu poder. A prática contínua é o que solidifica a transformação." }
-                    }
-                ]
-            };
+                {
+                    subtitle: "Capítulo 1.1: Introversão Não é Timidez",
+                    content: `<h3>Entendendo a Diferença Crucial</h3><p>É muito comum confundir introversão com timidez, mas eles são bem diferentes. Entender isso é o primeiro passo para se libertar.</p><ul><li><strong>Introversão:</strong> É um traço de personalidade. É sobre como você recarrega suas energias. Introvertidos se recarregam na solitude, em ambientes mais calmos. 🧘</li><li><strong>Timidez:</strong> É um estado de ansiedade social, o medo de ser julgado negativamente. A timidez é baseada no medo. 😟</li></ul><p>Uma pessoa pode ser introvertida e super confiante (como um palestrante que precisa de um tempo sozinho depois), e um extrovertido pode ser tímido em certas situações. </p><h3>Desmistificando Preconceitos</h3><table><thead><tr><th>Característica</th><th>Introversão</th><th>Timidez</th></tr></thead><tbody><tr><td><strong>Natureza</strong></td><td>Traço de personalidade</td><td>Estado de ansiedade social</td></tr><tr><td><strong>Fonte de Energia</strong></td><td>Recarrega na solitude 🔋</td><td>Drenada por interações sociais</td></tr><tr><td><strong>Preferência Social</strong></td><td>Interações profundas e significativas</td><td>Evita interações por medo</td></tr><tr><td><strong>Comportamento</strong></td><td>Reflexivo, observador</td><td>Inibido, nervoso em público</td></tr></tbody></table>`
+                },
+                {
+                    subtitle: "Capítulo 1.2: Seus Superpoderes Introvertidos",
+                    content: `<h3>O Que Ninguém Te Contou</h3><p>Sua introversão não é uma fraqueza, é uma fonte de superpoderes valiosos. Vamos explorar alguns deles:</p><ul><li><strong>🎧 A Superaudição (Escuta Ativa e Profunda):</strong> Você ouve não só palavras, mas entrelinhas e emoções. Isso é ouro em negociações e para construir confiança.</li><li><strong>🧠 O Raio-X Mental (Análise Crítica):</strong> Você pensa, analisa e pondera antes de falar. Isso leva a decisões mais assertivas e estratégias robustas.</li><li><strong>🎯 O Foco de Laser (Concentração):</strong> Em um mundo de distrações, sua capacidade de mergulhar fundo em uma tarefa é rara e extremamente produtiva.</li><li><strong>🔭 A Visão Além do Alcance (Observação Aguçada):</strong> Você lê a linguagem corporal e a dinâmica do ambiente como ninguém, o que te dá um mapa em tempo real da situação.</li><li><strong>🧭 A Bússola Interna (Integridade e Convicção):</strong> Suas palavras, quando ditas, carregam o peso da autenticidade. Isso é magnético e inspira respeito.</li></ul><div class="interactive-exercise"><h4>Exercício: Seu Inventário de Superpoderes</h4><p>Marque os superpoderes com os quais você mais se identifica. Reconhecer é o primeiro passo para usá-los!</p><label><input type="checkbox" name="superpower"> 🎧 Superaudição</label><br><label><input type="checkbox" name="superpower"> 🧠 Raio-X Mental</label><br><label><input type="checkbox" name="superpower"> 🎯 Foco de Laser</label><br><label><input type="checkbox" name="superpower"> 🔭 Visão Além do Alcance</label><br><label><input type="checkbox" name="superpower"> 🧭 Bússola Interna</label></div>`
+                },
+                {
+                    subtitle: "Capítulo 1.3: O Preço do Silêncio",
+                    content: `<h3>Problemas Comuns que Você Enfrenta</h3><p>Mesmo com tantos superpoderes, a vida em um mundo que valoriza a extroversão pode ser desafiadora. Vamos encarar os problemas de frente:</p><ul><li><strong>😩 Exaustão Social:</strong> Sua bateria social se esgota rápido em eventos longos ou barulhentos.</li><li><strong>💬 Dificuldade com "Small Talk":</strong> Conversas superficiais parecem sem propósito e podem ser um desafio.</li><li><strong>🤷 Ser Subestimado:</strong> Sua natureza quieta pode ser mal interpretada como falta de confiança.</li><li><strong>👹 O Medo do Julgamento e o Crítico Interno:</strong> O medo de errar ou ser ridicularizado pode te paralisar.</li></ul><blockquote><strong>Dica do Mentor Alex:</strong> Compreender esses desafios é o primeiro passo para superá-los. Vamos te dar estratégias para usar seus superpoderes e transformar esses obstáculos em oportunidades.</blockquote>`,
+                    quiz: { question: "Qual é a diferença fundamental entre introversão e timidez?", options: ["Introvertidos não gostam de pessoas, tímidos sim.", "Introversão é sobre como você gerencia sua energia, enquanto timidez é o medo do julgamento social.", "Não há diferença, são a mesma coisa."], correct: 1, feedback: "Exato! Entender que introversão é sobre ENERGIA e não sobre MEDO é a chave para começar a abraçar sua natureza. Você não é 'quebrado', você apenas funciona de uma forma diferente e poderosa!" }
+                }
+            ]
+        },
+        2: { 
+            title: "A Chave do Destrave: O Mindset Poderoso", 
+            icon: "🔑",
+            pages: [
+                {
+                    subtitle: "Cap. 2.1: Aceitação e Autocompaixão",
+                    content: `<h3>Abraçando Quem Você É</h3><p>O passo mais fundamental é a aceitação plena da sua natureza. Tentar ser quem você não é, é exaustivo e contraproducente. A verdadeira força reside em abraçar sua introversão.</p><p><strong>Pare de tentar ser extrovertido.</strong> Não se trata de mudar quem você é, mas de otimizar quem você já é.</p><div class="interactive-exercise"><h4>Exercício: Diálogo Interno Positivo</h4><p>Em vez de pensar "Eu sou tão ruim em socializar", tente reformular. Escreva abaixo uma versão mais gentil:</p><textarea class="interactive-textarea" placeholder="Ex: Eu preciso de mais tempo para me sentir confortável em grandes grupos, e isso é normal para mim."></textarea></div>`
+                },
+                {
+                    subtitle: "Cap. 2.2: Gerenciando Sua Energia Social",
+                    content: `<h3>Recarregando Suas Baterias 🔋</h3><p>Sua energia social é um recurso finito. Gerenciá-la é crucial. A chave é a proatividade.</p><ul><li><strong>Planeje seus eventos sociais:</strong> Reserve tempo antes e depois para se recuperar.</li><li><strong>Faça pausas estratégicas:</strong> Durante eventos, saia para tomar um ar fresco.</li><li><strong>Priorize interações significativas:</strong> É melhor ter 2 ou 3 conversas profundas do que 50 superficiais.</li></ul><blockquote><strong>Dica do Mentor Alex:</strong> Crie um "Santuário Pessoal" em sua casa. Um canto de leitura, um espaço para ouvir música. Um lugar sagrado para você se desconectar e recarregar.</blockquote>`
+                },
+                {
+                    subtitle: "Cap. 2.3: Desativando o Crítico Interno",
+                    content: `<h3>Confiança para Agir 🛡️</h3><p>O crítico interno é aquela voz que diz "você não é bom o suficiente". Desativá-lo é fundamental.</p><ul><li><strong>Identifique o Crítico:</strong> Dê um nome a essa voz para torná-la menos abstrata.</li><li><strong>Questione a Validade:</strong> Essa crítica é baseada em fatos ou em medos irracionais?</li><li><strong>Substitua por Pensamentos Positivos:</strong> Se ele diz "Você vai gaguejar", responda internamente: "Eu me preparei, e minha mensagem tem valor".</li><li><strong>Foque no Conteúdo, Não na Performance:</strong> Lembre-se do valor das suas ideias. O "o quê" é mais importante que o "como".</li></ul>`,
+                    quiz: { question: "Qual é a estratégia mais eficaz para gerenciar sua energia social como introvertido?", options: ["Forçar-se a ir a todos os eventos para se acostumar.", "Evitar todas as interações sociais.", "Ser proativo: planejar eventos, fazer pausas e priorizar conversas de qualidade."], correct: 2, feedback: "Perfeito! Proatividade é a palavra-chave. Ao gerenciar sua energia como um recurso valioso, você pode participar da vida social em seus próprios termos, de forma sustentável e prazerosa." }
+                }
+            ]
+        },
+        3: { 
+            title: "Comunicação Autêntica: Voz e Impacto", 
+            icon: "💬",
+            pages: [
+                {
+                    subtitle: "Cap. 3.1: A Arte da Escuta Ativa",
+                    content: `<h3>Conectando de Verdade</h3><p>Enquanto todos querem ser ouvidos, sua capacidade de ouvir é um superpoder. A escuta ativa vai além de ouvir palavras.</p><ul><li><strong>Presença Total:</strong> Desligue distrações e foque no interlocutor.</li><li><strong>Não Interrompa:</strong> Demonstra respeito e garante que você entendeu tudo.</li><li><strong>Ouça para Entender, Não para Responder:</strong> Suspenda o julgamento e busque compreender a perspectiva do outro.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 3.2: Expressando Ideias com Clareza (O Método PREP)",
+                    content: `<h3>Estrutura para o Impacto</h3><p>Para organizar seus pensamentos e ser impactante, use o método PREP:</p><ul><li><strong>P (Point):</strong> Comece com seu ponto principal. A ideia central.</li><li><strong>R (Reason):</strong> Apresente a razão, o porquê.</li><li><strong>E (Example):</strong> Dê um exemplo concreto ou dados.</li><li><strong>P (Point):</strong> Finalize reforçando seu ponto principal.</li></ul><blockquote>"A implementação do novo sistema (Ponto) aumentará a eficiência (Razão), como no projeto X, onde reduzimos o tempo de 10 para 2 horas (Exemplo). Portanto, o novo sistema é crucial (Ponto)."</blockquote>`
+                },
+                {
+                    subtitle: "Cap. 3.3: O Poder da Conversa Um a Um",
+                    content: `<h3>Dominando a Intimidade</h3><p>Conversas um a um são o ambiente natural onde introvertidos brilham.</p><ul><li><strong>Crie um Ambiente Confortável:</strong> Um café calmo, um passeio na natureza.</li><li><strong>Mostre Interesse Genuíno:</strong> Faça perguntas de acompanhamento.</li><li><strong>Compartilhe de Forma Recíproca:</strong> Encontre um equilíbrio entre ouvir e falar.</li><li><strong>Seja Autêntico:</strong> As pessoas se conectam com a sua verdade, não com uma fachada.</li></ul>`,
+                    quiz: { question: "Você precisa apresentar uma ideia complexa de forma rápida. Qual técnica é mais indicada?", options: ["Falar o mais rápido possível.", "Dar todo o contexto histórico antes.", "Usar o Método PREP (Ponto, Razão, Exemplo, Ponto)."], correct: 2, feedback: "Isso mesmo! O método PREP é uma ferramenta poderosa para o introvertido. Ele permite que você use sua capacidade de análise para preparar uma fala estruturada, clara e persuasiva." }
+                }
+            ]
+        },
+        4: { 
+            title: "Navegando em Ambientes Extrovertidos", 
+            icon: "♟️",
+            pages: [
+                {
+                    subtitle: "Cap. 4.1: Reuniões - Preparação Estratégica",
+                    content: `<h3>Fazendo Sua Voz Ser Ouvida</h3><p>Reuniões podem ser desafiadoras, mas a preparação é seu maior aliado.</p><ul><li><strong>Estude a Pauta com Antecedência:</strong> Reflita sobre os tópicos e formule suas ideias.</li><li><strong>Defina Seus Pontos de Contribuição:</strong> Escolha 1 a 3 pontos específicos onde você quer contribuir. Não precisa falar sobre tudo.</li><li><strong>Visualize Sua Participação:</strong> Imagine-se falando com clareza e confiança. Isso reduz a ansiedade.</li><li><strong>Chegue Cedo:</strong> Familiarize-se com o ambiente e quebre o gelo com conversas menores.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 4.2: Networking Autêntico",
+                    content: `<h3>Conectando com Propósito</h3><p>Networking não é sobre colecionar cartões. É sobre construir relacionamentos genuínos.</p><ul><li><strong>Qualidade sobre Quantidade:</strong> Foque em ter 2 ou 3 conversas significativas, em vez de 50 superficiais.</li><li><strong>Não é Sobre Vender, é Sobre Conectar:</strong> Foque em aprender sobre a outra pessoa. A conexão acontece naturalmente.</li><li><strong>Comece com Conversas Um a Um:</strong> Procure pessoas sozinhas ou em duplas. É mais fácil e menos drenante.</li></ul><blockquote><strong>Dica do Mentor Alex:</strong> Use sua superaudição! Faça perguntas abertas e escute ativamente. As pessoas adoram falar sobre si mesmas.</blockquote>`
+                },
+                {
+                    subtitle: "Cap. 4.3: Superando o Small Talk (Método FORD)",
+                    content: `<h3>Transformando Conversas Superficiais</h3><p>Pense no small talk como um aquecimento. Use o método FORD para guiar a conversa de forma segura:</p><ul><li><strong>F (Family):</strong> Família (se apropriado).</li><li><strong>O (Occupation):</strong> Ocupação, trabalho, estudos.</li><li><strong>R (Recreation):</strong> Recreação, hobbies, interesses.</li><li><strong>D (Dreams):</strong> Sonhos, aspirações, planos futuros.</li></ul><p>Esses tópicos abrem portas para conversas mais profundas, que é onde você brilha.</p>`,
+                    quiz: { question: "Qual é a melhor estratégia para um introvertido se destacar em networking?", options: ["Tentar falar com o maior número de pessoas possível.", "Focar em ter 2 ou 3 conversas de qualidade, usando a escuta ativa.", "Entregar seu cartão de visitas para todos e ir embora."], correct: 1, feedback: "Exatamente! A força do introvertido no networking está na profundidade, não na quantidade. Ao focar em conexões genuínas, você cria laços muito mais fortes e duradouros." }
+                }
+            ]
+        },
+        5: { 
+            title: "Liderança Introvertida: Exemplo Silencioso", 
+            icon: "👑",
+            pages: [
+                {
+                    subtitle: "Cap. 5.1: O Líder Observador",
+                    content: `<h3>Vantagens na Liderança</h3><p>A introversão pode ser uma fonte de força única na liderança. Líderes introvertidos são:</p><ul><li><strong>Excelentes Ouvintes:</strong> Entendem profundamente suas equipes.</li><li><strong>Pensadores Estratégicos:</strong> Menos propensos a decisões impulsivas.</li><li><strong>Calmos Sob Pressão:</strong> Tomam decisões racionais em crises.</li><li><strong>Focados na Qualidade:</strong> Meticulosos e atentos aos detalhes.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 5.2: Construindo Equipes Fortes",
+                    content: `<h3>Empatia e Colaboração</h3><p>Líderes introvertidos criam ambientes de apoio onde todos se sentem valorizados.</p><ul><li><strong>Compreensão Individual:</strong> Dedicam tempo para conhecer cada membro da equipe.</li><li><strong>Feedback Construtivo:</strong> Oferecem feedback específico e atencioso.</li><li><strong>Criação de um Ambiente Seguro:</strong> Valorizam a vulnerabilidade e a experimentação.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 5.3: Influência Silenciosa",
+                    content: `<h3>Conquistando Respeito e Confiança</h3><p>A influência não vem do barulho, mas da integridade e autenticidade.</p><ul><li><strong>Coerência entre Palavra e Ação:</strong> Eles cumprem o que prometem.</li><li><strong>Ações Falam Mais Alto que Palavras:</strong> Lideram pelo exemplo.</li><li><strong>Construção de Consenso:</strong> Em vez de impor, buscam soluções que todos possam apoiar.</li></ul>`,
+                    quiz: { question: "Qual é uma característica chave da liderança introvertida?", options: ["Tomar decisões rápidas e impulsivas.", "Dominar todas as conversas e reuniões.", "Liderar pelo exemplo silencioso, com escuta, empatia e análise profunda."], correct: 2, feedback: "Correto! A liderança introvertida é poderosa justamente por sua abordagem ponderada. O impacto não depende do volume da voz, mas da profundidade do pensamento e da autenticidade da ação." }
+                }
+            ]
+        },
+        6: { 
+            title: "Criatividade e Inovação: O Mundo Interior", 
+            icon: "💡",
+            pages: [
+                {
+                    subtitle: "Cap. 6.1: O Poder da Reflexão",
+                    content: `<h3>Gerando Ideias Inovadoras</h3><p>A solitude não é vazia; é o laboratório onde as ideias nascem.</p><ul><li><strong>Ausência de Distrações:</strong> Permite o aprofundamento em pensamentos complexos.</li><li><strong>Incubação de Ideias:</strong> As melhores ideias surgem após um período de aparente inatividade.</li><li><strong>Liberdade para Experimentar:</strong> Sem o medo do julgamento, você pode explorar caminhos não convencionais.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 6.2: Transformando Ideias em Ação",
+                    content: `<h3>Da Mente para o Mundo</h3><p>Ter a ideia é só metade do caminho. A execução é a outra metade.</p><ul><li><strong>Divida em Pequenas Etapas:</strong> Uma grande ideia pode ser assustadora. Quebre-a em tarefas gerenciáveis.</li><li><strong>"Feito é Melhor que Perfeito":</strong> A busca pela perfeição paralisa. Comece, mesmo que não esteja 100% pronto.</li><li><strong>Busque um "Parceiro de Responsabilidade":</strong> Compartilhar seus objetivos é um grande motivador.</li></ul><div class="interactive-exercise"><h4>Exercício: Seu Primeiro Passo</h4><p>Pense em uma ideia que você tem. Qual é o primeiríssimo e menor passo que você pode dar para tirá-la do papel?</p><textarea class="interactive-textarea" placeholder="Ex: Pesquisar sobre o tópico por 30 minutos..."></textarea></div>`
+                },
+                {
+                    subtitle: "Cap. 6.3: Colaboração Criativa em Equipe",
+                    content: `<h3>Encontrando seu Papel</h3><p>Você não precisa ser o mais falante para ser o mais influente. Em uma equipe, você pode ser:</p><ul><li><strong>O Observador Atento:</strong> Identifica lacunas que outros perdem.</li><li><strong>O Pensador Profundo:</strong> Traz análise e fundamentação.</li><li><strong>O Catalisador de Ideias:</strong> Faz a pergunta certa que direciona a discussão.</li><li><strong>O Executor Focado:</strong> Transforma a ideia em realidade.</li></ul>`,
+                    quiz: { question: "Para um introvertido, qual é a melhor estratégia para transformar uma grande ideia em realidade?", options: ["Esperar até que a ideia esteja absolutamente perfeita para começar.", "Dividir a ideia em pequenas tarefas gerenciáveis e focar no lema 'feito é melhor que perfeito'.", "Contar a ideia para todo mundo e esperar que alguém a execute."], correct: 1, feedback: "Exato! A chave para superar a 'paralisia por análise' é a ação incremental. Celebrar pequenas vitórias mantém a motivação e transforma um sonho assustador em um projeto realizável." }
+                }
+            ]
+        },
+        7: { 
+            title: "Relacionamentos Significativos", 
+            icon: "🔗",
+            pages: [
+                {
+                    subtitle: "Cap. 7.1: Construindo Laços Duradouros",
+                    content: `<h3>Qualidade, Não Quantidade</h3><p>Introvertidos prosperam em conexões profundas, baseadas em autenticidade e compreensão mútua.</p><ul><li><strong>Foco na Qualidade:</strong> Um pequeno círculo de amigos íntimos.</li><li><strong>Conversas Significativas:</strong> Explorar ideias, sentimentos e valores.</li><li><strong>Lealdade e Confiabilidade:</strong> Você é um porto seguro para quem ama.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 7.2: Gerenciando Expectativas",
+                    content: `<h3>Família e Amigos</h3><p>É comum que familiares não entendam sua necessidade de solitude. A comunicação é a chave.</p><ul><li><strong>Eduque Seus Entes Queridos:</strong> Use a analogia da "bateria social".</li><li><strong>Defina Limites Claros:</strong> "Adorei o jantar, mas agora preciso de um tempo para mim para recarregar."</li><li><strong>Proponha Atividades Confortáveis:</strong> Em vez de uma festa barulhenta, sugira um jantar em casa.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 7.3: Resolvendo Conflitos com Sabedoria",
+                    content: `<h3>A Vantagem da Reflexão</h3><p>Sua natureza reflexiva é uma vantagem em conflitos.</p><ul><li><strong>Tempo para Processar:</strong> Peça um tempo para pensar antes de responder.</li><li><strong>Foco no Problema, Não na Pessoa:</strong> Use a comunicação "Eu": "Eu me sinto frustrado quando X acontece".</li><li><strong>Busca por Soluções, Não por Vencedores:</strong> O objetivo é encontrar uma solução que funcione para ambos.</li></ul>`,
+                    quiz: { question: "Seu amigo extrovertido não entende por que você quer ficar em casa. Qual a melhor abordagem?", options: ["Inventar uma desculpa.", "Ir à festa e ficar exausto.", "Explicar sobre sua 'bateria social' e propor uma atividade alternativa para outro dia."], correct: 2, feedback: "Perfeito! Comunicação honesta e a proposição de alternativas mostram que você valoriza a pessoa e o relacionamento, apenas em termos que respeitem sua própria energia." }
+                }
+            ]
+        },
+        8: { 
+            title: "Bem-Estar e Autocuidado", 
+            icon: "🌿",
+            pages: [
+                {
+                    subtitle: "Cap. 8.1: Rotinas de Recarga e Seu Santuário",
+                    content: `<h3>Autocuidado não é Luxo, é Necessidade</h3><p>Para o introvertido, a solidão é tão vital quanto o ar. Ignorá-la leva ao esgotamento.</p><ul><li><strong>Agende Tempo para a Solidão:</strong> Trate esse tempo como um compromisso inadiável.</li><li><strong>Crie seu 'Santuário' Físico:</strong> Um espaço em casa livre de distrações.</li><li><strong>Descubra Atividades de Recarga:</strong> Ler, meditar, caminhar. O que funciona para você?</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 8.2: Mindfulness e Autoconsciência",
+                    content: `<h3>Conectando-se Consigo Mesmo</h3><p>Mindfulness é a prática de estar presente, observando seus pensamentos sem julgamento.</p><ul><li><strong>Meditação Silenciosa:</strong> Comece com 5 minutos por dia.</li><li><strong>Atenção Plena nas Atividades Diárias:</strong> Sinta o calor do café, o chão sob seus pés ao caminhar.</li><li><strong>Observação de Pensamentos:</strong> Veja seus pensamentos como nuvens passando.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 8.3: Lidando com a Sobrecarga (Burnout)",
+                    content: `<h3>Sinais de Alerta e Soluções</h3><p>Reconhecer os sinais de sobrecarga é crucial.</p><ul><li><strong>Sinais Físicos:</strong> Fadiga, dores de cabeça, insônia.</li><li><strong>Sinais Emocionais:</strong> Irritabilidade, ansiedade, desmotivação.</li><li><strong>Sinais Comportamentais:</strong> Retraimento social, procrastinação.</li></ul><p>Se identificar os sinais, a ação mais importante é se retirar e recarregar imediatamente.</p>`,
+                    quiz: { question: "Qual é o primeiro passo ao identificar sinais de burnout?", options: ["Tomar mais café.", "Ignorar os sinais.", "Priorizar a recarga imediata: retirar-se, descansar e cancelar compromissos não essenciais."], correct: 2, feedback: "Exatamente. Autocuidado não é egoísmo. Proteger sua energia é uma prioridade. Ao recarregar, você garante que pode continuar a funcionar bem em todas as áreas da sua vida." }
+                }
+            ]
+        },
+        9: { 
+            title: "O Introvertido no Mundo Digital", 
+            icon: "💻",
+            pages: [
+                {
+                    subtitle: "Cap. 9.1: Usando Plataformas Digitais a Seu Favor",
+                    content: `<h3>Seu Espaço de Expressão</h3><p>O mundo digital pode ser um paradoxo, mas oferece vantagens únicas para introvertidos.</p><ul><li><strong>Tempo para Processar:</strong> Você pode formular e revisar suas respostas com calma.</li><li><strong>Controle sobre a Interação:</strong> Você escolhe quando e como interagir.</li><li><strong>Foco na Substância:</strong> A comunicação escrita favorece o conteúdo.</li><li><strong>Conexões Baseadas em Interesses:</strong> É fácil encontrar sua tribo online.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 9.2: Criando Conteúdo",
+                    content: `<h3>Sua Voz no Digital</h3><p>Sua profundidade de pensamento pode brilhar na criação de conteúdo.</p><ul><li><strong>Escrita (Blogs, E-books):</strong> Um meio natural para explorar tópicos em profundidade.</li><li><strong>Podcasts e Vídeos (Pré-gravados):</strong> Permitem planejar e editar, eliminando a pressão do ao vivo.</li><li><strong>Foque na Qualidade, Não na Quantidade:</strong> Sua profundidade será seu diferencial.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 9.3: Limites Digitais e Proteção da Energia",
+                    content: `<h3>Evitando a Fadiga Digital</h3><p>A sobrecarga digital é real. Proteja-se.</p><ul><li><strong>Defina Horários para o Digital:</strong> Verifique e-mails e redes em momentos específicos.</li><li><strong>Crie Zonas Livres de Tecnologia:</strong> O quarto, a mesa de jantar.</li><li><strong>Desative Notificações Desnecessárias.</strong></li><li><strong>Pratique o "Digital Detox".</strong></li></ul>`,
+                    quiz: { question: "Como um introvertido pode usar as redes sociais de forma saudável?", options: ["Tentando postar várias vezes ao dia.", "Focando em interações intencionais e gerenciando notificações.", "Desativando todas as redes sociais."], correct: 1, feedback: "Correto. O segredo é usar a ferramenta a seu favor, não ser usado por ela. Intencionalidade e limites claros transformam o mundo digital de uma fonte de dreno em um espaço poderoso de conexão." }
+                }
+            ]
+        },
+        10: { 
+            title: "Seu Legado Introvertido: Impacto e Propósito", 
+            icon: "🌱",
+            pages: [
+                {
+                    subtitle: "Cap. 10.1: Encontrando Seu Propósito",
+                    content: `<h3>Contribuindo com Sua Essência</h3><p>A busca por propósito é intrínseca à sua natureza reflexiva. Sua introversão te guia para um legado significativo.</p><ul><li><strong>Reflexão e Introspecção:</strong> A capacidade de olhar para dentro para identificar paixões e valores.</li><li><strong>Foco na Profundidade:</strong> Permite desenvolver expertise e paixão em um campo específico.</li><li><strong>Integridade e Autenticidade:</strong> Seu propósito está enraizado em quem você realmente é.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 10.2: Mentoria e Inspiração",
+                    content: `<h3>Compartilhando Sua Jornada</h3><p>Uma das formas mais poderosas de deixar um legado é através da mentoria.</p><ul><li><strong>Liderança pelo Exemplo:</strong> Suas ações inspiram mais do que palavras.</li><li><strong>Escuta Profunda:</strong> Como mentor, você é um ouvinte excepcional.</li><li><strong>Foco no Potencial Individual:</strong> Você tem a habilidade de ver e nutrir o potencial oculto nos outros.</li></ul>`
+                },
+                {
+                    subtitle: "Cap. 10.3: O Futuro é Introvertido",
+                    content: `<h3>Celebrando Sua Singularidade</h3><p>O mundo está mudando. O que era visto como desvantagem, hoje é reconhecido como uma força.</p><ul><li><strong>Reconhecimento no Trabalho:</strong> Pensamento profundo e escuta ativa são qualidades altamente procuradas.</li><li><strong>Liderança em Destaque:</strong> A eficácia da liderança introvertida está sendo cada vez mais reconhecida.</li><li><strong>Seja um Embaixador da Introversão:</strong> Ao viver sua vida de forma autêntica e bem-sucedida, você mostra ao mundo que a quietude é uma força.</li></ul>`,
+                    quiz: { question: "Qual é a mensagem final do 'Destrave na Hora H' sobre sua jornada?", options: ["Você precisa mudar para se adaptar ao mundo extrovertido.", "Sua jornada termina aqui, com o fim do curso.", "Sua jornada apenas começou; use sua autenticidade como sua maior força para criar um impacto único no mundo."], correct: 2, feedback: "Exatamente! Este curso é o mapa, mas a jornada é sua. O objetivo nunca foi te mudar, mas te capacitar. Vá em frente e brilhe, mostrando ao mundo o poder silencioso que reside em você." }
+                }
+            ]
+        }
+    };
+    
+    // ----- FUNÇÕES DO NÚCLEO DA APLICAÇÃO -----
 
-            // Funções de Lógica do Portal
-            const getEl = (id) => document.getElementById(id);
-
-            function showScreen(screenId) {
-                document.querySelectorAll('body > div').forEach(screen => {
-                    if (screen.id.includes('Screen')) screen.style.display = 'none';
-                });
-                getEl(screenId).style.display = 'flex';
-                window.scrollTo(0, 0);
+    document.addEventListener('DOMContentLoaded', () => {
+        // Inicializa o estado dos módulos se não houver estado salvo
+        if (!localStorage.getItem('destraveAppState')) {
+            for (let i = 1; i <= TOTAL_MODULES; i++) {
+                appState.modules[i] = {
+                    unlocked: i === 1, // Apenas o Módulo 1 começa desbloqueado
+                    completed: false,
+                    totalPages: moduleData[i] ? moduleData[i].pages.length : 0,
+                };
             }
+        }
+        
+        loadState();
 
-            function showNotification(message, isError = false) {
-                const container = getEl('notificationContainer');
-                const notification = document.createElement('div');
-                notification.className = 'notification';
-                if (isError) notification.style.backgroundColor = '#dc2626';
-                notification.textContent = message;
-                container.appendChild(notification);
-                setTimeout(() => notification.remove(), 4000);
-            }
-            
-            function renderDashboard() {
-                getEl('userPoints').textContent = AppState.userProgress.points;
-                getEl('userLevel').textContent = AppState.userProgress.level;
-                getEl('userAchievements').textContent = AppState.userProgress.achievements;
-                
-                const modulesGrid = getEl('modulesGrid');
-                modulesGrid.innerHTML = '';
+        document.getElementById('loginBtn').addEventListener('click', handleLogin);
+        document.getElementById('startJourneyBtn').addEventListener('click', () => showScreen('dashboardScreen'));
+        document.getElementById('cancelPasswordBtn').addEventListener('click', hidePasswordModal);
+        document.getElementById('confirmPasswordBtn').addEventListener('click', handlePasswordConfirm);
+        document.getElementById('prevPageBtn').addEventListener('click', handlePrevPage);
+        document.getElementById('nextPageBtn').addEventListener('click', handleNextPage);
+        document.getElementById('confirmQuizBtn').addEventListener('click', handleQuizConfirm);
+        document.getElementById('finishModuleBtn').addEventListener('click', handleFinishModule);
 
-                AppState.modules.forEach(module => {
-                    const progress = module.pages > 0 ? (module.completedPages / module.pages) * 100 : 0;
-                    
-                    let buttonHTML = '';
-                    let cardClasses = 'module-card';
-                    let buttonDisabled = false;
-                    
-                    if (module.completed) {
-                        buttonHTML = `✅ MÓDULO CONCLUÍDO`;
-                        buttonDisabled = true;
-                    } else if (module.unlocked) {
-                        buttonHTML = `🚀 INICIAR MÓDULO`;
-                    } else {
-                        cardClasses += ' locked';
-                        buttonHTML = `🔒 BLOQUEADO`;
-                        if (module.hasPassword) {
-                            buttonHTML = `🔑 INSERIR SENHA`;
-                        }
-                    }
+        if (appState.userName) {
+            showScreen('dashboardScreen');
+        } else {
+            showScreen('loginScreen');
+        }
+    });
 
-                    const moduleCard = `
-                        <div id="module-${module.id}-card" class="${cardClasses}">
-                            <div class="module-header">
-                                <div class="module-icon ${module.iconColor}">${module.id}</div>
-                                <div class="module-info">
-                                    <h3>Módulo ${module.id}: ${module.title}</h3>
-                                    <p>${module.subtitle}</p>
-                                </div>
-                            </div>
-                            <div class="module-progress">
-                                <div class="module-progress-label">
-                                    <span class="module-progress-text">Progresso:</span>
-                                    <span class="module-progress-percent">${progress.toFixed(0)}%</span>
-                                </div>
-                                <div class="module-progress-bar">
-                                    <div class="module-progress-fill" style="width: ${progress.toFixed(0)}%;"></div>
-                                </div>
-                            </div>
-                            <button id="module-${module.id}-btn" class="module-btn ${module.unlocked && !module.completed ? 'start' : 'locked'}" data-module-id="${module.id}" ${buttonDisabled ? 'disabled' : ''}>
-                                ${buttonHTML}
-                            </button>
-                        </div>
-                    `;
-                    modulesGrid.innerHTML += moduleCard;
-                });
-                updateOverallProgress();
-            }
-
-            function updateOverallProgress() {
-                const totalModules = AppState.modules.length;
-                const completedModules = AppState.modules.filter(m => m.completed).length;
-                const overallProgress = totalModules > 0 ? (completedModules / totalModules) * 100 : 0;
-
-                getEl('overallProgressBar').style.width = `${overallProgress.toFixed(0)}%`;
-                getEl('overallProgressText').textContent = `${overallProgress.toFixed(0)}%`;
-            }
-            
-            function loadModulePage(moduleId, pageIndex) {
-                currentModuleId = moduleId;
-                currentPageIndex = pageIndex;
-
-                const module = AppState.modules.find(m => m.id === moduleId);
-                const content = moduleContent[moduleId][pageIndex];
-                
-                getEl('moduleContentTitle').textContent = `Módulo ${module.id}: ${module.title}`;
-                getEl('moduleContentSubtitle').textContent = content.subtitle;
-                getEl('modulePageContent').innerHTML = content.quiz ? '' : content.content;
-                
-                const existingQuizSection = getEl('modulePageContent').querySelector('.quiz-section');
-                if(existingQuizSection) existingQuizSection.remove();
-
-                if (content.quiz) {
-                    const quizSection = document.createElement('div');
-                    quizSection.className = 'quiz-section';
-                    quizSection.innerHTML = `
-                        <h3>${content.quiz.question}</h3>
-                        <div class="options-grid">
-                            ${content.quiz.options.map((opt, i) => `<button class="option-btn" data-correct="${opt.correct}">${opt.text}</button>`).join('')}
-                        </div>
-                        <div class="quiz-feedback" style="display:none;">
-                            <h4></h4>
-                            <p></p>
-                            <p class="alex-tip"></p>
-                        </div>
-                    `;
-                    getEl('modulePageContent').appendChild(quizSection);
-                }
-                
-                getEl('pageIndicator').textContent = `Página ${pageIndex + 1} de ${module.pages}`;
-                getEl('prevPageBtn').disabled = pageIndex === 0;
-                getEl('nextPageBtn').style.display = 'block';
-                getEl('finishModuleBtn').style.display = 'none';
-
-                if (pageIndex + 1 >= module.pages) {
-                    getEl('nextPageBtn').style.display = 'none';
-                    if (!content.quiz) {
-                        getEl('finishModuleBtn').style.display = 'block';
-                    }
-                }
-
-                showScreen('moduleContentScreen');
-                if (!content.quiz) {
-                    updateModuleProgress(moduleId, pageIndex + 1);
-                }
-            }
-
-            function updateModuleProgress(moduleId, newCompletedPages) {
-                const module = AppState.modules.find(m => m.id === moduleId);
-                if (newCompletedPages > module.completedPages) {
-                    module.completedPages = newCompletedPages;
-                }
-                
-                if(module.completedPages >= module.pages && !module.completed){
-                    markModuleAsCompleted(moduleId);
-                }
-                renderDashboard();
-            }
-
-            function markModuleAsCompleted(moduleId) {
-                const module = AppState.modules.find(m => m.id === moduleId);
-                if (module && !module.completed) {
-                    module.completed = true;
-                    AppState.userProgress.points += 100;
-                    AppState.userProgress.achievements += 1;
-                    showNotification(`Módulo ${moduleId} concluído! +100 pontos! ✨`);
-
-                    // Desbloquear o próximo módulo SE ele não tiver senha
-                    const nextModule = AppState.modules.find(m => m.id === moduleId + 1);
-                    if (nextModule && !nextModule.hasPassword) {
-                        nextModule.unlocked = true;
-                        showNotification(`Módulo ${nextModule.id} desbloqueado! 🔓`);
-                    }
-                    
-                    if(AppState.userProgress.points >= 500 && AppState.userProgress.level === 'Iniciante'){
-                       AppState.userProgress.level = 'Intermediário';
-                       showNotification('Você subiu para o nível Intermediário! 🌟');
-                    }
-                }
-            }
-
-
-            // --- Event Listeners ---
-
-            getEl('loginBtn').addEventListener('click', () => {
-                userName = getEl('userName').value.trim();
-                const password = getEl('loginPassword').value;
-
-                if (!userName) {
-                    showNotification('Por favor, digite seu nome.', true);
-                    return;
-                }
-                if (password !== 'destrave2025') {
-                    showNotification('Senha padrão incorreta.', true);
-                    return;
-                }
-
-                getEl('displayUserName').textContent = userName;
-                getEl('certificateUserName').textContent = userName;
-                showScreen('welcomeScreen');
-            });
-            
-            getEl('startJourneyBtn').addEventListener('click', () => {
-                renderDashboard();
-                showScreen('dashboardScreen');
-            });
-
-            getEl('modulesGrid').addEventListener('click', (e) => {
-                if (e.target && e.target.matches('button.module-btn')) {
-                    const button = e.target;
-                    const moduleId = parseInt(button.dataset.moduleId, 10);
-                    const module = AppState.modules.find(m => m.id === moduleId);
-
-                    if (module.completed) return;
-
-                    if (module.unlocked) {
-                        loadModulePage(moduleId, 0);
-                    } else if (module.hasPassword) {
-                        const previousModule = AppState.modules.find(m => m.id === module.id - 1);
-                        if(previousModule && !previousModule.completed){
-                            showNotification(`Você precisa concluir o Módulo ${previousModule.id} primeiro.`, true);
-                            return;
-                        }
-                        moduleToUnlock = moduleId;
-                        getEl('modalText').textContent = `Para acessar o "Módulo ${module.id}: ${module.title}", insira a senha:`;
-                        getEl('modulePasswordInput').value = '';
-                        getEl('passwordModal').classList.add('show');
-                        getEl('modulePasswordInput').focus();
-                    } else {
-                        showNotification(`Conclua o módulo anterior para liberar este.`, true);
-                    }
-                }
-            });
-
-            getEl('confirmPasswordBtn').addEventListener('click', () => {
-                const enteredPassword = getEl('modulePasswordInput').value.trim();
-                const module = AppState.modules.find(m => m.id === moduleToUnlock);
-                
-                if (enteredPassword.toLowerCase() === module.password.toLowerCase()) {
-                    module.unlocked = true;
-                    getEl('passwordModal').classList.remove('show');
-                    showNotification(`Módulo ${module.id} desbloqueado com sucesso!`, false);
-                    renderDashboard();
-                    loadModulePage(module.id, 0);
-                } else {
-                    showNotification('Senha incorreta. Tente novamente.', true);
-                    getEl('modulePasswordInput').value = '';
-                }
-            });
-            
-            getEl('cancelPasswordBtn').addEventListener('click', () => getEl('passwordModal').classList.remove('show'));
-
-            getEl('prevPageBtn').addEventListener('click', () => {
-                if(currentPageIndex > 0) loadModulePage(currentModuleId, currentPageIndex - 1);
-            });
-
-            getEl('nextPageBtn').addEventListener('click', () => {
-                 const module = AppState.modules.find(m => m.id === currentModuleId);
-                 if(currentPageIndex < module.pages - 1) loadModulePage(currentModuleId, currentPageIndex + 1);
-            });
-
-            getEl('modulePageContent').addEventListener('click', (e) => {
-                if(e.target && e.target.matches('button.option-btn')){
-                    const selectedBtn = e.target;
-                    const quizSection = selectedBtn.closest('.quiz-section');
-                    if(quizSection.dataset.answered) return;
-
-                    quizSection.dataset.answered = 'true';
-                    const isCorrect = selectedBtn.dataset.correct === 'true';
-                    const feedbackData = moduleContent[currentModuleId][currentPageIndex].quiz.feedback;
-                    const tip = moduleContent[currentModuleId][currentPageIndex].quiz.tip;
-
-                    const feedbackContainer = quizSection.querySelector('.quiz-feedback');
-                    feedbackContainer.querySelector('h4').textContent = isCorrect ? "✅ Resposta Correta!" : "🤔 Quase lá...";
-                    feedbackContainer.querySelector('p').textContent = isCorrect ? feedbackData.correct : feedbackData.incorrect;
-                    feedbackContainer.querySelector('.alex-tip').textContent = tip;
-                    
-                    selectedBtn.closest('.options-grid').querySelectorAll('.option-btn').forEach(btn => {
-                        btn.disabled = true;
-                        if(btn.dataset.correct === 'true') btn.style.borderColor = '#10b981';
-                    });
-                    
-                    selectedBtn.style.backgroundColor = isCorrect ? '#dcfce7' : '#fee2e2';
-                    selectedBtn.style.borderColor = isCorrect ? '#10b981' : '#ef4444';
-
-                    feedbackContainer.style.display = 'block';
-                    
-                    updateModuleProgress(currentModuleId, currentPageIndex + 1);
-
-                    getEl('nextPageBtn').style.display = 'none';
-                    getEl('finishModuleBtn').style.display = 'block';
-                }
-            });
-
-            getEl('finishModuleBtn').addEventListener('click', () => {
-                if (currentModuleId === 10) {
-                    const today = new Date();
-                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                    getEl('completionDate').textContent = today.toLocaleDateString('pt-BR', options);
-                    showScreen('certificateScreen');
-                } else {
-                    renderDashboard();
-                    showScreen('dashboardScreen');
-                }
-            });
-            
-            getEl('acceptCertificateBtn').addEventListener('click', () => {
-                renderDashboard();
-                showScreen('dashboardScreen');
-            });
-
+    function showScreen(screenId) {
+        document.querySelectorAll('body > div').forEach(screen => {
+            screen.style.display = 'none';
         });
+        const screen = document.getElementById(screenId);
+        screen.style.display = 'flex';
+        if (screenId === 'dashboardScreen' || screenId === 'moduleContentScreen') {
+            screen.style.flexDirection = 'column';
+        }
+        if (screenId === 'dashboardScreen') {
+            renderDashboard();
+        }
+        window.scrollTo(0, 0);
+    }
+    
+    function saveState() {
+        localStorage.setItem('destraveAppState', JSON.stringify(appState));
+    }
+
+    function loadState() {
+        const savedState = localStorage.getItem('destraveAppState');
+        if (savedState) {
+            const loadedState = JSON.parse(savedState);
+            appState.userName = loadedState.userName || '';
+            if(loadedState.modules){
+                for(let i=1; i<=TOTAL_MODULES; i++){
+                    if(loadedState.modules[i]){
+                        appState.modules[i] = loadedState.modules[i];
+                    } else { // Garante que novos módulos sejam adicionados se o estado salvo for de uma versão anterior
+                        appState.modules[i] = { unlocked: i === 1, completed: false, totalPages: moduleData[i] ? moduleData[i].pages.length : 0 };
+                    }
+                }
+            }
+        }
+    }
+
+    function handleLogin() {
+        const userNameInput = document.getElementById('userName').value.trim();
+        const passwordInput = document.getElementById('loginPassword').value;
+
+        if (!userNameInput) {
+            showNotification('Por favor, insira seu nome.', 'error');
+            return;
+        }
+        if (passwordInput !== 'destrave2025') {
+            showNotification('Senha de acesso incorreta.', 'error');
+            return;
+        }
+
+        appState.userName = userNameInput;
+        document.getElementById('displayUserName').textContent = appState.userName;
+        saveState();
+        showScreen('welcomeScreen');
+    }
+
+    function renderDashboard() {
+        document.getElementById('userNameHeader').textContent = appState.userName;
+        
+        const completedModulesCount = Object.values(appState.modules).filter(m => m.completed).length;
+        document.getElementById('modulesCompleted').textContent = `${completedModulesCount}/${TOTAL_MODULES}`;
+        const overallProgress = (completedModulesCount / TOTAL_MODULES) * 100;
+        document.getElementById('overallProgressBar').style.width = `${overallProgress.toFixed(0)}%`;
+        document.getElementById('overallProgressText').textContent = `${overallProgress.toFixed(0)}% Concluído`;
+
+        const modulesGrid = document.getElementById('modulesGrid');
+        modulesGrid.innerHTML = '';
+
+        for (let i = 1; i <= TOTAL_MODULES; i++) {
+            const module = appState.modules[i];
+            const data = moduleData[i];
+            
+            // Lógica de desbloqueio automático APENAS para módulos 2 e 3
+            if ((i === 2 || i === 3) && appState.modules[i - 1].completed && !module.unlocked) {
+                module.unlocked = true;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'module-card';
+            
+            let buttonHTML = '';
+            if (module.completed) {
+                card.classList.add('completed');
+                buttonHTML = `<button class="module-btn completed">✅ Concluído</button>`;
+            } else if (module.unlocked) {
+                 buttonHTML = `<button class="module-btn start" onclick="startModule(${i})">🚀 Iniciar Módulo</button>`;
+            } else { // Módulo está bloqueado (não concluído e não desbloqueado)
+                card.classList.add('locked');
+                const prevModuleCompleted = appState.modules[i-1] && appState.modules[i-1].completed;
+
+                // É um módulo com senha (4-10) E o anterior está completo?
+                if (modulePasswords[i] && prevModuleCompleted) {
+                    buttonHTML = `<button class="module-btn unlock" onclick="showPasswordModal(${i})">🔑 Desbloquear com Senha</button>`;
+                } else {
+                    buttonHTML = `<button class="module-btn locked">🔒 Bloqueado</button>`;
+                }
+            }
+
+            card.innerHTML = `
+                <div class="module-header">
+                    <div class="module-icon" style="background: linear-gradient(135deg, hsl(${i*25}, 60%, 50%), hsl(${i*25 + 20}, 80%, 60%));">${data.icon || i}</div>
+                    <div class="module-info">
+                        <h3>Módulo ${i}: ${data.title}</h3>
+                        <p>${data.pages.length} lições</p>
+                    </div>
+                </div>
+                <div class="module-status">${buttonHTML}</div>
+            `;
+            modulesGrid.appendChild(card);
+        }
+        saveState();
+    }
+
+    function startModule(moduleId) {
+        loadModulePage(moduleId, 0);
+    }
+    
+    function loadModulePage(moduleId, pageIndex) {
+        appState.currentModule = moduleId;
+        appState.currentPage = pageIndex;
+        appState.selectedQuizOption = null;
+
+        const pageData = moduleData[moduleId].pages[pageIndex];
+        
+        document.getElementById('moduleContentTitle').textContent = `Módulo ${moduleId}: ${moduleData[moduleId].title}`;
+        document.getElementById('moduleContentSubtitle').textContent = pageData.subtitle;
+        document.getElementById('modulePageContent').innerHTML = pageData.content;
+        document.getElementById('modulePageContent').style.display = 'block';
+
+        const totalPages = moduleData[moduleId].pages.length;
+        document.getElementById('pageIndicator').textContent = `Lição ${pageIndex + 1} de ${totalPages}`;
+
+        document.getElementById('prevPageBtn').disabled = (pageIndex === 0);
+        document.getElementById('nextPageBtn').disabled = (pageIndex === totalPages - 1);
+
+        const quizSection = document.getElementById('quizSection');
+        const navigationSection = document.querySelector('.module-navigation');
+
+        if (pageData.quiz) {
+            quizSection.style.display = 'block';
+            navigationSection.style.display = 'none';
+            document.getElementById('quizQuestion').textContent = pageData.quiz.question;
+            const optionsGrid = document.getElementById('quizOptions');
+            optionsGrid.innerHTML = '';
+            pageData.quiz.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = option;
+                button.onclick = () => {
+                    document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    appState.selectedQuizOption = index;
+                };
+                optionsGrid.appendChild(button);
+            });
+            document.getElementById('confirmQuizBtn').style.display = 'block';
+            document.getElementById('quizFeedback').classList.remove('show');
+            document.getElementById('finishModuleBtn').style.display = 'none';
+        } else {
+            quizSection.style.display = 'none';
+            navigationSection.style.display = 'flex';
+        }
+
+        showScreen('moduleContentScreen');
+    }
+
+    function handleNextPage() {
+        const { currentModule, currentPage } = appState;
+        if (currentPage < moduleData[currentModule].pages.length - 1) {
+            loadModulePage(currentModule, currentPage + 1);
+        }
+    }
+    
+    function handlePrevPage() {
+        const { currentModule, currentPage } = appState;
+        if (currentPage > 0) {
+            loadModulePage(currentModule, currentPage - 1);
+        }
+    }
+
+    function handleQuizConfirm() {
+        if (appState.selectedQuizOption === null) {
+            showNotification('Por favor, selecione uma opção.', 'error');
+            return;
+        }
+
+        const { currentModule, currentPage, selectedQuizOption } = appState;
+        const quizData = moduleData[currentModule].pages[currentPage].quiz;
+        const isCorrect = selectedQuizOption === quizData.correct;
+        
+        document.getElementById('feedbackTitle').textContent = isCorrect ? '🎉 Resposta Correta!' : '🤔 Pense um Pouco Mais...';
+        document.getElementById('feedbackText').textContent = quizData.feedback;
+        document.getElementById('alexTip').textContent = `Dica do Mentor Alex: ${quizData.feedback}`;
+        document.getElementById('quizFeedback').classList.add('show');
+        
+        document.getElementById('confirmQuizBtn').style.display = 'none';
+        document.getElementById('finishModuleBtn').style.display = 'block';
+    }
+
+    function handleFinishModule() {
+        const { currentModule } = appState;
+        appState.modules[currentModule].completed = true;
+        showNotification(`Módulo ${currentModule} concluído com sucesso!`);
+        saveState();
+        showScreen('dashboardScreen');
+    }
+    
+    let currentModuleToUnlock = 0;
+    function showPasswordModal(moduleId) {
+        if (!appState.modules[moduleId - 1] || !appState.modules[moduleId - 1].completed) {
+            showNotification(`Você precisa concluir o Módulo ${moduleId - 1} antes de desbloquear este.`, 'error');
+            return;
+        }
+        currentModuleToUnlock = moduleId;
+        document.getElementById('modalText').textContent = `Para acessar o Módulo ${moduleId}, insira a senha:`
+        document.getElementById('passwordModal').classList.add('show');
+        document.getElementById('modulePasswordInput').value = '';
+        document.getElementById('modulePasswordInput').focus();
+    }
+    
+    function hidePasswordModal() {
+        document.getElementById('passwordModal').classList.remove('show');
+    }
+    
+    function handlePasswordConfirm() {
+        const input = document.getElementById('modulePasswordInput').value.toUpperCase();
+        const correctPassword = modulePasswords[currentModuleToUnlock];
+
+        if (input === correctPassword) {
+            appState.modules[currentModuleToUnlock].unlocked = true;
+            saveState();
+            hidePasswordModal();
+            showNotification(`Módulo ${currentModuleToUnlock} desbloqueado!`, 'success');
+            renderDashboard();
+            startModule(currentModuleToUnlock);
+        } else {
+            showNotification('Senha incorreta. Tente novamente.', 'error');
+            document.getElementById('modulePasswordInput').value = '';
+        }
+    }
+
+    function showNotification(message, type = 'success') {
+        const container = document.getElementById('notificationContainer');
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        container.appendChild(notification);
+        setTimeout(() => notification.remove(), 4000);
+    }
     </script>
 </body>
 </html>
