@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal Destrave na Hora H - Sua jornada de transformação completa para introvertidos descobrirem seu potencial">
+    <meta name="keywords" content="introversão, desenvolvimento pessoal, autoconhecimento, comunicação, liderança">
+    <meta name="author" content="Portal Destrave na Hora H">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://destrave-na-hora-h.com/">
+    <meta property="og:title" content="Portal Destrave na Hora H - Transformação para Introvertidos">
+    <meta property="og:description" content="Descubra seu potencial como introvertido e transforme sua vida com nossa jornada completa de desenvolvimento pessoal">
+    <meta property="og:image" content="/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://destrave-na-hora-h.com/">
+    <meta property="twitter:title" content="Portal Destrave na Hora H - Transformação para Introvertidos">
+    <meta property="twitter:description" content="Descubra seu potencial como introvertido e transforme sua vida com nossa jornada completa de desenvolvimento pessoal">
+    <meta property="twitter:image" content="/images/twitter-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/favicon.png">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="src/styles/critical.css">
+    
+    <!-- Non-critical CSS (loaded asynchronously) -->
+    <link rel="preload" href="src/styles/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="src/styles/main.css"></noscript>
+    
+    <title>Portal Destrave na Hora H - Sua Jornada de Transformação Completa</title>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen" aria-hidden="true">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <svg class="loading-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <h1 class="loading-title">Destrave na Hora H</h1>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+            <p class="loading-text">Preparando sua jornada de transformação...</p>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <main id="loginScreen" class="login-screen" role="main">
+        <div class="container">
+            <div class="login-card card card--shadow-xl">
+                <div class="login-header">
+                    <div class="login-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h1 class="login-title">Bem-vindo(a) de volta!</h1>
+                    <p class="login-subtitle">Entre para continuar sua jornada de transformação</p>
+                </div>
+
+                <form id="loginForm" class="login-form" novalidate>
+                    <div class="form-group">
+                        <label for="userName" class="form-label">Seu Nome</label>
+                        <input 
+                            type="text" 
+                            id="userName" 
+                            name="userName"
+                            class="form-input" 
+                            placeholder="Digite seu nome completo"
+                            required
+                            aria-describedby="userName-error"
+                            autocomplete="name"
+                        >
+                        <div id="userName-error" class="form-error" role="alert" aria-live="polite"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userEmail" class="form-label">E-mail</label>
+                        <input 
+                            type="email" 
+                            id="userEmail" 
+                            name="userEmail"
+                            class="form-input" 
+                            placeholder="seu@email.com"
+                            required
+                            aria-describedby="userEmail-error"
+                            autocomplete="email"
+                        >
+                        <div id="userEmail-error" class="form-error" role="alert" aria-live="polite"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--lg login-btn">
+                        <span class="btn-text">ENTRAR NA JORNADA</span>
+                        <div class="btn-loading" aria-hidden="true">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </button>
+                </form>
+
+                <div class="login-help">
+                    <h3 class="login-help-title">💡 Primeira vez aqui?</h3>
+                    <p class="login-help-text">
+                        Basta inserir seu nome e e-mail para começar sua jornada de autodescoberta. 
+                        Seus dados são seguros e seu progresso será salvo automaticamente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Welcome Screen -->
+    <section id="welcomeScreen" class="welcome-screen" style="display: none;" role="main">
+        <div class="container">
+            <div class="welcome-card card card--shadow-xl">
+                <div class="welcome-header">
+                    <div class="welcome-icon" aria-hidden="true">🎉</div>
+                    <h1 class="welcome-title">Olá, <span id="welcomeUserName"></span>!</h1>
+                    <p class="welcome-subtitle">
+                        Que alegria ter você aqui! Sua jornada de transformação está prestes a começar.
+                    </p>
+                </div>
+                
+                <div class="welcome-content">
+                    <p class="welcome-description">
+                        Você está prestes a descobrir o poder oculto da sua introversão e aprender 
+                        a usar sua voz com autenticidade e impacto. Prepare-se para uma experiência 
+                        que mudará sua perspectiva sobre si mesmo.
+                    </p>
+                </div>
+
+                <button id="goToDashboardBtn" class="btn btn--primary btn--lg welcome-btn">
+                    COMEÇAR JORNADA
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="dashboard" style="display: none;">
+        <!-- Header -->
+        <header class="header" role="banner">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Destrave na Hora H</span>
+                    </div>
+                    
+                    <nav class="user-stats" role="navigation" aria-label="Estatísticas do usuário">
+                        <div class="stat">
+                            <div id="userPoints" class="stat-number">0</div>
+                            <div class="stat-label">Pontos</div>
+                        </div>
+                        <div class="stat">
+                            <div id="userLevel" class="stat-number">Iniciante</div>
+                            <div class="stat-label">Nível</div>
+                        </div>
+                        <div class="stat">
+                            <div id="userAchievements" class="stat-number">0</div>
+                            <div class="stat-label">Conquistas</div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content" role="main">
+            <div class="container">
+                <!-- Progress Overview -->
+                <section class="progress-overview card card--shadow-lg" aria-labelledby="progress-title">
+                    <h2 id="progress-title" class="progress-title">Seu Progresso na Jornada</h2>
+                    <div class="progress-container progress--lg">
+                        <div id="overallProgressBar" class="progress-bar" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <p class="progress-text">
+                        <span id="overallProgressText">0%</span> Concluído
+                        <span class="progress-detail">Continue sua jornada de transformação</span>
+                    </p>
+                </section>
+
+                <!-- Modules Section -->
+                <section class="modules-section" aria-labelledby="modules-title">
+                    <h2 id="modules-title" class="section-title">
+                        <span>Módulos da Jornada</span>
+                        <span class="section-icon" aria-hidden="true">🗺️</span>
+                    </h2>
+                    <div id="modulesGrid" class="modules-grid grid grid-auto-fit" role="list">
+                        <!-- Modules will be dynamically inserted here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Module Content Screen -->
+    <div id="moduleContentScreen" class="module-content-screen" style="display: none;" role="main">
+        <div class="container">
+            <div class="module-content-card card card--shadow-xl">
+                <header class="module-content-header">
+                    <h2 id="moduleContentTitle" class="module-content-title"></h2>
+                    <p id="moduleContentSubtitle" class="module-content-subtitle"></p>
+                </header>
+                
+                <div id="modulePageContent" class="module-page-content"></div>
+                
+                <nav class="module-navigation" role="navigation" aria-label="Navegação do módulo">
+                    <button id="prevPageBtn" class="btn btn--secondary nav-btn">
+                        ← Página Anterior
+                    </button>
+                    <span id="pageIndicator" class="page-indicator">Página 1 de X</span>
+                    <button id="nextPageBtn" class="btn btn--primary nav-btn">
+                        Próxima Página →
+                    </button>
+                </nav>
+                
+                <button id="finishModuleBtn" class="btn btn--success btn--lg finish-module-btn">
+                    ✓ CONCLUIR MÓDULO E VOLTAR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Screen -->
+    <section id="certificateScreen" class="certificate-screen" style="display: none;" role="main">
+        <div class="container">
+            <div class="certificate-card card card--shadow-2xl">
+                <div class="certificate-icon" aria-hidden="true">🏆</div>
+                <h1 class="certificate-title">Parabéns, <span id="certificateUserName"></span>!</h1>
+                <p class="certificate-subtitle">Você concluiu com sucesso a jornada Destrave na Hora H!</p>
+                
+                <div class="certificate-details">
+                    <p>
+                        Este certificado celebra sua dedicação em desvendar sua força oculta, 
+                        dominar o mindset do <strong>Introvertido Poderoso</strong> e aprender 
+                        a usar sua voz com autenticidade e impacto.
+                    </p>
+                    <p>O mundo precisa da sua perspectiva. Continue brilhando!</p>
+                    <p>Data de Conclusão: <strong id="completionDate"></strong></p>
+                </div>
+                
+                <button id="acceptCertificateBtn" class="btn btn--primary btn--lg accept-certificate-btn">
+                    VOLTAR AO DASHBOARD
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-overlay" aria-hidden="true"></div>
+        <div class="modal-content">
+            <header class="modal-header">
+                <h3 id="modal-title" class="modal-title">🔑 Desbloquear Módulo</h3>
+                <button class="modal-close" aria-label="Fechar modal">×</button>
+            </header>
+            
+            <div class="modal-body">
+                <p id="modalText" class="modal-text">Para acessar este módulo, por favor, insira a senha:</p>
+                <div class="form-group">
+                    <label for="modulePasswordInput" class="sr-only">Senha do Módulo</label>
+                    <input 
+                        type="password" 
+                        id="modulePasswordInput" 
+                        class="form-input modal-input" 
+                        placeholder="Senha do Módulo"
+                        aria-describedby="password-error"
+                    >
+                    <div id="password-error" class="form-error" role="alert" aria-live="polite"></div>
+                </div>
+            </div>
+            
+            <footer class="modal-footer">
+                <button id="cancelPasswordBtn" class="btn btn--secondary modal-btn">Cancelar</button>
+                <button id="confirmPasswordBtn" class="btn btn--primary modal-btn">Desbloquear</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container" role="region" aria-label="Notificações" aria-live="polite"></div>
+
+    <!-- Scripts -->
+    <script src="src/utils/storage.js"></script>
+    <script src="src/utils/validation.js"></script>
+    <script src="src/utils/animations.js"></script>
+    <script src="src/data/modules.js"></script>
+    <script src="src/app.js"></script>
+
+    <!-- Service Worker for PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
+
